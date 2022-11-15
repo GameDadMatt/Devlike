@@ -10,6 +10,8 @@ namespace Characters
         public int ID { get; private set; }
         public bool IsPlayer { get; private set; }
 
+        public Character character;
+
         public void MoveCharacter()
         {
             //Takes input from either AI or Player to move around
