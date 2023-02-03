@@ -13,7 +13,6 @@ namespace Characters
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Nickname { get; private set; }
-        public PersonalityType Personality { get; private set; }
         public string Hobby { get; private set; }
         public string Role { get; private set; }
 

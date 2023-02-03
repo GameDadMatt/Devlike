@@ -1,14 +1,37 @@
 using System.Collections.Generic;
-using UnityEngine;
+using BehaviorDesigner.Runtime;
 
 namespace DataTypes
 {
     public enum SeedList { Hobbies, FirstNames, LastNames, Nicknames }
-    public enum PersonalityType { Default }
+    public enum TraitType { Default }
     public enum EmotionType { Anxious, Concerned, Neutral, Optimistic, Enthusiastic }
-    public enum TaskType { Resting, Eating, Thinking, Meeting, Working }
+    public enum NeedType { Rest, Food, Inspiration }
+    public enum TaskType { Rest, Food, Inspiration, Art, Code, Audio }
+    public enum TaskImportance { None, Bug, Required }
     public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
     public enum IncidentType { }
+
+    //This custom class tracks a given need
+    [System.Serializable]
+    public class Need
+    {
+        public float curValue;
+        public float threshold;
+
+        public Need(float curValue, float threshold)
+        {
+            this.curValue = curValue;
+            this.threshold = threshold;
+        }
+    }
+
+    //This allows our needs to be used in the BehaviorDesigner
+    [System.Serializable]
+    public class SharedNeed : SharedVariable<Need>
+    {
+        public static implicit operator SharedNeed(Need value) { return new SharedNeed { Value = value }; }
+    }
 
     public static class DataValues
     {
@@ -18,7 +41,7 @@ namespace DataTypes
         private static List<string> loadedFirstNames;
         private static List<string> loadedLastNames;
         private static List<string> loadedNicknames;
-        private static List<Personality> personalities;
+        private static List<Trait> traits;
 
         /// <summary>
         /// Returns a string from a given list at the provided ID
@@ -31,71 +54,11 @@ namespace DataTypes
             return "";
         }
 
-        public static Personality GetPersonalityOfType(PersonalityType type)
-        {
-            foreach(Personality personality in personalities)
-            {
-                if(personality.personalityType == type)
-                {
-                    return personality;
-                }
-            }
-            Debug.LogError("Failed to find personality type of " + type);
-            return null;
-        }
-
         public static void LoadLists()
         {
             if (!loaded)
             {
                 //Load from files into our lists
-            }
-        }
-    }
-
-    public class Need
-    {
-        public TaskType Type { get; private set; }
-        public float CurrentValue { get; private set; }
-        public float Threshold { get; private set; }
-
-        public Need(TaskType type, float currentValue, float threshold)
-        {
-            Type = type;
-            CurrentValue = currentValue;
-            Threshold = threshold;
-        }
-
-        public Need(TaskType type, float threshold)
-        {
-            Type = type;
-            CurrentValue = 1f;
-            Threshold = threshold;
-        }
-
-        public float ReduceNeed(float rate)
-        {
-            CurrentValue -= rate;
-            return CurrentValue;
-        }
-
-        public float RestoreNeed(float rate)
-        {
-            CurrentValue += rate;
-            return CurrentValue;
-        }
-
-        public float FullRestoreNeed()
-        {
-            CurrentValue = 1f;
-            return CurrentValue;
-        }
-
-        public bool RequiresMaintenance
-        {
-            get
-            {
-                return CurrentValue > Threshold;
             }
         }
     }
