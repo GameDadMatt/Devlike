@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DataTypes;
+using BehaviorDesigner.Runtime;
 
 namespace Characters
 {
-    public class Character : MonoBehaviour
+    public interface ICharacter
+    {
+        void Tick();
+    }
+
+    public class Character : MonoBehaviour, ICharacter
     {
         public List<Task> TaskList = new List<Task>();
         public TaskType CurrentTask { get; private set; }
@@ -46,12 +52,18 @@ namespace Characters
 
         public void Start()
         {
-            
+            GameManager.instance.OnTick += Tick;
+        }
+
+        public void Tick()
+        {
+            LowerNeeds(0.05f, 0.05f, 0.05f);
+            //BehaviorManager.instance.TIck
         }
 
         public void Update()
         {
-            LowerNeeds(0.05f, 0.05f, 0.05f);
+            
         }
     }
 }

@@ -218,7 +218,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &523485141
 GameObject:
@@ -396,8 +396,70 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &665656979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 665656981}
+  - component: {fileID: 665656980}
+  - component: {fileID: 665656982}
+  m_Layer: 0
+  m_Name: ==Application==
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &665656980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665656979}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -638047543, guid: da41a8dd3b5ec434a802d9b5a2a0a777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateInterval: 1
+  updateIntervalSeconds: 2
+  executionsPerTick: 0
+  maxTaskExecutionsPerTick: 100
+--- !u!4 &665656981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665656979}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.460646, y: 7.3304043, z: 0.4660954}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &665656982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665656979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d460648e4e4fe4ea4220de5b001420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickRate: 2
 --- !u!1 &885515420
 GameObject:
   m_ObjectHideFlags: 3
@@ -506,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3183266951831634833, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3183266951831634833, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -785,7 +847,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &1148747868
 GameObject:
@@ -904,7 +966,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 92.63901, y: -89.62201, z: -0.0010070801}
 --- !u!850595691 &1624598971
 LightingSettings:
@@ -1037,7 +1099,7 @@ Transform:
   m_Children:
   - {fileID: 885515421}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 45, y: -89.622, z: 0}
 --- !u!1 &2018324997
 GameObject:
@@ -1051,8 +1113,8 @@ GameObject:
   - component: {fileID: 2018325000}
   - component: {fileID: 2018324999}
   - component: {fileID: 2018324998}
-  - component: {fileID: 2018325002}
   - component: {fileID: 2018325003}
+  - component: {fileID: 2018325002}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1137,7 +1199,7 @@ Transform:
   m_Children:
   - {fileID: 523485142}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2018325002
 MonoBehaviour:
@@ -1160,7 +1222,7 @@ MonoBehaviour:
   resetValuesOnRestart: 0
   externalBehavior: {fileID: 0}
   mBehaviorSource:
-    behaviorName: DevBTree
+    behaviorName: NPC
     behaviorDescription: 
     mTaskData:
       types: []
@@ -1178,7 +1240,7 @@ MonoBehaviour:
         Need","Instant":true,"SharedNeedneed":{"Type":"DataTypes.SharedNeed","Name":"Inspiration","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":4}},{"Type":"RestoreNeed","NodeData":{"Offset":"(70,140)"},"ID":13,"Name":"Restore
         Need","Instant":true,"SharedNeedneed":{"Type":"DataTypes.SharedNeed","Name":"Inspiration","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":5}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(180,140)"},"ID":14,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
         need inspiration"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(390,138)"},"ID":15,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(-4,131)"},"ID":16,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am working"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(110,130)"},"ID":17,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]}]},"Variables":[{"Type":"DataTypes.SharedNeed","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":6},{"Type":"DataTypes.SharedNeed","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":7},{"Type":"DataTypes.SharedNeed","Name":"Inspiration","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":8}]}'
+        am working"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},"Variables":[{"Type":"DataTypes.SharedNeed","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":6},{"Type":"DataTypes.SharedNeed","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":7},{"Type":"DataTypes.SharedNeed","Name":"Inspiration","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":8}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -1307,5 +1369,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
