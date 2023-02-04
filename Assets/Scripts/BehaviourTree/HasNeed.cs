@@ -8,10 +8,9 @@ public class HasNeed : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        Debug.Log(need.Value.curValue);
         if(need.Value.curValue <= need.Value.threshold)
         {
-            Debug.Log("NEED TRIGGER" + need.Value.curValue);
+            Debug.Log("I need " + need.Value.type + " " + need.Value.curValue);
             return TaskStatus.Success;
         }
         return TaskStatus.Failure;

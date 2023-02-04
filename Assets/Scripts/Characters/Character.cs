@@ -6,27 +6,32 @@ using BehaviorDesigner.Runtime;
 
 namespace Characters
 {
-    public interface ICharacter
-    {
-        void Tick();
-    }
-
-    public class Character : MonoBehaviour, ICharacter
+    public class Character : MonoBehaviour
     {
         public List<Task> TaskList = new List<Task>();
         public TaskType CurrentTask { get; private set; }
         public EmotionType CurrentEmotion { get; private set; }
         public IncidentType RememberedIncident { get; private set; }
 
-        public Need Rest { get; private set; } = new Need(1f, 0.3f);
-        public Need Food { get; private set; } = new Need(1f, 0.3f);
-        public Need Insp { get; private set; } = new Need(1f, 0.3f);
+        public Need Rest { get; private set; } = new Need(NeedType.Rest, 1f, 0.3f);
+        public Need Food { get; private set; } = new Need(NeedType.Food, 1f, 0.3f);
+        public Need Insp { get; private set; } = new Need(NeedType.Inspiration, 1f, 0.3f);
+        public Need Socl { get; private set; } = new Need(NeedType.Social, 1f, 0.3f);
 
-        public void LowerNeeds(float rest, float food, float insp)
+        public float restBurnRate = 0.05f;
+        public float foodBurnRate = 0.1f;
+        public float inspBurnRate = 0.08f;
+        public float soclBurnRate = 0.1f;
+
+        public int dayStart { get; private set; } = 0;
+        public int dayEnd { get; private set; } = 0;
+
+        public void LowerNeeds()
         {
-            Rest.curValue -= rest;
-            Food.curValue -= food;
-            Insp.curValue -= insp;
+            Rest.curValue -= restBurnRate;
+            Food.curValue -= foodBurnRate;
+            Insp.curValue -= inspBurnRate;
+            Socl.curValue -= soclBurnRate;
         }
 
         public void NeedTask(NeedType need)
@@ -47,23 +52,23 @@ namespace Characters
                 case NeedType.Inspiration:
                     Insp.curValue = 1f;
                     break;
+                case NeedType.Social:
+                    Socl.curValue = 1f;
+                    break;
             }
         }
 
         public void Start()
         {
-            GameManager.instance.OnTick += Tick;
+            TimeManager.instance.OnTick += Tick;
+            dayStart = TimeManager.instance.DayStartTick;
+            dayEnd = TimeManager.instance.DayEndTick;
         }
 
-        public void Tick()
+        private void Tick()
         {
-            LowerNeeds(0.05f, 0.05f, 0.05f);
+            LowerNeeds();
             //BehaviorManager.instance.TIck
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

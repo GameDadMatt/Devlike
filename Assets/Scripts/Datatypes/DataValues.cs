@@ -6,7 +6,7 @@ namespace DataTypes
     public enum SeedList { Hobbies, FirstNames, LastNames, Nicknames }
     public enum TraitType { Default }
     public enum EmotionType { Anxious, Concerned, Neutral, Optimistic, Enthusiastic }
-    public enum NeedType { Rest, Food, Inspiration }
+    public enum NeedType { Rest, Food, Inspiration, Social }
     public enum TaskType { Rest, Food, Inspiration, Art, Code, Audio }
     public enum TaskImportance { None, Bug, Required }
     public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
@@ -16,11 +16,13 @@ namespace DataTypes
     [System.Serializable]
     public class Need
     {
+        public NeedType type;
         public float curValue;
         public float threshold;
 
-        public Need(float curValue, float threshold)
+        public Need(NeedType type, float curValue, float threshold)
         {
+            this.type = type;
             this.curValue = curValue;
             this.threshold = threshold;
         }

@@ -6,8 +6,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public float tickRate = 4f;
-    private float curTick = 0f;
 
     public void Awake()
     {
@@ -15,22 +13,5 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        curTick += Time.deltaTime;
-        if(curTick >= tickRate)
-        {
-            curTick -= tickRate;
-            Tick();
-        }
-    }
-
-    public event Action OnTick;
-    public void Tick()
-    {
-        OnTick?.Invoke();
     }
 }
