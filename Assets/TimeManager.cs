@@ -16,6 +16,9 @@ public class TimeManager : MonoBehaviour
         {
             instance = this;
         }
+
+        CurrentTick = GlobalVariables.value.DayTickLength; //Force us to start at the beginning of the day
+        Tick();
     }
 
     // Update is called once per frame
@@ -34,11 +37,13 @@ public class TimeManager : MonoBehaviour
     public void Tick()
     {
         CurrentTick++;
-        if(CurrentTick > GlobalVariables.value.DayTickLength)
+
+        if (CurrentTick > GlobalVariables.value.DayTickLength)
         {
             CurrentTick = 0;
             OnDayStart?.Invoke();
         }
+
         OnTick?.Invoke();
     }
 }

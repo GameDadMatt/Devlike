@@ -8,11 +8,16 @@ namespace Characters
 {
     public class Character : MonoBehaviour
     {
+        //Personality
+        public Profile characterProfile = new Profile();
+
+        //Tasks
         public List<Task> TaskList = new List<Task>();
         public TaskType CurrentTask { get; private set; }
         public EmotionType CurrentEmotion { get; private set; }
         public IncidentType RememberedIncident { get; private set; }
 
+        //Needs
         public Need Rest { get; private set; } = new Need(NeedType.Rest, 1f, 0.3f);
         public Need Food { get; private set; } = new Need(NeedType.Food, 1f, 0.3f);
         public Need Insp { get; private set; } = new Need(NeedType.Inspiration, 1f, 0.3f);
@@ -23,6 +28,7 @@ namespace Characters
         public float inspBurnRate { get { return GlobalVariables.value.baseInspirationBurnTime; } }
         public float soclBurnRate { get { return GlobalVariables.value.baseSocialBurnTime; } }
 
+        //Days
         public int dayStart { get { return GlobalVariables.value.dayStartTick; } }
         public int dayEnd { get { return GlobalVariables.value.dayEndTick; } }
 
@@ -30,6 +36,16 @@ namespace Characters
         {
             TimeManager.instance.OnTick += LowerNeeds;
             TimeManager.instance.OnDayStart += SetNeeds;
+            characterProfile.SetupProfile();
+        }
+
+        public void OnMouseOver()
+        {
+            Debug.Log("Mouse Over");
+            if (Input.GetMouseButtonDown(0))
+            {
+                GameManager.instance.CharacterSelect(this);
+            }
         }
 
         public void SetNeeds()

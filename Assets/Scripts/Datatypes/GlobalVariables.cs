@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Characters;
+using DataTypes;
 
 public class GlobalVariables : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class GlobalVariables : MonoBehaviour
     public float baseRestBurnTime = 0.0f;
     public float baseInspirationBurnTime = 0.0f;
     public float baseSocialBurnTime = 0.0f;
+    public List<Trait> allTraits = new List<Trait>();
 
     public void Awake()
     {
@@ -29,5 +32,18 @@ public class GlobalVariables : MonoBehaviour
         {
             value = this;
         }
+    }
+
+    public Trait GetTraitOfType(TraitType type)
+    {
+        foreach(Trait trait in allTraits)
+        {
+            if(trait.type == type)
+            {
+                return trait;
+            }
+        }
+        Debug.LogError("Could not find trait of type " + type + ". Was it added to the All Traits list on GlobalVariables?");
+        return null;
     }
 }

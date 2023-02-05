@@ -4,7 +4,7 @@ using BehaviorDesigner.Runtime;
 namespace DataTypes
 {
     public enum SeedList { Hobbies, FirstNames, LastNames, Nicknames }
-    public enum TraitType { Default }
+    public enum TraitType { Average, EarlyBird, NightOwl, Caffienated, Insomniac, Wallflower, SocialButterfly, Imaginative, Forgetful, Hungry, Workaholic, Slacker, Hacker, Furry, Cool, FanfictionWriter, Cosplayer, Thorough, Hasty, AllRounder }
     public enum EmotionType { Anxious, Concerned, Neutral, Optimistic, Enthusiastic }
     public enum NeedType { Rest, Food, Inspiration, Social }
     public enum TaskType { Rest, Food, Inspiration, Art, Code, Audio }
@@ -43,7 +43,6 @@ namespace DataTypes
         private static List<string> loadedFirstNames;
         private static List<string> loadedLastNames;
         private static List<string> loadedNicknames;
-        private static List<Trait> traits;
 
         /// <summary>
         /// Returns a string from a given list at the provided ID

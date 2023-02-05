@@ -1,27 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using DataTypes;
 
-namespace DataTypes
+namespace Characters
 {
-    public interface ITraitMod
-    {
-        float traitMod { get; }
-        void ApplyMod(float traitMod);
-    }
-
     [CreateAssetMenu(fileName = "TraitType", menuName = "Devlike/Trait")]
     public class Trait : ScriptableObject
     {
-        //More than 1 drops faster, less than 1 drops slower
+        public TraitType type;
+
+        //Multipliers for needs
         public float restDropMultiplier = 1f;
         public float foodDropMultiplier = 1f;
         public float inspirationDropMultiplier = 1f;
+        public float socialnDropMultiplier = 1f;
+
+        //How much empathy is needed to see this characters moodlets
+        public float empathyBarrierMultiplier = 1f;
+        public float moodImpactMultiplier = 1f;
+
+        //How early or late does the character start and end the day
+        public int dayStartMod = 0;
+        public int dayEndMod = 0;
+
+        //Multipliers for what tasks thiss character particularly excels at
         public float velocityMultiplier = 1f;
         public float buglocityMultiplier = 1f;
-
-        //These modify other stats
-        public float dayStartMod = 0f;
-        public float dayEndMod = 0f;
+        public float burnoutMultiplier = 1f;
+        public float likesProgramming = 1f;
+        public float likesArt = 1f;
+        public float likesAudio = 1f;
+        public float likesWriting = 1f;
+        public float likesDesign = 1f;
     }
 }
