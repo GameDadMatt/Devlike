@@ -10,7 +10,10 @@ public class GlobalVariables : MonoBehaviour
 
     //TIMING
     [Header("TIMING")]
-    public float tickLength = 1f;
+    public bool paused = false;
+    public float normalTickLength = 1f;
+    public float slowTickLength = 3f;
+    public float fastTickLength = 0.5f;
     public int dayTickLength = 60;
     public int dayStartTick = 5;
     public int dayEndTick = 55;

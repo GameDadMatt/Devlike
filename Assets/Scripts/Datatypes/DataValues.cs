@@ -3,6 +3,7 @@ using BehaviorDesigner.Runtime;
 
 namespace DataTypes
 {
+    public enum GameSpeed { Slow, Normal, Fast }
     public enum SeedList { Hobbies, FirstNames, LastNames, Nicknames }
     public enum TraitType { Average, EarlyBird, NightOwl, Caffienated, Insomniac, Wallflower, SocialButterfly, Imaginative, Forgetful, Hungry, Workaholic, Slacker, Hacker, Furry, Cool, FanfictionWriter, Cosplayer, Thorough, Hasty, AllRounder }
     public enum EmotionType { Anxious, Concerned, Neutral, Optimistic, Enthusiastic }

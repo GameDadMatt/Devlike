@@ -29,8 +29,9 @@ namespace Characters
         public float soclBurnRate { get { return GlobalVariables.value.baseSocialBurnTime * profile.socialDropMultiplier; } }
 
         //Days
-        public int dayStart { get { return GlobalVariables.value.dayStartTick + profile.dayStartMod; } }
-        public int dayEnd { get { return GlobalVariables.value.dayEndTick + profile.dayEndMod; } }
+        public int DayStart { get { return GlobalVariables.value.dayStartTick + profile.dayStartMod; } }
+        public int DayEnd { get { return GlobalVariables.value.dayEndTick + profile.dayEndMod; } }
+        public bool AtWork { get; set; }
 
         public void Start()
         {
@@ -58,10 +59,13 @@ namespace Characters
 
         public void LowerNeeds()
         {
-            Rest.curValue -= restBurnRate;
-            Food.curValue -= foodBurnRate;
-            Insp.curValue -= inspBurnRate;
-            Socl.curValue -= soclBurnRate;
+            if (AtWork)
+            {
+                Rest.curValue -= restBurnRate;
+                Food.curValue -= foodBurnRate;
+                Insp.curValue -= inspBurnRate;
+                Socl.curValue -= soclBurnRate;
+            }            
         }
 
         public void NeedTask(NeedType need)
