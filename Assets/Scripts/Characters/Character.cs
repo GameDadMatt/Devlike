@@ -29,8 +29,8 @@ namespace Characters
         public float soclBurnRate { get { return GlobalVariables.value.baseSocialBurnTime * profile.socialDropMultiplier; } }
 
         //Days
-        public int dayStart { get { return GlobalVariables.value.dayStartTick; } }
-        public int dayEnd { get { return GlobalVariables.value.dayEndTick; } }
+        public int dayStart { get { return GlobalVariables.value.dayStartTick + profile.dayStartMod; } }
+        public int dayEnd { get { return GlobalVariables.value.dayEndTick + profile.dayEndMod; } }
 
         public void Start()
         {
