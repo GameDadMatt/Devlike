@@ -19,7 +19,7 @@ public class DevOutput : MonoBehaviour
     public void SelectCharacter(Character click)
     {
         c = click;
-        p = c.characterProfile;
+        p = c.profile;
         selected = true;
     }
 

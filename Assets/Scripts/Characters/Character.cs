@@ -9,7 +9,7 @@ namespace Characters
     public class Character : MonoBehaviour
     {
         //Personality
-        public Profile characterProfile = new Profile();
+        public Profile profile = new Profile();
 
         //Tasks
         public List<Task> TaskList = new List<Task>();
@@ -23,10 +23,10 @@ namespace Characters
         public Need Insp { get; private set; } = new Need(NeedType.Inspiration, 1f, 0.3f);
         public Need Socl { get; private set; } = new Need(NeedType.Social, 1f, 0.3f);
 
-        public float restBurnRate { get { return GlobalVariables.value.baseRestBurnTime; } }
-        public float foodBurnRate { get { return GlobalVariables.value.baseFoodBurnTime; } }
-        public float inspBurnRate { get { return GlobalVariables.value.baseInspirationBurnTime; } }
-        public float soclBurnRate { get { return GlobalVariables.value.baseSocialBurnTime; } }
+        public float restBurnRate { get { return GlobalVariables.value.baseRestBurnTime * profile.restDropMultiplier; } }
+        public float foodBurnRate { get { return GlobalVariables.value.baseFoodBurnTime * profile.foodDropMultiplier; } }
+        public float inspBurnRate { get { return GlobalVariables.value.baseInspirationBurnTime * profile.inspirationDropMultiplier; } }
+        public float soclBurnRate { get { return GlobalVariables.value.baseSocialBurnTime * profile.socialDropMultiplier; } }
 
         //Days
         public int dayStart { get { return GlobalVariables.value.dayStartTick; } }
@@ -36,7 +36,7 @@ namespace Characters
         {
             TimeManager.instance.OnTick += LowerNeeds;
             TimeManager.instance.OnDayStart += SetNeeds;
-            characterProfile.SetupProfile();
+            profile.SetupProfile();
         }
 
         public void OnMouseOver()
