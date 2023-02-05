@@ -18,13 +18,27 @@ namespace Characters
         public Need Insp { get; private set; } = new Need(NeedType.Inspiration, 1f, 0.3f);
         public Need Socl { get; private set; } = new Need(NeedType.Social, 1f, 0.3f);
 
-        public float restBurnRate = 0.05f;
-        public float foodBurnRate = 0.1f;
-        public float inspBurnRate = 0.08f;
-        public float soclBurnRate = 0.1f;
+        public float restBurnRate { get { return GlobalVariables.value.baseRestBurnTime; } }
+        public float foodBurnRate { get { return GlobalVariables.value.baseFoodBurnTime; } }
+        public float inspBurnRate { get { return GlobalVariables.value.baseInspirationBurnTime; } }
+        public float soclBurnRate { get { return GlobalVariables.value.baseSocialBurnTime; } }
 
-        public int dayStart { get; private set; } = 0;
-        public int dayEnd { get; private set; } = 0;
+        public int dayStart { get { return GlobalVariables.value.dayStartTick; } }
+        public int dayEnd { get { return GlobalVariables.value.dayEndTick; } }
+
+        public void Start()
+        {
+            TimeManager.instance.OnTick += LowerNeeds;
+            TimeManager.instance.OnDayStart += SetNeeds;
+        }
+
+        public void SetNeeds()
+        {
+            Rest.curValue = Random.Range(0.7f, 1f);
+            Food.curValue = Random.Range(0.8f, 1f);
+            Insp.curValue = Random.Range(0.1f, 1f);
+            Socl.curValue = Random.Range(0.1f, 1f);
+        }
 
         public void LowerNeeds()
         {
@@ -56,19 +70,6 @@ namespace Characters
                     Socl.curValue = 1f;
                     break;
             }
-        }
-
-        public void Start()
-        {
-            TimeManager.instance.OnTick += Tick;
-            dayStart = TimeManager.instance.DayStartTick;
-            dayEnd = TimeManager.instance.DayEndTick;
-        }
-
-        private void Tick()
-        {
-            LowerNeeds();
-            //BehaviorManager.instance.TIck
         }
     }
 }

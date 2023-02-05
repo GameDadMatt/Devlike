@@ -6,10 +6,7 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
-    public float tickLength = 1f;
-    public int DayTickLength { get; private set; } = 120;
-    public int DayStartTick { get; private set; } = 3;
-    public int DayEndTick { get; private set; } = 80;
+    
     public int CurrentTick { get; private set; } = 0;
     private float seconds = 0f;
 
@@ -25,20 +22,22 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         seconds += Time.deltaTime;
-        if (seconds >= tickLength)
+        if (seconds >= GlobalVariables.value.tickLength)
         {
-            seconds -= tickLength;
+            seconds -= GlobalVariables.value.tickLength;
             Tick();
         }
     }
 
     public event Action OnTick;
+    public event Action OnDayStart;
     public void Tick()
     {
         CurrentTick++;
-        if(CurrentTick > DayTickLength)
+        if(CurrentTick > GlobalVariables.value.DayTickLength)
         {
             CurrentTick = 0;
+            OnDayStart?.Invoke();
         }
         OnTick?.Invoke();
     }

@@ -14,14 +14,13 @@ public class RestoreNeed : Action
         if(curTicks < restoreTicks.Value)
         {
             curTicks++;
-
-            if (curTicks >= restoreTicks.Value)
-            {
-                need.Value.curValue = 1f;
-                curTicks = 0;
-                return TaskStatus.Success;
-            }
             return TaskStatus.Running;
+        }
+        else if (curTicks >= restoreTicks.Value)
+        {
+            need.Value.curValue = 1f;
+            curTicks = 0;
+            return TaskStatus.Failure;
         }
         return TaskStatus.Failure;
     }
