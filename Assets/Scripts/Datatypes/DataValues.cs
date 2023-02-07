@@ -3,12 +3,12 @@ using BehaviorDesigner.Runtime;
 
 namespace DataTypes
 {
-    public enum GameSpeed { Slow, Normal, Fast }
+    public enum GameState { Paused, Ticking, Interacting }
     public enum SeedList { Hobbies, FirstNames, LastNames, Nicknames }
     public enum TraitType { Average, EarlyBird, NightOwl, Caffienated, Insomniac, Wallflower, SocialButterfly, Imaginative, Forgetful, Hungry, Workaholic, Slacker, Hacker, Furry, Cool, FanfictionWriter, Cosplayer, Thorough, Hasty, AllRounder }
     public enum EmotionType { Anxious, Concerned, Neutral, Optimistic, Enthusiastic }
     public enum NeedType { Rest, Food, Inspiration, Social }
-    public enum TaskType { Rest, Food, Inspiration, Art, Code, Audio }
+    public enum TaskType { Art, Code, Audio, Design, Writing }
     public enum TaskImportance { None, Bug, Required }
     public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
     public enum IncidentType { }

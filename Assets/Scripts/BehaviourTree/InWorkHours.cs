@@ -7,8 +7,8 @@ using UnityEngine;
 public class InWorkHours : Conditional
 {
     public SharedInt currentTick;
-    public SharedInt dayStartTick;
-    public SharedInt dayEndTick;
+    public SharedInt workStartTick;
+    public SharedInt workEndTick;
     public SharedBool atWork;
 
     public override void OnAwake()
@@ -19,7 +19,7 @@ public class InWorkHours : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if(currentTick.Value > dayStartTick.Value && currentTick.Value <= dayEndTick.Value)
+        if(currentTick.Value > workStartTick.Value && currentTick.Value <= workEndTick.Value)
         {
             if (!atWork.Value)
             {

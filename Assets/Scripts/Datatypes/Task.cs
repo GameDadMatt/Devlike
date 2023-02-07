@@ -6,23 +6,18 @@ namespace DataTypes
 {
     public enum TaskState { Idle, InProgress, Complete }
 
-    public interface ITask
-    {
-        void StartTask();
-        void DoTask();
-        void CompleteTask();
-    }
-
     //The base Task class can work to satify Needs
     [CreateAssetMenu(fileName = "TaskType", menuName = "Devlike/Task")]
-    public class Task : ScriptableObject, ITask
+    public class Task : ScriptableObject
     {
         public TaskType type;
         public TaskState state = TaskState.Idle;
+        public TaskImportance importance = TaskImportance.None;
         public int minTicks;
         public int maxTicks;
+        public float bugChance = 0.05f;
 
-        
+
         public float completeChance = 0.95f;
         public int doneTicks;
 
@@ -31,7 +26,7 @@ namespace DataTypes
             state = TaskState.InProgress;
         }
 
-        public void DoTask()
+        public void DoTask(float bugChanceMod)
         {
             doneTicks++;
             if(doneTicks > minTicks && doneTicks < maxTicks)
@@ -46,6 +41,22 @@ namespace DataTypes
             {
                 CompleteTask();
             }
+
+            //Risk generating a bug every tick this task is incomplete
+            if (importance != TaskImportance.Bug)
+            {
+                float bug = Random.Range(0f, 1f);
+                float chance = bugChance * bugChanceMod;
+                if (bug <= chance)
+                {
+                    GenerateBug();
+                }
+            }            
+        }
+
+        private void GenerateBug()
+        {
+            Debug.LogWarning("Bug generated in " + name);
         }
 
         public void CompleteTask()

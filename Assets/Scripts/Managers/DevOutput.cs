@@ -29,9 +29,9 @@ public class DevOutput : MonoBehaviour
         {
             output.text = "PROFILE" +
             "\n Traits = " + p.Traits[0] + ", " + p.Traits[1] + ", " + p.Traits[2] +
-            "\n RestMod " + p.restDropMultiplier + ", FoodMod " + p.foodDropMultiplier + ", InspMod " + p.inspirationDropMultiplier + ", SoclMod " + p.socialDropMultiplier +
-            "\n EmpathyMod " + p.empathyBarrierMultiplier + ", MoodMod " + p.moodImpactMultiplier + ", DayStartMod " + p.dayStartMod + ", DayEndMod " + p.dayEndMod + ", VelocityMod " + p.velocityMultiplier + ", BuglocityMod " + p.buglocityMultiplier + ", BurnoutpMod " + p.burnoutMultiplier +
-            "\n PrgLike " + p.likesProgramming + ", ArtLike " + p.likesArt + ", AudLike " + p.likesAudio + ", WrtLike " + p.likesWriting + ", DesLike " + p.likesDesign +
+            "\n RestMod " + p.RestDropMultiplier + ", FoodMod " + p.FoodDropMultiplier + ", InspMod " + p.InspDropMultiplier + ", SoclMod " + p.SoclDropMultiplier +
+            "\n EmpathyMod " + p.EmpathyBarrierMultiplier + ", MoodMod " + p.MoodImpactMultiplier + ", DayStartMod " + p.WorkStartMod + ", DayEndMod " + p.WorkEndMod + ", VelocityMod " + p.VelocityMultiplier + ", BuglocityMod " + p.BuglocityMultiplier + ", BurnoutpMod " + p.BurnoutMultiplier +
+            "\n PrgLike " + p.LikesProgramming + ", ArtLike " + p.LikesArt + ", AudLike " + p.LikesAudio + ", WrtLike " + p.LikesWriting + ", DesLike " + p.LikesDesign +
             "\n CURRENT VALUES" +
             "\n Rest " + c.Rest.curValue + ", Food " + c.Food.curValue + ", Insp " + c.Insp.curValue + ", Socl " + c.Socl.curValue +
             "\n RestBurn " + c.restBurnRate + ", FoodBurn " + c.foodBurnRate + ", InspBurn " + c.inspBurnRate + ", SoclBurn " + c.soclBurnRate;

@@ -23,14 +23,14 @@ namespace Characters
         public Need Insp { get; private set; } = new Need(NeedType.Inspiration, 1f, 0.3f);
         public Need Socl { get; private set; } = new Need(NeedType.Social, 1f, 0.3f);
 
-        public float restBurnRate { get { return GlobalVariables.value.baseRestBurnTime * profile.restDropMultiplier; } }
-        public float foodBurnRate { get { return GlobalVariables.value.baseFoodBurnTime * profile.foodDropMultiplier; } }
-        public float inspBurnRate { get { return GlobalVariables.value.baseInspirationBurnTime * profile.inspirationDropMultiplier; } }
-        public float soclBurnRate { get { return GlobalVariables.value.baseSocialBurnTime * profile.socialDropMultiplier; } }
+        public float restBurnRate { get { return GlobalVariables.value.BaseRestBurn * profile.RestDropMultiplier; } }
+        public float foodBurnRate { get { return GlobalVariables.value.BaseFoodBurn * profile.FoodDropMultiplier; } }
+        public float inspBurnRate { get { return GlobalVariables.value.BaseInspBurn * profile.InspDropMultiplier; } }
+        public float soclBurnRate { get { return GlobalVariables.value.BaseSoclBurn * profile.SoclDropMultiplier; } }
 
         //Days
-        public int DayStart { get { return GlobalVariables.value.dayStartTick + profile.dayStartMod; } }
-        public int DayEnd { get { return GlobalVariables.value.dayEndTick + profile.dayEndMod; } }
+        public int WorkStart { get { return GlobalVariables.value.WorkStartTick + profile.WorkStartMod; } }
+        public int WorkEnd { get { return GlobalVariables.value.WorkEndTick + profile.WorkEndMod; } }
         public bool AtWork { get; set; }
 
         public void Start()
@@ -43,7 +43,7 @@ namespace Characters
         public void OnMouseOver()
         {
             Debug.Log("Mouse Over");
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(1))
             {
                 GameManager.instance.CharacterSelect(this);
             }

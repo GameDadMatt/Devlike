@@ -10,24 +10,39 @@ public class GlobalVariables : MonoBehaviour
 
     //TIMING
     [Header("TIMING")]
-    public bool paused = false;
-    public float normalTickLength = 1f;
-    public float slowTickLength = 3f;
-    public float fastTickLength = 0.5f;
-    public int dayTickLength = 60;
-    public int dayStartTick = 5;
-    public int dayEndTick = 55;
-    public int DayTickLength { get { return dayTickLength; } private set { dayTickLength = value; } }
-    public int DayStartTick { get { return dayStartTick; } private set { dayStartTick = value; } }
+    [SerializeField]
+    private float tickLength = 0.5f;
+    [SerializeField]
+    private int workStartTick = 6;
+    [SerializeField]
+    private int workEndTick = 58;
+    [SerializeField]
+    private int dayEndTick = 66;
+    [SerializeField]
+    private int timeUnitTicks = 6;
+
+    public float TickLength { get { return tickLength; } private set { tickLength = value; } }
+    public int WorkStartTick { get { return workStartTick; } private set { workStartTick = value; } }
+    public int WorkEndTick { get { return workEndTick; } private set { workEndTick = value; } }
     public int DayEndTick { get { return dayEndTick; } private set { dayEndTick = value; } }
 
     //CHARACTER
     [Header("CHARACTERS")]
-    public float baseFoodBurnTime = 0.0f;
-    public float baseRestBurnTime = 0.0f;
-    public float baseInspirationBurnTime = 0.0f;
-    public float baseSocialBurnTime = 0.0f;
+    [SerializeField]
+    private float foodBreaksPerDay = 1f;
+    [SerializeField]
+    private float restBreaksPerDay = 4f;
+    [SerializeField]
+    private float inspirationBreaksPerDay = 3f;
+    [SerializeField]
+    private float socialBreaksPerDay = 3f;
     public List<Trait> allTraits = new List<Trait>();
+
+    public float BaseFoodBurn { get { return foodBreaksPerDay / (workEndTick - workStartTick);  } }
+    public float BaseRestBurn { get { return restBreaksPerDay / (workEndTick - workStartTick); } }
+    public float BaseInspBurn { get { return inspirationBreaksPerDay / (workEndTick - workStartTick); } }
+    public float BaseSoclBurn { get { return socialBreaksPerDay / (workEndTick - workStartTick); } }
+
 
     public void Awake()
     {

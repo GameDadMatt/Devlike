@@ -20,28 +20,28 @@ namespace Characters
         //public List<TraitType> Traits { get; private set; }
 
         //Multipliers for needs
-        public float restDropMultiplier { get; private set; } = 1f;
-        public float foodDropMultiplier { get; private set; } = 1f;
-        public float inspirationDropMultiplier { get; private set; } = 1f;
-        public float socialDropMultiplier { get; private set; } = 1f;
+        public float RestDropMultiplier { get; private set; } = 1f;
+        public float FoodDropMultiplier { get; private set; } = 1f;
+        public float InspDropMultiplier { get; private set; } = 1f;
+        public float SoclDropMultiplier { get; private set; } = 1f;
 
         //How much empathy is needed to see this characters moodlets
-        public float empathyBarrierMultiplier { get; private set; } = 1f;
-        public float moodImpactMultiplier { get; private set; } = 1f;
+        public float EmpathyBarrierMultiplier { get; private set; } = 1f;
+        public float MoodImpactMultiplier { get; private set; } = 1f;
 
         //How early or late does the character start and end the day
-        public int dayStartMod { get; private set; } = 0;
-        public int dayEndMod { get; private set; } = 0;
+        public int WorkStartMod { get; private set; } = 0;
+        public int WorkEndMod { get; private set; } = 0;
 
         //Multipliers for what tasks thiss character particularly excels at
-        public float velocityMultiplier { get; private set; } = 1f;
-        public float buglocityMultiplier { get; private set; } = 1f;
-        public float burnoutMultiplier { get; private set; } = 1f;
-        public float likesProgramming { get; private set; } = 1f;
-        public float likesArt { get; private set; } = 1f;
-        public float likesAudio { get; private set; } = 1f;
-        public float likesWriting { get; private set; } = 1f;
-        public float likesDesign { get; private set; } = 1f;
+        public float VelocityMultiplier { get; private set; } = 1f;
+        public float BuglocityMultiplier { get; private set; } = 1f;
+        public float BurnoutMultiplier { get; private set; } = 1f;
+        public float LikesProgramming { get; private set; } = 1f;
+        public float LikesArt { get; private set; } = 1f;
+        public float LikesAudio { get; private set; } = 1f;
+        public float LikesWriting { get; private set; } = 1f;
+        public float LikesDesign { get; private set; } = 1f;
 
         public void SetupProfile()
         {
@@ -57,25 +57,25 @@ namespace Characters
             Trait t = GlobalVariables.value.GetTraitOfType(type);
             if (t != null)
             {
-                restDropMultiplier *= t.restDropMultiplier;
-                foodDropMultiplier *= t.foodDropMultiplier;
-                inspirationDropMultiplier *= t.inspirationDropMultiplier;
-                socialDropMultiplier *= t.socialnDropMultiplier;
+                RestDropMultiplier *= t.restDropMultiplier;
+                FoodDropMultiplier *= t.foodDropMultiplier;
+                InspDropMultiplier *= t.inspirationDropMultiplier;
+                SoclDropMultiplier *= t.socialnDropMultiplier;
 
-                empathyBarrierMultiplier *= t.empathyBarrierMultiplier;
-                moodImpactMultiplier *= t.moodImpactMultiplier;
+                EmpathyBarrierMultiplier *= t.empathyBarrierMultiplier;
+                MoodImpactMultiplier *= t.moodImpactMultiplier;
 
-                dayStartMod += t.dayStartMod;
-                dayEndMod += t.dayEndMod;
+                WorkStartMod += t.dayStartMod;
+                WorkEndMod += t.dayEndMod;
 
-                velocityMultiplier *= t.velocityMultiplier;
-                buglocityMultiplier *= t.buglocityMultiplier;
-                burnoutMultiplier *= t.burnoutMultiplier;
-                likesProgramming *= t.likesProgramming;
-                likesArt *= t.likesArt;
-                likesAudio *= t.likesAudio;
-                likesWriting *= t.likesWriting;
-                likesDesign *= t.likesDesign;
+                VelocityMultiplier *= t.velocityMultiplier;
+                BuglocityMultiplier *= t.buglocityMultiplier;
+                BurnoutMultiplier *= t.burnoutMultiplier;
+                LikesProgramming *= t.likesProgramming;
+                LikesArt *= t.likesArt;
+                LikesAudio *= t.likesAudio;
+                LikesWriting *= t.likesWriting;
+                LikesDesign *= t.likesDesign;
             }
         }
     }
