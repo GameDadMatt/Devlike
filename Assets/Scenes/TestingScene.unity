@@ -1492,6 +1492,9 @@ MonoBehaviour:
   restBreaksPerDay: 4
   inspirationBreaksPerDay: 3
   socialBreaksPerDay: 3
+  moodImpactDays: 2.5
+  moodImpactMax: 1.5
+  moodImpactMin: 0.1
   allTraits:
   - {fileID: 11400000, guid: fc9dd69fbaf95964181d4054e341882c, type: 2}
   - {fileID: 11400000, guid: d48154e2faafd1342a89e8f59de44d5f, type: 2}
@@ -1513,6 +1516,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1e1e665215c52bb47a0e6f53ac3b4f43, type: 2}
   - {fileID: 11400000, guid: c0e55ca945399a24db75a31ef5fa3df1, type: 2}
   - {fileID: 11400000, guid: 6a2c1cc42b7cb4e45b48b2912591beb4, type: 2}
+  tasksPerDay: 3
+  bugChance: 0.1
 --- !u!1 &1597308076
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using DataTypes;
 
 namespace Characters
 {
-    public class CharacterInteract : MonoBehaviour
+    public class CharacterInteraction : MonoBehaviour
     {
         [SerializeField] private DialogueName conversationStartNode;
 

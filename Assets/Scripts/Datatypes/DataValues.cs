@@ -12,7 +12,6 @@ namespace DataTypes
     public enum TaskImportance { None, Bug, Required }
     public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
     public enum IncidentType { }
-    public enum DialogueName { Test }
 
     //This custom class tracks a given need
     [System.Serializable]

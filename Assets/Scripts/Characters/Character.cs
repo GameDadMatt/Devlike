@@ -124,5 +124,10 @@ namespace Characters
         {
             MoodImpact += impact;
         }
+
+        public void ChangeBugChanceMod(float mod)
+        {
+
+        }
     }
 }
