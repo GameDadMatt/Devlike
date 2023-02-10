@@ -34,12 +34,12 @@ namespace Characters
         public float SoclBurnRate { get { return GlobalVariables.value.BaseSoclBurn * profile.SoclDropMultiplier; } }
 
         //Moods
-        public float MoodImpact { get; set; } = 0f; //MoodImpact can be modified externally to have an effect on the current mood
+        public float MoodImpact { get; private set; } = 0f;
         private float MoodImpactBurn { get { return GlobalVariables.value.MoodImpactBurn; } }
 
         //Velocity
-        public float Velocity { get { return (GlobalVariables.value.BaseVelocity * profile.VelocityMultiplier) * Mood; } }
-        public float BugChance { get { return (GlobalVariables.value.BaseBugChance * profile.BugChanceMultiplier) * (1f - Mood); } }
+        public float Velocity { get { return (GlobalVariables.value.BaseVelocity * profile.VelocityMultiplier) * CappedMoodImpact; } }
+        public float BugChance { get { return (GlobalVariables.value.BaseBugChance * profile.BugChanceMultiplier) * (GlobalVariables.value.moodImpactMax - CappedMoodImpact); } }
         
 
         public void Start()
@@ -99,6 +99,30 @@ namespace Characters
             {
                 return (profile.BaseMood * ((Rest.curValue + Food.curValue + Insp.curValue + Socl.curValue) / 4)) + MoodImpact;
             }
+        }
+
+        public float CappedMoodImpact
+        {
+            get
+            {
+                if(Mood > GlobalVariables.value.moodImpactMax)
+                {
+                    return GlobalVariables.value.moodImpactMax;
+                }
+                else if(Mood < GlobalVariables.value.moodImpactMin)
+                {
+                    return GlobalVariables.value.moodImpactMin;
+                }
+                else
+                {
+                    return Mood;
+                }
+            }
+        }
+
+        public void ChangeMoodImpact(float impact)
+        {
+            MoodImpact += impact;
         }
     }
 }

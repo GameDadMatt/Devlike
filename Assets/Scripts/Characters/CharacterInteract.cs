@@ -60,5 +60,11 @@ namespace Characters
         {
             interactable = false;
         }
+
+        [YarnCommand("MoodImpact")]
+        public void MoodImpact(float value)
+        {
+            character.ChangeMoodImpact(value);
+        }
     }
 }

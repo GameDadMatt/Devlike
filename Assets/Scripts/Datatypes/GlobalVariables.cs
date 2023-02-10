@@ -40,6 +40,8 @@ public class GlobalVariables : MonoBehaviour
     private float socialBreaksPerDay = 3f;
     [SerializeField]
     private float moodImpactDays = 2.5f;
+    public float moodImpactMax = 1.5f;
+    public float moodImpactMin = 0.1f;
     public List<Trait> allTraits = new List<Trait>();
 
     public float BaseFoodBurn { get { return foodBreaksPerDay / WorkTicks;  } }
