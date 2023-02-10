@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using DataTypes;
 
+[RequireComponent(typeof(PlayerInput))]
 public class InteractableManager : MonoBehaviour
 {
     public static InteractableManager instance;
@@ -14,6 +16,14 @@ public class InteractableManager : MonoBehaviour
         {
             instance = this;
         }        
+    }
+
+    public PlayerInput GetPlayerInput
+    {
+        get
+        {
+            return GetComponent<PlayerInput>();
+        }
     }
 
     public void RegisterInteractable(InteractivePosition ip)

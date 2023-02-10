@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn;
 using Characters;
 using DataTypes;
 
@@ -25,6 +26,7 @@ public class GlobalVariables : MonoBehaviour
     public int WorkStartTick { get { return workStartTick; } private set { workStartTick = value; } }
     public int WorkEndTick { get { return workEndTick; } private set { workEndTick = value; } }
     public int DayEndTick { get { return dayEndTick; } private set { dayEndTick = value; } }
+    private int WorkTicks { get { return workEndTick - workStartTick; } }
 
     //CHARACTER
     [Header("CHARACTERS")]
@@ -36,13 +38,23 @@ public class GlobalVariables : MonoBehaviour
     private float inspirationBreaksPerDay = 3f;
     [SerializeField]
     private float socialBreaksPerDay = 3f;
+    [SerializeField]
+    private float moodImpactDays = 2.5f;
     public List<Trait> allTraits = new List<Trait>();
 
-    public float BaseFoodBurn { get { return foodBreaksPerDay / (workEndTick - workStartTick);  } }
-    public float BaseRestBurn { get { return restBreaksPerDay / (workEndTick - workStartTick); } }
-    public float BaseInspBurn { get { return inspirationBreaksPerDay / (workEndTick - workStartTick); } }
-    public float BaseSoclBurn { get { return socialBreaksPerDay / (workEndTick - workStartTick); } }
+    public float BaseFoodBurn { get { return foodBreaksPerDay / WorkTicks;  } }
+    public float BaseRestBurn { get { return restBreaksPerDay / WorkTicks; } }
+    public float BaseInspBurn { get { return inspirationBreaksPerDay / WorkTicks; } }
+    public float BaseSoclBurn { get { return socialBreaksPerDay / WorkTicks; } }
+    public float MoodImpactBurn { get { return moodImpactDays / WorkTicks; } }
 
+    //TASKS
+    [SerializeField]
+    private float tasksPerDay = 3f;
+    [SerializeField]
+    private float bugChance = 0.1f;
+    public float BaseVelocity { get { return tasksPerDay / WorkTicks; } }
+    public float BaseBugChance { get { return bugChance; } }
 
     public void Awake()
     {

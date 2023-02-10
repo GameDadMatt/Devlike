@@ -27,7 +27,10 @@ namespace Characters
 
         //How much empathy is needed to see this characters moodlets
         public float EmpathyBarrierMultiplier { get; private set; } = 1f;
+        //How much is this character's mood impacted by decisions & their own actions
         public float MoodImpactMultiplier { get; private set; } = 1f;
+        //What is the base value for this characters mood
+        public float BaseMood { get; private set; } = 0.5f;
 
         //How early or late does the character start and end the day
         public int WorkStartMod { get; private set; } = 0;
@@ -35,7 +38,7 @@ namespace Characters
 
         //Multipliers for what tasks thiss character particularly excels at
         public float VelocityMultiplier { get; private set; } = 1f;
-        public float BuglocityMultiplier { get; private set; } = 1f;
+        public float BugChanceMultiplier { get; private set; } = 1f;
         public float BurnoutMultiplier { get; private set; } = 1f;
         public float LikesProgramming { get; private set; } = 1f;
         public float LikesArt { get; private set; } = 1f;
@@ -64,12 +67,13 @@ namespace Characters
 
                 EmpathyBarrierMultiplier *= t.empathyBarrierMultiplier;
                 MoodImpactMultiplier *= t.moodImpactMultiplier;
+                BaseMood = t.baseMood;
 
                 WorkStartMod += t.dayStartMod;
                 WorkEndMod += t.dayEndMod;
 
                 VelocityMultiplier *= t.velocityMultiplier;
-                BuglocityMultiplier *= t.buglocityMultiplier;
+                BugChanceMultiplier *= t.bugChanceMultiplier;
                 BurnoutMultiplier *= t.burnoutMultiplier;
                 LikesProgramming *= t.likesProgramming;
                 LikesArt *= t.likesArt;

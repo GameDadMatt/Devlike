@@ -655,6 +655,8 @@ GameObject:
   m_Component:
   - component: {fileID: 665656981}
   - component: {fileID: 665656980}
+  - component: {fileID: 665656982}
+  - component: {fileID: 665656983}
   m_Layer: 0
   m_Name: ===Application===
   m_TagString: Untagged
@@ -693,6 +695,88 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &665656982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665656979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: c3d6ec38b4e161f45b5d45d043f4d520, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 356150bf-a16c-4746-98f1-c83d78ecb0ae
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a2eb9d0-2c72-4097-8d9c-d5a5855d6f8e
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ac4db6ac-bf77-4690-9f28-19c9324892a3
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 717db0c2-2590-4fad-a210-ea3cebab66b9
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 094232ae-7c95-48b1-ac42-fe804e143587
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7e0f5866-b101-4367-845a-0c64d5bf6c79
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ef1c1117-69b9-41bb-9295-8fb599bc256a
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3f8459a1-66af-4c84-99e2-63195ce327a2
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 88e1e6ec-4486-4866-a15f-b73fe0b76e58
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 43b0de27-c44c-4aca-8fd3-262c19b11294
+    m_ActionName: UI/TrackedDeviceOrientation
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 1148747871}
+--- !u!114 &665656983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665656979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b29138fa248ad4391cb6f6a7d02bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &677268189
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,6 +1021,10 @@ PrefabInstance:
       propertyPath: yarnProject
       value: 
       objectReference: {fileID: 7545569452688597077, guid: 814039c4350855042a7e68579224e698, type: 3}
+    - target: {fileID: 3579681405068720530, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
+      propertyPath: startAutomatically
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7778558434935992803, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -1395,7 +1483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37edd821f7d76694683d5507934925c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickLength: 0.5
+  tickLength: 0.3
   workStartTick: 6
   workEndTick: 58
   dayEndTick: 50
@@ -2197,6 +2285,7 @@ GameObject:
   - component: {fileID: 2018324998}
   - component: {fileID: 2018325004}
   - component: {fileID: 2018325003}
+  - component: {fileID: 2018325005}
   - component: {fileID: 2018325002}
   m_Layer: 0
   m_Name: Character
@@ -2403,6 +2492,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traits: 020000000800000011000000
+--- !u!114 &2018325005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018324997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca8ee074ee41ef04b9604ec45e28ff10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conversationStartNode: 0
 --- !u!1 &2066413336
 GameObject:
   m_ObjectHideFlags: 0

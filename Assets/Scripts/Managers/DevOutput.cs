@@ -30,11 +30,11 @@ public class DevOutput : MonoBehaviour
             output.text = "PROFILE" +
             "\n Traits = " + p.Traits[0] + ", " + p.Traits[1] + ", " + p.Traits[2] +
             "\n RestMod " + p.RestDropMultiplier + ", FoodMod " + p.FoodDropMultiplier + ", InspMod " + p.InspDropMultiplier + ", SoclMod " + p.SoclDropMultiplier +
-            "\n EmpathyMod " + p.EmpathyBarrierMultiplier + ", MoodMod " + p.MoodImpactMultiplier + ", DayStartMod " + p.WorkStartMod + ", DayEndMod " + p.WorkEndMod + ", VelocityMod " + p.VelocityMultiplier + ", BuglocityMod " + p.BuglocityMultiplier + ", BurnoutpMod " + p.BurnoutMultiplier +
+            "\n EmpathyMod " + p.EmpathyBarrierMultiplier + ", MoodMod " + p.MoodImpactMultiplier + ", DayStartMod " + p.WorkStartMod + ", DayEndMod " + p.WorkEndMod + ", VelocityMod " + p.VelocityMultiplier + ", BuglocityMod " + p.BugChanceMultiplier + ", BurnoutpMod " + p.BurnoutMultiplier +
             "\n PrgLike " + p.LikesProgramming + ", ArtLike " + p.LikesArt + ", AudLike " + p.LikesAudio + ", WrtLike " + p.LikesWriting + ", DesLike " + p.LikesDesign +
             "\n CURRENT VALUES" +
             "\n Rest " + c.Rest.curValue + ", Food " + c.Food.curValue + ", Insp " + c.Insp.curValue + ", Socl " + c.Socl.curValue +
-            "\n RestBurn " + c.restBurnRate + ", FoodBurn " + c.foodBurnRate + ", InspBurn " + c.inspBurnRate + ", SoclBurn " + c.soclBurnRate;
+            "\n RestBurn " + c.RestBurnRate + ", FoodBurn " + c.FoodBurnRate + ", InspBurn " + c.InspBurnRate + ", SoclBurn " + c.SoclBurnRate;
         }
         else
         {

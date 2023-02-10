@@ -26,7 +26,7 @@ namespace DataTypes
             state = TaskState.InProgress;
         }
 
-        public void DoTask(float bugChanceMod)
+        public void DoTask(float bugChance)
         {
             doneTicks++;
             if(doneTicks > minTicks && doneTicks < maxTicks)
@@ -46,8 +46,7 @@ namespace DataTypes
             if (importance != TaskImportance.Bug)
             {
                 float bug = Random.Range(0f, 1f);
-                float chance = bugChance * bugChanceMod;
-                if (bug <= chance)
+                if (bug <= bugChance)
                 {
                     GenerateBug();
                 }

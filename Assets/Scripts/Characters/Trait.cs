@@ -17,6 +17,7 @@ namespace Characters
         //How much empathy is needed to see this characters moodlets
         public float empathyBarrierMultiplier = 1f;
         public float moodImpactMultiplier = 1f;
+        public float baseMood = 0.5f;
 
         //How early or late does the character start and end the day
         public int dayStartMod = 0;
@@ -24,7 +25,7 @@ namespace Characters
 
         //Multipliers for what tasks thiss character particularly excels at
         public float velocityMultiplier = 1f;
-        public float buglocityMultiplier = 1f;
+        public float bugChanceMultiplier = 1f;
         public float burnoutMultiplier = 1f;
         public float likesProgramming = 1f;
         public float likesArt = 1f;
