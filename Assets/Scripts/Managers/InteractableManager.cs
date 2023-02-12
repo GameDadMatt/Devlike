@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DataTypes;
 
-public class InteractPosition
+public class NPCInteractable
 {
     public int id;
     public DoingType type;
-    public Transform transform;
+    public Vector3 position;
     public bool inUse = false;
 
-    public InteractPosition(int id, DoingType type, Transform transform)
+    public NPCInteractable(int id, DoingType type, Vector3 position)
     {
         this.id = id;
         this.type = type;
-        this.transform = transform;
+        this.position = position;
     }
 }
 
@@ -23,8 +23,9 @@ public class InteractableManager : MonoBehaviour
 {
     public static InteractableManager instance;
 
-    private int posIDs = 0;
-    private List<InteractPosition> positions = new List<InteractPosition>();
+    private int posIDs = 1;
+    private List<NPCInteractable> interactables = new List<NPCInteractable>();
+    public NPCInteractable Home { get; private set; }
 
     private void Awake()
     {
@@ -34,25 +35,32 @@ public class InteractableManager : MonoBehaviour
         }        
     }
 
-    public PlayerInput GetPlayerInput
+    public void RegisterInteractable(RegisterInteractPosition ip)
     {
-        get
+        NPCInteractable pos = new NPCInteractable(posIDs, ip.type, ip.transform.position);
+        if (ip.type != DoingType.Home)
         {
-            return GetComponent<PlayerInput>();
+            interactables.Add(pos);
+            posIDs++;
+        }
+        else
+        {
+            pos.id = 0;
+            Home = pos;
         }
     }
 
-    public void RegisterInteractable(RegisterInteractPosition ip)
+    public NPCInteractable ClaimWorkPosition()
     {
-        InteractPosition pos = new InteractPosition(posIDs, ip.type, ip.transform);
-        positions.Add(pos);
-        posIDs++;
+        NPCInteractable ip = RandomPosOfType(DoingType.Work);
+        ip.inUse = true;
+        return ip;
     }
 
-    public InteractPosition RandomPosOfType(DoingType type)
+    public NPCInteractable RandomPosOfType(DoingType type)
     {
-        List<InteractPosition> ps = new List<InteractPosition>();
-        foreach(InteractPosition p in positions)
+        List<NPCInteractable> ps = new List<NPCInteractable>();
+        foreach(NPCInteractable p in interactables)
         {
             if(p.type == type && !p.inUse)
             {
@@ -70,6 +78,6 @@ public class InteractableManager : MonoBehaviour
             return ps[0];
         }
         Debug.LogError("Failed to find position of type " + type);
-        return new InteractPosition(999, type, transform);
+        return new NPCInteractable(999, type, transform.position);
     }
 }

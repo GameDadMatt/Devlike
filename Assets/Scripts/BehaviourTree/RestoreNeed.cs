@@ -11,16 +11,16 @@ public class RestoreNeed : Action
 
     public override TaskStatus OnUpdate()
     {
-        if(curTicks < restoreTicks.Value)
+        curTicks++;
+        if (curTicks < restoreTicks.Value)
         {
-            curTicks++;
             return TaskStatus.Running;
         }
         else if (curTicks >= restoreTicks.Value)
         {
             tracker.Value.curValue = 1f;
             curTicks = 0;
-            return TaskStatus.Failure;
+            return TaskStatus.Success;
         }
         return TaskStatus.Failure;
     }

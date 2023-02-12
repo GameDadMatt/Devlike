@@ -21,7 +21,12 @@ namespace Characters
         public int WorkStart { get { return GlobalVariables.value.WorkStartTick + profile.WorkStartMod; } }
         public int WorkEnd { get { return GlobalVariables.value.WorkEndTick + profile.WorkEndMod; } }
         public CharacterState CurrentState { get; set; }
+
+        //Position
         public DoingType CurrentDoing { get; set; }
+        public NPCInteractable Desk { get; private set; }
+        public NPCInteractable Home { get; private set; }
+        private NPCInteractable curInteract;
 
         //Needs
         public DoingTracker Rest { get; private set; } = new DoingTracker(DoingType.Rest, 1f, 0.3f);
@@ -46,16 +51,13 @@ namespace Characters
         public void Start()
         {
             TimeManager.instance.OnTick += Tick;
-            TimeManager.instance.OnDayStart += SetNeeds;
+            Desk = InteractableManager.instance.ClaimWorkPosition();
+            Home = InteractableManager.instance.Home;
+            curInteract = Home;
             profile.SetupProfile();
         }
 
-        public void StartDay()
-        {
-
-        }
-
-        public void SetNeeds()
+        public void StartWork()
         {
             Rest.curValue = Random.Range(0.7f, 1f);
             Food.curValue = Random.Range(0.8f, 1f);
@@ -65,18 +67,39 @@ namespace Characters
 
         public void Tick()
         {
-            if (CurrentState == CharacterState.Start)
+            switch (CurrentState)
             {
+                case CharacterState.Start:
+                    StartWork();
+                    break;
+                case CharacterState.Active:
+                    Rest.curValue -= RestBurnRate;
+                    Food.curValue -= FoodBurnRate;
+                    Insp.curValue -= InspBurnRate;
+                    Socl.curValue -= SoclBurnRate;
+                    MoodImpact -= MoodImpactBurn;
+                    break;
+                case CharacterState.End:
+                    EndWork();
+                    break;
+                case CharacterState.Inactive:
+                    break;
+            }
+        }
 
-            }
-            if (CurrentState == CharacterState.Active)
-            {
-                Rest.curValue -= RestBurnRate;
-                Food.curValue -= FoodBurnRate;
-                Insp.curValue -= InspBurnRate;
-                Socl.curValue -= SoclBurnRate;
-                MoodImpact -= MoodImpactBurn;
-            }
+        public void EndWork()
+        {
+
+        }
+
+        public void NewPosition(NPCInteractable i)
+        {
+            curInteract.inUse = false;
+            curInteract = i;
+            curInteract.inUse = true;
+            CurrentDoing = i.type;
+            transform.position = curInteract.position;
+            Debug.Log("Moving to " + curInteract.type);
         }
 
         public float Mood
