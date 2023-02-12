@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DataTypes;
 
-public class InteractivePosition : MonoBehaviour
+public class RegisterInteractPosition : MonoBehaviour
 {
-    public TaskType restores;
+    public DoingType type;
 
     private void OnEnable()
     {
         InteractableManager.instance.RegisterInteractable(this);
-    }
-
-    private void OnDisable()
-    {
-        InteractableManager.instance.UnregisterInteractable(this);
     }
 }

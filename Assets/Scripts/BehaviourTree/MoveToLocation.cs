@@ -1,18 +1,26 @@
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
+using DataTypes;
 
 public class MoveToLocation : Action
 {
-    public SharedTransform location;
+    public DoingType positionType;
+    public SharedDoingType charDoing;
 
     public override TaskStatus OnUpdate()
     {
-        if (transform != location.Value)
+        if (charDoing.Value != positionType)
         {
-            transform.position = location.Value.position;
-            return TaskStatus.Success;
+            InteractPosition newPos = InteractableManager.instance.RandomPosOfType(positionType);
+            if (newPos != null)
+            {
+                transform.position = newPos.transform.position;
+                charDoing.Value = positionType;
+                return TaskStatus.Success;
+            }
+            return TaskStatus.Failure;
         }
-        return TaskStatus.Running;
+        return TaskStatus.Success;
     }
 }

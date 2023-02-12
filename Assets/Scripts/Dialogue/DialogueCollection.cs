@@ -11,6 +11,7 @@ namespace Dialogue
     public class DialogueCollection : ScriptableObject
     {
         public List<string> dialogueNames;
+        public DialogueType dialogueType;
         public float empathyNeeded;
     }
 }

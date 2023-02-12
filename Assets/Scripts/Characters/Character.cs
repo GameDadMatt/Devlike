@@ -20,13 +20,14 @@ namespace Characters
         //Days
         public int WorkStart { get { return GlobalVariables.value.WorkStartTick + profile.WorkStartMod; } }
         public int WorkEnd { get { return GlobalVariables.value.WorkEndTick + profile.WorkEndMod; } }
-        public bool AtWork { get; set; }
+        public CharacterState CurrentState { get; set; }
+        public DoingType CurrentDoing { get; set; }
 
         //Needs
-        public Need Rest { get; private set; } = new Need(NeedType.Rest, 1f, 0.3f);
-        public Need Food { get; private set; } = new Need(NeedType.Food, 1f, 0.3f);
-        public Need Insp { get; private set; } = new Need(NeedType.Inspiration, 1f, 0.3f);
-        public Need Socl { get; private set; } = new Need(NeedType.Social, 1f, 0.3f);
+        public DoingTracker Rest { get; private set; } = new DoingTracker(DoingType.Rest, 1f, 0.3f);
+        public DoingTracker Food { get; private set; } = new DoingTracker(DoingType.Food, 1f, 0.3f);
+        public DoingTracker Insp { get; private set; } = new DoingTracker(DoingType.Inspiration, 1f, 0.3f);
+        public DoingTracker Socl { get; private set; } = new DoingTracker(DoingType.Social, 1f, 0.3f);
 
         public float RestBurnRate { get { return GlobalVariables.value.BaseRestBurn * profile.RestDropMultiplier; } }
         public float FoodBurnRate { get { return GlobalVariables.value.BaseFoodBurn * profile.FoodDropMultiplier; } }
@@ -44,9 +45,14 @@ namespace Characters
 
         public void Start()
         {
-            TimeManager.instance.OnTick += LowerNeeds;
+            TimeManager.instance.OnTick += Tick;
             TimeManager.instance.OnDayStart += SetNeeds;
             profile.SetupProfile();
+        }
+
+        public void StartDay()
+        {
+
         }
 
         public void SetNeeds()
@@ -57,39 +63,19 @@ namespace Characters
             Socl.curValue = Random.Range(0.1f, 1f);
         }
 
-        public void LowerNeeds()
+        public void Tick()
         {
-            if (AtWork)
+            if (CurrentState == CharacterState.Start)
+            {
+
+            }
+            if (CurrentState == CharacterState.Active)
             {
                 Rest.curValue -= RestBurnRate;
                 Food.curValue -= FoodBurnRate;
                 Insp.curValue -= InspBurnRate;
                 Socl.curValue -= SoclBurnRate;
                 MoodImpact -= MoodImpactBurn;
-            }            
-        }
-
-        public void NeedTask(NeedType need)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void RestoreNeed(NeedType need)
-        {
-            switch (need)
-            {
-                case NeedType.Rest:
-                    Rest.curValue = 1f;
-                    break;
-                case NeedType.Food:
-                    Food.curValue = 1f;
-                    break;
-                case NeedType.Inspiration:
-                    Insp.curValue = 1f;
-                    break;
-                case NeedType.Social:
-                    Socl.curValue = 1f;
-                    break;
             }
         }
 

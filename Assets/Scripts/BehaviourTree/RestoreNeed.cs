@@ -5,7 +5,7 @@ using DataTypes;
 
 public class RestoreNeed : Action
 {
-    public SharedNeed need;
+    public SharedDoingTracker tracker;
     public SharedInt restoreTicks;
     private int curTicks = 0;
 
@@ -18,7 +18,7 @@ public class RestoreNeed : Action
         }
         else if (curTicks >= restoreTicks.Value)
         {
-            need.Value.curValue = 1f;
+            tracker.Value.curValue = 1f;
             curTicks = 0;
             return TaskStatus.Failure;
         }

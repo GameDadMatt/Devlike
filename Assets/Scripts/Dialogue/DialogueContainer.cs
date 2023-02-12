@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DataTypes;
 
 namespace Dialogue
 {
@@ -10,6 +11,7 @@ namespace Dialogue
         public bool DialogueComplete { get; private set; } = false;
         public string name;
         public List<string> dialogueNames;
+        public DialogueType dialogueType;
         public float empathyNeeded;
         public int stepInList = 0;
 
@@ -17,6 +19,7 @@ namespace Dialogue
         {
             name = collection.name;
             dialogueNames = collection.dialogueNames;
+            dialogueType = collection.dialogueType;
             empathyNeeded = collection.empathyNeeded;
             DialogueComplete = false;
         }

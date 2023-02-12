@@ -9,28 +9,37 @@ public class InWorkHours : Conditional
     public SharedInt currentTick;
     public SharedInt workStartTick;
     public SharedInt workEndTick;
-    public SharedBool atWork;
+    public SharedCharacterState characterState;
 
     public override void OnAwake()
     {
         base.OnAwake();
-        atWork.Value = false;
+        characterState.Value = CharacterState.Inactive;
     }
 
     public override TaskStatus OnUpdate()
     {
         if(currentTick.Value > workStartTick.Value && currentTick.Value <= workEndTick.Value)
         {
-            if (!atWork.Value)
+            if (characterState.Value == CharacterState.Inactive)
             {
-                atWork.Value = true;
+                characterState.Value = CharacterState.Start;
+            }
+            else if (characterState.Value == CharacterState.Start)
+            {
+                characterState.Value = CharacterState.Active;
             }
             return TaskStatus.Success;
         }
         
-        if (atWork.Value)
+        //None of the above statements happened, so it must be the end of the day
+        if (characterState.Value == CharacterState.Active)
         {
-            atWork.Value = false;
+            characterState.Value = CharacterState.End;
+        }
+        else if (characterState.Value == CharacterState.End)
+        {
+            characterState.Value = CharacterState.Inactive;
         }
         return TaskStatus.Failure;
     }

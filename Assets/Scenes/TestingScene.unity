@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 127044270}
   - component: {fileID: 127044269}
   - component: {fileID: 127044268}
+  - component: {fileID: 127044272}
   m_Layer: 0
   m_Name: Whiteboard
   m_TagString: Untagged
@@ -221,6 +222,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &127044272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127044267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
 --- !u!1 &253485636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1438,7 @@ GameObject:
   - component: {fileID: 1438213536}
   - component: {fileID: 1438213535}
   - component: {fileID: 1438213537}
+  - component: {fileID: 1438213539}
   - component: {fileID: 1438213538}
   m_Layer: 0
   m_Name: ==Game==
@@ -1518,6 +1533,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a2c1cc42b7cb4e45b48b2912591beb4, type: 2}
   tasksPerDay: 3
   bugChance: 0.1
+--- !u!114 &1438213539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438213534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b29138fa248ad4391cb6f6a7d02bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1597308076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,6 +1557,7 @@ GameObject:
   - component: {fileID: 1597308079}
   - component: {fileID: 1597308078}
   - component: {fileID: 1597308077}
+  - component: {fileID: 1597308081}
   m_Layer: 0
   m_Name: Desk
   m_TagString: Untagged
@@ -1616,6 +1644,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1597308081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597308076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
 --- !u!850595691 &1624598971
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1825,6 +1866,7 @@ GameObject:
   - component: {fileID: 1722223305}
   - component: {fileID: 1722223304}
   - component: {fileID: 1722223303}
+  - component: {fileID: 1722223307}
   m_Layer: 0
   m_Name: Sofa
   m_TagString: Untagged
@@ -1911,6 +1953,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1722223307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722223302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1761541380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,6 +1978,7 @@ GameObject:
   - component: {fileID: 1761541383}
   - component: {fileID: 1761541382}
   - component: {fileID: 1761541381}
+  - component: {fileID: 1761541385}
   m_Layer: 0
   m_Name: Person
   m_TagString: Untagged
@@ -2009,6 +2065,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1761541385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761541380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
 --- !u!1 &1800009744
 GameObject:
   m_ObjectHideFlags: 0
@@ -2092,6 +2161,7 @@ GameObject:
   - component: {fileID: 1812170720}
   - component: {fileID: 1812170719}
   - component: {fileID: 1812170718}
+  - component: {fileID: 1812170722}
   m_Layer: 0
   m_Name: Kitchen
   m_TagString: Untagged
@@ -2178,6 +2248,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1812170722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812170717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &1831101026
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,6 +2273,7 @@ GameObject:
   - component: {fileID: 1831101029}
   - component: {fileID: 1831101028}
   - component: {fileID: 1831101027}
+  - component: {fileID: 1831101031}
   m_Layer: 0
   m_Name: Home
   m_TagString: Untagged
@@ -2276,6 +2360,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1831101031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831101026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 5
 --- !u!1 &2018324997
 GameObject:
   m_ObjectHideFlags: 0
@@ -2370,8 +2467,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018324997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.56, y: 3.04, z: -4.753451}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -50.56, y: 3.0667, z: -4.753451}
+  m_LocalScale: {x: 6.7410607, y: 6.7410607, z: 6.7410607}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 523485142}
@@ -2407,27 +2504,27 @@ MonoBehaviour:
       startIndex: 
       variableStartIndex: 
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(-394.105438,84.05261)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(2.50005913,132.1579)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-4.215637,127.387878)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"InWorkHours","NodeData":{"Offset":"(-32.5456543,138.421021)"},"ID":3,"Name":"In
-        Work Hours","Instant":true,"SharedIntcurrentTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":0,"Int32mValue":0},"SharedIntworkStartTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStartTick","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":1,"Int32mValue":0},"SharedIntworkEndTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEndTick","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":2,"Int32mValue":0},"SharedBoolatWork":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"AtWork","IsShared":true,"PropertyMapping":"Characters.Character/AtWork","PropertyMappingOwner":3,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(78.52753,137.4624)"},"ID":4,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-160.355347,134.05249)"},"ID":5,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-250,450)","Comment":"Rest"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-224.166565,125.000244)"},"ID":7,"Name":"Has
-        Need","Instant":true,"SharedNeedneed":{"Type":"DataTypes.SharedNeed","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":4}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-90,160)"},"ID":8,"Name":"Move
-        To Location","Instant":true,"SharedTransformlocation":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Sofa","IsShared":true,"TransformmValue":5}},{"Type":"RestoreNeed","NodeData":{"Offset":"(30,160)"},"ID":9,"Name":"Restore
-        Need","Instant":true,"SharedNeedneed":{"Type":"DataTypes.SharedNeed","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":6},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(140,160)"},"ID":10,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        Work Hours","Instant":true,"SharedIntcurrentTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":0,"Int32mValue":0},"SharedIntworkStartTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":1,"Int32mValue":0},"SharedIntworkEndTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":2,"Int32mValue":0},"SharedCharacterStatecharacterState":{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":3,"CharacterStatemValue":"Start"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(78.52753,137.4624)"},"ID":4,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-160.355347,134.05249)"},"ID":5,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-250,450)","Comment":"Rest"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-224.166565,125.000244)"},"ID":7,"Name":"Has
+        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":4}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-90,160)"},"ID":8,"Name":"Move
+        To Location","Instant":true,"DoingTypepositionType":"Rest","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":5,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(30,160)"},"ID":9,"Name":"Restore
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":6},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(140,160)"},"ID":10,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
         am resting"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(210,450)","Comment":"Food"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-161.666626,125.000244)"},"ID":12,"Name":"Has
-        Need","Instant":true,"SharedNeedneed":{"Type":"DataTypes.SharedNeed","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":7}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-26.666748,160)"},"ID":13,"Name":"Move
-        To Location","Instant":true,"SharedTransformlocation":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Kitchen","IsShared":true,"TransformmValue":8}},{"Type":"RestoreNeed","NodeData":{"Offset":"(93.33325,160)"},"ID":14,"Name":"Restore
-        Need","Instant":true,"SharedNeedneed":{"Type":"DataTypes.SharedNeed","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":9},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(203.333282,160)"},"ID":15,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":7}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-26.666748,160)"},"ID":13,"Name":"Move
+        To Location","Instant":true,"DoingTypepositionType":"Food","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":8,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(93.33325,160)"},"ID":14,"Name":"Restore
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":9},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(203.333282,160)"},"ID":15,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
         am eating"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(710,450)","Comment":"Inspiration"},"ID":16,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":17,"Name":"Has
-        Need","Instant":true,"SharedNeedneed":{"Type":"DataTypes.SharedNeed","Name":"Inspiration","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":10}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":18,"Name":"Move
-        To Location","Instant":true,"SharedTransformlocation":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Whiteboard","IsShared":true,"TransformmValue":11}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":19,"Name":"Restore
-        Need","Instant":true,"SharedNeedneed":{"Type":"DataTypes.SharedNeed","Name":"Inspiration","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":12},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":20,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":10}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":18,"Name":"Move
+        To Location","Instant":true,"DoingTypepositionType":"Inspiration","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":11,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":19,"Name":"Restore
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":12},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":20,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
         need inspiration"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1220,450)","Comment":"Social"},"ID":21,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":22,"Name":"Has
-        Need","Instant":true,"SharedNeedneed":{"Type":"DataTypes.SharedNeed","Name":"Social","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":13}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":23,"Name":"Move
-        To Location","Instant":true,"SharedTransformlocation":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Person","IsShared":true,"TransformmValue":14}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":24,"Name":"Restore
-        Need","Instant":true,"SharedNeedneed":{"Type":"DataTypes.SharedNeed","Name":"Social","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":15},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":25,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        need to socialise"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(99.36804,143.065186)"},"ID":26,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveToLocation","NodeData":{"Offset":"(-14.6054688,137.052612)"},"ID":27,"Name":"Move
-        To Location","Instant":true,"SharedTransformlocation":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Desk","IsShared":true,"TransformmValue":16}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(116.948792,136.409851)"},"ID":28,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":13}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":23,"Name":"Move
+        To Location","Instant":true,"DoingTypepositionType":"Social","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":14,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":24,"Name":"Restore
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":15},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":25,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        need to socialise"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(99.36804,143.065186)","Comment":"Working"},"ID":26,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveToLocation","NodeData":{"Offset":"(-14.6054688,137.052612)"},"ID":27,"Name":"Move
+        To Location","Instant":true,"DoingTypepositionType":"Work","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":16,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(116.948792,136.409851)"},"ID":28,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
         am working"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]}]},{"Type":"MoveToLocation","NodeData":{"Offset":"(143.846054,135.3851)"},"ID":29,"Name":"Move
-        To Location","Instant":true,"SharedTransformlocation":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Home","IsShared":true,"TransformmValue":17}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(292.211731,127.199249)"},"ID":30,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am at home"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},"Variables":[{"Type":"DataTypes.SharedNeed","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":18},{"Type":"DataTypes.SharedNeed","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":19},{"Type":"DataTypes.SharedNeed","Name":"Inspiration","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":20},{"Type":"DataTypes.SharedNeed","Name":"Social","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":21},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStartTick","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":22,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEndTick","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":23,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":24,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"AtWork","IsShared":true,"PropertyMapping":"Characters.Character/AtWork","PropertyMappingOwner":25,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Desk","IsShared":true,"TransformmValue":26},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Kitchen","IsShared":true,"TransformmValue":27},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Whiteboard","IsShared":true,"TransformmValue":28},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Person","IsShared":true,"TransformmValue":29},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Sofa","IsShared":true,"TransformmValue":30},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Home","IsShared":true,"TransformmValue":31},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}]}'
+        To Location","Instant":true,"DoingTypepositionType":"Home","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":17,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(292.211731,127.199249)"},"ID":30,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        am at home"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},"Variables":[null,null,null,null,null,{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1},{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":18,"CharacterStatemValue":"Start"},{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":19,"DoingTypemValue":"Rest"},{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":20},{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":21},{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":22},{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":23},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":24,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":25,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":26,"Int32mValue":0}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -2439,19 +2536,21 @@ MonoBehaviour:
         - {fileID: 2018324997}
         - {fileID: 2018324997}
         - {fileID: 2018324997}
-        - {fileID: 2066413337}
         - {fileID: 2018324997}
         - {fileID: 2018324997}
-        - {fileID: 1077755763}
         - {fileID: 2018324997}
         - {fileID: 2018324997}
-        - {fileID: 677268190}
         - {fileID: 2018324997}
         - {fileID: 2018324997}
-        - {fileID: 841763429}
         - {fileID: 2018324997}
-        - {fileID: 253485637}
-        - {fileID: 1088137596}
+        - {fileID: 2018324997}
+        - {fileID: 2018324997}
+        - {fileID: 2018324997}
+        - {fileID: 2018324997}
+        - {fileID: 2018324997}
+        - {fileID: 2018324997}
+        - {fileID: 2018324997}
+        - {fileID: 2018324997}
         - {fileID: 2018324997}
         - {fileID: 2018324997}
         - {fileID: 2018324997}
@@ -2459,13 +2558,6 @@ MonoBehaviour:
         - {fileID: 2018324997}
         - {fileID: 2018324997}
         - {fileID: 1438213534}
-        - {fileID: 2018324997}
-        - {fileID: 253485637}
-        - {fileID: 1077755763}
-        - {fileID: 677268190}
-        - {fileID: 841763429}
-        - {fileID: 2066413337}
-        - {fileID: 1088137596}
         byteData: 
         byteDataArray: 
       Version: 1.7.3
@@ -2509,7 +2601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8ee074ee41ef04b9604ec45e28ff10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conversationStartNode: 0
 --- !u!1 &2066413336
 GameObject:
   m_ObjectHideFlags: 0

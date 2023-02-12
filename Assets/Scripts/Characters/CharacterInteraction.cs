@@ -9,8 +9,7 @@ namespace Characters
 {
     public class CharacterInteraction : MonoBehaviour
     {
-        [SerializeField] private DialogueName conversationStartNode;
-
+        private string conversationStartNode = "farts";
         private Character character;
         private DialogueRunner dialogueRunner;
         private bool interactable = true;

@@ -4,11 +4,27 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DataTypes;
 
-[RequireComponent(typeof(PlayerInput))]
+public class InteractPosition
+{
+    public int id;
+    public DoingType type;
+    public Transform transform;
+    public bool inUse = false;
+
+    public InteractPosition(int id, DoingType type, Transform transform)
+    {
+        this.id = id;
+        this.type = type;
+        this.transform = transform;
+    }
+}
+
 public class InteractableManager : MonoBehaviour
 {
     public static InteractableManager instance;
-    private List<InteractivePosition> positions;
+
+    private int posIDs = 0;
+    private List<InteractPosition> positions = new List<InteractPosition>();
 
     private void Awake()
     {
@@ -26,26 +42,34 @@ public class InteractableManager : MonoBehaviour
         }
     }
 
-    public void RegisterInteractable(InteractivePosition ip)
+    public void RegisterInteractable(RegisterInteractPosition ip)
     {
-        positions.Add(ip);
+        InteractPosition pos = new InteractPosition(posIDs, ip.type, ip.transform);
+        positions.Add(pos);
+        posIDs++;
     }
 
-    public void UnregisterInteractable(InteractivePosition ip)
+    public InteractPosition RandomPosOfType(DoingType type)
     {
-        positions.Remove(ip);
-    }
-
-    public InteractivePosition GetPositionOfType(TaskType type)
-    {
-        foreach(InteractivePosition pos in positions)
+        List<InteractPosition> ps = new List<InteractPosition>();
+        foreach(InteractPosition p in positions)
         {
-            if(pos.restores == type)
+            if(p.type == type && !p.inUse)
             {
-                return pos;
+                ps.Add(p);
             }
         }
+
+        if(ps.Count > 1)
+        {
+            int rand = Random.Range(0, ps.Count);
+            return ps[rand];
+        }
+        else if(ps.Count == 1)
+        {
+            return ps[0];
+        }
         Debug.LogError("Failed to find position of type " + type);
-        return null;
+        return new InteractPosition(999, type, transform);
     }
 }
