@@ -1143,7 +1143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f67468ddac5b134499fa17159021528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traits: 020000000800000011000000
+  traits: 070000000c00000003000000
 --- !u!65 &460581499
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2790,7 +2790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f67468ddac5b134499fa17159021528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traits: 020000000800000011000000
+  traits: 000000001000000007000000
 --- !u!65 &1032843608
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4743,7 +4743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f67468ddac5b134499fa17159021528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traits: 020000000800000011000000
+  traits: 0f0000000a00000002000000
 --- !u!65 &1939538754
 BoxCollider:
   m_ObjectHideFlags: 0
