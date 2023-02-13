@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: NPC
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: NPC
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(-394.105438,84.05261)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(2.50005913,132.1579)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-4.215637,127.387878)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"InWorkHours","NodeData":{"Offset":"(-32.5456543,138.421021)"},"ID":3,"Name":"In
+        Work Hours","Instant":true,"SharedIntcurrentTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":0,"Int32mValue":0},"SharedIntworkStartTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":1,"Int32mValue":0},"SharedIntworkEndTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":2,"Int32mValue":0},"SharedCharacterStatecharacterState":{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":3,"CharacterStatemValue":"Start"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(78.52753,137.4624)"},"ID":4,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-160.355347,134.05249)"},"ID":5,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-250,450)","Comment":"Rest"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-224.166565,125.000244)"},"ID":7,"Name":"Has
+        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":4}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-90,160)"},"ID":8,"Name":"Move
+        To Location","Instant":true,"DoingTypepositionType":"Rest","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":5,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(30,160)"},"ID":9,"Name":"Restore
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":6},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(140,160)"},"ID":10,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        am resting"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(210,450)","Comment":"Food"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-161.666626,125.000244)"},"ID":12,"Name":"Has
+        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":7}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-26.666748,160)"},"ID":13,"Name":"Move
+        To Location","Instant":true,"DoingTypepositionType":"Food","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":8,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(93.33325,160)"},"ID":14,"Name":"Restore
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":9},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(203.333282,160)"},"ID":15,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        am eating"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(710,450)","Comment":"Inspiration"},"ID":16,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":17,"Name":"Has
+        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":10}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":18,"Name":"Move
+        To Location","Instant":true,"DoingTypepositionType":"Inspiration","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":11,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":19,"Name":"Restore
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":12},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":20,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        need inspiration"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1220,450)","Comment":"Social"},"ID":21,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":22,"Name":"Has
+        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":13}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":23,"Name":"Move
+        To Location","Instant":true,"DoingTypepositionType":"Social","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":14,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":24,"Name":"Restore
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":15},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":25,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        need to socialise"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(99.36804,143.065186)","Comment":"Working"},"ID":26,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveToLocation","NodeData":{"Offset":"(-14.6054688,137.052612)"},"ID":27,"Name":"Move
+        To Location","Instant":true,"DoingTypepositionType":"Work","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":16,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(116.948792,136.409851)"},"ID":28,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        am working"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]}]},{"Type":"MoveToLocation","NodeData":{"Offset":"(143.846054,135.3851)"},"ID":29,"Name":"Move
+        To Location","Instant":true,"DoingTypepositionType":"Home","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":17,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(292.211731,127.199249)"},"ID":30,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        am at home"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},"Variables":[null,null,null,null,null,{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1},{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":18,"CharacterStatemValue":"Start"},{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":19,"DoingTypemValue":"Rest"},{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":20},{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":21},{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":22},{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":23},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":24,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":25,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":26,"Int32mValue":0}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects:
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.3
