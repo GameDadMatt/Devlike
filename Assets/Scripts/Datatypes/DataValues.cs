@@ -12,6 +12,7 @@ public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
 public enum IncidentType { }
 public enum CharacterState { Start, Active, End, Inactive }
 public enum DialogueType { Casual, Work, Personal }
+public enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
 
 //This custom class tracks a given need
 [System.Serializable]

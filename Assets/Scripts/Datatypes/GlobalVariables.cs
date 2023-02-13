@@ -14,6 +14,8 @@ public class GlobalVariables : MonoBehaviour
     [SerializeField]
     private float tickLength = 0.5f;
     [SerializeField]
+    private float idleTickLength = 0.1f;
+    [SerializeField]
     private int workStartTick = 6;
     [SerializeField]
     private int workEndTick = 58;
@@ -23,6 +25,7 @@ public class GlobalVariables : MonoBehaviour
     private int timeUnitTicks = 6;
 
     public float TickLength { get { return tickLength; } private set { tickLength = value; } }
+    public float IdleTickLength { get { return idleTickLength; } private set { idleTickLength = value; } }
     public int WorkStartTick { get { return workStartTick; } private set { workStartTick = value; } }
     public int WorkEndTick { get { return workEndTick; } private set { workEndTick = value; } }
     public int DayEndTick { get { return dayEndTick; } private set { dayEndTick = value; } }

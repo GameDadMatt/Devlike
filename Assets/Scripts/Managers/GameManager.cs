@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
         }        
     }
 
+    public void Start()
+    {
+
+    }
+
     public event Action<Character> OnCharacterSelect;
     public void CharacterSelect(Character click)
     {

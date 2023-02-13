@@ -20,6 +20,7 @@ namespace Characters
         //Days
         public int WorkStart { get { return GlobalVariables.value.WorkStartTick + profile.WorkStartMod; } }
         public int WorkEnd { get { return GlobalVariables.value.WorkEndTick + profile.WorkEndMod; } }
+        public int CurrentTickRef { get { return TimeManager.instance.CurrentTick; } }
         public CharacterState CurrentState { get; set; }
 
         //Position

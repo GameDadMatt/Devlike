@@ -8,18 +8,18 @@ using BehaviorDesigner.Runtime;
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
-    
-    public int CurrentTick { get; private set; } = 0;
-    private float seconds = 0f;
 
-    public void Start()
+    private float seconds = 0f;
+    public int CurrentTick { get; private set; } = 0;
+    public int CurrentWeek { get; private set; } = 0;
+    public int CurrentDay { get; private set; } = 0;
+
+    public void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
-
-        Tick();
     }
 
     // Update is called once per frame
@@ -28,9 +28,9 @@ public class TimeManager : MonoBehaviour
         if(GameManager.instance.State != GameState.Paused)
         {
             seconds += Time.deltaTime;
-            if (seconds >= GlobalVariables.value.TickLength)
+            if (seconds >= TickLength)
             {
-                seconds -= GlobalVariables.value.TickLength;
+                seconds -= TickLength;
                 Tick();
             }
         }        
@@ -51,5 +51,20 @@ public class TimeManager : MonoBehaviour
         }
 
         OnTick?.Invoke();
+    }
+
+    private float TickLength
+    {
+        get
+        {
+            if (StudioManager.instance.CharactersActive)
+            {
+                return GlobalVariables.value.TickLength;
+            }
+            else
+            {
+                return GlobalVariables.value.IdleTickLength;
+            }
+        }
     }
 }
