@@ -99,7 +99,6 @@ namespace Characters
             curInteract.inUse = true;
             CurrentDoing = i.type;
             transform.position = curInteract.thing.transform.position;
-            Debug.Log("Moving to " + curInteract.type);
         }
 
         public float Mood

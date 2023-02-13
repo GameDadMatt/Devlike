@@ -123,6 +123,43 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &50436727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 50436728}
+  m_Layer: 5
+  m_Name: Content
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &50436728
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50436727}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2092314547}
+  m_Father: {fileID: 1123052638}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100259698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,7 +465,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1451900716}
+  - {fileID: 453793864}
+  - {fileID: 633460549}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -475,7 +515,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &347008205
+--- !u!1 &292942035
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -483,274 +523,133 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 347008213}
-  - component: {fileID: 347008212}
-  - component: {fileID: 347008211}
-  - component: {fileID: 347008210}
-  - component: {fileID: 347008209}
-  - component: {fileID: 347008208}
-  - component: {fileID: 347008207}
-  - component: {fileID: 347008206}
-  m_Layer: 0
-  m_Name: Character (2)
+  - component: {fileID: 292942036}
+  - component: {fileID: 292942038}
+  - component: {fileID: 292942037}
+  m_Layer: 5
+  m_Name: Day (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &347008206
-MonoBehaviour:
+--- !u!224 &292942036
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347008205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startWhenEnabled: 1
-  asynchronousLoad: 0
-  pauseWhenDisabled: 0
-  restartWhenComplete: 1
-  logTaskChanges: 0
-  group: 0
-  resetValuesOnRestart: 0
-  externalBehavior: {fileID: 0}
-  mBehaviorSource:
-    behaviorName: NPC
-    behaviorDescription: 
-    mTaskData:
-      types: []
-      parentIndex: 
-      startIndex: 
-      variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(-394.105438,84.05261)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(2.50005913,132.1579)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-4.215637,127.387878)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"InWorkHours","NodeData":{"Offset":"(-32.5456543,138.421021)"},"ID":3,"Name":"In
-        Work Hours","Instant":true,"SharedIntcurrentTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":0,"Int32mValue":0},"SharedIntworkStartTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":1,"Int32mValue":0},"SharedIntworkEndTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":2,"Int32mValue":0},"SharedCharacterStatecharacterState":{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":3,"CharacterStatemValue":"Start"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(78.52753,137.4624)"},"ID":4,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-160.355347,134.05249)"},"ID":5,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-250,450)","Comment":"Rest"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-224.166565,125.000244)"},"ID":7,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":4}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-90,160)"},"ID":8,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Rest","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":5,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(30,160)"},"ID":9,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":6},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(140,160)"},"ID":10,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am resting"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(210,450)","Comment":"Food"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-161.666626,125.000244)"},"ID":12,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":7}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-26.666748,160)"},"ID":13,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Food","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":8,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(93.33325,160)"},"ID":14,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":9},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(203.333282,160)"},"ID":15,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am eating"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(710,450)","Comment":"Inspiration"},"ID":16,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":17,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":10}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":18,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Inspiration","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":11,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":19,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":12},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":20,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        need inspiration"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1220,450)","Comment":"Social"},"ID":21,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":22,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":13}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":23,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Social","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":14,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":24,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":15},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":25,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        need to socialise"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(99.36804,143.065186)","Comment":"Working"},"ID":26,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveToLocation","NodeData":{"Offset":"(-14.6054688,137.052612)"},"ID":27,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Work","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":16,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(116.948792,136.409851)"},"ID":28,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am working"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]}]},{"Type":"MoveToLocation","NodeData":{"Offset":"(143.846054,135.3851)"},"ID":29,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Home","Charactercharacter":17,"SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":18,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(292.211731,127.199249)"},"ID":30,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am at home"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},"Variables":[null,null,null,null,null,{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1},{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":19,"CharacterStatemValue":"Start"},{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":20,"DoingTypemValue":"Rest"},{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":21},{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":22},{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":23},{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":24},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":25,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":26,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":27,"Int32mValue":0}]}'
-      fieldSerializationData:
-        typeName: []
-        fieldNameHash: 
-        startIndex: 
-        dataPosition: 
-        unityObjects:
-        - {fileID: 1438213534}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008208}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 347008205}
-        - {fileID: 1438213534}
-        byteData: 
-        byteDataArray: 
-      Version: 1.7.3
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
---- !u!114 &347008207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347008205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca8ee074ee41ef04b9604ec45e28ff10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &347008208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347008205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b21af8ed87b596d4f90a695a769c5edb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TaskList: []
---- !u!114 &347008209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347008205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f67468ddac5b134499fa17159021528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traits: 020000000800000011000000
---- !u!65 &347008210
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347008205}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &347008211
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347008205}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &347008212
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347008205}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &347008213
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347008205}
+  m_GameObject: {fileID: 292942035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -55.25, y: 1.18, z: -7.62}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 694581529}
-  - {fileID: 1987754738}
-  - {fileID: 1629032463}
-  m_Father: {fileID: 0}
-  m_RootOrder: 22
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &383787662
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 383787663}
-  - component: {fileID: 383787664}
-  m_Layer: 0
-  m_Name: InteractPos (0)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &383787663
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 383787662}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.04, y: 0, z: 0.57}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2094281393}
+  m_Father: {fileID: 2092314547}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &383787664
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &292942037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 383787662}
+  m_GameObject: {fileID: 292942035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: MONDAY
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 436207616
+  m_fontColor: {r: 0, g: 0, b: 0, a: 0.101960786}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 22
+  m_fontSizeBase: 22
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &292942038
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292942035}
+  m_CullTransparentMesh: 1
 --- !u!1 &441521817
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,6 +765,141 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   output: {fileID: 1695608630}
+--- !u!1 &453793863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 453793864}
+  - component: {fileID: 453793866}
+  - component: {fileID: 453793865}
+  m_Layer: 5
+  m_Name: Day/Time (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &453793864
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453793863}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 277894339}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -111}
+  m_SizeDelta: {x: 400, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &453793865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453793863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: DAY/TIME
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 23
+  m_fontSizeBase: 23
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &453793866
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453793863}
+  m_CullTransparentMesh: 1
 --- !u!1001 &463100832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1213,6 +1247,114 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 60, y: -90, z: 90}
+--- !u!1 &633460548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 633460549}
+  - component: {fileID: 633460552}
+  - component: {fileID: 633460551}
+  - component: {fileID: 633460550}
+  m_Layer: 5
+  m_Name: WeekView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &633460549
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633460548}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1123052638}
+  m_Father: {fileID: 277894339}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: -700, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &633460550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633460548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Content: {fileID: 50436728}
+  m_Horizontal: 1
+  m_Vertical: 0
+  m_MovementType: 2
+  m_Elasticity: 0.1
+  m_Inertia: 0
+  m_DecelerationRate: 0.135
+  m_ScrollSensitivity: 1
+  m_Viewport: {fileID: 1123052638}
+  m_HorizontalScrollbar: {fileID: 0}
+  m_VerticalScrollbar: {fileID: 0}
+  m_HorizontalScrollbarVisibility: 2
+  m_VerticalScrollbarVisibility: 2
+  m_HorizontalScrollbarSpacing: -3
+  m_VerticalScrollbarSpacing: -3
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &633460551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633460548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &633460552
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633460548}
+  m_CullTransparentMesh: 1
 --- !u!1 &641420961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,90 +1577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
---- !u!1 &694581528
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 694581529}
-  - component: {fileID: 694581530}
-  m_Layer: 0
-  m_Name: Character Sprite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &694581529
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694581528}
-  m_LocalRotation: {x: -0.122787856, y: 0.6963643, z: 0.122787856, w: 0.6963643}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 347008213}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -20, y: 90, z: 0}
---- !u!212 &694581530
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694581528}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b5881b8f8c0789f499327b32afbf0ef6, type: 3}
-  m_Color: {r: 0.6793077, g: 0.7254902, b: 0.18823528, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &804915920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,6 +2143,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+--- !u!1 &1069509668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1069509669}
+  m_Layer: 5
+  m_Name: TaskArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1069509669
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069509668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2092314547}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1088137595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,7 +2210,7 @@ Transform:
   m_Father: {fileID: 1831101030}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1089684470
+--- !u!1 &1123052637
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2124,43 +2218,89 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1089684471}
-  - component: {fileID: 1089684472}
-  m_Layer: 0
-  m_Name: InteractPos (0)
+  - component: {fileID: 1123052638}
+  - component: {fileID: 1123052641}
+  - component: {fileID: 1123052640}
+  - component: {fileID: 1123052639}
+  m_Layer: 5
+  m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1089684471
-Transform:
+--- !u!224 &1123052638
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089684470}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.04, y: 0, z: 0.57}
+  m_GameObject: {fileID: 1123052637}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1246572677}
-  m_RootOrder: 1
+  m_Children:
+  - {fileID: 50436728}
+  m_Father: {fileID: 633460549}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1089684472
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &1123052639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089684470}
+  m_GameObject: {fileID: 1123052637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  m_ShowMaskGraphic: 0
+--- !u!114 &1123052640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123052637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1123052641
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123052637}
+  m_CullTransparentMesh: 1
 --- !u!1 &1148747868
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,321 +2420,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -90, z: 0}
---- !u!1 &1228070456
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1228070457}
-  - component: {fileID: 1228070458}
-  m_Layer: 0
-  m_Name: Character Sprite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1228070457
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228070456}
-  m_LocalRotation: {x: -0.122787856, y: 0.6963643, z: 0.122787856, w: 0.6963643}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2094281393}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -20, y: 90, z: 0}
---- !u!212 &1228070458
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228070456}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b5881b8f8c0789f499327b32afbf0ef6, type: 3}
-  m_Color: {r: 0.7254902, g: 0.18823528, b: 0.4418307, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!1 &1246572669
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1246572677}
-  - component: {fileID: 1246572676}
-  - component: {fileID: 1246572675}
-  - component: {fileID: 1246572674}
-  - component: {fileID: 1246572673}
-  - component: {fileID: 1246572672}
-  - component: {fileID: 1246572671}
-  - component: {fileID: 1246572670}
-  m_Layer: 0
-  m_Name: Character (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1246572670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246572669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startWhenEnabled: 1
-  asynchronousLoad: 0
-  pauseWhenDisabled: 0
-  restartWhenComplete: 1
-  logTaskChanges: 0
-  group: 0
-  resetValuesOnRestart: 0
-  externalBehavior: {fileID: 0}
-  mBehaviorSource:
-    behaviorName: NPC
-    behaviorDescription: 
-    mTaskData:
-      types: []
-      parentIndex: 
-      startIndex: 
-      variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(-394.105438,84.05261)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(2.50005913,132.1579)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-4.215637,127.387878)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"InWorkHours","NodeData":{"Offset":"(-32.5456543,138.421021)"},"ID":3,"Name":"In
-        Work Hours","Instant":true,"SharedIntcurrentTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":0,"Int32mValue":0},"SharedIntworkStartTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":1,"Int32mValue":0},"SharedIntworkEndTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":2,"Int32mValue":0},"SharedCharacterStatecharacterState":{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":3,"CharacterStatemValue":"Start"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(78.52753,137.4624)"},"ID":4,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-160.355347,134.05249)"},"ID":5,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-250,450)","Comment":"Rest"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-224.166565,125.000244)"},"ID":7,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":4}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-90,160)"},"ID":8,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Rest","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":5,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(30,160)"},"ID":9,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":6},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(140,160)"},"ID":10,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am resting"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(210,450)","Comment":"Food"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-161.666626,125.000244)"},"ID":12,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":7}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-26.666748,160)"},"ID":13,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Food","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":8,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(93.33325,160)"},"ID":14,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":9},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(203.333282,160)"},"ID":15,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am eating"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(710,450)","Comment":"Inspiration"},"ID":16,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":17,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":10}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":18,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Inspiration","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":11,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":19,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":12},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":20,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        need inspiration"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1220,450)","Comment":"Social"},"ID":21,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":22,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":13}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":23,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Social","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":14,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":24,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":15},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":25,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        need to socialise"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(99.36804,143.065186)","Comment":"Working"},"ID":26,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveToLocation","NodeData":{"Offset":"(-14.6054688,137.052612)"},"ID":27,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Work","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":16,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(116.948792,136.409851)"},"ID":28,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am working"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]}]},{"Type":"MoveToLocation","NodeData":{"Offset":"(143.846054,135.3851)"},"ID":29,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Home","Charactercharacter":17,"SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":18,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(292.211731,127.199249)"},"ID":30,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am at home"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},"Variables":[null,null,null,null,null,{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1},{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":19,"CharacterStatemValue":"Start"},{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":20,"DoingTypemValue":"Rest"},{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":21},{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":22},{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":23},{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":24},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":25,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":26,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":27,"Int32mValue":0}]}'
-      fieldSerializationData:
-        typeName: []
-        fieldNameHash: 
-        startIndex: 
-        dataPosition: 
-        unityObjects:
-        - {fileID: 1438213534}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572672}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1246572669}
-        - {fileID: 1438213534}
-        byteData: 
-        byteDataArray: 
-      Version: 1.7.3
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
---- !u!114 &1246572671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246572669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca8ee074ee41ef04b9604ec45e28ff10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1246572672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246572669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b21af8ed87b596d4f90a695a769c5edb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TaskList: []
---- !u!114 &1246572673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246572669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f67468ddac5b134499fa17159021528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traits: 020000000800000011000000
---- !u!65 &1246572674
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246572669}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1246572675
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246572669}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1246572676
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246572669}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1246572677
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246572669}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -56.7, y: 1.18, z: -7.62}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1514626122}
-  - {fileID: 1089684471}
-  - {fileID: 1669189723}
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1286500776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2972,6 +2797,141 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b29138fa248ad4391cb6f6a7d02bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1451900715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1451900716}
+  - component: {fileID: 1451900718}
+  - component: {fileID: 1451900717}
+  m_Layer: 5
+  m_Name: Week (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1451900716
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451900715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 277894339}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -77}
+  m_SizeDelta: {x: 400, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1451900717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451900715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: WEEK
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 30
+  m_fontSizeBase: 30
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1451900718
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451900715}
+  m_CullTransparentMesh: 1
 --- !u!1 &1486313238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3062,135 +3022,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
---- !u!1 &1514626121
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1514626122}
-  - component: {fileID: 1514626123}
-  m_Layer: 0
-  m_Name: Character Sprite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1514626122
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514626121}
-  m_LocalRotation: {x: -0.122787856, y: 0.6963643, z: 0.122787856, w: 0.6963643}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1246572677}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -20, y: 90, z: 0}
---- !u!212 &1514626123
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514626121}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b5881b8f8c0789f499327b32afbf0ef6, type: 3}
-  m_Color: {r: 0.18823528, g: 0.7254902, b: 0.5154754, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!1 &1587903738
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1587903739}
-  - component: {fileID: 1587903740}
-  m_Layer: 0
-  m_Name: InteractPos (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1587903739
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587903738}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.45, y: 0, z: -0.12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2094281393}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1587903740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587903738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 3
 --- !u!850595691 &1624598971
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -3253,51 +3084,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
---- !u!1 &1629032462
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1629032463}
-  - component: {fileID: 1629032464}
-  m_Layer: 0
-  m_Name: InteractPos (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1629032463
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1629032462}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.45, y: 0, z: -0.12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 347008213}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1629032464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1629032462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 3
 --- !u!1 &1661006321
 GameObject:
   m_ObjectHideFlags: 0
@@ -3343,51 +3129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
---- !u!1 &1669189722
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1669189723}
-  - component: {fileID: 1669189724}
-  m_Layer: 0
-  m_Name: InteractPos (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1669189723
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1669189722}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.45, y: 0, z: -0.12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1246572677}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1669189724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1669189722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 3
 --- !u!1 &1682044994
 GameObject:
   m_ObjectHideFlags: 0
@@ -4091,51 +3832,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ece6db7b011b28540b6562d4ae7b87d6, type: 3}
---- !u!1 &1987754737
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1987754738}
-  - component: {fileID: 1987754739}
-  m_Layer: 0
-  m_Name: InteractPos (0)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1987754738
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987754737}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.04, y: 0, z: 0.57}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 347008213}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1987754739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987754737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 3
 --- !u!1 &2018324997
 GameObject:
   m_ObjectHideFlags: 0
@@ -4272,24 +3968,24 @@ MonoBehaviour:
         Work Hours","Instant":true,"SharedIntcurrentTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":0,"Int32mValue":0},"SharedIntworkStartTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":1,"Int32mValue":0},"SharedIntworkEndTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":2,"Int32mValue":0},"SharedCharacterStatecharacterState":{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":3,"CharacterStatemValue":"Start"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(78.52753,137.4624)"},"ID":4,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-160.355347,134.05249)"},"ID":5,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-250,450)","Comment":"Rest"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-224.166565,125.000244)"},"ID":7,"Name":"Has
         Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":4}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-90,160)"},"ID":8,"Name":"Move
         To Location","Instant":true,"DoingTypepositionType":"Rest","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":5,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(30,160)"},"ID":9,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":6},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(140,160)"},"ID":10,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":6},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(140,160)"},"ID":10,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
         am resting"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(210,450)","Comment":"Food"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-161.666626,125.000244)"},"ID":12,"Name":"Has
         Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":7}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-26.666748,160)"},"ID":13,"Name":"Move
         To Location","Instant":true,"DoingTypepositionType":"Food","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":8,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(93.33325,160)"},"ID":14,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":9},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(203.333282,160)"},"ID":15,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":9},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(203.333282,160)"},"ID":15,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
         am eating"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(710,450)","Comment":"Inspiration"},"ID":16,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":17,"Name":"Has
         Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":10}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":18,"Name":"Move
         To Location","Instant":true,"DoingTypepositionType":"Inspiration","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":11,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":19,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":12},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":20,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":12},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":20,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
         need inspiration"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1220,450)","Comment":"Social"},"ID":21,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":22,"Name":"Has
         Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":13}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":23,"Name":"Move
         To Location","Instant":true,"DoingTypepositionType":"Social","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":14,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":24,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":15},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":25,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":15},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":25,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
         need to socialise"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(99.36804,143.065186)","Comment":"Working"},"ID":26,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveToLocation","NodeData":{"Offset":"(-14.6054688,137.052612)"},"ID":27,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Work","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":16,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(116.948792,136.409851)"},"ID":28,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        To Location","Instant":true,"DoingTypepositionType":"Work","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":16,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(116.948792,136.409851)"},"ID":28,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
         am working"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]}]},{"Type":"MoveToLocation","NodeData":{"Offset":"(143.846054,135.3851)"},"ID":29,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Home","Charactercharacter":17,"SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":18,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(292.211731,127.199249)"},"ID":30,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am at home"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},"Variables":[null,null,null,null,null,{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1},{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":19,"CharacterStatemValue":"Start"},{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":20,"DoingTypemValue":"Rest"},{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":21},{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":22},{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":23},{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":24},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":25,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":26,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":27,"Int32mValue":0}]}'
+        To Location","Instant":true,"DoingTypepositionType":"Home","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":17,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(292.211731,127.199249)"},"ID":30,"Name":"Log","Instant":true,"Disabled":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
+        am at home"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},"Variables":[null,null,null,null,null,{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1},{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":18,"CharacterStatemValue":"Start"},{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":19,"DoingTypemValue":"Rest"},{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":20},{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":21},{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":22},{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":23},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":24,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":25,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":26,"Int32mValue":0}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -4313,7 +4009,6 @@ MonoBehaviour:
         - {fileID: 2018324997}
         - {fileID: 2018324997}
         - {fileID: 2018324997}
-        - {fileID: 2018325003}
         - {fileID: 2018324997}
         - {fileID: 2018324997}
         - {fileID: 2018324997}
@@ -4618,7 +4313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ece6db7b011b28540b6562d4ae7b87d6, type: 3}
---- !u!1 &2094281385
+--- !u!1 &2092314546
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4626,229 +4321,76 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2094281393}
-  - component: {fileID: 2094281392}
-  - component: {fileID: 2094281391}
-  - component: {fileID: 2094281390}
-  - component: {fileID: 2094281389}
-  - component: {fileID: 2094281388}
-  - component: {fileID: 2094281387}
-  - component: {fileID: 2094281386}
-  m_Layer: 0
-  m_Name: Character (3)
+  - component: {fileID: 2092314547}
+  - component: {fileID: 2092314549}
+  - component: {fileID: 2092314548}
+  m_Layer: 5
+  m_Name: DayArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2094281386
-MonoBehaviour:
+--- !u!224 &2092314547
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094281385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startWhenEnabled: 1
-  asynchronousLoad: 0
-  pauseWhenDisabled: 0
-  restartWhenComplete: 1
-  logTaskChanges: 0
-  group: 0
-  resetValuesOnRestart: 0
-  externalBehavior: {fileID: 0}
-  mBehaviorSource:
-    behaviorName: NPC
-    behaviorDescription: 
-    mTaskData:
-      types: []
-      parentIndex: 
-      startIndex: 
-      variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(-394.105438,84.05261)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(2.50005913,132.1579)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-4.215637,127.387878)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"InWorkHours","NodeData":{"Offset":"(-32.5456543,138.421021)"},"ID":3,"Name":"In
-        Work Hours","Instant":true,"SharedIntcurrentTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":0,"Int32mValue":0},"SharedIntworkStartTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":1,"Int32mValue":0},"SharedIntworkEndTick":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":2,"Int32mValue":0},"SharedCharacterStatecharacterState":{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":3,"CharacterStatemValue":"Start"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(78.52753,137.4624)"},"ID":4,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-160.355347,134.05249)"},"ID":5,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-250,450)","Comment":"Rest"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-224.166565,125.000244)"},"ID":7,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":4}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-90,160)"},"ID":8,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Rest","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":5,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(30,160)"},"ID":9,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":6},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(140,160)"},"ID":10,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am resting"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(210,450)","Comment":"Food"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-161.666626,125.000244)"},"ID":12,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":7}},{"Type":"MoveToLocation","NodeData":{"Offset":"(-26.666748,160)"},"ID":13,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Food","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":8,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(93.33325,160)"},"ID":14,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":9},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(203.333282,160)"},"ID":15,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am eating"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(710,450)","Comment":"Inspiration"},"ID":16,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":17,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":10}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":18,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Inspiration","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":11,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":19,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":12},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":20,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        need inspiration"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1220,450)","Comment":"Social"},"ID":21,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasNeed","NodeData":{"Offset":"(-110,125.000244)"},"ID":22,"Name":"Has
-        Need","Instant":true,"SharedDoingTrackerneed":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":13}},{"Type":"MoveToLocation","NodeData":{"Offset":"(14.1665649,160)"},"ID":23,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Social","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":14,"DoingTypemValue":"Rest"}},{"Type":"RestoreNeed","NodeData":{"Offset":"(134.166565,160)"},"ID":24,"Name":"Restore
-        Need","Instant":true,"SharedDoingTrackertracker":{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":15},"SharedIntrestoreTicks":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(244.166565,160)"},"ID":25,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        need to socialise"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(99.36804,143.065186)","Comment":"Working"},"ID":26,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveToLocation","NodeData":{"Offset":"(-14.6054688,137.052612)"},"ID":27,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Work","SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":16,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(116.948792,136.409851)"},"ID":28,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am working"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]}]},{"Type":"MoveToLocation","NodeData":{"Offset":"(143.846054,135.3851)"},"ID":29,"Name":"Move
-        To Location","Instant":true,"DoingTypepositionType":"Home","Charactercharacter":17,"SharedDoingTypecharDoing":{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":18,"DoingTypemValue":"Rest"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(292.211731,127.199249)"},"ID":30,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"I
-        am at home"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},"Variables":[null,null,null,null,null,{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"RestoreTicks","IsShared":true,"Int32mValue":1},{"Type":"SharedCharacterState","Name":"State","IsShared":true,"PropertyMapping":"Characters.Character/CurrentState","PropertyMappingOwner":19,"CharacterStatemValue":"Start"},{"Type":"SharedDoingType","Name":"Doing","IsShared":true,"PropertyMapping":"Characters.Character/CurrentDoing","PropertyMappingOwner":20,"DoingTypemValue":"Rest"},{"Type":"SharedDoingTracker","Name":"Rest","IsShared":true,"PropertyMapping":"Characters.Character/Rest","PropertyMappingOwner":21},{"Type":"SharedDoingTracker","Name":"Food","IsShared":true,"PropertyMapping":"Characters.Character/Food","PropertyMappingOwner":22},{"Type":"SharedDoingTracker","Name":"Insp","IsShared":true,"PropertyMapping":"Characters.Character/Insp","PropertyMappingOwner":23},{"Type":"SharedDoingTracker","Name":"Socl","IsShared":true,"PropertyMapping":"Characters.Character/Socl","PropertyMappingOwner":24},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkStart","IsShared":true,"PropertyMapping":"Characters.Character/WorkStart","PropertyMappingOwner":25,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"WorkEnd","IsShared":true,"PropertyMapping":"Characters.Character/WorkEnd","PropertyMappingOwner":26,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"CurrentTick","IsShared":true,"PropertyMapping":"TimeManager/CurrentTick","PropertyMappingOwner":27,"Int32mValue":0}]}'
-      fieldSerializationData:
-        typeName: []
-        fieldNameHash: 
-        startIndex: 
-        dataPosition: 
-        unityObjects:
-        - {fileID: 1438213534}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281388}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 2094281385}
-        - {fileID: 1438213534}
-        byteData: 
-        byteDataArray: 
-      Version: 1.7.3
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
---- !u!114 &2094281387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094281385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca8ee074ee41ef04b9604ec45e28ff10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2094281388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094281385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b21af8ed87b596d4f90a695a769c5edb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TaskList: []
---- !u!114 &2094281389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094281385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f67468ddac5b134499fa17159021528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traits: 020000000800000011000000
---- !u!65 &2094281390
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094281385}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &2094281391
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094281385}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &2094281392
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094281385}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &2094281393
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094281385}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -55.25, y: 1.18, z: -9}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_GameObject: {fileID: 2092314546}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1228070457}
-  - {fileID: 383787663}
-  - {fileID: 1587903739}
-  m_Father: {fileID: 0}
-  m_RootOrder: 23
+  - {fileID: 1069509669}
+  - {fileID: 292942036}
+  m_Father: {fileID: 50436728}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 300, y: 0}
+  m_SizeDelta: {x: 550, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2092314548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092314546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2092314549
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092314546}
+  m_CullTransparentMesh: 1
 --- !u!1001 &2125965113
 PrefabInstance:
   m_ObjectHideFlags: 0
