@@ -98,7 +98,7 @@ namespace Characters
             curInteract = i;
             curInteract.inUse = true;
             CurrentDoing = i.type;
-            transform.position = curInteract.position;
+            transform.position = curInteract.thing.transform.position;
             Debug.Log("Moving to " + curInteract.type);
         }
 

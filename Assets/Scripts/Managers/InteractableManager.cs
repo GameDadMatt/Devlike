@@ -8,14 +8,14 @@ public class NPCInteractable
 {
     public int id;
     public DoingType type;
-    public Vector3 position;
+    public GameObject thing;
     public bool inUse = false;
 
-    public NPCInteractable(int id, DoingType type, Vector3 position)
+    public NPCInteractable(int id, DoingType type, GameObject thing)
     {
         this.id = id;
         this.type = type;
-        this.position = position;
+        this.thing = thing;
     }
 }
 
@@ -37,7 +37,7 @@ public class InteractableManager : MonoBehaviour
 
     public void RegisterInteractable(RegisterInteractPosition ip)
     {
-        NPCInteractable pos = new NPCInteractable(posIDs, ip.type, ip.transform.position);
+        NPCInteractable pos = new NPCInteractable(posIDs, ip.type, ip.gameObject);
         if (ip.type != DoingType.Home)
         {
             interactables.Add(pos);
@@ -78,6 +78,6 @@ public class InteractableManager : MonoBehaviour
             return ps[0];
         }
         Debug.LogError("Failed to find position of type " + type);
-        return new NPCInteractable(999, type, transform.position);
+        return new NPCInteractable(999, type, gameObject);
     }
 }
