@@ -12,20 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66892834c75f787408839bdf3965dd9d, type: 3}
   m_Name: Caffienated
   m_EditorClassIdentifier: 
-  type: 3
+  description: 
+  confidence: 1
   restDropMultiplier: 0.5
   foodDropMultiplier: 1
   inspirationDropMultiplier: 1
-  socialnDropMultiplier: 1
+  socialDropMultiplier: 1.1
   empathyBarrierMultiplier: 1
   moodImpactMultiplier: 1
-  dayStartMod: 0
+  baseMood: 0.5
+  dayStartMod: -2
   dayEndMod: 0
-  velocityMultiplier: 1
-  buglocityMultiplier: 1
+  velocityMultiplier: 1.2
+  bugChanceMultiplier: 1
   burnoutMultiplier: 1.5
-  likesProgramming: 1
-  likesArt: 1
-  likesAudio: 1
-  likesWriting: 1
-  likesDesign: 1
+  ProgrammingMultiplier: 1
+  ArtMultiplier: 1
+  AudioMultiplier: 1
+  WritingMultiplier: 1
+  DesignMultiplier: 1

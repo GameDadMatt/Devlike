@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
-using Characters;
-using DataTypes;
+using Devlike.Characters;
 
 public class GameManager : MonoBehaviour
 {

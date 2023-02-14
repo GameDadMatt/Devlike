@@ -1,4 +1,4 @@
-namespace DataTypes
+namespace Devlike.Characters
 {
     public class Relationship
     {

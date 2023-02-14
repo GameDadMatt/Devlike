@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Characters;
+using Devlike.Characters;
 
 public class DevOutput : MonoBehaviour
 {
@@ -28,10 +28,10 @@ public class DevOutput : MonoBehaviour
         if (selected)
         {
             output.text = "PROFILE" +
-            "\n Traits = " + p.Traits[0] + ", " + p.Traits[1] + ", " + p.Traits[2] +
+            "\n Traits = " + p.traitNames[0] + ", " + p.traitNames[1] + ", " + p.traitNames[2] +
             "\n RestMod " + p.RestDropMultiplier + ", FoodMod " + p.FoodDropMultiplier + ", InspMod " + p.InspDropMultiplier + ", SoclMod " + p.SoclDropMultiplier +
             "\n EmpathyMod " + p.EmpathyBarrierMultiplier + ", MoodMod " + p.MoodImpactMultiplier + ", DayStartMod " + p.WorkStartMod + ", DayEndMod " + p.WorkEndMod + ", VelocityMod " + p.VelocityMultiplier + ", BuglocityMod " + p.BugChanceMultiplier + ", BurnoutpMod " + p.BurnoutMultiplier +
-            "\n PrgLike " + p.LikesProgramming + ", ArtLike " + p.LikesArt + ", AudLike " + p.LikesAudio + ", WrtLike " + p.LikesWriting + ", DesLike " + p.LikesDesign +
+            "\n PrgLike " + p.Programming + ", ArtLike " + p.Art + ", AudLike " + p.Audio + ", WrtLike " + p.Writing + ", DesLike " + p.Design +
             "\n CURRENT VALUES" +
             "\n Rest " + c.Rest.curValue + ", Food " + c.Food.curValue + ", Insp " + c.Insp.curValue + ", Socl " + c.Socl.curValue +
             "\n RestBurn " + c.RestBurnRate + ", FoodBurn " + c.FoodBurnRate + ", InspBurn " + c.InspBurnRate + ", SoclBurn " + c.SoclBurnRate;

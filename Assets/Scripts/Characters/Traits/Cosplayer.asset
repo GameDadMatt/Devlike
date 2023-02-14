@@ -12,20 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66892834c75f787408839bdf3965dd9d, type: 3}
   m_Name: Cosplayer
   m_EditorClassIdentifier: 
-  type: 16
+  description: 
+  confidence: 2
   restDropMultiplier: 1
   foodDropMultiplier: 1
   inspirationDropMultiplier: 1
-  socialnDropMultiplier: 1
+  socialDropMultiplier: 1
   empathyBarrierMultiplier: 1
   moodImpactMultiplier: 1
+  baseMood: 0.5
   dayStartMod: 0
   dayEndMod: 0
   velocityMultiplier: 1
-  buglocityMultiplier: 1
+  bugChanceMultiplier: 1
   burnoutMultiplier: 1
-  likesProgramming: 1
-  likesArt: 1
-  likesAudio: 1
-  likesWriting: 1
-  likesDesign: 2
+  ProgrammingMultiplier: 1
+  ArtMultiplier: 1
+  AudioMultiplier: 1
+  WritingMultiplier: 1
+  DesignMultiplier: 1

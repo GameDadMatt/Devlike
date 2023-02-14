@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Yarn;
-using Characters;
-using DataTypes;
+using Devlike.Characters;
 
 public class GlobalVariables : MonoBehaviour
 {
@@ -34,6 +33,10 @@ public class GlobalVariables : MonoBehaviour
     //CHARACTER
     [Header("CHARACTERS")]
     [SerializeField]
+    private float traitEffectMultiplier = 0.25f;
+    [SerializeField]
+    private int traitTicksMultiplier = 2;
+    [SerializeField]
     private float foodBreaksPerDay = 1f;
     [SerializeField]
     private float restBreaksPerDay = 4f;
@@ -46,7 +49,10 @@ public class GlobalVariables : MonoBehaviour
     public float moodImpactMax = 1.5f;
     public float moodImpactMin = 0.1f;
     public List<Trait> allTraits = new List<Trait>();
+    public List<Profession> allProfessions = new List<Profession>();
 
+    public float TraitEffectMultiplier { get { return traitEffectMultiplier; } }
+    public float TraitDaysMultiplier { get { return traitTicksMultiplier; } }
     public float BaseFoodBurn { get { return foodBreaksPerDay / WorkTicks;  } }
     public float BaseRestBurn { get { return restBreaksPerDay / WorkTicks; } }
     public float BaseInspBurn { get { return inspirationBreaksPerDay / WorkTicks; } }
@@ -69,16 +75,29 @@ public class GlobalVariables : MonoBehaviour
         }
     }
 
-    public Trait GetTraitOfType(TraitType type)
+    public Trait GetTrait(string name)
     {
         foreach(Trait trait in allTraits)
         {
-            if(trait.type == type)
+            if(trait.name == name)
             {
                 return trait;
             }
         }
-        Debug.LogError("Could not find trait of type " + type + ". Was it added to the All Traits list on GlobalVariables?");
+        Debug.LogError("Could not find a trait by the name of " + name + ". Was it added to the All Traits list on GlobalVariables?");
+        return null;
+    }
+
+    public Profession GetProfession(string name)
+    {
+        foreach (Profession prof in allProfessions)
+        {
+            if(prof.name == name)
+            {
+                return prof;
+            }
+        }
+        Debug.LogError("Could not find a profession by the name of " + name + ". Was it added to the All Professions list on GlobalVariables?");
         return null;
     }
 }

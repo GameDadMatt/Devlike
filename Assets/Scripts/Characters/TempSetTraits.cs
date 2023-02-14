@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DataTypes;
-using Characters;
+using Devlike.Characters;
 
 public class TempSetTraits : MonoBehaviour
 {
-    public List<TraitType> traits = new List<TraitType>();
+    public List<string> traits = new List<string>();
 
     // Start is called before the first frame update
     void OnEnable()
     {
         Profile p = GetComponent<Character>().profile;
-        foreach(TraitType type in traits)
+        foreach(string type in traits)
         {
-            p.Traits.Add(type);
+            p.traitNames.Add(type);
         }
     }
 }

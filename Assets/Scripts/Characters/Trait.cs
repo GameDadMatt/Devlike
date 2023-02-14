@@ -1,36 +1,33 @@
 using UnityEngine;
-using DataTypes;
 
-namespace Characters
+namespace Devlike.Characters
 {
     [CreateAssetMenu(fileName = "TraitType", menuName = "Devlike/Trait")]
     public class Trait : ScriptableObject
     {
-        public TraitType type;
+        [TextArea(5,20)]
+        public string description;
+
+        public ConfidenceLevel confidence;
 
         //Multipliers for needs
-        public float restDropMultiplier = 1f;
-        public float foodDropMultiplier = 1f;
-        public float inspirationDropMultiplier = 1f;
-        public float socialnDropMultiplier = 1f;
+        public int restDropMultiplier = 1;
+        public int foodDropMultiplier = 1;
+        public int inspirationDropMultiplier = 1;
+        public int socialDropMultiplier = 1;
 
         //How much empathy is needed to see this characters moodlets
-        public float empathyBarrierMultiplier = 1f;
-        public float moodImpactMultiplier = 1f;
-        public float baseMood = 0.5f;
+        public int empathyBarrierMultiplier = 1;
+        public int moodImpactMultiplier = 1;
+        public int baseMood = 1;
 
         //How early or late does the character start and end the day
-        public int dayStartMod = 0;
-        public int dayEndMod = 0;
+        public int dayStartMultiplier = 1;
+        public int dayEndMultiplier = 1;
 
         //Multipliers for what tasks thiss character particularly excels at
-        public float velocityMultiplier = 1f;
-        public float bugChanceMultiplier = 1f;
-        public float burnoutMultiplier = 1f;
-        public float likesProgramming = 1f;
-        public float likesArt = 1f;
-        public float likesAudio = 1f;
-        public float likesWriting = 1f;
-        public float likesDesign = 1f;
+        public int velocityMultiplier = 1;
+        public int bugChanceMultiplier = 1;
+        public int burnoutMultiplier = 1;
     }
 }

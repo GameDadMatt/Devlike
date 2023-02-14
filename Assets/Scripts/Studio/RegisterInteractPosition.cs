@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DataTypes;
+using Devlike.Characters;
 
 public class RegisterInteractPosition : MonoBehaviour
 {

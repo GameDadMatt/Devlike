@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using DataTypes;
 using UnityEngine;
 
-namespace Characters
+namespace Devlike.Characters
 {
     public class Profile
     {
@@ -16,8 +15,13 @@ namespace Characters
         public string Nickname { get; private set; }
         public string Hobby { get; private set; }
         public string Role { get; private set; }
-        public List<TraitType> Traits = new List<TraitType>(); //Temporarily made available publically
-        //public List<TraitType> Traits { get; private set; }
+        public ExperienceLevel Experience { get; private set; } = ExperienceLevel.Intermediate;
+        public ConfidenceLevel Confidence { get; private set; } = ConfidenceLevel.Average;
+
+        public List<string> traitNames = new List<string>(); //Temporarily made available publically
+        public List<Trait> traits = new List<Trait>();
+        public string profName; //Temporarily made available publically
+        public Profession profession;
 
         //Multipliers for needs
         public float RestDropMultiplier { get; private set; } = 1f;
@@ -36,34 +40,54 @@ namespace Characters
         public int WorkStartMod { get; private set; } = 0;
         public int WorkEndMod { get; private set; } = 0;
 
-        //Multipliers for what tasks thiss character particularly excels at
+        //Multipliers for what tasks this character particularly excels at
         public float VelocityMultiplier { get; private set; } = 1f;
         public float BugChanceMultiplier { get; private set; } = 1f;
         public float BurnoutMultiplier { get; private set; } = 1f;
-        public float LikesProgramming { get; private set; } = 1f;
-        public float LikesArt { get; private set; } = 1f;
-        public float LikesAudio { get; private set; } = 1f;
-        public float LikesWriting { get; private set; } = 1f;
-        public float LikesDesign { get; private set; } = 1f;
+        public float Programming { get; private set; } = 1f;
+        public float Art { get; private set; } = 1f;
+        public float Audio { get; private set; } = 1f;
+        public float Writing { get; private set; } = 1f;
+        public float Design { get; private set; } = 1f;
 
         public void SetupProfile()
         {
-            foreach(TraitType type in Traits)
+            ApplyProfession(profName);
+
+            foreach(string trait in traitNames)
             {
-                ApplyTrait(type);
+                ApplyTrait(trait);
             }
-            Debug.Log("My traits are " + Traits[0] + ", " + Traits[1] + ", " + Traits[2]);
+            Debug.Log("My traits are " + traitNames[0] + ", " + traitNames[1] + ", " + traitNames[2]);
         }
 
-        public void ApplyTrait(TraitType type)
+        private void ApplyProfession(string name)
         {
-            Trait t = GlobalVariables.value.GetTraitOfType(type);
+            Profession p = GlobalVariables.value.GetProfession(name);
+            if (p != null)
+            {
+                profession = p;
+                Experience = p.experience;
+                Programming = p.ProgrammingBase;
+                Art = p.ArtBase;
+                Audio = p.AudioBase;
+                Writing = p.WritingBase;
+                Design = p.DesignBase;
+            }
+        }
+
+        private void ApplyTrait(string name)
+        {
+            Trait t = GlobalVariables.value.GetTrait(name);
             if (t != null)
             {
+                traits.Add(t);
+                Confidence = ConfidenceAverage(t.confidence);
+
                 RestDropMultiplier *= t.restDropMultiplier;
                 FoodDropMultiplier *= t.foodDropMultiplier;
                 InspDropMultiplier *= t.inspirationDropMultiplier;
-                SoclDropMultiplier *= t.socialnDropMultiplier;
+                SoclDropMultiplier *= t.socialDropMultiplier;
 
                 EmpathyBarrierMultiplier *= t.empathyBarrierMultiplier;
                 MoodImpactMultiplier *= t.moodImpactMultiplier;
@@ -75,12 +99,23 @@ namespace Characters
                 VelocityMultiplier *= t.velocityMultiplier;
                 BugChanceMultiplier *= t.bugChanceMultiplier;
                 BurnoutMultiplier *= t.burnoutMultiplier;
-                LikesProgramming *= t.likesProgramming;
-                LikesArt *= t.likesArt;
-                LikesAudio *= t.likesAudio;
-                LikesWriting *= t.likesWriting;
-                LikesDesign *= t.likesDesign;
+                Programming *= t.ProgrammingMultiplier;
+                Art *= t.ArtMultiplier;
+                Audio *= t.AudioMultiplier;
+                Writing *= t.WritingMultiplier;
+                Design *= t.DesignMultiplier;
             }
+        }
+
+        private ConfidenceLevel ConfidenceAverage(ConfidenceLevel trait)
+        {
+            int i = Mathf.CeilToInt((int)Confidence + (int)trait);
+            return (ConfidenceLevel)i;
+        }
+
+        private void CalculatePersonalityImpact()
+        {
+
         }
     }
 }

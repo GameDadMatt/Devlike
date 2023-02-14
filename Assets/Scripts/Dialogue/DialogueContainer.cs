@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DataTypes;
 
-namespace Dialogue
+namespace Devlike.Characters
 {
     //DialogueContainer holds a DialogueCollection's values for tracking
     public class DialogueContainer

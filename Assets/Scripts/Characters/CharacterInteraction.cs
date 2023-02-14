@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
-using DataTypes;
 
-namespace Characters
+namespace Devlike.Characters
 {
     public class CharacterInteraction : MonoBehaviour
     {

@@ -1,7 +1,6 @@
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
-using DataTypes;
 
 public class RestoreNeed : Action
 {

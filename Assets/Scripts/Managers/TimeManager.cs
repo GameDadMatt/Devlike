@@ -2,68 +2,72 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DataTypes;
 using BehaviorDesigner.Runtime;
 
-public class TimeManager : MonoBehaviour
+namespace Devlike.Timing
 {
-    public static TimeManager instance;
+    public enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
 
-    private float seconds = 0f;
-    public int CurrentTick { get; private set; } = 0;
-    public int CurrentWeek { get; private set; } = 0;
-    public int CurrentDay { get; private set; } = 0;
-
-    public void Awake()
+    public class TimeManager : MonoBehaviour
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
+        public static TimeManager instance;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(GameManager.instance.State != GameState.Paused)
+        private float seconds = 0f;
+        public int CurrentTick { get; private set; } = 0;
+        public int CurrentWeek { get; private set; } = 0;
+        public int CurrentDay { get; private set; } = 0;
+
+        public void Awake()
         {
-            seconds += Time.deltaTime;
-            if (seconds >= TickLength)
+            if (instance == null)
             {
-                seconds -= TickLength;
-                Tick();
+                instance = this;
             }
-        }        
-    }
-
-    public event Action OnTick;
-    public event Action OnDayStart;
-    public void Tick()
-    {
-        BehaviorManager.instance.Tick();
-
-        CurrentTick++;
-
-        if (CurrentTick > GlobalVariables.value.DayEndTick)
-        {
-            CurrentTick = 0;
-            OnDayStart?.Invoke();
         }
 
-        OnTick?.Invoke();
-    }
-
-    private float TickLength
-    {
-        get
+        // Update is called once per frame
+        void Update()
         {
-            if (StudioManager.instance.CharactersActive)
+            if (GameManager.instance.State != GameState.Paused)
             {
-                return GlobalVariables.value.TickLength;
+                seconds += Time.deltaTime;
+                if (seconds >= TickLength)
+                {
+                    seconds -= TickLength;
+                    Tick();
+                }
             }
-            else
+        }
+
+        public event Action OnTick;
+        public event Action OnDayStart;
+        public void Tick()
+        {
+            BehaviorManager.instance.Tick();
+
+            CurrentTick++;
+
+            if (CurrentTick > GlobalVariables.value.DayEndTick)
             {
-                return GlobalVariables.value.IdleTickLength;
+                CurrentTick = 0;
+                OnDayStart?.Invoke();
+            }
+
+            OnTick?.Invoke();
+        }
+
+        private float TickLength
+        {
+            get
+            {
+                if (StudioManager.instance.CharactersActive)
+                {
+                    return GlobalVariables.value.TickLength;
+                }
+                else
+                {
+                    return GlobalVariables.value.IdleTickLength;
+                }
             }
         }
     }

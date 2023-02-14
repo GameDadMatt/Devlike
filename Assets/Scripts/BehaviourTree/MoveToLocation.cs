@@ -1,7 +1,7 @@
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
-using Characters;
+using Devlike.Characters;
 
 public class MoveToLocation : Action
 {

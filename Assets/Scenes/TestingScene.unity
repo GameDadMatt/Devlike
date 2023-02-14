@@ -2637,6 +2637,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1e1e665215c52bb47a0e6f53ac3b4f43, type: 2}
   - {fileID: 11400000, guid: c0e55ca945399a24db75a31ef5fa3df1, type: 2}
   - {fileID: 11400000, guid: 6a2c1cc42b7cb4e45b48b2912591beb4, type: 2}
+  allProfessions: []
   tasksPerDay: 3
   bugChance: 0.1
 --- !u!114 &1438213539

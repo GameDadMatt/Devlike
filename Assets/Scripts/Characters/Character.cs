@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DataTypes;
+using Devlike.Tasks;
+using Devlike.Timing;
 using BehaviorDesigner.Runtime;
 
-namespace Characters
+namespace Devlike.Characters
 {
     public class Character : MonoBehaviour
     {

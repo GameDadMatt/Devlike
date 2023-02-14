@@ -1,6 +1,5 @@
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
-using DataTypes;
 
 public class HasNeed : Conditional
 {

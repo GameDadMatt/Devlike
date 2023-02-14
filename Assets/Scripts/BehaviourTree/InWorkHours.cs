@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using UnityEngine;
+using Devlike.Characters;
 
 public class InWorkHours : Conditional
 {

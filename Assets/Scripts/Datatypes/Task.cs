@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DataTypes
+namespace Devlike.Tasks
 {
     public enum TaskState { Idle, InProgress, Complete }
 

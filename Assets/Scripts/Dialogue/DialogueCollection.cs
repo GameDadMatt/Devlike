@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DataTypes;
 
-namespace Dialogue
+namespace Devlike.Characters
 {
     /// <summary>
     /// A DialogueCollection is a list of YarnScripts

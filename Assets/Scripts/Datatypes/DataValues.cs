@@ -1,18 +1,29 @@
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
+using Devlike.Characters;
+using Devlike.Tasks;
+
+namespace Devlike.Characters
+{
+    public enum SeedList { Hobbies, FirstNames, LastNames, Nicknames }
+    public enum EmotionType { Anxious, Concerned, Neutral, Optimistic, Enthusiastic }
+    public enum DialogueType { Casual, Work, Personal }
+    public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
+    public enum IncidentType { }
+    public enum CharacterState { Start, Active, End, Inactive }
+    public enum DoingType { Rest, Food, Inspiration, Social, Work, Home }
+    public enum ExperienceLevel { Newbie, Intermediate, Experienced, Senior, Greybeard }
+    public enum ConfidenceLevel { Low, Average, High, VeryHigh }
+}
+
+namespace Devlike.Tasks
+{
+    public enum TaskType { Art, Code, Audio, Design, Writing }
+    public enum TaskImportance { None, Bug, Required }
+}
 
 public enum GameState { Paused, Ticking, Interacting }
-public enum SeedList { Hobbies, FirstNames, LastNames, Nicknames }
-public enum TraitType { Average, EarlyBird, NightOwl, Caffienated, Insomniac, Wallflower, SocialButterfly, Imaginative, Forgetful, Hungry, Workaholic, Slacker, Hacker, Furry, Cool, FanfictionWriter, Cosplayer, Thorough, Hasty, AllRounder }
-public enum EmotionType { Anxious, Concerned, Neutral, Optimistic, Enthusiastic }
-public enum DoingType { Rest, Food, Inspiration, Social, Work, Home }
-public enum TaskType { Art, Code, Audio, Design, Writing }
-public enum TaskImportance { None, Bug, Required }
-public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
-public enum IncidentType { }
-public enum CharacterState { Start, Active, End, Inactive }
-public enum DialogueType { Casual, Work, Personal }
-public enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
+public enum Multiplier { None, Double, Triple }
 
 //This custom class tracks a given need
 [System.Serializable]
