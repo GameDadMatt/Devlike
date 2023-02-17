@@ -8,7 +8,7 @@ namespace Devlike.Characters
         [TextArea(5,20)]
         public string description;
 
-        public Tier confidence;
+        public Tier confidence = Tier.Average;
 
         //Multipliers for needs
         public Tier restDrop = Tier.Average;

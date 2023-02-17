@@ -84,27 +84,32 @@ namespace Devlike.Characters
                 traits.Add(t);
                 Confidence = ConfidenceAverage(t.confidence);
 
-                RestDropMultiplier *= TraitValue(t.restDrop);
-                FoodDropMultiplier *= TraitValue(t.foodDrop);
-                InspDropMultiplier *= TraitValue(t.inspirationDrop);
-                SoclDropMultiplier *= TraitValue(t.socialDrop);
+                RestDropMultiplier *= SkillVelocityValue(t.restDrop);
+                FoodDropMultiplier *= SkillVelocityValue(t.foodDrop);
+                InspDropMultiplier *= SkillVelocityValue(t.inspirationDrop);
+                SoclDropMultiplier *= SkillVelocityValue(t.socialDrop);
 
-                EmpathyBarrierMultiplier *= TraitValue(t.empathyBarrier);
-                MoodImpactMultiplier *= TraitValue(t.moodImpact);
-                BaseMood = TraitValue(t.baseMood);
+                EmpathyBarrierMultiplier *= SkillVelocityValue(t.empathyBarrier);
+                MoodImpactMultiplier *= SkillVelocityValue(t.moodImpact);
+                BaseMood = SkillVelocityValue(t.baseMood);
 
                 WorkStartMod += DayMod(t.dayStart);
                 WorkEndMod += DayMod(t.dayEnd);
 
-                VelocityMultiplier *= TraitValue(t.velocity);
-                BugChanceMultiplier *= TraitValue(t.bugChance);
-                BurnoutMultiplier *= TraitValue(t.burnout);
+                VelocityMultiplier *= SkillVelocityValue(t.velocity);
+                BugChanceMultiplier *= SkillVelocityValue(t.bugChance);
+                BurnoutMultiplier *= SkillVelocityValue(t.burnout);
             }
         }
 
-        private float TraitValue(Tier tier)
+        private float SkillVelocity(Tier tier)
         {
             return GlobalVariables.value.TraitEffectMultiplier * (int)tier;
+        }
+
+        private float DropRate(Tier tier)
+        {
+            return (GlobalVariables.value.DropRateMultiplier * (int)tier)/5;
         }
 
         private int DayMod(Tier tier)
