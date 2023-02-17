@@ -7,7 +7,7 @@ namespace Devlike.Characters
     [CreateAssetMenu(fileName = "ProfessionType", menuName = "Devlike/Profession")]
     public class Profession : ScriptableObject
     {
-        public ExperienceLevel experience;
+        public Tier experience;
         public float ProgrammingBase = 1f;
         public float ArtBase = 1f;
         public float AudioBase = 1f;

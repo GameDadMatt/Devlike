@@ -12,8 +12,7 @@ namespace Devlike.Characters
     public enum IncidentType { }
     public enum CharacterState { Start, Active, End, Inactive }
     public enum DoingType { Rest, Food, Inspiration, Social, Work, Home }
-    public enum ExperienceLevel { Newbie, Intermediate, Experienced, Senior, Greybeard }
-    public enum ConfidenceLevel { Low, Average, High, VeryHigh }
+    public enum Tier { Lowest, Low, Average, High, Highest }
 }
 
 namespace Devlike.Tasks

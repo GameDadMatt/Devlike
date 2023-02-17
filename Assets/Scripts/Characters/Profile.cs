@@ -15,8 +15,8 @@ namespace Devlike.Characters
         public string Nickname { get; private set; }
         public string Hobby { get; private set; }
         public string Role { get; private set; }
-        public ExperienceLevel Experience { get; private set; } = ExperienceLevel.Intermediate;
-        public ConfidenceLevel Confidence { get; private set; } = ConfidenceLevel.Average;
+        public Tier Experience { get; private set; } = Tier.Average;
+        public Tier Confidence { get; private set; } = Tier.Average;
 
         public List<string> traitNames = new List<string>(); //Temporarily made available publically
         public List<Trait> traits = new List<Trait>();
@@ -84,38 +84,43 @@ namespace Devlike.Characters
                 traits.Add(t);
                 Confidence = ConfidenceAverage(t.confidence);
 
-                RestDropMultiplier *= t.restDropMultiplier;
-                FoodDropMultiplier *= t.foodDropMultiplier;
-                InspDropMultiplier *= t.inspirationDropMultiplier;
-                SoclDropMultiplier *= t.socialDropMultiplier;
+                RestDropMultiplier *= TraitValue(t.restDrop);
+                FoodDropMultiplier *= TraitValue(t.foodDrop);
+                InspDropMultiplier *= TraitValue(t.inspirationDrop);
+                SoclDropMultiplier *= TraitValue(t.socialDrop);
 
-                EmpathyBarrierMultiplier *= t.empathyBarrierMultiplier;
-                MoodImpactMultiplier *= t.moodImpactMultiplier;
-                BaseMood = t.baseMood;
+                EmpathyBarrierMultiplier *= TraitValue(t.empathyBarrier);
+                MoodImpactMultiplier *= TraitValue(t.moodImpact);
+                BaseMood = TraitValue(t.baseMood);
 
-                WorkStartMod += t.dayStartMod;
-                WorkEndMod += t.dayEndMod;
+                WorkStartMod += DayMod(t.dayStart);
+                WorkEndMod += DayMod(t.dayEnd);
 
-                VelocityMultiplier *= t.velocityMultiplier;
-                BugChanceMultiplier *= t.bugChanceMultiplier;
-                BurnoutMultiplier *= t.burnoutMultiplier;
-                Programming *= t.ProgrammingMultiplier;
-                Art *= t.ArtMultiplier;
-                Audio *= t.AudioMultiplier;
-                Writing *= t.WritingMultiplier;
-                Design *= t.DesignMultiplier;
+                VelocityMultiplier *= TraitValue(t.velocity);
+                BugChanceMultiplier *= TraitValue(t.bugChance);
+                BurnoutMultiplier *= TraitValue(t.burnout);
             }
         }
 
-        private ConfidenceLevel ConfidenceAverage(ConfidenceLevel trait)
+        private float TraitValue(Tier tier)
         {
-            int i = Mathf.CeilToInt((int)Confidence + (int)trait);
-            return (ConfidenceLevel)i;
+            return GlobalVariables.value.TraitEffectMultiplier * (int)tier;
         }
 
-        private void CalculatePersonalityImpact()
+        private int DayMod(Tier tier)
         {
+            return GlobalVariables.value.DayModifierBase + (int)tier;
+        }
 
+        private int TierNum(Tier tier)
+        {
+            return (int)tier;
+        }
+
+        private Tier ConfidenceAverage(Tier tier)
+        {
+            int a = Mathf.CeilToInt((int)Confidence * (int)tier / 2);
+            return (Tier)a;
         }
     }
 }

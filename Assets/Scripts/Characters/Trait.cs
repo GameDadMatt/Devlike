@@ -8,26 +8,26 @@ namespace Devlike.Characters
         [TextArea(5,20)]
         public string description;
 
-        public ConfidenceLevel confidence;
+        public Tier confidence;
 
         //Multipliers for needs
-        public int restDropMultiplier = 1;
-        public int foodDropMultiplier = 1;
-        public int inspirationDropMultiplier = 1;
-        public int socialDropMultiplier = 1;
+        public Tier restDrop = Tier.Average;
+        public Tier foodDrop = Tier.Average;
+        public Tier inspirationDrop = Tier.Average;
+        public Tier socialDrop = Tier.Average;
 
         //How much empathy is needed to see this characters moodlets
-        public int empathyBarrierMultiplier = 1;
-        public int moodImpactMultiplier = 1;
-        public int baseMood = 1;
+        public Tier empathyBarrier = Tier.Average;
+        public Tier moodImpact = Tier.Average;
+        public Tier baseMood = Tier.Average;
 
         //How early or late does the character start and end the day
-        public int dayStartMultiplier = 1;
-        public int dayEndMultiplier = 1;
+        public Tier dayStart = Tier.Average;
+        public Tier dayEnd = Tier.Average;
 
         //Multipliers for what tasks thiss character particularly excels at
-        public int velocityMultiplier = 1;
-        public int bugChanceMultiplier = 1;
-        public int burnoutMultiplier = 1;
+        public Tier velocity = Tier.Average;
+        public Tier bugChance = Tier.Average;
+        public Tier burnout = Tier.Average;
     }
 }
