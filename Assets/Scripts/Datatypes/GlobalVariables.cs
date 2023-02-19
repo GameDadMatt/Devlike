@@ -33,9 +33,9 @@ public class GlobalVariables : MonoBehaviour
     //CHARACTER
     [Header("CHARACTERS")]
     [SerializeField]
-    private float traitEffectMultiplier = 0.35f;
+    private float lowToHighMultiplier = 0.35f;
     [SerializeField]
-    private float dropRateMultiplier = 1.67f;
+    private float highToLowMultiplier = 1.75f;
     [SerializeField]
     private int dayModifierBase = -3;
     [SerializeField]
@@ -55,8 +55,8 @@ public class GlobalVariables : MonoBehaviour
     public List<Trait> allTraits = new List<Trait>();
     public List<Profession> allProfessions = new List<Profession>();
 
-    public float TraitEffectMultiplier { get { return traitEffectMultiplier; } }
-    public float DropRateMultiplier { get { return dropRateMultiplier; } }
+    public float TraitEffectMultiplier { get { return lowToHighMultiplier; } }
+    public float DropRateMultiplier { get { return highToLowMultiplier; } }
     public int DayModifierBase { get { return dayModifierBase; } }
     public float TraitDaysMultiplier { get { return traitTicksMultiplier; } }
     public float BaseFoodBurn { get { return foodBreaksPerDay / WorkTicks;  } }

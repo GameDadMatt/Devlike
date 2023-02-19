@@ -52,13 +52,12 @@ namespace Devlike.Characters
 
         public void SetupProfile()
         {
-            ApplyProfession(profName);
+            //ApplyProfession(profName);
 
             foreach(string trait in traitNames)
             {
                 ApplyTrait(trait);
             }
-            Debug.Log("My traits are " + traitNames[0] + ", " + traitNames[1] + ", " + traitNames[2]);
         }
 
         private void ApplyProfession(string name)
@@ -68,11 +67,11 @@ namespace Devlike.Characters
             {
                 profession = p;
                 Experience = p.experience;
-                Programming = p.ProgrammingBase;
-                Art = p.ArtBase;
-                Audio = p.AudioBase;
-                Writing = p.WritingBase;
-                Design = p.DesignBase;
+                Programming = TierLowToHigh(p.programming);
+                Art = TierLowToHigh(p.art);
+                Audio = TierLowToHigh(p.audio);
+                Writing = TierLowToHigh(p.writing);
+                Design = TierLowToHigh(p.design);
             }
         }
 
@@ -84,35 +83,45 @@ namespace Devlike.Characters
                 traits.Add(t);
                 Confidence = ConfidenceAverage(t.confidence);
 
-                RestDropMultiplier *= SkillVelocityValue(t.restDrop);
-                FoodDropMultiplier *= SkillVelocityValue(t.foodDrop);
-                InspDropMultiplier *= SkillVelocityValue(t.inspirationDrop);
-                SoclDropMultiplier *= SkillVelocityValue(t.socialDrop);
+                RestDropMultiplier *= TierHighToLow(t.restDrop);
+                FoodDropMultiplier *= TierHighToLow(t.foodDrop);
+                InspDropMultiplier *= TierHighToLow(t.inspirationDrop);
+                SoclDropMultiplier *= TierHighToLow(t.socialDrop);
+                MoodImpactMultiplier *= TierHighToLow(t.moodImpact);
 
-                EmpathyBarrierMultiplier *= SkillVelocityValue(t.empathyBarrier);
-                MoodImpactMultiplier *= SkillVelocityValue(t.moodImpact);
-                BaseMood = SkillVelocityValue(t.baseMood);
+                EmpathyBarrierMultiplier *= TierLowToHigh(t.empathyBarrier);
+                BaseMood = TierLowToHigh(t.baseMood);
+                VelocityMultiplier *= TierLowToHigh(t.velocity);
 
-                WorkStartMod += DayMod(t.dayStart);
-                WorkEndMod += DayMod(t.dayEnd);
+                BugChanceMultiplier *= TierHighToLow(t.bugChance);
+                BurnoutMultiplier *= TierHighToLow(t.burnout);
 
-                VelocityMultiplier *= SkillVelocityValue(t.velocity);
-                BugChanceMultiplier *= SkillVelocityValue(t.bugChance);
-                BurnoutMultiplier *= SkillVelocityValue(t.burnout);
+                WorkStartMod += TierDayMod(t.dayStart);
+                WorkEndMod += TierDayMod(t.dayEnd);
             }
         }
 
-        private float SkillVelocity(Tier tier)
+        /// <summary>
+        /// Low to High assumes that a lower tier returns a lower float
+        /// </summary>
+        /// <param name="tier"></param>
+        /// <returns></returns>
+        private float TierLowToHigh(Tier tier)
         {
             return GlobalVariables.value.TraitEffectMultiplier * (int)tier;
         }
 
-        private float DropRate(Tier tier)
+        /// <summary>
+        /// High to Low assumes that a lower tier returns a higher float
+        /// </summary>
+        /// <param name="tier"></param>
+        /// <returns></returns>
+        private float TierHighToLow(Tier tier)
         {
             return (GlobalVariables.value.DropRateMultiplier * (int)tier)/5;
         }
 
-        private int DayMod(Tier tier)
+        private int TierDayMod(Tier tier)
         {
             return GlobalVariables.value.DayModifierBase + (int)tier;
         }

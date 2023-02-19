@@ -2609,8 +2609,8 @@ MonoBehaviour:
   workEndTick: 58
   dayEndTick: 50
   timeUnitTicks: 6
-  traitEffectMultiplier: 0.25
-  dropRateMultiplier: 1.67
+  lowToHighMultiplier: 0.35
+  highToLowMultiplier: 1.75
   dayModifierBase: -3
   traitTicksMultiplier: 2
   foodBreaksPerDay: 1
@@ -2621,26 +2621,7 @@ MonoBehaviour:
   moodImpactMax: 1.5
   moodImpactMin: 0.1
   allTraits:
-  - {fileID: 11400000, guid: fc9dd69fbaf95964181d4054e341882c, type: 2}
-  - {fileID: 11400000, guid: d48154e2faafd1342a89e8f59de44d5f, type: 2}
-  - {fileID: 11400000, guid: 2f0f5a0a7c7a3b647a632e01fede8e35, type: 2}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: a309843d5fb6fe247aaf138c124b71bd, type: 2}
-  - {fileID: 11400000, guid: 405540546ff4f9f4699c319987b5a1de, type: 2}
-  - {fileID: 11400000, guid: 1bd34338c0600594d91edeffbb56aaa5, type: 2}
-  - {fileID: 11400000, guid: bbc576d90306b9948b8f803e1c8a61fa, type: 2}
-  - {fileID: 11400000, guid: 07d18a3a6cda17c41bdc70d0a736947c, type: 2}
-  - {fileID: 11400000, guid: 68bf6f48a9e0dc141a008ca68bbbde63, type: 2}
-  - {fileID: 11400000, guid: 4309a50379764b1408a9fb83ce387482, type: 2}
-  - {fileID: 11400000, guid: 7dd562dee7222c04fa2516ec80df7879, type: 2}
-  - {fileID: 11400000, guid: 7389e00f8d6817c40a5622fe0e92a3a9, type: 2}
-  - {fileID: 11400000, guid: 5fd3d2f830f1f3546b179e26e6507d7d, type: 2}
-  - {fileID: 11400000, guid: 53087c5237be01945baf6eda56a16d8c, type: 2}
-  - {fileID: 11400000, guid: 61df71509960bcc4aa24e7d734ba6f02, type: 2}
-  - {fileID: 11400000, guid: 80c1e15c7792ef24a8b642a45191d294, type: 2}
-  - {fileID: 11400000, guid: 1e1e665215c52bb47a0e6f53ac3b4f43, type: 2}
-  - {fileID: 11400000, guid: c0e55ca945399a24db75a31ef5fa3df1, type: 2}
-  - {fileID: 11400000, guid: 6a2c1cc42b7cb4e45b48b2912591beb4, type: 2}
+  - {fileID: 11400000, guid: 824bf69d20852d742b730f1244c5f0d9, type: 2}
   allProfessions: []
   tasksPerDay: 3
   bugChance: 0.1
@@ -4191,10 +4172,10 @@ RectTransform:
   m_Father: {fileID: 50436728}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150.5, y: -25}
-  m_SizeDelta: {x: 301, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 301, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2092314548
 MonoBehaviour:
