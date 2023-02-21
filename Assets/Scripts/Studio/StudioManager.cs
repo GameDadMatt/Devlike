@@ -10,6 +10,7 @@ public class StudioManager : MonoBehaviour
     [SerializeField]
     private GameObject characterPrefab;
     private List<Character> characters = new List<Character>();
+    public TaskContainer Backlog { get; private set; } = new TaskContainer();
 
     public void Awake()
     {

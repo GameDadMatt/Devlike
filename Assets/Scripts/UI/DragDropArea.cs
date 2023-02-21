@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragDropArea : MonoBehaviour
+namespace Devlike.UI
 {
-    private void OnEnable()
+    public class DragDropArea : MonoBehaviour
     {
-        DragManager.instance.RegisterDropArea(GetComponent<RectTransform>());
-    }
+        private void OnEnable()
+        {
+            DragTaskManager.instance.RegisterDropArea(this);
+        }
 
-    private void OnDisable()
-    {
-        DragManager.instance.UnregisterDropArea(GetComponent<RectTransform>());
+        private void OnDisable()
+        {
+            DragTaskManager.instance.UnregisterDropArea(this);
+        }
     }
 }
