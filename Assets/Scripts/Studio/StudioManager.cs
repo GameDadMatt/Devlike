@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Devlike.Characters;
+using Devlike.Tasks;
+using Devlike.UI;
 
 public class StudioManager : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class StudioManager : MonoBehaviour
     [SerializeField]
     private GameObject characterPrefab;
     private List<Character> characters = new List<Character>();
-    public TaskContainer Backlog { get; private set; } = new TaskContainer();
+    public TaskContainer ArtBacklog { get; private set; } = new TaskContainer();
 
     public void Awake()
     {
@@ -32,6 +34,7 @@ public class StudioManager : MonoBehaviour
             GameObject newchar = Instantiate(characterPrefab);
             newchar.transform.position = InteractableManager.instance.Home.thing.transform.position;
             characters.Add(newchar.GetComponent<Character>());
+            TaskAssignmentScreen.instance.RegisterCharacter(newchar.GetComponent<Character>());
         }
     }
 

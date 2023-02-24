@@ -13,16 +13,28 @@ namespace Devlike.Characters
     public enum CharacterState { Start, Active, End, Inactive }
     public enum DoingType { Rest, Food, Inspiration, Social, Work, Home }
     public enum Tier { Lowest, Low, Average, High, Highest }
+
+    [System.Serializable]
+    public class Skill
+    {
+        public TaskType type;
+        public Tier tier;
+
+        public Skill(TaskType type, Tier tier)
+        {
+            this.type = type;
+            this.tier = tier;
+        }
+    }
 }
 
 namespace Devlike.Tasks
 {
-    public enum TaskType { Art, Code, Audio, Design, Writing }
+    public enum TaskType { Art, Engineering, Design }
     public enum TaskImportance { None, Bug, Required }
 }
 
 public enum GameState { Paused, Ticking, Interacting }
-public enum Multiplier { None, Double, Triple }
 
 //This custom class tracks a given need
 [System.Serializable]

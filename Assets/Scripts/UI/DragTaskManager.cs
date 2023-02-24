@@ -15,7 +15,7 @@ namespace Devlike.UI
         [SerializeField]
         private RectTransform dragLayer;
 
-        private List<ContainerArea> containerAreas;
+        private List<ContainerArea> dropAreas;
 
         private Rect boundingBox;
 
@@ -32,14 +32,9 @@ namespace Devlike.UI
             boundingBox = BoundingBoxRect(dragLayer);
         }
 
-        public void RegisterDropArea(RectTransform dropArea)
+        public void SetContainerAreas(List<ContainerArea> dropAreas)
         {
-            dropAreas.Add(dropArea);
-        }
-
-        public void UnregisterDropArea(RectTransform dropArea)
-        {
-            dropAreas.Remove(dropArea);
+            this.dropAreas = dropAreas;
         }
 
         public void RegisterDraggedObject(DragTask drag)
@@ -61,9 +56,9 @@ namespace Devlike.UI
 
         public bool IsWithinDropAreaBounds(Vector2 position)
         {
-            foreach (RectTransform area in dropAreas)
+            foreach (ContainerArea container in dropAreas)
             {
-                Rect bbox = BoundingBoxRect(area);
+                Rect bbox = BoundingBoxRect(container.Area);
                 Debug.Log("Drop Area");
                 if (bbox.Contains(position))
                 {

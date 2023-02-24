@@ -8,8 +8,7 @@ namespace Devlike.Characters
     public class Profession : ScriptableObject
     {
         public Tier experience = Tier.Lowest;
-        public Tier art = Tier.Lowest;
-        public Tier design = Tier.Lowest;
-        public Tier engineering = Tier.Lowest;
+        public Skill primarySkill;
+        public Skill secondarySkill;
     }
 }

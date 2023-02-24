@@ -17,7 +17,6 @@ namespace Devlike.Tasks
         public int maxTicks;
         public float bugChance = 0.05f;
 
-
         public float completeChance = 0.95f;
         public int doneTicks;
 
@@ -61,6 +60,17 @@ namespace Devlike.Tasks
         public void CompleteTask()
         {
             state = TaskState.Complete;
+        }
+
+        public string ID
+        {
+            get
+            {
+                var hash = new Hash128();
+                hash.Append(type.ToString());
+                hash.Append(state.ToString());
+                return hash.ToString();
+            }
         }
     }
 }
