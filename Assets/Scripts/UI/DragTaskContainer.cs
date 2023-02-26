@@ -7,6 +7,7 @@ namespace Devlike.UI
 {
     public class DragTaskContainer : MonoBehaviour
     {
-        public TaskContainer TaskContainer;
+        public TaskContainer Tasks;
+        public RectTransform Area;
     }
 }

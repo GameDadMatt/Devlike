@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1272464718571579917}
   - component: {fileID: 3130782519965756496}
+  - component: {fileID: 6152611610880736351}
+  - component: {fileID: 567637331090048962}
   m_Layer: 5
   m_Name: CharacterColumn
   m_TagString: Untagged
@@ -65,6 +67,27 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6152611610880736351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516758923689534025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f5199628237844a926ae4de81d0efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Area: {fileID: 7139422930740087090}
+--- !u!222 &567637331090048962
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516758923689534025}
+  m_CullTransparentMesh: 1
 --- !u!1 &1687856045861098883
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +197,7 @@ GameObject:
   - component: {fileID: 3654387261688486542}
   - component: {fileID: 1002313415050896683}
   - component: {fileID: 1471202540252649731}
-  - component: {fileID: 8317216913577785553}
+  - component: {fileID: 259657417}
   m_Layer: 5
   m_Name: Body
   m_TagString: Untagged
@@ -255,12 +278,12 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: -1
+  m_PreferredWidth: 154
   m_PreferredHeight: 550
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &8317216913577785553
+--- !u!114 &259657417
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,6 +292,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1989512768811658764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddcc7b9abe77e0b48b8f81160744a129, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 20
+    m_Right: 20
+    m_Top: 20
+    m_Bottom: 20
+  m_ChildAlignment: 1
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0

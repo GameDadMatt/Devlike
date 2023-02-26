@@ -6,19 +6,6 @@ using Devlike.Characters;
 
 namespace Devlike.Tasks
 {
-    public class ContainerArea
-    {
-        public string ID { get; set; }
-        public TaskContainer Container { get; private set; }
-        public UI.RectTransform Area { get; private set; }
-
-        public ContainerArea(TaskContainer container, UI.RectTransform area)
-        {
-            Container = container;
-            Area = area;
-        }
-    }
-
     public class TaskContainer
     {
         private List<Task> tasks;
@@ -34,7 +21,7 @@ namespace Devlike.Tasks
             tasks = new List<Task>();
         }
 
-        public void AddTask(Task task)
+        public void AddTask(Task task, Vector3 position)
         {
             tasks.Add(task);
         }

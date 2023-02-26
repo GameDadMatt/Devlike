@@ -31,7 +31,7 @@ public class DevOutput : MonoBehaviour
             "\n Traits = " + p.traitNames[0] + ", " + p.traitNames[1] + ", " + p.traitNames[2] +
             "\n RestMod " + p.RestDropMultiplier + ", FoodMod " + p.FoodDropMultiplier + ", InspMod " + p.InspDropMultiplier + ", SoclMod " + p.SoclDropMultiplier +
             "\n EmpathyMod " + p.EmpathyBarrierMultiplier + ", MoodMod " + p.MoodImpactMultiplier + ", DayStartMod " + p.WorkStartMod + ", DayEndMod " + p.WorkEndMod + ", VelocityMod " + p.VelocityMultiplier + ", BuglocityMod " + p.BugChanceMultiplier + ", BurnoutpMod " + p.BurnoutMultiplier +
-            "\n PrgLike " + p.Programming + ", ArtLike " + p.Art + ", AudLike " + p.Audio + ", WrtLike " + p.Writing + ", DesLike " + p.Design +
+            "\n ArtSkill " + p.Art + ", EngineeringSkill " + p.Engineering + ", DesignSkill " + p.Design +
             "\n CURRENT VALUES" +
             "\n Rest " + c.Rest.curValue + ", Food " + c.Food.curValue + ", Insp " + c.Insp.curValue + ", Socl " + c.Socl.curValue +
             "\n RestBurn " + c.RestBurnRate + ", FoodBurn " + c.FoodBurnRate + ", InspBurn " + c.InspBurnRate + ", SoclBurn " + c.SoclBurnRate;

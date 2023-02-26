@@ -11,11 +11,10 @@ namespace Devlike.UI
         public static DragTaskManager instance;
 
         [SerializeField]
-        private RectTransform defaultLayer;
-        [SerializeField]
         private RectTransform dragLayer;
+        public DragTaskContainer CurrentDragContainer { get; private set; }
 
-        private List<ContainerArea> dropAreas;
+        private List<DragTaskContainer> dropAreas;
 
         private Rect boundingBox;
 
@@ -32,20 +31,19 @@ namespace Devlike.UI
             boundingBox = BoundingBoxRect(dragLayer);
         }
 
-        public void SetContainerAreas(List<ContainerArea> dropAreas)
+        public void SetContainerAreas(List<DragTaskContainer> dropAreas)
         {
             this.dropAreas = dropAreas;
         }
 
         public void RegisterDraggedObject(DragTask drag)
         {
-            currentDraggedObject = drag;
             drag.transform.SetParent(dragLayer);
+            currentDraggedObject = drag;
         }
 
         public void UnregisterDraggedObject(DragTask drag)
         {
-            drag.transform.SetParent(defaultLayer);
             currentDraggedObject = null;
         }
 
@@ -56,12 +54,12 @@ namespace Devlike.UI
 
         public bool IsWithinDropAreaBounds(Vector2 position)
         {
-            foreach (ContainerArea container in dropAreas)
+            foreach (DragTaskContainer container in dropAreas)
             {
                 Rect bbox = BoundingBoxRect(container.Area);
-                Debug.Log("Drop Area");
                 if (bbox.Contains(position))
                 {
+                    CurrentDragContainer = container;
                     return true;
                 }
             }
@@ -80,6 +78,11 @@ namespace Devlike.UI
                 rectTransform.lossyScale.y * rectTransform.rect.size.y);
 
             return new Rect(position, size);
+        }
+
+        private List<GameObject> OrderByTaskPosition()
+        {
+            return null;
         }
 
         private void AssignTaskToList(RectTransform area)

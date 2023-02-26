@@ -11,7 +11,7 @@ public class StudioManager : MonoBehaviour
     public int studioSize = 0;
     [SerializeField]
     private GameObject characterPrefab;
-    private List<Character> characters = new List<Character>();
+    public List<Character> Characters { get; private set; } = new List<Character>();
     public TaskContainer ArtBacklog { get; private set; } = new TaskContainer();
 
     public void Awake()
@@ -33,8 +33,7 @@ public class StudioManager : MonoBehaviour
         {
             GameObject newchar = Instantiate(characterPrefab);
             newchar.transform.position = InteractableManager.instance.Home.thing.transform.position;
-            characters.Add(newchar.GetComponent<Character>());
-            TaskAssignmentScreen.instance.RegisterCharacter(newchar.GetComponent<Character>());
+            Characters.Add(newchar.GetComponent<Character>());
         }
     }
 
@@ -46,7 +45,7 @@ public class StudioManager : MonoBehaviour
     {
         get
         {
-            foreach (Character c in characters)
+            foreach (Character c in Characters)
             {
                 if (c.CurrentState != CharacterState.Inactive)
                 {

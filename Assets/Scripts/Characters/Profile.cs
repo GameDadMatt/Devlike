@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Devlike.Tasks;
 
 namespace Devlike.Characters
 {
@@ -44,11 +45,9 @@ namespace Devlike.Characters
         public float VelocityMultiplier { get; private set; } = 1f;
         public float BugChanceMultiplier { get; private set; } = 1f;
         public float BurnoutMultiplier { get; private set; } = 1f;
-        public float Programming { get; private set; } = 1f;
-        public float Art { get; private set; } = 1f;
-        public float Audio { get; private set; } = 1f;
-        public float Writing { get; private set; } = 1f;
-        public float Design { get; private set; } = 1f;
+        public float Art { get; private set; } = 0.2f;
+        public float Engineering { get; private set; } = 0.2f;
+        public float Design { get; private set; } = 0.2f;
 
         public void SetupProfile()
         {
@@ -67,11 +66,24 @@ namespace Devlike.Characters
             {
                 profession = p;
                 Experience = p.experience;
-                Programming = TierLowToHigh(p.programming);
-                Art = TierLowToHigh(p.art);
-                Audio = TierLowToHigh(p.audio);
-                Writing = TierLowToHigh(p.writing);
-                Design = TierLowToHigh(p.design);
+                ApplySkill(p.primarySkill);
+                ApplySkill(p.secondarySkill);
+            }
+        }
+
+        private void ApplySkill(Skill skill)
+        {
+            switch (skill.type)
+            {
+                case TaskType.Art:
+                    Art *= TierLowToHigh(skill.tier);
+                    break;
+                case TaskType.Engineering:
+                    Engineering *= TierLowToHigh(skill.tier);
+                    break;
+                case TaskType.Design:
+                    Design *= TierLowToHigh(skill.tier);
+                    break;
             }
         }
 
