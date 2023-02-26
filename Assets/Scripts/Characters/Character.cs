@@ -13,7 +13,7 @@ namespace Devlike.Characters
         public Profile profile = new Profile();
 
         //Tasks
-        public TaskContainer tasks = new TaskContainer();
+        public TaskList tasks = new TaskList();
         public TaskType CurrentTask { get; private set; }
         public EmotionType CurrentEmotion { get; private set; }
         public IncidentType RememberedIncident { get; private set; }

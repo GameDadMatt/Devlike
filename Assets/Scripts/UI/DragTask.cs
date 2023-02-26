@@ -12,7 +12,6 @@ namespace Devlike.UI
         private Transform curParent;
         private Vector2 centerPoint;
         private Vector2 worldCenterPoint => transform.TransformPoint(centerPoint);
-        private Vector2 lockPos;
         private Vector2 curPos;
 
         private void Awake()

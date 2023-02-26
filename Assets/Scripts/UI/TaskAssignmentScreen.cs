@@ -23,7 +23,7 @@ namespace Devlike.UI
         private int charactersPerPage = 4;
         private List<GameObject> charColumns = new List<GameObject>();
 
-        private TaskContainer backlog;
+        private TaskList backlog;
 
         public void Awake()
         {
@@ -38,7 +38,7 @@ namespace Devlike.UI
             GenerateScreen();
         }
 
-        public void SetBacklog(TaskContainer backlog)
+        public void SetBacklog(TaskList backlog)
         {
             this.backlog = backlog;
         }
@@ -47,7 +47,7 @@ namespace Devlike.UI
         {
             int charListStart = curPage * charactersPerPage;
             int charListEnd = charListStart + charactersPerPage;
-            List<DragTaskContainer> containers = new List<DragTaskContainer>();
+            List<TaskColumn> containers = new List<TaskColumn>();
 
             //Iterate backwards over the list as we'll be removing contents
             for (int i = charColumns.Count; i > 0; i--)
@@ -59,7 +59,7 @@ namespace Devlike.UI
             for (int i = charListStart; i < charListEnd; i++)
             {
                 GameObject column = Instantiate(characterColumnPrefab, characterColumnArea);
-                DragTaskContainer dtc = column.GetComponent<DragTaskContainer>();
+                TaskColumn dtc = column.GetComponent<TaskColumn>();
                 dtc.Tasks = StudioManager.instance.Characters[i].tasks;
                 charColumns.Add(column);
                 containers.Add(dtc);
@@ -70,7 +70,7 @@ namespace Devlike.UI
             DragTaskManager.instance.SetContainerAreas(containers);
         }
 
-        private void GenerateTasks(TaskContainer container)
+        private void GenerateTasks(TaskList container)
         {
 
         }

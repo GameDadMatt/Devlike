@@ -5,9 +5,9 @@ using Devlike.Tasks;
 
 namespace Devlike.UI
 {
-    public class DragTaskContainer : MonoBehaviour
+    public class TaskColumn : MonoBehaviour
     {
-        public TaskContainer Tasks;
+        public TaskList Tasks;
         public RectTransform Area;
     }
 }
