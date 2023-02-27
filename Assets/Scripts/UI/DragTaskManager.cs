@@ -67,6 +67,28 @@ namespace Devlike.UI
             return false;
         }
 
+        public bool IsWithinDropAreaBoundsOfType(Vector2 position, TaskType type)
+        {
+            foreach (TaskColumn container in dropAreas)
+            {
+                Rect bbox = BoundingBoxRect(container.Area);
+                if (bbox.Contains(position))
+                {
+                    if (!container.onlyOneType || container.onlyOneType && container.type == type)
+                    {
+                        CurrentDragContainer = container;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         private Rect BoundingBoxRect(RectTransform rectTransform)
         {
             var corners = new Vector3[4];

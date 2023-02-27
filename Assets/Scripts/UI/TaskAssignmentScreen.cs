@@ -13,6 +13,8 @@ namespace Devlike.UI
         [SerializeField]
         private GameObject characterColumnPrefab;
         [SerializeField]
+        private List<TaskColumn> backlogColumns;
+        [SerializeField]
         private Transform characterColumnArea;
         [SerializeField]
         private Transform backlogColumnArea;
@@ -47,7 +49,7 @@ namespace Devlike.UI
         {
             int charListStart = curPage * charactersPerPage;
             int charListEnd = charListStart + charactersPerPage;
-            List<TaskColumn> containers = new List<TaskColumn>();
+            List<TaskColumn> containers = backlogColumns;
 
             //Iterate backwards over the list as we'll be removing contents
             for (int i = charColumns.Count; i > 0; i--)

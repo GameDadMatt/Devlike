@@ -9,13 +9,16 @@ namespace Devlike.UI
     [RequireComponent(typeof(RectTransform))]
     public class DragTask : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
+        private TaskContainer task;
         private Transform curParent;
         private Vector2 centerPoint;
         private Vector2 worldCenterPoint => transform.TransformPoint(centerPoint);
         private Vector2 curPos;
 
-        private void Awake()
+        private DragTask(TaskContainer task)
         {
+            this.task = task;
+            curParent = transform.parent;
             centerPoint = (transform as RectTransform).rect.center;
         }
 

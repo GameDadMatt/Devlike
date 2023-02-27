@@ -9,5 +9,7 @@ namespace Devlike.UI
     {
         public TaskList Tasks;
         public RectTransform Area;
+        public bool onlyOneType = false;
+        public TaskType type;
     }
 }
