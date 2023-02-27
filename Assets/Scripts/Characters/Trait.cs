@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Devlike.Characters
 {
+    /// <summary>
+    /// Values for an individual character trait
+    /// </summary>
     [CreateAssetMenu(fileName = "TraitType", menuName = "Devlike/Trait")]
     public class Trait : ScriptableObject
     {

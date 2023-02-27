@@ -6,6 +6,9 @@ using Devlike.Characters;
 
 namespace Devlike.UI
 {
+    /// <summary>
+    /// The screen that allows tasks to be assigned to characters or the backlog
+    /// </summary>
     public class TaskAssignmentScreen : MonoBehaviour
     {
         public static TaskAssignmentScreen instance;

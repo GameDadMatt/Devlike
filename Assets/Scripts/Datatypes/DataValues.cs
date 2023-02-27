@@ -14,6 +14,9 @@ namespace Devlike.Characters
     public enum DoingType { Rest, Food, Inspiration, Social, Work, Home }
     public enum Tier { Lowest, Low, Average, High, Highest }
 
+    /// <summary>
+    /// Contains the tier and type to inform a character skill
+    /// </summary>
     [System.Serializable]
     public class Skill
     {
@@ -36,7 +39,9 @@ namespace Devlike.Tasks
 
 public enum GameState { Paused, Ticking, Interacting }
 
-//This custom class tracks a given need
+/// <summary>
+/// Tracks what a character is doing and when they need to refill the stat
+/// </summary>
 [System.Serializable]
 public class DoingTracker
 {
@@ -73,6 +78,9 @@ public class SharedCharacterState : SharedVariable<CharacterState>
     public static implicit operator SharedCharacterState(CharacterState value) { return new SharedCharacterState { Value = value }; }
 }
 
+/// <summary>
+/// Loaded values that can be stored and accessed
+/// </summary>
 public static class DataValues
 {
     //DataValues returns a value from a given list stored in the game folders

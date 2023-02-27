@@ -5,6 +5,9 @@ using Devlike.Tasks;
 
 namespace Devlike.UI
 {
+    /// <summary>
+    /// The tracking data for a column containing tasks in the UI
+    /// </summary>
     public class TaskColumn : MonoBehaviour
     {
         public TaskList Tasks;

@@ -6,6 +6,9 @@ using Devlike.Characters;
 
 namespace Devlike.Tasks
 {
+    /// <summary>
+    /// Keeps track of a list of tasks
+    /// </summary>
     public class TaskList
     {
         private List<TaskContainer> tasks;

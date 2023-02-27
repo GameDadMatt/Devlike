@@ -8,7 +8,7 @@ namespace Devlike.UI
     public enum TaskState { Idle, InProgress, Complete }
 
     /// <summary>
-    /// TaskContainer holds the values set by a TaskTemplate to be a unique tracker for that task
+    /// TaskContainer holds the values set by a TaskTemplate to be a unique tracker for an individual task
     /// </summary>
     public class TaskContainer
     {

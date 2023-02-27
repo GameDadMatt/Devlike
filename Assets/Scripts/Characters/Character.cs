@@ -7,6 +7,9 @@ using BehaviorDesigner.Runtime;
 
 namespace Devlike.Characters
 {
+    /// <summary>
+    /// An individual character in the studio
+    /// </summary>
     public class Character : MonoBehaviour
     {
         //Personality

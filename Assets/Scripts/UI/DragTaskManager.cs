@@ -6,6 +6,9 @@ using Devlike.Tasks;
 
 namespace Devlike.UI
 {
+    /// <summary>
+    /// Manages dragged tasks in the UI
+    /// </summary>
     public class DragTaskManager : MonoBehaviour
     {
         public static DragTaskManager instance;

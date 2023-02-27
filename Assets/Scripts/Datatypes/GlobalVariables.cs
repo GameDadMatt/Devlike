@@ -4,6 +4,9 @@ using UnityEngine;
 using Yarn;
 using Devlike.Characters;
 
+/// <summary>
+/// Variables to be tracked globally in the game
+/// </summary>
 public class GlobalVariables : MonoBehaviour
 {
     public static GlobalVariables value;

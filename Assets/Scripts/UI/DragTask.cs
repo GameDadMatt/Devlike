@@ -6,6 +6,9 @@ using Devlike.Characters;
 
 namespace Devlike.UI
 {
+    /// <summary>
+    /// An individual task that can be dragged around on the UI
+    /// </summary>
     [RequireComponent(typeof(RectTransform))]
     public class DragTask : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
@@ -39,7 +42,7 @@ namespace Devlike.UI
         public virtual void OnEndDrag(PointerEventData eventData)
         {
             DragTaskManager.instance.UnregisterDraggedObject(this);
-            if (DragTaskManager.instance.IsWithinDropAreaBounds(worldCenterPoint + eventData.delta))
+            if (DragTaskManager.instance.IsWithinDropAreaBoundsOfType(worldCenterPoint + eventData.delta, task.Type))
             {
                 RectTransform rt = DragTaskManager.instance.CurrentDragContainer.Area;
                 curParent = rt.transform;

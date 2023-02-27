@@ -5,6 +5,9 @@ using Devlike.Characters;
 using Devlike.Tasks;
 using Devlike.UI;
 
+/// <summary>
+/// Manages the studio, the project, and the characters
+/// </summary>
 public class StudioManager : MonoBehaviour
 {
     public static StudioManager instance;

@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace Devlike.Tasks
 {
-    //The base Task class can work to satify Needs
+    /// <summary>
+    /// Allows the creation of unique tasks that can then be loaded into unique TaskContainers for storage during gameplay
+    /// </summary>
     [CreateAssetMenu(fileName = "TaskType", menuName = "Devlike/Task")]
     public class TaskTemplate : ScriptableObject
     {

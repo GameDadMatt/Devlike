@@ -4,6 +4,9 @@ using Devlike.Tasks;
 
 namespace Devlike.Characters
 {
+    /// <summary>
+    /// The profile for an individual character
+    /// </summary>
     public class Profile
     {
         //Private Values
