@@ -65,7 +65,7 @@ namespace Devlike.UI
             {
                 GameObject column = Instantiate(characterColumnPrefab, characterColumnArea);
                 TaskColumn dtc = column.GetComponent<TaskColumn>();
-                dtc.Tasks = StudioManager.instance.Characters[i].tasks;
+                dtc.Tasks = StudioManager.instance.Characters[i].Tasks;
                 charColumns.Add(column);
                 containers.Add(dtc);
                 //SPAWN IN ALL THE TASKS FROM THIS CHARACTER

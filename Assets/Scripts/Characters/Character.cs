@@ -13,17 +13,17 @@ namespace Devlike.Characters
     public class Character : MonoBehaviour
     {
         //Personality
-        public Profile profile = new Profile();
+        public Profile Profile { get; private set; }
 
         //Tasks
-        public TaskList tasks = new TaskList();
+        public TaskList Tasks { get; private set; } = new TaskList();
         public TaskType CurrentTask { get; private set; }
         public EmotionType CurrentEmotion { get; private set; }
         public IncidentType RememberedIncident { get; private set; }
 
         //Days
-        public int WorkStart { get { return GlobalVariables.value.WorkStartTick + profile.WorkStartMod; } }
-        public int WorkEnd { get { return GlobalVariables.value.WorkEndTick + profile.WorkEndMod; } }
+        public int WorkStart { get { return GlobalVariables.value.WorkStartTick + Profile.WorkStartMod; } }
+        public int WorkEnd { get { return GlobalVariables.value.WorkEndTick + Profile.WorkEndMod; } }
         public int CurrentTickRef { get { return TimeManager.instance.CurrentTick; } }
         public CharacterState CurrentState { get; set; }
 
@@ -39,27 +39,26 @@ namespace Devlike.Characters
         public DoingTracker Insp { get; private set; } = new DoingTracker(DoingType.Inspiration, 1f, 0.3f);
         public DoingTracker Socl { get; private set; } = new DoingTracker(DoingType.Social, 1f, 0.3f);
 
-        public float RestBurnRate { get { return GlobalVariables.value.BaseRestBurn * profile.RestDropMultiplier; } }
-        public float FoodBurnRate { get { return GlobalVariables.value.BaseFoodBurn * profile.FoodDropMultiplier; } }
-        public float InspBurnRate { get { return GlobalVariables.value.BaseInspBurn * profile.InspDropMultiplier; } }
-        public float SoclBurnRate { get { return GlobalVariables.value.BaseSoclBurn * profile.SoclDropMultiplier; } }
+        public float RestBurnRate { get { return GlobalVariables.value.BaseRestBurn * Profile.RestDropMultiplier; } }
+        public float FoodBurnRate { get { return GlobalVariables.value.BaseFoodBurn * Profile.FoodDropMultiplier; } }
+        public float InspBurnRate { get { return GlobalVariables.value.BaseInspBurn * Profile.InspDropMultiplier; } }
+        public float SoclBurnRate { get { return GlobalVariables.value.BaseSoclBurn * Profile.SoclDropMultiplier; } }
 
         //Moods
         public float MoodImpact { get; private set; } = 0f;
         private float MoodImpactBurn { get { return GlobalVariables.value.MoodImpactBurn; } }
 
         //Velocity
-        public float Velocity { get { return (GlobalVariables.value.BaseVelocity * profile.VelocityMultiplier) * CappedMoodImpact; } }
-        public float BugChance { get { return (GlobalVariables.value.BaseBugChance * profile.BugChanceMultiplier) * (GlobalVariables.value.moodImpactMax - CappedMoodImpact); } }
+        public float Velocity { get { return (GlobalVariables.value.BaseVelocity * Profile.VelocityMultiplier) * CappedMoodImpact; } }
+        public float BugChance { get { return (GlobalVariables.value.BaseBugChance * Profile.BugChanceMultiplier) * (GlobalVariables.value.moodImpactMax - CappedMoodImpact); } }
         
 
-        public void Start()
+        public void SetupCharacter()
         {
             TimeManager.instance.OnTick += Tick;
             Desk = InteractableManager.instance.ClaimWorkPosition();
             Home = InteractableManager.instance.Home;
             curInteract = Home;
-            profile.SetupProfile();
         }
 
         public void StartWork()
@@ -110,7 +109,7 @@ namespace Devlike.Characters
         {
             get
             {
-                return (profile.BaseMood * ((Rest.curValue + Food.curValue + Insp.curValue + Socl.curValue) / 4)) + MoodImpact;
+                return (Profile.BaseMood * ((Rest.curValue + Food.curValue + Insp.curValue + Socl.curValue) / 4)) + MoodImpact;
             }
         }
 

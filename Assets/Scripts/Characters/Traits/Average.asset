@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Average
   m_EditorClassIdentifier: 
   description: 
-  confidence: 0
   restDrop: 2
   foodDrop: 2
   inspirationDrop: 2
   socialDrop: 2
   empathyBarrier: 2
+  burnout: 2
+  bugChance: 2
+  confidence: 2
+  velocity: 2
   moodImpact: 2
   baseMood: 2
   dayStart: 2
   dayEnd: 2
-  velocity: 2
-  bugChance: 2
-  burnout: 2

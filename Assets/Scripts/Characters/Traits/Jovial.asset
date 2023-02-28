@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66892834c75f787408839bdf3965dd9d, type: 3}
-  m_Name: Cool
+  m_Name: Jovial
   m_EditorClassIdentifier: 
   description: 
-  restDrop: 2
+  restDrop: 1
   foodDrop: 2
   inspirationDrop: 2
-  socialDrop: 1
-  empathyBarrier: 0
-  burnout: 3
+  socialDrop: 3
+  empathyBarrier: 3
+  burnout: 1
   bugChance: 2
-  confidence: 3
+  confidence: 2
   velocity: 2
-  moodImpact: 3
-  baseMood: 4
-  dayStart: 0
+  moodImpact: 1
+  baseMood: 3
+  dayStart: 2
   dayEnd: 2

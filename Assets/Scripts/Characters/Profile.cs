@@ -12,20 +12,17 @@ namespace Devlike.Characters
         //Private Values
         private List<Relationship> relationships;
 
-        //Public Values
-        public int Seed { get; private set; }
+        //RANDOMLY GENERATED
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Nickname { get; private set; }
         public string Hobby { get; private set; }
-        public string Role { get; private set; }
         public Tier Experience { get; private set; } = Tier.Average;
-        public Tier Confidence { get; private set; } = Tier.Average;
 
-        public List<string> traitNames = new List<string>(); //Temporarily made available publically
-        public List<Trait> traits = new List<Trait>();
-        public string profName; //Temporarily made available publically
-        public Profession profession;
+        //TRAITS & PROFESSION
+        public List<string> TraitNames { get; private set; } = new List<string>();
+        public Profession Profession { get; private set; }
+        public Tier Confidence { get; private set; } = Tier.Average;
 
         //Multipliers for needs
         public float RestDropMultiplier { get; private set; } = 1f;
@@ -52,26 +49,26 @@ namespace Devlike.Characters
         public float Engineering { get; private set; } = 0.2f;
         public float Design { get; private set; } = 0.2f;
 
-        public void SetupProfile()
+        public Profile(string fname, string lname, string nname, string hobby, Tier experience, Profession profession, List<Trait> traits)
         {
-            //ApplyProfession(profName);
+            FirstName = fname;
+            LastName = lname;
+            Nickname = nname;
+            Hobby = hobby;
+            Experience = experience;
+            ApplyProfession(profession);
 
-            foreach(string trait in traitNames)
+            foreach(Trait trait in traits)
             {
                 ApplyTrait(trait);
             }
         }
 
-        private void ApplyProfession(string name)
+        private void ApplyProfession(Profession p)
         {
-            Profession p = GlobalVariables.value.GetProfession(name);
-            if (p != null)
-            {
-                profession = p;
-                Experience = p.experience;
-                ApplySkill(p.primarySkill);
-                ApplySkill(p.secondarySkill);
-            }
+            Profession = p;
+            ApplySkill(p.primarySkill);
+            ApplySkill(p.secondarySkill);
         }
 
         private void ApplySkill(Skill skill)
@@ -90,30 +87,26 @@ namespace Devlike.Characters
             }
         }
 
-        private void ApplyTrait(string name)
+        private void ApplyTrait(Trait trait)
         {
-            Trait t = GlobalVariables.value.GetTrait(name);
-            if (t != null)
-            {
-                traits.Add(t);
-                Confidence = ConfidenceAverage(t.confidence);
+            TraitNames.Add(trait.name);
+            Confidence = ConfidenceAverage(trait.confidence);
 
-                RestDropMultiplier *= TierHighToLow(t.restDrop);
-                FoodDropMultiplier *= TierHighToLow(t.foodDrop);
-                InspDropMultiplier *= TierHighToLow(t.inspirationDrop);
-                SoclDropMultiplier *= TierHighToLow(t.socialDrop);
-                MoodImpactMultiplier *= TierHighToLow(t.moodImpact);
+            RestDropMultiplier *= TierHighToLow(trait.restDrop);
+            FoodDropMultiplier *= TierHighToLow(trait.foodDrop);
+            InspDropMultiplier *= TierHighToLow(trait.inspirationDrop);
+            SoclDropMultiplier *= TierHighToLow(trait.socialDrop);
+            MoodImpactMultiplier *= TierHighToLow(trait.moodImpact);
 
-                EmpathyBarrierMultiplier *= TierLowToHigh(t.empathyBarrier);
-                BaseMood = TierLowToHigh(t.baseMood);
-                VelocityMultiplier *= TierLowToHigh(t.velocity);
+            EmpathyBarrierMultiplier *= TierLowToHigh(trait.empathyBarrier);
+            BaseMood = TierLowToHigh(trait.baseMood);
+            VelocityMultiplier *= TierLowToHigh(trait.velocity);
 
-                BugChanceMultiplier *= TierHighToLow(t.bugChance);
-                BurnoutMultiplier *= TierHighToLow(t.burnout);
+            BugChanceMultiplier *= TierHighToLow(trait.bugChance);
+            BurnoutMultiplier *= TierHighToLow(trait.burnout);
 
-                WorkStartMod += TierDayMod(t.dayStart);
-                WorkEndMod += TierDayMod(t.dayEnd);
-            }
+            WorkStartMod += TierDayMod(trait.dayStart);
+            WorkEndMod += TierDayMod(trait.dayEnd);
         }
 
         /// <summary>

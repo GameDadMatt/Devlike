@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66892834c75f787408839bdf3965dd9d, type: 3}
-  m_Name: Cool
+  m_Name: Leisurely
   m_EditorClassIdentifier: 
   description: 
   restDrop: 2
   foodDrop: 2
   inspirationDrop: 2
-  socialDrop: 1
-  empathyBarrier: 0
-  burnout: 3
+  socialDrop: 2
+  empathyBarrier: 3
+  burnout: 4
   bugChance: 2
   confidence: 3
-  velocity: 2
-  moodImpact: 3
-  baseMood: 4
+  velocity: 0
+  moodImpact: 2
+  baseMood: 2
   dayStart: 0
-  dayEnd: 2
+  dayEnd: 0

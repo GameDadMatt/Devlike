@@ -35,6 +35,7 @@ public class GlobalVariables : MonoBehaviour
 
     //CHARACTER
     [Header("CHARACTERS")]
+    public int totalTraits = 3;
     [SerializeField]
     private float lowToHighMultiplier = 0.35f;
     [SerializeField]
