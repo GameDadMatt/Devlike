@@ -15,33 +15,7 @@ public class RandomGeneration : MonoBehaviour
     private string seed;
     public string Seed { get { return seed; } }
 
-    [SerializeField]
-    private float artChance;
-    [SerializeField]
-    private float desChance;
-    [SerializeField]
-    private float engChance;
-
-    private TaskType RandomType
-    {
-        get
-        {
-            float total = artChance + desChance + engChance;
-            float val = Random.Range(0, total);
-            if(val < artChance)
-            {
-                return TaskType.Art;
-            }
-            else if (val < artChance + desChance)
-            {
-                return TaskType.Design;
-            }
-            else
-            {
-                return TaskType.Engineering;
-            }
-        }
-    }
+    private ChanceWeights weights;
 
     public void Awake()
     {
@@ -51,6 +25,7 @@ public class RandomGeneration : MonoBehaviour
         }
 
         Random.InitState(seed.GetHashCode());
+        weights = GlobalVariables.value.Weights;
     }
 
     /// <summary>
@@ -106,7 +81,7 @@ public class RandomGeneration : MonoBehaviour
     {
         if(list.Count > 0)
         {
-            return Mathf.CeilToInt(GlobalVariables.value.StudioExpTarget - AverageOfTiers(list));
+            return Mathf.CeilToInt(GlobalVariables.value.StudioExperienceTarget - AverageOfTiers(list));
         }
         return 0;
     }
@@ -135,14 +110,14 @@ public class RandomGeneration : MonoBehaviour
     private List<Profession> BalancedProfessions(int num)
     {
         List<Profession> professions = new List<Profession>();
-        TaskType lastGenerated = RandomType;
+        TaskType lastGenerated = weights.RandomFromWeights;
         for(int i = 0; i < num; i++)
         {
             //Ensure we don't repeatedly generate the same profession multiple times in a row
-            TaskType random = RandomType;
+            TaskType random = weights.RandomFromWeights;
             while (random == lastGenerated)
             {
-                random = RandomType;
+                random = weights.RandomFromWeights;
             }
 
             lastGenerated = random;

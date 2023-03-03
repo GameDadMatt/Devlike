@@ -70,6 +70,7 @@ public class GlobalVariables : MonoBehaviour
     public float MoodImpactBurn { get { return moodImpactDays / WorkTicks; } }
 
     //TASKS
+    [Header("TASKS")]
     [SerializeField]
     private float tasksPerDay = 3f;
     [SerializeField]
@@ -78,9 +79,16 @@ public class GlobalVariables : MonoBehaviour
     public float BaseBugChance { get { return bugChance; } }
 
     //STUDIO
+    [Header("STUDIO")]
     [SerializeField]
-    private float studioExpTarget = 2.5f;
-    public float StudioExpTarget { get { return studioExpTarget; } }
+    private int studioSize = 0;
+    public int StudioSize { get { return studioSize; } }
+    [SerializeField]
+    private ChanceWeights weights;
+    public ChanceWeights Weights { get { return weights; } }
+    [SerializeField]
+    private float studioExperienceTarget = 2.5f;
+    public float StudioExperienceTarget { get { return studioExperienceTarget; } }
 
     public void Awake()
     {

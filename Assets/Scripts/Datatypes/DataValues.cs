@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 using BehaviorDesigner.Runtime;
 using Devlike.Characters;
 using Devlike.Tasks;
@@ -55,6 +56,50 @@ public class DoingTracker
         this.type = type;
         this.curValue = curValue;
         this.threshold = threshold;
+    }
+}
+
+/// <summary>
+/// This helps us to share and keep track of chance weights much more easily
+/// </summary>
+[System.Serializable]
+public class ChanceWeights
+{
+    public float art;
+    public float des;
+    public float eng;
+    public float Total { get { return art + des + eng; } }
+
+    public ChanceWeights(float art, float des, float eng)
+    {
+        this.art = art;
+        this.des = des;
+        this.eng = eng;
+    }
+
+    public TaskType RandomFromWeights
+    {
+        get
+        {
+            float r = Random.Range(0, Total);
+            return WithinWeight(r);
+        }
+    }
+
+    public TaskType WithinWeight(float val)
+    {
+        if(val < art)
+        {
+            return TaskType.Art;
+        }
+        else if (val < art + des)
+        {
+            return TaskType.Design;
+        }
+        else
+        {
+            return TaskType.Engineering;
+        }
     }
 }
 
