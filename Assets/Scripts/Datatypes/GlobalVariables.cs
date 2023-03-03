@@ -77,6 +77,11 @@ public class GlobalVariables : MonoBehaviour
     public float BaseVelocity { get { return tasksPerDay / WorkTicks; } }
     public float BaseBugChance { get { return bugChance; } }
 
+    //STUDIO
+    [SerializeField]
+    private float studioExpTarget = 2.5f;
+    public float StudioExpTarget { get { return studioExpTarget; } }
+
     public void Awake()
     {
         if(value == null)
@@ -86,6 +91,7 @@ public class GlobalVariables : MonoBehaviour
 
         //Load the contents of DataValues
         DataValues.LoadLists();
+        Debug.Log("Loaded Lists");
     }
 
     public Trait GetTrait(string name)

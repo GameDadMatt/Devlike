@@ -69,9 +69,9 @@ public class RandomGeneration : MonoBehaviour
             string traits = "";
             foreach (string name in profiles[i].TraitNames)
             {
-                traits = name + ", ";
+                traits += name + ", ";
             }
-            Debug.Log("Profile " + i + "\n Name " + profiles[i].FirstName + " " + profiles[i].LastName + ", Nickname " + profiles[i].Nickname + ", Hobby " + profiles[i].Hobby + "\n Experience " + profiles[i].Experience + ", Profession " + profiles[i].Profession + ", Traits " + traits);
+            Debug.Log("Profile " + i + " Name: " + profiles[i].FirstName + " " + profiles[i].LastName + ", Nickname: " + profiles[i].Nickname + ", Hobby: " + profiles[i].Hobby + "\n Experience: " + profiles[i].Experience + ", Profession: " + profiles[i].Profession + ", Traits: " + traits);
         }
 
         return profiles;
@@ -85,33 +85,46 @@ public class RandomGeneration : MonoBehaviour
     private List<Tier> AverageExperience(int num)
     {
         List<Tier> tiers = new List<Tier>();
-        float average = 2;
-        for(int i = 0; i < num; i++)
+        for (int i = 0; i < num; i++)
         {
-            int r = Random.Range(0, 5);
-            average = (average + r) / i;
+            int min = TierMod(tiers);
+            int r = Random.Range(min, 5);
             tiers.Add((Tier)r);
         }
 
-        //Try to get an average experience
-        while(average > 3 || average < 2)
-        {
-            for(int i = 0; i < num; i++)
-            {
-                if(average > 3 && (int)tiers[i] > 3)
-                {
-                    tiers[i] = (Tier)(int)tiers[i] - 1;
-                    average -= 1 / tiers.Count;
-                }
-                else if (average < 2 && (int)tiers[i] > 3)
-                {
-                    tiers[i] = (Tier)(int)tiers[i] + 1;
-                    average += 1 / tiers.Count;
-                }
-            }
-        }
+        Debug.Log("Average is " + AverageOfTiers(tiers));
 
         return tiers;
+    }
+
+    /// <summary>
+    /// Rounds up from the average of a given list
+    /// </summary>
+    /// <param name="list"></param>
+    /// <returns></returns>
+    private int TierMod(List<Tier> list)
+    {
+        if(list.Count > 0)
+        {
+            return Mathf.CeilToInt(GlobalVariables.value.StudioExpTarget - AverageOfTiers(list));
+        }
+        return 0;
+    }
+
+    /// <summary>
+    /// Returns the average tier of a given list
+    /// </summary>
+    /// <param name="list"></param>
+    /// <returns></returns>
+    private float AverageOfTiers(List<Tier> list)
+    {
+        float average = 0;
+        foreach(Tier t in list)
+        {
+            average += (int)t;
+        }
+        average /= list.Count;
+        return average;
     }
 
     /// <summary>

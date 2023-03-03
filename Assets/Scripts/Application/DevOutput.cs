@@ -9,7 +9,6 @@ public class DevOutput : MonoBehaviour
     private Character c;
     private Profile p;
     private bool selected = false;
-    private bool displayed = false;
     public TextMeshProUGUI output;
 
     public void Start()
@@ -22,15 +21,14 @@ public class DevOutput : MonoBehaviour
         c = click;
         p = c.Profile;
         selected = true;
-        displayed = false;
     }
 
     public void Update()
     {
-        if (selected && !displayed)
+        if (selected)
         {
             string disp;
-            disp = "PROFILE" + "\n Traits = ";
+            disp = "PROFILE OF " + p.FirstName + "  " + p.LastName + ", a " + p.Profession.name + ". Alias is " + p.Nickname + ". Likes " + p.Hobby + ". \n Traits = ";
             foreach(string trait in p.TraitNames)
             {
                 disp += " " + trait + ", ";
@@ -43,9 +41,8 @@ public class DevOutput : MonoBehaviour
             "\n RestBurn " + c.RestBurnRate + ", FoodBurn " + c.FoodBurnRate + ", InspBurn " + c.InspBurnRate + ", SoclBurn " + c.SoclBurnRate;
 
             output.text = disp;
-            displayed = true;
         }
-        else
+        else if (!selected)
         {
             output.text = "No Character Selected";
         }
