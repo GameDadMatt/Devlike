@@ -43,8 +43,6 @@ public class RandomGeneration : MonoBehaviour
         }
     }
 
-    private int p = 0;
-
     public void Awake()
     {
         if(instance == null)
@@ -62,31 +60,118 @@ public class RandomGeneration : MonoBehaviour
     /// <returns></returns>
     public List<Profile> RandomProfiles(int num)
     {
+        List<Profile> profiles = new List<Profile>();
+        List<Tier> exp = AverageExperience(num);
+        List<Profession> prof = BalancedProfessions(num);
+        for(int i = 0; i < num; i++)
+        {
+            profiles.Add(RandomProfile(exp[i], prof[i], RandomTraits(GlobalVariables.value.totalTraits)));
+            string traits = "";
+            foreach (string name in profiles[i].TraitNames)
+            {
+                traits = name + ", ";
+            }
+            Debug.Log("Profile " + i + "\n Name " + profiles[i].FirstName + " " + profiles[i].LastName + ", Nickname " + profiles[i].Nickname + ", Hobby " + profiles[i].Hobby + "\n Experience " + profiles[i].Experience + ", Profession " + profiles[i].Profession + ", Traits " + traits);
+        }
 
+        return profiles;
     }
 
+    /// <summary>
+    /// Generate a number of experience tiers to a desired average
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
     private List<Tier> AverageExperience(int num)
     {
+        List<Tier> tiers = new List<Tier>();
+        float average = 2;
+        for(int i = 0; i < num; i++)
+        {
+            int r = Random.Range(0, 5);
+            average = (average + r) / i;
+            tiers.Add((Tier)r);
+        }
 
+        //Try to get an average experience
+        while(average > 3 || average < 2)
+        {
+            for(int i = 0; i < num; i++)
+            {
+                if(average > 3 && (int)tiers[i] > 3)
+                {
+                    tiers[i] = (Tier)(int)tiers[i] - 1;
+                    average -= 1 / tiers.Count;
+                }
+                else if (average < 2 && (int)tiers[i] > 3)
+                {
+                    tiers[i] = (Tier)(int)tiers[i] + 1;
+                    average += 1 / tiers.Count;
+                }
+            }
+        }
+
+        return tiers;
     }
 
+    /// <summary>
+    /// Generate a number of professions that tries to balance studio makeup
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
     private List<Profession> BalancedProfessions(int num)
     {
+        List<Profession> professions = new List<Profession>();
+        TaskType lastGenerated = RandomType;
+        for(int i = 0; i < num; i++)
+        {
+            //Ensure we don't repeatedly generate the same profession multiple times in a row
+            TaskType random = RandomType;
+            while (random == lastGenerated)
+            {
+                random = RandomType;
+            }
 
+            lastGenerated = random;
+            professions.Add(RandomProfessionOftype(random));
+        }
+
+        return professions;
     }
 
+    /// <summary>
+    /// Generate a random profile
+    /// </summary>
+    /// <param name="exp"></param>
+    /// <param name="prof"></param>
+    /// <param name="traits"></param>
+    /// <returns></returns>
     private Profile RandomProfile(Tier exp, Profession prof, List<Trait> traits)
     {
-        string firstName = "Dev " + p;
-        string lastName = "Person";
-        string nickName = "Mint";
-        string hobby = "Painting";
-        p++;
-
-        return new Profile(firstName, lastName, nickName, hobby, exp, prof, traits);
+        List<string> strings = RandomNameAndHobby();
+        return new Profile(strings[0], strings[1], strings[2], strings[3], exp, prof, traits);
     }
 
-    private string RandomProfessionOftype(TaskType type)
+    /// <summary>
+    /// Generate a list of names and hobbies
+    /// </summary>
+    /// <returns></returns>
+    private List<string> RandomNameAndHobby()
+    {
+        List<string> strings = new List<string>();
+        strings.Add(DataValues.FirstNames[Random.Range(0, DataValues.FirstNames.Count)]);
+        strings.Add(DataValues.LastNames[Random.Range(0, DataValues.LastNames.Count)]);
+        strings.Add(DataValues.Nicknames[Random.Range(0, DataValues.Nicknames.Count)]);
+        strings.Add(DataValues.Hobbies[Random.Range(0, DataValues.Hobbies.Count)]);
+        return strings;
+    }
+
+    /// <summary>
+    /// Generate a random profession from a given primary type
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    private Profession RandomProfessionOftype(TaskType type)
     {
         List<Profession> professions = GlobalVariables.value.allProfessions;
         bool selected = false;
@@ -104,6 +189,11 @@ public class RandomGeneration : MonoBehaviour
         return professions[i];
     }
 
+    /// <summary>
+    /// Generate a list of random traits
+    /// </summary>
+    /// <param name="total"></param>
+    /// <returns></returns>
     private List<Trait> RandomTraits(int total)
     {
         List<Trait> traits = GlobalVariables.value.allTraits;

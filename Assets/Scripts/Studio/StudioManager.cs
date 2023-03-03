@@ -32,11 +32,13 @@ public class StudioManager : MonoBehaviour
 
     public void SpawnCharacters()
     {
+        List<Profile> profiles = RandomGeneration.instance.RandomProfiles(studioSize);
         for (int i = 0; i < studioSize; i++)
         {
             GameObject newchar = Instantiate(characterPrefab);
             newchar.transform.position = InteractableManager.instance.Home.thing.transform.position;
             Characters.Add(newchar.GetComponent<Character>());
+            Characters[i].SetupCharacter(profiles[i]);
         }
     }
 

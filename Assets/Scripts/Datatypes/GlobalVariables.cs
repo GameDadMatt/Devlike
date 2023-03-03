@@ -83,6 +83,9 @@ public class GlobalVariables : MonoBehaviour
         {
             value = this;
         }
+
+        //Load the contents of DataValues
+        DataValues.LoadLists();
     }
 
     public Trait GetTrait(string name)

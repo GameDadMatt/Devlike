@@ -53,8 +53,9 @@ namespace Devlike.Characters
         public float BugChance { get { return (GlobalVariables.value.BaseBugChance * Profile.BugChanceMultiplier) * (GlobalVariables.value.moodImpactMax - CappedMoodImpact); } }
         
 
-        public void SetupCharacter()
+        public void SetupCharacter(Profile profile)
         {
+            Profile = profile;
             TimeManager.instance.OnTick += Tick;
             Desk = InteractableManager.instance.ClaimWorkPosition();
             Home = InteractableManager.instance.Home;

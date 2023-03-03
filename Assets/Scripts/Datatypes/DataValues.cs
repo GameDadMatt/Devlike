@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using BehaviorDesigner.Runtime;
 using Devlike.Characters;
 using Devlike.Tasks;
@@ -84,28 +85,34 @@ public class SharedCharacterState : SharedVariable<CharacterState>
 public static class DataValues
 {
     //DataValues returns a value from a given list stored in the game folders
-    private static bool loaded = false;
-    private static List<string> loadedHobbies;
-    private static List<string> loadedFirstNames;
-    private static List<string> loadedLastNames;
-    private static List<string> loadedNicknames;
+    private static string path = "Assets/Data/";
+    public static List<string> Hobbies;
+    public static List<string> FirstNames;
+    public static List<string> LastNames;
+    public static List<string> Nicknames;
 
     /// <summary>
-    /// Returns a string from a given list at the provided ID
+    /// Returns a string from a given list
     /// </summary>
     /// <param name="list"></param>
     /// <param name="id"></param>
     /// <returns></returns>
-    public static string GetStringFromList(SeedList list, int id)
+    private static List<string> GetStringsFromFile(string filename)
     {
-        return "";
+        List<string> strings = new List<string>();
+        StreamReader stream = new StreamReader(path + filename);
+        while (!stream.EndOfStream)
+        {
+            strings.Add(stream.ReadLine());
+        }
+        return strings;
     }
 
     public static void LoadLists()
     {
-        if (!loaded)
-        {
-            //Load from files into our lists
-        }
+        Hobbies = GetStringsFromFile("Hobbies.txt");
+        FirstNames = GetStringsFromFile("FirstNames.txt");
+        LastNames = GetStringsFromFile("LastNames.txt");
+        Nicknames = GetStringsFromFile("Nicknames.txt");
     }
 }
