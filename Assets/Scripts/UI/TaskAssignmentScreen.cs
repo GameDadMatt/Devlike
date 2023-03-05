@@ -14,6 +14,8 @@ namespace Devlike.UI
         public static TaskAssignmentScreen instance;
 
         [SerializeField]
+        private GameObject taskPrefab;
+        [SerializeField]
         private GameObject characterColumnPrefab;
         [SerializeField]
         private List<TaskColumn> backlogColumns;
@@ -28,14 +30,15 @@ namespace Devlike.UI
         private int charactersPerPage = 4;
         private List<GameObject> charColumns = new List<GameObject>();
 
-        private TaskList backlog;
-
         public void Awake()
         {
             if (instance == null)
             {
                 instance = this;
             }
+
+            //Make sure the GameObject is hidden
+            gameObject.SetActive(false);
         }
 
         public void OnEnable()
@@ -43,17 +46,20 @@ namespace Devlike.UI
             GenerateScreen();
         }
 
-        public void SetBacklog(TaskList backlog)
-        {
-            this.backlog = backlog;
-        }
-
         private void GenerateScreen()
         {
             int charListStart = curPage * charactersPerPage;
             int charListEnd = charListStart + charactersPerPage;
-            List<TaskColumn> containers = backlogColumns;
+            List<TaskColumn> containers = backlogColumns; //All containers
 
+            //BACKLOG
+            for(int i = 0; i < 3; i++)
+            {
+                backlogColumns[i].Tasks = StudioProject.instance.TaskLists[i];
+                GenerateTasks(StudioProject.instance.TaskLists[i], backlogColumns[i].Area);
+            }
+
+            //CHARACTERS
             //Iterate backwards over the list as we'll be removing contents
             for (int i = charColumns.Count; i > 0; i--)
             {
@@ -69,15 +75,19 @@ namespace Devlike.UI
                 charColumns.Add(column);
                 containers.Add(dtc);
                 //SPAWN IN ALL THE TASKS FROM THIS CHARACTER
-                //GenerateTasks(characters[i].tasks);
+                GenerateTasks(dtc.Tasks, dtc.Area);
             }
 
             DragTaskManager.instance.SetContainerAreas(containers);
         }
 
-        private void GenerateTasks(TaskList container)
+        private void GenerateTasks(TaskList list, Transform parent)
         {
-
+            foreach(TaskContainer task in list.Tasks)
+            {
+                GameObject obj = Instantiate(taskPrefab, parent);
+                obj.GetComponent<TaskUIObject>().Setup(task);
+            }
         }
 
         public void NextPage()

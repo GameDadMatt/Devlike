@@ -16,6 +16,7 @@ public class RandomGeneration : MonoBehaviour
     public string Seed { get { return seed; } }
 
     private ChanceWeights weights;
+    private int maxTaskPoints;
 
     public void Awake()
     {
@@ -26,6 +27,7 @@ public class RandomGeneration : MonoBehaviour
 
         Random.InitState(seed.GetHashCode());
         weights = GlobalVariables.value.Weights;
+        maxTaskPoints = GlobalVariables.value.MaxTaskPoints;
     }
 
     /// <summary>
@@ -70,6 +72,22 @@ public class RandomGeneration : MonoBehaviour
         Debug.Log("Average is " + AverageOfTiers(tiers));
 
         return tiers;
+    }
+
+    public Tier RandomTier
+    {
+        get
+        {
+            return (Tier)Random.Range(0, 5);
+        }
+    }
+
+    public TaskType RandomType
+    {
+        get
+        {
+            return (TaskType)Random.Range(0, 3);
+        }
     }
 
     /// <summary>
@@ -197,5 +215,54 @@ public class RandomGeneration : MonoBehaviour
         }
 
         return selectedTraits;
+    }
+
+    public List<TaskList> RandomProjectScope(int num)
+    {
+        float art = Random.Range(weights.art, weights.art * 1.3f);
+        float des = Random.Range(weights.des, weights.des * 1.3f);
+        float eng = Random.Range(weights.eng, weights.eng * 1.3f);
+        ChanceWeights cw = new ChanceWeights(art, des, eng);
+
+        List<TaskList> output = new List<TaskList>();
+        output.Add(GenerateTaskList(TaskType.Art, Mathf.CeilToInt(num * cw.ArtWeightPercent)));
+        output.Add(GenerateTaskList(TaskType.Design, Mathf.CeilToInt(num * cw.DesWeightPercent)));
+        output.Add(GenerateTaskList(TaskType.Engineering, Mathf.CeilToInt(num * cw.EngWeightPercent)));
+
+        return output;
+    }
+
+    private TaskList GenerateTaskList(TaskType type, int total)
+    {
+        Debug.Log("Generating " + total + " points of tasks");
+        int cur = total;
+        Queue<int> taskPoints = new Queue<int>();
+        while (cur > 0)
+        {
+            int points = RandomPoints(cur);
+            taskPoints.Enqueue(points);
+            cur -= points;
+        }
+        return new TaskList(total, taskPoints);
+    }
+
+    public int RandomPoints(int limit)
+    {
+        int points = Random.Range(1, maxTaskPoints);
+        if (points >= limit)
+        {
+            points = limit;
+        }
+        return points;
+    }
+
+    public void RandomGenerateBug(float task, float character)
+    {
+        float chance = (task + character) / 2;
+        bool bug = Random.Range(0f, 1f) > chance;
+        if (bug)
+        {
+            StudioProject.instance.AddTask(new TaskContainer(RandomType, TaskImportance.Bug, Tier.Lowest, RandomPoints(maxTaskPoints)));
+        }
     }
 }

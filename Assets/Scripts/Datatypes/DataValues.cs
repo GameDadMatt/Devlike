@@ -14,7 +14,6 @@ namespace Devlike.Characters
     public enum IncidentType { }
     public enum CharacterState { Start, Active, End, Inactive }
     public enum DoingType { Rest, Food, Inspiration, Social, Work, Home }
-    public enum Tier { Lowest, Low, Average, High, Highest }
 
     /// <summary>
     /// Contains the tier and type to inform a character skill
@@ -40,6 +39,7 @@ namespace Devlike.Tasks
 }
 
 public enum GameState { Paused, Ticking, Interacting }
+public enum Tier { Lowest, Low, Average, High, Highest }
 
 /// <summary>
 /// Tracks what a character is doing and when they need to refill the stat
@@ -99,6 +99,30 @@ public class ChanceWeights
         else
         {
             return TaskType.Engineering;
+        }
+    }
+
+    public float ArtWeightPercent
+    {
+        get
+        {
+            return art / Total;
+        }
+    }
+
+    public float DesWeightPercent
+    {
+        get
+        {
+            return des / Total;
+        }
+    }
+
+    public float EngWeightPercent
+    {
+        get
+        {
+            return eng / Total;
         }
     }
 }

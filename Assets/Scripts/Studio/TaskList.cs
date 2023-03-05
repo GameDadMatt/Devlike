@@ -11,17 +11,45 @@ namespace Devlike.Tasks
     /// </summary>
     public class TaskList
     {
+        public int TotalPoints { get; private set; }
+        private Queue<int> taskPoints;
         private List<TaskContainer> tasks;
         public List<TaskContainer> Tasks { get { return tasks; } }
 
-        public TaskList(List<TaskContainer> tasks)
-        {
-            this.tasks = tasks;
-        }
-
         public TaskList()
         {
+            TotalPoints = 0;
+            taskPoints = new Queue<int>();
             tasks = new List<TaskContainer>();
+        }
+
+        /// <summary>
+        /// This initializer is used for generating quick and easy lists of tasks
+        /// </summary>
+        /// <param name="totalPoints"></param>
+        /// <param name="taskPoints"></param>
+        public TaskList(int totalPoints, Queue<int> taskPoints)
+        {
+            TotalPoints = totalPoints;
+            this.taskPoints = taskPoints;
+            tasks = new List<TaskContainer>();
+        }
+
+        /// <summary>
+        /// This is used to generate starting tasks
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="total"></param>
+        public void GenerateTaskFromPoints(TaskType type, int total)
+        {
+            if(taskPoints.Count > 0)
+            {
+                while (tasks.Count < total && taskPoints.Count != 0)
+                {
+                    int points = taskPoints.Dequeue();
+                    tasks.Add(new TaskContainer(type, TaskImportance.None, RandomGeneration.instance.RandomTier, points));
+                }
+            }
         }
 
         public void AddTask(TaskContainer task)
@@ -37,6 +65,43 @@ namespace Devlike.Tasks
         public void UpdateTaskList(List<TaskContainer> list)
         {
             tasks = list;
+        }
+
+        public float RemainingPoints
+        {
+            get
+            {
+                if (tasks.Count > 0)
+                {
+                    float total = 0;
+                    foreach (TaskContainer task in tasks)
+                    {
+                        total += task.Points;
+                        total -= task.DonePoints;
+                    }
+                    return total;
+                }
+                else
+                {
+                    return TotalPoints;
+                }
+            }
+        }
+
+        public int ActiveCount
+        {
+            get
+            {
+                return tasks.Count;
+            }
+        }
+
+        public int TotalCount
+        {
+            get
+            {
+                return tasks.Count + taskPoints.Count;
+            }
         }
     }
 }

@@ -2611,11 +2611,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1438213536}
   - component: {fileID: 1438213535}
+  - component: {fileID: 1438213538}
   - component: {fileID: 1438213537}
   - component: {fileID: 1438213539}
   - component: {fileID: 1438213541}
   - component: {fileID: 1438213540}
-  - component: {fileID: 1438213538}
+  - component: {fileID: 1438213542}
   m_Layer: 0
   m_Name: ==Game==
   m_TagString: Untagged
@@ -2726,8 +2727,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f65b973206df55845b57c157ab423672, type: 2}
   - {fileID: 11400000, guid: f9c361315bd1d5b4da69261c900370e0, type: 2}
   - {fileID: 11400000, guid: 7e306fc565db5fb46ae8f0bc835c682b, type: 2}
-  tasksPerDay: 3
+  maxTaskPoints: 5
+  pointsPerDay: 7
   bugChance: 0.1
+  artTaskColor: {r: 1, g: 0.5820617, b: 0, a: 1}
+  designTaskColor: {r: 0.36449426, g: 0.7924528, b: 0.13830544, a: 1}
+  engineeringTaskColor: {r: 0, g: 0.5819402, b: 1, a: 1}
+  taskBorderColor: {r: 1, g: 1, b: 1, a: 1}
+  bugBorderColor: {r: 0.7169812, g: 0.1318975, b: 0.1318975, a: 1}
   studioSize: 8
   weights:
     art: 1
@@ -2771,6 +2778,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86414ffe3dd87ed4fa1468f581e31616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1438213542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438213534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be6f61bc2a27aa4fa9af2a9ec9c4419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DesiredProjectDays: 60
 --- !u!1 &1451900715
 GameObject:
   m_ObjectHideFlags: 0

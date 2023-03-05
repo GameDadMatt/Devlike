@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn;
 using Devlike.Characters;
+using Devlike.Tasks;
 
 /// <summary>
 /// Variables to be tracked globally in the game
@@ -72,10 +73,22 @@ public class GlobalVariables : MonoBehaviour
     //TASKS
     [Header("TASKS")]
     [SerializeField]
-    private float tasksPerDay = 3f;
+    private int maxTaskPoints = 5;
+    [SerializeField]
+    private float pointsPerDay = 7f;
     [SerializeField]
     private float bugChance = 0.1f;
-    public float BaseVelocity { get { return tasksPerDay / WorkTicks; } }
+    public Color artTaskColor;
+    public Color designTaskColor;
+    public Color engineeringTaskColor;
+    public Color taskBorderColor;
+    public Color bugBorderColor;
+    public int MaxTaskPoints { get { return maxTaskPoints; } }
+    public float PointsPerDay { get { return pointsPerDay; } }
+    /// <summary>
+    /// The base value for how much of a task should be completed per tick
+    /// </summary>
+    public float BaseVelocity { get { return pointsPerDay / WorkTicks; } }
     public float BaseBugChance { get { return bugChance; } }
 
     //STUDIO
