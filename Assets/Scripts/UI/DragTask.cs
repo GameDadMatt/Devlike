@@ -9,19 +9,15 @@ namespace Devlike.UI
     /// <summary>
     /// An individual task that can be dragged around on the UI
     /// </summary>
-    [RequireComponent(typeof(RectTransform))]
+    [RequireComponent(typeof(RectTransform), typeof(TaskUIObject))]
     public class DragTask : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
-        private TaskContainer task;
+        [HideInInspector]
+        public TaskType taskType;
         private Transform curParent;
         private Vector2 centerPoint;
         private Vector2 worldCenterPoint => transform.TransformPoint(centerPoint);
         private Vector2 curPos;
-
-        public void Awake()
-        {
-            task = GetComponent<TaskUIObject>().Task;
-        }
 
         public virtual void OnBeginDrag(PointerEventData eventData)
         {
@@ -40,7 +36,7 @@ namespace Devlike.UI
         public virtual void OnEndDrag(PointerEventData eventData)
         {
             DragTaskManager.instance.UnregisterDraggedObject(this);
-            if (DragTaskManager.instance.IsWithinDropAreaBoundsOfType(worldCenterPoint + eventData.delta, task.Type))
+            if (DragTaskManager.instance.IsWithinDropAreaBoundsOfType(worldCenterPoint + eventData.delta, taskType))
             {
                 RectTransform rt = DragTaskManager.instance.CurrentDragContainer.Area;
                 curParent = rt.transform;

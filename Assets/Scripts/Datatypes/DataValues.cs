@@ -40,6 +40,7 @@ namespace Devlike.Tasks
 
 public enum GameState { Paused, Ticking, Interacting }
 public enum Tier { Lowest, Low, Average, High, Highest }
+public enum Day { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday }
 
 /// <summary>
 /// Tracks what a character is doing and when they need to refill the stat

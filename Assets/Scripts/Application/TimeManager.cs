@@ -6,16 +6,15 @@ using BehaviorDesigner.Runtime;
 
 namespace Devlike.Timing
 {
-    public enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
-
     public class TimeManager : MonoBehaviour
     {
         public static TimeManager instance;
 
         private float seconds = 0f;
+        private int currentDay = 0;
         public int CurrentTick { get; private set; } = 0;
         public int CurrentWeek { get; private set; } = 0;
-        public int CurrentDay { get; private set; } = 0;
+        public Day CurrentDay { get { return (Day)currentDay; } }
 
         public void Awake()
         {
@@ -35,6 +34,36 @@ namespace Devlike.Timing
                 {
                     seconds -= TickLength;
                     Tick();
+                }
+            }
+        }
+
+        private Day NextDay
+        {
+            get
+            {
+                if (currentDay < 6)
+                {
+                    return (Day)currentDay + 1;
+                }
+                else
+                {
+                    return (Day)0;
+                }
+            }
+        }
+
+        private Day PreviousDay
+        {
+            get
+            {
+                if (currentDay > 0)
+                {
+                    return (Day)currentDay - 1;
+                }
+                else
+                {
+                    return (Day)6;
                 }
             }
         }
@@ -68,6 +97,14 @@ namespace Devlike.Timing
                 {
                     return GlobalVariables.value.IdleTickLength;
                 }
+            }
+        }
+
+        public float ProgressToNextDay
+        {
+            get
+            {
+                return CurrentTick / GlobalVariables.value.DayEndTick;
             }
         }
     }

@@ -17,22 +17,24 @@ public class GlobalVariables : MonoBehaviour
     [SerializeField]
     private float tickLength = 0.5f;
     [SerializeField]
-    private float idleTickLength = 0.1f;
+    private float idleTickLength = 0.05f;
     [SerializeField]
-    private int workStartTick = 6;
+    private int ticksPerHour = 4;
     [SerializeField]
-    private int workEndTick = 58;
+    private int workStartHour = 9;
     [SerializeField]
-    private int dayEndTick = 66;
+    private int workEndHour = 17;
+    [SerializeField]
+    private int dayEndHour = 24;
     [SerializeField]
     private int timeUnitTicks = 6;
 
     public float TickLength { get { return tickLength; } private set { tickLength = value; } }
     public float IdleTickLength { get { return idleTickLength; } private set { idleTickLength = value; } }
-    public int WorkStartTick { get { return workStartTick; } private set { workStartTick = value; } }
-    public int WorkEndTick { get { return workEndTick; } private set { workEndTick = value; } }
-    public int DayEndTick { get { return dayEndTick; } private set { dayEndTick = value; } }
-    private int WorkTicks { get { return workEndTick - workStartTick; } }
+    public int WorkStartTick { get { return workStartHour * ticksPerHour; } }
+    public int WorkEndTick { get { return workEndHour * ticksPerHour; } }
+    public int DayEndTick { get { return dayEndHour * ticksPerHour; } }
+    private int WorkTicks { get { return WorkStartTick - WorkEndTick; } }
 
     //CHARACTER
     [Header("CHARACTERS")]

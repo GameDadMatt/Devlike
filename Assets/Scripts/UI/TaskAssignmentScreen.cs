@@ -20,15 +20,14 @@ namespace Devlike.UI
         [SerializeField]
         private List<TaskColumn> backlogColumns;
         [SerializeField]
-        private Transform characterColumnArea;
+        private RectTransform characterColumnArea;
         [SerializeField]
         private Transform backlogColumnArea;
 
         private int curPage = 0;
-        private int TotalPages { get { return Mathf.CeilToInt(StudioManager.instance.Characters.Count / charactersPerPage); } }
+        private float columnWidth = 980f / 4f;
         [SerializeField]
         private int charactersPerPage = 4;
-        private List<GameObject> charColumns = new List<GameObject>();
 
         public void Awake()
         {
@@ -48,10 +47,6 @@ namespace Devlike.UI
 
         private void GenerateScreen()
         {
-            int charListStart = curPage * charactersPerPage;
-            int charListEnd = charListStart + charactersPerPage;
-            List<TaskColumn> containers = backlogColumns; //All containers
-
             //BACKLOG
             for(int i = 0; i < 3; i++)
             {
@@ -59,23 +54,27 @@ namespace Devlike.UI
                 GenerateTasks(StudioProject.instance.TaskLists[i], backlogColumns[i].Area);
             }
 
-            //CHARACTERS
-            //Iterate backwards over the list as we'll be removing contents
-            for (int i = charColumns.Count; i > 0; i--)
-            {
-                Destroy(charColumns[i]);
-                charColumns.RemoveAt(i);
-            }
+            DrawCharacterColumns();
+        }
 
-            for (int i = charListStart; i < charListEnd; i++)
+        private void DrawCharacterColumns()
+        {
+            characterColumnArea.sizeDelta = new Vector2(columnWidth * StudioManager.instance.Characters.Count, characterColumnArea.rect.height);
+            List<TaskColumn> containers = backlogColumns;            
+
+            for (int i = 0; i < StudioManager.instance.Characters.Count; i++)
             {
-                GameObject column = Instantiate(characterColumnPrefab, characterColumnArea);
-                TaskColumn dtc = column.GetComponent<TaskColumn>();
-                dtc.Tasks = StudioManager.instance.Characters[i].Tasks;
-                charColumns.Add(column);
-                containers.Add(dtc);
-                //SPAWN IN ALL THE TASKS FROM THIS CHARACTER
-                GenerateTasks(dtc.Tasks, dtc.Area);
+                //If this character exists
+                if(StudioManager.instance.Characters.Count > i)
+                {
+                    GameObject columnObj = Instantiate(characterColumnPrefab, characterColumnArea);
+                    TaskColumn taskColumn = columnObj.GetComponent<TaskColumn>();
+                    Character owner = StudioManager.instance.Characters[i];
+                    taskColumn.CharacterColumn(owner);
+                    containers.Add(taskColumn);
+                    //SPAWN IN ALL THE TASKS FROM THIS CHARACTER
+                    GenerateTasks(taskColumn.Tasks, taskColumn.Area);
+                }           
             }
 
             DragTaskManager.instance.SetContainerAreas(containers);
@@ -87,24 +86,6 @@ namespace Devlike.UI
             {
                 GameObject obj = Instantiate(taskPrefab, parent);
                 obj.GetComponent<TaskUIObject>().Setup(task);
-            }
-        }
-
-        public void NextPage()
-        {
-            if (curPage < TotalPages)
-            {
-                curPage++;
-                GenerateScreen();
-            }
-        }
-
-        public void PreviousPage()
-        {
-            if (curPage > 0)
-            {
-                curPage--;
-                GenerateScreen();
             }
         }
     }

@@ -58,9 +58,11 @@ namespace Devlike.UI
 
             for(int i = 0; i < Task.Points; i++)
             {
-                Debug.Log(Task.Points);
                 points[i].SetActive(true);
             }
+
+            //Setup the Drag Task
+            GetComponent<DragTask>().taskType = Task.Type;
         }
     }
 }
