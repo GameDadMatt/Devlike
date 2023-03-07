@@ -40,15 +40,9 @@ public class RandomGeneration : MonoBehaviour
         List<Profile> profiles = new List<Profile>();
         List<Tier> exp = AverageExperience(num);
         List<Profession> prof = BalancedProfessions(num);
-        for(int i = 0; i < num; i++)
+        for (int i = 0; i < num; i++)
         {
             profiles.Add(RandomProfile(exp[i], prof[i], RandomTraits(GlobalVariables.value.totalTraits)));
-            string traits = "";
-            foreach (string name in profiles[i].TraitNames)
-            {
-                traits += name + ", ";
-            }
-            Debug.Log("Profile " + i + " Name: " + profiles[i].FirstName + " " + profiles[i].LastName + ", Nickname: " + profiles[i].Nickname + ", Hobby: " + profiles[i].Hobby + "\n Experience: " + profiles[i].Experience + ", Profession: " + profiles[i].Profession + ", Traits: " + traits);
         }
 
         return profiles;
@@ -155,7 +149,7 @@ public class RandomGeneration : MonoBehaviour
     private Profile RandomProfile(Tier exp, Profession prof, List<Trait> traits)
     {
         List<string> strings = RandomNameAndHobby();
-        return new Profile(strings[0], strings[1], strings[2], strings[3], exp, prof, traits);
+        return new Profile(strings[0], strings[1], strings[2], strings[3], exp, prof, traits, RandomColor);
     }
 
     /// <summary>
@@ -170,6 +164,18 @@ public class RandomGeneration : MonoBehaviour
         strings.Add(DataValues.Nicknames[Random.Range(0, DataValues.Nicknames.Count)]);
         strings.Add(DataValues.Hobbies[Random.Range(0, DataValues.Hobbies.Count)]);
         return strings;
+    }
+
+    /// <summary>
+    /// Generate a random color from the gradient contained on GlobalVariables
+    /// </summary>
+    /// <returns></returns>
+    private Color RandomColor
+    {
+        get
+        {
+            return GlobalVariables.value.characterColours.Evaluate(Random.Range(0f, 1f));
+        }
     }
 
     /// <summary>

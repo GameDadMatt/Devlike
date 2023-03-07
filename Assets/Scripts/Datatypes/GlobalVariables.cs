@@ -60,6 +60,7 @@ public class GlobalVariables : MonoBehaviour
     private float moodImpactDays = 2.5f;
     public float moodImpactMax = 1.5f;
     public float moodImpactMin = 0.1f;
+    public Gradient characterColours;
     public List<Trait> allTraits = new List<Trait>();
     public List<Profession> allProfessions = new List<Profession>();
 

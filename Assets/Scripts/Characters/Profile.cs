@@ -18,6 +18,7 @@ namespace Devlike.Characters
         public string Nickname { get; private set; }
         public string Hobby { get; private set; }
         public Tier Experience { get; private set; } = Tier.Average;
+        public Color Color { get; private set; } = Color.black;
 
         //TRAITS & PROFESSION
         public List<string> TraitNames { get; private set; } = new List<string>();
@@ -49,13 +50,14 @@ namespace Devlike.Characters
         public float Engineering { get; private set; } = 0.2f;
         public float Design { get; private set; } = 0.2f;
 
-        public Profile(string fname, string lname, string nname, string hobby, Tier experience, Profession profession, List<Trait> traits)
+        public Profile(string fname, string lname, string nname, string hobby, Tier experience, Profession profession, List<Trait> traits, Color color)
         {
             FirstName = fname;
             LastName = lname;
             Nickname = nname;
             Hobby = hobby;
             Experience = experience;
+            Color = color;
             ApplyProfession(profession);
 
             foreach(Trait trait in traits)
@@ -126,7 +128,6 @@ namespace Devlike.Characters
         /// <returns></returns>
         private float TierHighToLow(Tier tier)
         {
-            Debug.Log((int)tier);
             return GlobalVariables.value.HighToLowBaseValue / ((int)tier + 1);
         }
 

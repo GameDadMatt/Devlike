@@ -12,6 +12,9 @@ namespace Devlike.Characters
     /// </summary>
     public class Character : MonoBehaviour
     {
+        [SerializeField]
+        private Renderer spriteRenderer;
+
         //Personality
         public Profile Profile { get; private set; }
 
@@ -56,6 +59,7 @@ namespace Devlike.Characters
         public void SetupCharacter(Profile profile)
         {
             Profile = profile;
+            spriteRenderer.material.color = Profile.Color;
             TimeManager.instance.OnTick += Tick;
             Desk = InteractableManager.instance.ClaimWorkPosition();
             Home = InteractableManager.instance.Home;
@@ -64,7 +68,6 @@ namespace Devlike.Characters
 
         public void StartWork()
         {
-            Debug.Log("Burn Rates are: Rest " + RestBurnRate + ", Food " + FoodBurnRate + ", Insp " + InspBurnRate + ", Socl " + SoclBurnRate);
             Rest.curValue = Random.Range(0.7f, 1f);
             Food.curValue = Random.Range(0.8f, 1f);
             Insp.curValue = Random.Range(0.1f, 1f);
