@@ -31,18 +31,19 @@ public class GlobalVariables : MonoBehaviour
 
     public float TickLength { get { return tickLength; } private set { tickLength = value; } }
     public float IdleTickLength { get { return idleTickLength; } private set { idleTickLength = value; } }
+    public int TicksPerHour { get { return ticksPerHour; } }
     public int WorkStartTick { get { return workStartHour * ticksPerHour; } }
     public int WorkEndTick { get { return workEndHour * ticksPerHour; } }
     public int DayEndTick { get { return dayEndHour * ticksPerHour; } }
-    private int WorkTicks { get { return WorkStartTick - WorkEndTick; } }
+    private int WorkTicks { get { return WorkEndTick - WorkStartTick; } }
 
     //CHARACTER
     [Header("CHARACTERS")]
     public int totalTraits = 3;
     [SerializeField]
-    private float lowToHighMultiplier = 0.35f;
+    private float lowToHighBaseValue = 0.35f;
     [SerializeField]
-    private float highToLowMultiplier = 1.75f;
+    private float highToLowBaseValue = 3.0f;
     [SerializeField]
     private int dayModifierBase = -3;
     [SerializeField]
@@ -62,8 +63,8 @@ public class GlobalVariables : MonoBehaviour
     public List<Trait> allTraits = new List<Trait>();
     public List<Profession> allProfessions = new List<Profession>();
 
-    public float TraitEffectMultiplier { get { return lowToHighMultiplier; } }
-    public float DropRateMultiplier { get { return highToLowMultiplier; } }
+    public float LowToHighBaseValue { get { return lowToHighBaseValue; } }
+    public float HighToLowBaseValue { get { return highToLowBaseValue; } }
     public int DayModifierBase { get { return dayModifierBase; } }
     public float TraitDaysMultiplier { get { return traitTicksMultiplier; } }
     public float BaseFoodBurn { get { return foodBreaksPerDay / WorkTicks;  } }

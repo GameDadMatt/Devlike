@@ -1711,6 +1711,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9247fd8362e7f4b4a8dc5f2f6f00c42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lowLight: {fileID: 0}
+  dayLight: {fileID: 0}
+  nightLight: {fileID: 0}
 --- !u!114 &1438213538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1725,9 +1728,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tickLength: 0.3
   idleTickLength: 0.1
-  workStartTick: 52
-  workEndTick: 104
-  dayEndTick: 156
+  ticksPerHour: 4
+  workStartHour: 9
+  workEndHour: 17
+  dayEndHour: 24
   timeUnitTicks: 6
   totalTraits: 3
   lowToHighMultiplier: 0.35
@@ -1735,9 +1739,9 @@ MonoBehaviour:
   dayModifierBase: -3
   traitTicksMultiplier: 2
   foodBreaksPerDay: 1
-  restBreaksPerDay: 4
-  inspirationBreaksPerDay: 3
-  socialBreaksPerDay: 3
+  restBreaksPerDay: 2
+  inspirationBreaksPerDay: 4
+  socialBreaksPerDay: 4
   moodImpactDays: 2.5
   moodImpactMax: 1.5
   moodImpactMin: 0.1

@@ -92,18 +92,18 @@ namespace Devlike.Characters
             TraitNames.Add(trait.name);
             Confidence = ConfidenceAverage(trait.confidence);
 
-            RestDropMultiplier *= TierHighToLow(trait.restDrop);
-            FoodDropMultiplier *= TierHighToLow(trait.foodDrop);
-            InspDropMultiplier *= TierHighToLow(trait.inspirationDrop);
-            SoclDropMultiplier *= TierHighToLow(trait.socialDrop);
-            MoodImpactMultiplier *= TierHighToLow(trait.moodImpact);
+            RestDropMultiplier = TierHighToLow(trait.restDrop);
+            FoodDropMultiplier = TierHighToLow(trait.foodDrop);
+            InspDropMultiplier = TierHighToLow(trait.inspirationDrop);
+            SoclDropMultiplier = TierHighToLow(trait.socialDrop);
+            MoodImpactMultiplier = TierHighToLow(trait.moodImpact);
 
-            EmpathyBarrierMultiplier *= TierLowToHigh(trait.empathyBarrier);
+            EmpathyBarrierMultiplier = TierLowToHigh(trait.empathyBarrier);
             BaseMood = TierLowToHigh(trait.baseMood);
-            VelocityMultiplier *= TierLowToHigh(trait.velocity);
+            VelocityMultiplier = TierLowToHigh(trait.velocity);
 
-            BugChanceMultiplier *= TierHighToLow(trait.bugChance);
-            BurnoutMultiplier *= TierHighToLow(trait.burnout);
+            BugChanceMultiplier = TierHighToLow(trait.bugChance);
+            BurnoutMultiplier = TierHighToLow(trait.burnout);
 
             WorkStartMod += TierDayMod(trait.dayStart);
             WorkEndMod += TierDayMod(trait.dayEnd);
@@ -116,7 +116,7 @@ namespace Devlike.Characters
         /// <returns></returns>
         private float TierLowToHigh(Tier tier)
         {
-            return GlobalVariables.value.TraitEffectMultiplier * (int)tier;
+            return GlobalVariables.value.LowToHighBaseValue * ((int)tier + 1);
         }
 
         /// <summary>
@@ -126,17 +126,13 @@ namespace Devlike.Characters
         /// <returns></returns>
         private float TierHighToLow(Tier tier)
         {
-            return (GlobalVariables.value.DropRateMultiplier * (int)tier)/5;
+            Debug.Log((int)tier);
+            return GlobalVariables.value.HighToLowBaseValue / ((int)tier + 1);
         }
 
         private int TierDayMod(Tier tier)
         {
             return GlobalVariables.value.DayModifierBase + (int)tier;
-        }
-
-        private int TierNum(Tier tier)
-        {
-            return (int)tier;
         }
 
         private Tier ConfidenceAverage(Tier tier)

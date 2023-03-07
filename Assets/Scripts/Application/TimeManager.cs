@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime;
+using Devlike.UI;
 
 namespace Devlike.Timing
 {
@@ -16,6 +17,10 @@ namespace Devlike.Timing
         public int CurrentWeek { get; private set; } = 0;
         public Day CurrentDay { get { return (Day)currentDay; } }
 
+        public Light lowLight;
+        public Light dayLight;
+        public Light nightLight;
+
         public void Awake()
         {
             if (instance == null)
@@ -26,7 +31,8 @@ namespace Devlike.Timing
 
         public void Start()
         {
-            UI.WeekViewUI.instance.Setup(PreviousDay, CurrentDay, NextDay);
+            GameplayUI.instance.SetWeek(CurrentWeek);
+            GameplayUI.instance.SetTime(CurrentDay.ToString(), DisplayTime);
         }
 
         // Update is called once per frame
@@ -43,36 +49,6 @@ namespace Devlike.Timing
             }
         }
 
-        private Day NextDay
-        {
-            get
-            {
-                if (currentDay < 6)
-                {
-                    return (Day)currentDay + 1;
-                }
-                else
-                {
-                    return (Day)0;
-                }
-            }
-        }
-
-        private Day PreviousDay
-        {
-            get
-            {
-                if (currentDay > 0)
-                {
-                    return (Day)currentDay - 1;
-                }
-                else
-                {
-                    return (Day)6;
-                }
-            }
-        }
-
         public event Action OnTick;
         public event Action OnDayStart;
         public void Tick()
@@ -81,13 +57,28 @@ namespace Devlike.Timing
 
             CurrentTick++;
 
+            GameplayUI.instance.SetTime(CurrentDay.ToString(), DisplayTime);
+
             if (CurrentTick > GlobalVariables.value.DayEndTick)
             {
+                Debug.Log("It is 12AM");
                 CurrentTick = 0;
+                NextDay();
                 OnDayStart?.Invoke();
             }
 
             OnTick?.Invoke();
+        }
+
+        private void NextDay()
+        {
+            currentDay++;
+            if(currentDay > 6)
+            {
+                CurrentWeek++;
+                GameplayUI.instance.SetWeek(CurrentWeek);
+                currentDay = 0;
+            }
         }
 
         private float TickLength
@@ -102,6 +93,42 @@ namespace Devlike.Timing
                 {
                     return GlobalVariables.value.IdleTickLength;
                 }
+            }
+        }
+
+        private float HoursMinutes
+        {
+            get
+            {
+                float time = (float)CurrentTick / (float)GlobalVariables.value.TicksPerHour;
+                return time;
+            }
+        }
+
+        private string DisplayTime
+        {
+            get
+            {
+                string ampm = "am";
+                float h = Mathf.FloorToInt(HoursMinutes);
+                float m = HoursMinutes % 1;
+                m = 60 * m;
+                if(h > 12)
+                {
+                    h -= 12;
+                    ampm = "pm";
+                }
+                string hours = h.ToString();
+                string minutes = m.ToString();
+                if(hours.Length < 2)
+                {
+                    hours = "0" + hours;
+                }
+                if(minutes.Length < 2)
+                {
+                    minutes = "0" + minutes;
+                }
+                return hours + ":" + minutes + ampm;
             }
         }
 

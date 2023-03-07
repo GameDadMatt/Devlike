@@ -64,6 +64,7 @@ namespace Devlike.Characters
 
         public void StartWork()
         {
+            Debug.Log("Burn Rates are: Rest " + RestBurnRate + ", Food " + FoodBurnRate + ", Insp " + InspBurnRate + ", Socl " + SoclBurnRate);
             Rest.curValue = Random.Range(0.7f, 1f);
             Food.curValue = Random.Range(0.8f, 1f);
             Insp.curValue = Random.Range(0.1f, 1f);
