@@ -11,7 +11,7 @@ namespace Devlike.Timing
         public static TimeManager instance;
 
         private float seconds = 0f;
-        private int currentDay = 0;
+        private int currentDay = 1;
         public int CurrentTick { get; private set; } = 0;
         public int CurrentWeek { get; private set; } = 0;
         public Day CurrentDay { get { return (Day)currentDay; } }
@@ -22,6 +22,11 @@ namespace Devlike.Timing
             {
                 instance = this;
             }
+        }
+
+        public void Start()
+        {
+            UI.WeekViewUI.instance.Setup(PreviousDay, CurrentDay, NextDay);
         }
 
         // Update is called once per frame
@@ -104,7 +109,8 @@ namespace Devlike.Timing
         {
             get
             {
-                return CurrentTick / GlobalVariables.value.DayEndTick;
+                float percent = (float)CurrentTick / (float)GlobalVariables.value.DayEndTick;
+                return percent;
             }
         }
     }

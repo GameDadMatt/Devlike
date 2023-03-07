@@ -7,6 +7,7 @@ public class DayAreaDisplay : MonoBehaviour
 
     public void Setup(string day)
     {
+        day.ToUpper();
         tmp.SetText(day);
     }
 }
