@@ -11,15 +11,16 @@ namespace Devlike.Timing
     {
         public static TimeManager instance;
 
+        [SerializeField]
+        private Light DirectionalLight;
+        [SerializeField]
+        private LightingPreset Preset;
+
         private float seconds = 0f;
         private int currentDay = 1;
         public int CurrentTick { get; private set; } = 0;
         public int CurrentWeek { get; private set; } = 0;
         public Day CurrentDay { get { return (Day)currentDay; } }
-
-        public Light lowLight;
-        public Light dayLight;
-        public Light nightLight;
 
         public void Awake()
         {
@@ -49,6 +50,13 @@ namespace Devlike.Timing
             }
         }
 
+        private void UpdateLighting()
+        {
+            RenderSettings.ambientLight = Preset.AmbientColour.Evaluate(TimePercent);
+            DirectionalLight.color = Preset.DirectionalColour.Evaluate(TimePercent);
+            DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((TimePercent * 360f) - 90f, 90f, 0f));
+        }
+
         public event Action OnTick;
         public event Action OnDayStart;
         public void Tick()
@@ -58,10 +66,10 @@ namespace Devlike.Timing
             CurrentTick++;
 
             GameplayUI.instance.SetTime(CurrentDay.ToString(), DisplayTime);
+            UpdateLighting();
 
             if (CurrentTick > GlobalVariables.value.DayEndTick)
             {
-                Debug.Log("It is 12AM");
                 CurrentTick = 0;
                 NextDay();
                 OnDayStart?.Invoke();
@@ -132,7 +140,7 @@ namespace Devlike.Timing
             }
         }
 
-        public float ProgressToNextDay
+        private float TimePercent
         {
             get
             {
