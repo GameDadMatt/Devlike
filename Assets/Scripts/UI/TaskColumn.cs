@@ -31,5 +31,15 @@ namespace Devlike.UI
             nameText.SetText(Owner.Profile.FirstName + " " + Owner.Profile.LastName);
             profText.SetText(Owner.Profile.Profession.name);
         }
+
+        public void UpdateTaskList()
+        {
+            List<TaskContainer> tlist = new List<TaskContainer>();
+            foreach(TaskUIObject obj in transform.GetComponentsInChildren<TaskUIObject>())
+            {
+                tlist.Add(obj.Task);
+            }
+            Tasks.UpdateTaskList(tlist);
+        }
     }
 }

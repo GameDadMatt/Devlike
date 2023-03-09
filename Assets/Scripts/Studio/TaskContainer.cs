@@ -34,18 +34,12 @@ namespace Devlike.Tasks
             return bugChance * (int)tier;
         }
 
-        public void StartTask()
+        public bool CompleteTask(float velocity, float cBugChance)
         {
-            State = TaskState.InProgress;
-            Debug.LogWarning("Started " + Type + ", ID " + ID);
-        }
-
-        public void DoTask(float velocity, float cBugChance)
-        {
-            DonePoints += velocity;
-            if (DonePoints >= Points)
+            if(State != TaskState.InProgress)
             {
-                CompleteTask();
+                State = TaskState.InProgress;
+                Debug.LogWarning("Started " + Type + ", ID " + ID);
             }
 
             //Risk generating a bug every tick
@@ -53,12 +47,16 @@ namespace Devlike.Tasks
             {
                 RandomGeneration.instance.RandomGenerateBug(BugChance, cBugChance);
             }
-        }
 
-        public void CompleteTask()
-        {
-            State = TaskState.Complete;
-            Debug.LogWarning("Completed " + Type + " ID " + ID);
+            //Check if the task is done
+            DonePoints += velocity;
+            if (DonePoints >= Points)
+            {
+                State = TaskState.Complete;
+                Debug.LogWarning("Completed " + Type + " ID " + ID);
+                return true; //This task is complete
+            }
+            return false; //This task requires more work
         }
 
         public string ID

@@ -92,6 +92,21 @@ namespace Devlike.UI
             return false;
         }
 
+        public TaskColumn GetTaskColumn(Vector2 position)
+        {
+            foreach (TaskColumn container in dropAreas)
+            {
+                Rect bbox = BoundingBoxRect(container.Area);
+                if (bbox.Contains(position))
+                {
+                    return container;
+                }
+            }
+
+            Debug.LogError("Failed to find TaskColumn at position " + position);
+            return null;
+        }
+
         private Rect BoundingBoxRect(RectTransform rectTransform)
         {
             var corners = new Vector3[4];
@@ -108,11 +123,6 @@ namespace Devlike.UI
         private List<GameObject> OrderByTaskPosition()
         {
             return null;
-        }
-
-        private void AssignTaskToList(RectTransform area)
-        {
-
         }
     }
 }

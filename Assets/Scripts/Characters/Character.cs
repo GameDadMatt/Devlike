@@ -20,6 +20,7 @@ namespace Devlike.Characters
 
         //Tasks
         public TaskList Tasks { get; private set; } = new TaskList();
+        public int NumTasks { get { return Tasks.TotalCount; } }
         public TaskType CurrentTask { get; private set; }
         public EmotionType CurrentEmotion { get; private set; }
         public IncidentType RememberedIncident { get; private set; }
@@ -87,12 +88,26 @@ namespace Devlike.Characters
                     Insp.curValue -= InspBurnRate;
                     Socl.curValue -= SoclBurnRate;
                     MoodImpact -= MoodImpactBurn;
+                    DoTasks();
                     break;
                 case CharacterState.End:
                     EndWork();
                     break;
                 case CharacterState.Inactive:
                     break;
+            }
+        }
+
+        public void DoTasks()
+        {
+            if(CurrentDoing == DoingType.Work)
+            {
+                Tasks.DoTask(Velocity, BugChance);
+                Debug.Log(Profile.FullName + " is working!");
+            }
+            else if(CurrentDoing == DoingType.Idle)
+            {
+                //Debug.Log(Profile.FullName + " is idle!");
             }
         }
 

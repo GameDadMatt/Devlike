@@ -15,6 +15,8 @@ namespace Devlike.Characters
         //RANDOMLY GENERATED
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
+        public string FullName { get { return FirstName + " " + LastName; } }
+        public string FullNameAndAlias { get { return FirstName + " \"" + Nickname + "\" " + LastName; } }
         public string Nickname { get; private set; }
         public string Hobby { get; private set; }
         public Tier Experience { get; private set; } = Tier.Average;

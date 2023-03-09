@@ -15,6 +15,7 @@ namespace Devlike.Tasks
         private Queue<int> taskPoints;
         private List<TaskContainer> tasks;
         public List<TaskContainer> Tasks { get { return tasks; } }
+        private TaskContainer doingTask;
 
         public TaskList()
         {
@@ -65,6 +66,22 @@ namespace Devlike.Tasks
         public void UpdateTaskList(List<TaskContainer> list)
         {
             tasks = list;
+        }
+
+        public void DoTask(float velocity, float bugChance)
+        {
+            if(doingTask == null)
+            {
+                doingTask = tasks[0];
+                tasks.RemoveAt(0);
+            }
+
+            if(doingTask.CompleteTask(velocity, bugChance))
+            {
+                //Task done, load the next task
+                doingTask = tasks[0];
+                tasks.RemoveAt(0);
+            }
         }
 
         public float RemainingPoints
