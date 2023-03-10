@@ -40,9 +40,10 @@ public class RandomGeneration : MonoBehaviour
         List<Profile> profiles = new List<Profile>();
         List<Tier> exp = AverageExperience(num);
         List<Profession> prof = BalancedProfessions(num);
+        List<Color> colors = BalancedRandomColors(num);
         for (int i = 0; i < num; i++)
         {
-            profiles.Add(RandomProfile(exp[i], prof[i], RandomTraits(GlobalVariables.value.totalTraits)));
+            profiles.Add(RandomProfile(exp[i], prof[i], RandomTraits(GlobalVariables.value.totalTraits), colors[i]));
         }
 
         return profiles;
@@ -146,10 +147,10 @@ public class RandomGeneration : MonoBehaviour
     /// <param name="prof"></param>
     /// <param name="traits"></param>
     /// <returns></returns>
-    private Profile RandomProfile(Tier exp, Profession prof, List<Trait> traits)
+    private Profile RandomProfile(Tier exp, Profession prof, List<Trait> traits, Color color)
     {
         List<string> strings = RandomNameAndHobby();
-        return new Profile(strings[0], strings[1], strings[2], strings[3], exp, prof, traits, RandomColor);
+        return new Profile(strings[0], strings[1], strings[2], strings[3], exp, prof, traits, color);
     }
 
     /// <summary>
@@ -177,6 +178,24 @@ public class RandomGeneration : MonoBehaviour
             return GlobalVariables.value.characterColours.Evaluate(Random.Range(0f, 1f));
         }
     }
+
+    /// <summary>
+    /// Returns a list of colors based on the gradient contained in Global Variables. Tries to keep colours spread.
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
+    private List<Color> BalancedRandomColors(int num)
+    {
+        float r = 1f / num;
+        List<Color> colors = new List<Color>();
+        for(int i = 0; i < num; i++)
+        {
+            colors.Add(GlobalVariables.value.characterColours.Evaluate(Random.Range(r * i, r * (i + 1))));
+        }
+
+        return colors;
+    }
+
 
     /// <summary>
     /// Generate a random profession from a given primary type

@@ -38,6 +38,7 @@ public class StudioManager : MonoBehaviour
             newchar.transform.position = InteractableManager.instance.Home.thing.transform.position;
             Characters.Add(newchar.GetComponent<Character>());
             Characters[i].SetupCharacter(profiles[i]);
+            newchar.name = Characters[i].Profile.FullName;
         }
 
         //Update the UI with all of the characters
