@@ -39,6 +39,9 @@ public class StudioManager : MonoBehaviour
             Characters.Add(newchar.GetComponent<Character>());
             Characters[i].SetupCharacter(profiles[i]);
         }
+
+        //Update the UI with all of the characters
+        GameplayUI.instance.GenerateCharacterButtons();
     }
 
     /// <summary>

@@ -1,21 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Devlike.Player;
 
-namespace GlobalManagers
+namespace Devlike
 {
     public class EventManager : MonoBehaviour
     {
-        public EventManager Instance { get; private set; }
+        public static EventManager instance;
 
         public void OnEnable()
         {
-            if (Instance == null)
+            if (instance == null)
             {
-                Instance = this;
+                instance = this;
             }
         }
 
-
+        public event Action<ActionType, string> OnPlayerAction;
+        public void PlayerAction(ActionType type, string id)
+        {
+            OnPlayerAction?.Invoke(type, id);
+        }
     }
 }
