@@ -2414,9 +2414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37edd821f7d76694683d5507934925c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickLength: 0.3
-  idleTickLength: 0.1
-  ticksPerHour: 4
+  tickLength: 0.5
+  idleTickLength: 0.05
+  ticksPerHour: 20
   workStartHour: 9
   workEndHour: 17
   dayEndHour: 24
