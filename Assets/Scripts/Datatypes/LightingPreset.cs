@@ -8,4 +8,5 @@ public class LightingPreset : ScriptableObject
 {
     public Gradient AmbientColour;
     public Gradient DirectionalColour;
+    public Gradient InteriorColour;
 }

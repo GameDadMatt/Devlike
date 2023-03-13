@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
 using Devlike.Characters;
+using Devlike.Timing;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameState State { get; private set; } = GameState.Ticking;
+    public GameState State { get { return TimeManager.instance.State; } }
 
     public void Awake()
     {
@@ -14,11 +15,6 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }        
-    }
-
-    public void Start()
-    {
-
     }
 
     public event Action<Character> OnCharacterSelect;

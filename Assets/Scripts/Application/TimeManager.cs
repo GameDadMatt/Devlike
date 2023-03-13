@@ -14,6 +14,8 @@ namespace Devlike.Timing
         [SerializeField]
         private Light DirectionalLight;
         [SerializeField]
+        private List<Light> CeilingLights = new List<Light>();
+        [SerializeField]
         private LightingPreset Preset;
 
         private float seconds = 0f;
@@ -21,6 +23,7 @@ namespace Devlike.Timing
         public int CurrentTick { get; private set; } = 0;
         public int CurrentWeek { get; private set; } = 0;
         public Day CurrentDay { get { return (Day)currentDay; } }
+        public GameState State { get; private set; } = GameState.Paused;
 
         public void Awake()
         {
@@ -34,12 +37,14 @@ namespace Devlike.Timing
         {
             GameplayUI.instance.SetWeek(CurrentWeek);
             GameplayUI.instance.SetTime(CurrentDay.ToString(), DisplayTime);
+            State = GameManager.instance.State;
+            EventManager.instance.OnChangeGameState += UpdateSpeed;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (GameManager.instance.State != GameState.Paused)
+            if (GameManager.instance.State != GameState.Paused && GameManager.instance.State != GameState.Interacting)
             {
                 seconds += Time.deltaTime;
                 if (seconds >= TickLength)
@@ -55,6 +60,18 @@ namespace Devlike.Timing
             RenderSettings.ambientLight = Preset.AmbientColour.Evaluate(TimePercent);
             DirectionalLight.color = Preset.DirectionalColour.Evaluate(TimePercent);
             DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((TimePercent * 360f) - 90f, 90f, 0f));
+            foreach(Light light in CeilingLights)
+            {
+                light.color = Preset.InteriorColour.Evaluate(TimePercent);
+            }
+        }
+
+        private void UpdateSpeed(GameState state)
+        {
+            if(state != State)
+            {
+                State = state;
+            }            
         }
 
         public event Action OnTick;
@@ -68,6 +85,17 @@ namespace Devlike.Timing
             GameplayUI.instance.SetTime(CurrentDay.ToString(), DisplayTime);
             UpdateLighting();
 
+            //Change the speed if characters are or are not active
+            if (!StudioManager.instance.CharactersActive && State == GameState.Normal)
+            {
+                EventManager.instance.ChangeGameState(GameState.Fast);
+            }
+            else if(StudioManager.instance.CharactersActive && State == GameState.Fast)
+            {
+                EventManager.instance.ChangeGameState(GameState.Normal);
+            }
+
+            //Check if the day has ended
             if (CurrentTick > GlobalVariables.value.DayEndTick)
             {
                 CurrentTick = 0;
@@ -93,13 +121,17 @@ namespace Devlike.Timing
         {
             get
             {
-                if (StudioManager.instance.CharactersActive)
+                if(State == GameState.Normal)
                 {
                     return GlobalVariables.value.TickLength;
                 }
-                else
+                else if (State == GameState.Fast)
                 {
                     return GlobalVariables.value.IdleTickLength;
+                }
+                else
+                {
+                    return 0f;
                 }
             }
         }

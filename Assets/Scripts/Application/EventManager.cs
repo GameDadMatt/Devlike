@@ -23,5 +23,11 @@ namespace Devlike
         {
             OnPlayerAction?.Invoke(type, id);
         }
+
+        public event Action<GameState> OnChangeGameState;
+        public void ChangeGameState(GameState state)
+        {
+            OnChangeGameState?.Invoke(state);
+        }
     }
 }

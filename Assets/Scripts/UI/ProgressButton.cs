@@ -18,8 +18,9 @@ namespace Devlike.UI
         public ActionContainer actionContainer;
         protected PlayerAction thisAction;
 
-        public void Awake()
+        public void Start()
         {
+            //We do this on Start to give TimeManager time to start up
             TimeManager.instance.OnTick += UpdateProgress;
             GameplayUI.instance.RegisterButton(this);
         }
