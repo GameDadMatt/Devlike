@@ -41,6 +41,8 @@ public class GlobalVariables : MonoBehaviour
     [Header("CHARACTERS")]
     public int totalTraits = 3;
     [SerializeField]
+    private int moodletDisplayTicks = 4;
+    [SerializeField]
     private float lowToHighBaseValue = 0.35f;
     [SerializeField]
     private float highToLowBaseValue = 3.0f;
@@ -48,6 +50,8 @@ public class GlobalVariables : MonoBehaviour
     private int dayModifierBase = -3;
     [SerializeField]
     private int traitTicksMultiplier = 2;
+    [SerializeField]
+    private float needThreshold = 0.2f;
     [SerializeField]
     private float foodBreaksPerDay = 1f;
     [SerializeField]
@@ -63,12 +67,16 @@ public class GlobalVariables : MonoBehaviour
     public Gradient characterColours;
     public List<Trait> allTraits = new List<Trait>();
     public List<Profession> allProfessions = new List<Profession>();
+    [SerializeField]
+    private List<CharacterMoodlet> allMoodlets = new List<CharacterMoodlet>();
 
+    public float MoodletDisplayTicks { get { return moodletDisplayTicks; } }
     public float LowToHighBaseValue { get { return lowToHighBaseValue; } }
     public float HighToLowBaseValue { get { return highToLowBaseValue; } }
     public int DayModifierBase { get { return dayModifierBase; } }
     public float TraitDaysMultiplier { get { return traitTicksMultiplier; } }
-    public float BaseFoodBurn { get { return foodBreaksPerDay / WorkTicks;  } }
+    public float NeedThreshold { get { return needThreshold; } }
+    public float BaseFoodBurn { get { return foodBreaksPerDay / WorkTicks; } }
     public float BaseRestBurn { get { return restBreaksPerDay / WorkTicks; } }
     public float BaseInspBurn { get { return inspirationBreaksPerDay / WorkTicks; } }
     public float BaseSoclBurn { get { return socialBreaksPerDay / WorkTicks; } }
@@ -109,7 +117,7 @@ public class GlobalVariables : MonoBehaviour
 
     public void Awake()
     {
-        if(value == null)
+        if (value == null)
         {
             value = this;
         }
@@ -121,9 +129,9 @@ public class GlobalVariables : MonoBehaviour
 
     public Trait GetTrait(string name)
     {
-        foreach(Trait trait in allTraits)
+        foreach (Trait trait in allTraits)
         {
-            if(trait.name == name)
+            if (trait.name == name)
             {
                 return trait;
             }
@@ -136,12 +144,40 @@ public class GlobalVariables : MonoBehaviour
     {
         foreach (Profession prof in allProfessions)
         {
-            if(prof.name == name)
+            if (prof.name == name)
             {
                 return prof;
             }
         }
         Debug.LogError("Could not find a profession by the name of " + name + ". Was it added to the All Professions list on GlobalVariables?");
+        return null;
+    }
+
+    public CharacterMoodlet GetMoodlet(MoodletType type)
+    {
+        foreach(CharacterMoodlet moodlet in allMoodlets)
+        {
+            if(type == moodlet.type)
+            {
+                return moodlet;
+            }
+        }
+
+        Debug.LogError("Unable to find moodlet of type " + type);
+        return null;
+    }
+
+    public CharacterMoodlet GetMoodlet(DoingType type)
+    {
+        foreach (CharacterMoodlet moodlet in allMoodlets)
+        {
+            if (moodlet.doingTypeResponse && type == moodlet.doingType)
+            {
+                return moodlet;
+            }
+        }
+
+        Debug.LogError("Unable to find moodlet of doing type " + type);
         return null;
     }
 }

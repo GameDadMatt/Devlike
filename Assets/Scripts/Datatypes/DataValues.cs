@@ -8,7 +8,7 @@ using Devlike.Tasks;
 namespace Devlike.Characters
 {
     public enum SeedList { Hobbies, FirstNames, LastNames, Nicknames }
-    public enum EmotionType { Anxious, Concerned, Neutral, Optimistic, Enthusiastic }
+    public enum MoodletType { Tired, Chatty, Hungry, Uninspired, Celebrating }
     public enum DialogueType { Casual, Work, Personal }
     public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
     public enum IncidentType { }
@@ -57,6 +57,14 @@ public class DoingTracker
         this.type = type;
         this.curValue = curValue;
         this.threshold = threshold;
+    }
+
+    public bool NearThreshold
+    {
+        get
+        {
+            return curValue < (threshold + 0.1f);
+        }
     }
 }
 

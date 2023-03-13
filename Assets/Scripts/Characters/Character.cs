@@ -14,6 +14,10 @@ namespace Devlike.Characters
     {
         [SerializeField]
         private Renderer spriteRenderer;
+        [SerializeField]
+        private Moodlet moodlet;
+        private bool displayingMoodlet = false;
+        private int moodletTicks = 0;
 
         //Personality
         public Profile Profile { get; private set; }
@@ -22,7 +26,7 @@ namespace Devlike.Characters
         public TaskList Tasks { get; private set; } = new TaskList();
         public int NumTasks { get { return Tasks.TotalCount; } }
         public TaskType CurrentTask { get; private set; }
-        public EmotionType CurrentEmotion { get; private set; }
+        public MoodletType CurrentEmotion { get; private set; }
         public IncidentType RememberedIncident { get; private set; }
 
         //Days
@@ -38,10 +42,11 @@ namespace Devlike.Characters
         private NPCInteractable curInteract;
 
         //Needs
-        public DoingTracker Rest { get; private set; } = new DoingTracker(DoingType.Rest, 1f, 0.3f);
-        public DoingTracker Food { get; private set; } = new DoingTracker(DoingType.Food, 1f, 0.3f);
-        public DoingTracker Insp { get; private set; } = new DoingTracker(DoingType.Inspiration, 1f, 0.3f);
-        public DoingTracker Socl { get; private set; } = new DoingTracker(DoingType.Social, 1f, 0.3f);
+        public DoingTracker Rest { get; private set; } = new DoingTracker(DoingType.Rest, 1f, GlobalVariables.value.NeedThreshold);
+        public DoingTracker Food { get; private set; } = new DoingTracker(DoingType.Food, 1f, GlobalVariables.value.NeedThreshold);
+        public DoingTracker Insp { get; private set; } = new DoingTracker(DoingType.Inspiration, 1f, GlobalVariables.value.NeedThreshold);
+        public DoingTracker Socl { get; private set; } = new DoingTracker(DoingType.Social, 1f, GlobalVariables.value.NeedThreshold);
+        private DoingTracker[] doingTrackers { get { return new DoingTracker[] { Rest, Food, Insp, Socl }; } }
 
         public float RestBurnRate { get { return GlobalVariables.value.BaseRestBurn * Profile.RestDropMultiplier; } }
         public float FoodBurnRate { get { return GlobalVariables.value.BaseFoodBurn * Profile.FoodDropMultiplier; } }
@@ -89,6 +94,7 @@ namespace Devlike.Characters
                     Socl.curValue -= SoclBurnRate;
                     MoodImpact -= MoodImpactBurn;
                     DoTasks();
+                    DisplayMoodlet();
                     break;
                 case CharacterState.End:
                     EndWork();
@@ -108,6 +114,40 @@ namespace Devlike.Characters
             else if(CurrentDoing == DoingType.Idle)
             {
                 //Debug.Log(Profile.FullName + " is idle!");
+            }
+        }
+
+        public void DisplayMoodlet()
+        {
+            if (!displayingMoodlet)
+            {
+                //DOING TYPE MOODLETS
+                List<DoingTracker> needs = new List<DoingTracker>();
+                foreach(DoingTracker tracker in doingTrackers)
+                {
+                    if (tracker.NearThreshold)
+                    {
+                        Debug.Log("Tracker " + tracker.type + " is at " + tracker.curValue);
+                        needs.Add(tracker);
+                    }
+                }
+                if(needs.Count > 0)
+                {
+                    DoingTracker randomTracker = needs[Random.Range(0, needs.Count)];
+                    CharacterMoodlet m = GlobalVariables.value.GetMoodlet(randomTracker.type); //Get a moodlet based on the doing type
+                    moodlet.DisplayMoodlet(m.sprite);
+                    displayingMoodlet = true;
+                }
+            }
+            else
+            {
+                moodletTicks++;
+                if(moodletTicks > GlobalVariables.value.MoodletDisplayTicks)
+                {
+                    displayingMoodlet = false;
+                    moodletTicks = 0;
+                    moodlet.HideMoodlet();
+                }
             }
         }
 

@@ -59,7 +59,7 @@ namespace Devlike.Timing
         {
             RenderSettings.ambientLight = Preset.AmbientColour.Evaluate(TimePercent);
             DirectionalLight.color = Preset.DirectionalColour.Evaluate(TimePercent);
-            DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((TimePercent * 360f) - 90f, 90f, 0f));
+            DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((TimePercent * 360f) - 90f, 96f, 0f));
             foreach(Light light in CeilingLights)
             {
                 light.color = Preset.InteriorColour.Evaluate(TimePercent);

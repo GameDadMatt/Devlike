@@ -15,6 +15,9 @@ namespace Devlike.Player
         public int TotalTime { get; private set; }
         public float Progress { get { return CompletedTime / TotalTime; } }
         public bool Completed { get { return CompletedTime >= TotalTime; } }
+        public int voiceStat = 10;
+        public int forteStat = 10;
+        public int empathyStat = 10;
 
         public PlayerAction(string id, ActionType type, bool randTime, int minTime, int maxTime)
         {
