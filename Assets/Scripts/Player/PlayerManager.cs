@@ -9,54 +9,58 @@ namespace Devlike.Player
 
     public class PlayerAction
     {
-        public string ID { get; private set; } = "";
+        public string ID { get; private set; }
+        public object Object { get; private set; }
         public ActionType Type { get; private set; }
-        public float CompletedTime { get; set; }
-        public int TotalTime { get; private set; }
-        public float Progress { get { return CompletedTime / TotalTime; } }
-        public bool Completed { get { return CompletedTime >= TotalTime; } }
+        public int CompletedTicks { get; set; }
+        public int TotalTicks { get; private set; }
+        public float Progress { get { return CompletedTicks / TotalTicks; } }
+        public bool Completed { get { return CompletedTicks >= TotalTicks; } }
         public int voiceStat = 10;
         public int forteStat = 10;
         public int empathyStat = 10;
 
-        public PlayerAction(string id, ActionType type, bool randTime, int minTime, int maxTime)
+        public PlayerAction(string id, ActionType type, object obj, bool randTime, int minTime, int maxTime)
         {
             ID = id;
             Type = type;
+            Object = obj;
             if (randTime)
             {
-                TotalTime = Random.Range(minTime, maxTime + 1);
+                TotalTicks = Random.Range(minTime, maxTime + 1);
             }
             else
             {
-                TotalTime = maxTime;
+                TotalTicks = maxTime;
             }
         }
     }
 
     public class PlayerManager : MonoBehaviour
     {
-        public List<PlayerAction> activeActions;
+        private List<PlayerAction> activeActions = new List<PlayerAction>();
         private PlayerAction currentAction;
 
-        public void Awake()
+        public void Start()
         {
-            TimeManager.instance.OnTick += DoAction;
+            TimeManager.instance.OnTick += TickAction;
+            EventManager.instance.OnPlayerAction += StartAction;
         }
 
-        public void StoreAction(PlayerAction action)
+        public void StartAction(PlayerAction action)
         {
+            //Set the current action to the one that was just passed
             currentAction = ExistingOrNewAction(action);
         }
 
-        private void DoAction()
+        private void TickAction()
         {
             if(currentAction != null)
             {
-                currentAction.CompletedTime += GlobalVariables.value.TickLength;
+                currentAction.CompletedTicks++;
                 if (currentAction.Completed)
                 {
-                    EventManager.instance.PlayerAction(currentAction.Type, currentAction.ID);
+                    EventManager.instance.ParsePlayerAction(currentAction.Type, currentAction.Object);
                     activeActions.Remove(currentAction);
 
                     //If there are other actions, go to the next active action
@@ -64,10 +68,19 @@ namespace Devlike.Player
                     {
                         currentAction = activeActions[0];
                     }
+                    else
+                    {
+                        currentAction = null;
+                    }
                 }
             }            
         }
 
+        /// <summary>
+        /// Check the list of actions to see if the passed action exists. If it doesn't, add it to the list and return it.
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns></returns>
         private PlayerAction ExistingOrNewAction(PlayerAction action)
         {
             if(activeActions.Count > 0)

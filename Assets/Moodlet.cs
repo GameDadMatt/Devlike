@@ -12,6 +12,11 @@ namespace Devlike.Characters
         [SerializeField]
         private Image moodletImage;
 
+        public void OnEnable()
+        {
+            moodletArea.SetActive(false);
+        }
+
         public void DisplayMoodlet(Sprite sprite)
         {
             moodletImage.sprite = sprite;

@@ -2503,6 +2503,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 21e8753830c82684fb155b142c14b27b, type: 2}
   - {fileID: 11400000, guid: 47fca696cd3f4f6489b70703d4e948db, type: 2}
   - {fileID: 11400000, guid: 31811ca9402528d46b223bf39ffcec8d, type: 2}
+  maxWeeklyDramasPercent: 0.2
   maxTaskPoints: 5
   pointsPerDay: 7
   bugChance: 0.1

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1614124542255639271}
   - component: {fileID: 1614124542255639270}
   - component: {fileID: 1614124542255639275}
-  - component: {fileID: 1614124542255639277}
+  - component: {fileID: 7121251513092024995}
   - component: {fileID: 1614124542255639274}
   m_Layer: 0
   m_Name: Character
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1614124543844919095}
   moodlet: {fileID: 6388885449606378824}
---- !u!114 &1614124542255639277
+--- !u!114 &7121251513092024995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

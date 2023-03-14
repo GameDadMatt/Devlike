@@ -9,8 +9,5 @@ namespace Devlike.Characters
     {
         public Sprite sprite;
         public MoodletType type;
-        [Tooltip("Whether or not this Moodlet is a response to the given DoingType")]
-        public bool doingTypeResponse;
-        public DoingType doingType;
     }
 }

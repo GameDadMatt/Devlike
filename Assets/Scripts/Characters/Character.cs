@@ -22,12 +22,14 @@ namespace Devlike.Characters
         //Personality
         public Profile Profile { get; private set; }
 
+        //Dialogue
+        public DialogueContainer CurrentDialogue { get; set; }
+
         //Tasks
         public TaskList Tasks { get; private set; } = new TaskList();
         public int NumTasks { get { return Tasks.TotalCount; } }
         public TaskType CurrentTask { get; private set; }
         public MoodletType CurrentEmotion { get; private set; }
-        public IncidentType RememberedIncident { get; private set; }
 
         //Days
         public int WorkStart { get { return GlobalVariables.value.WorkStartTick + Profile.WorkStartMod; } }
@@ -42,11 +44,10 @@ namespace Devlike.Characters
         private NPCInteractable curInteract;
 
         //Needs
-        public DoingTracker Rest { get; private set; } = new DoingTracker(DoingType.Rest, 1f, GlobalVariables.value.NeedThreshold);
-        public DoingTracker Food { get; private set; } = new DoingTracker(DoingType.Food, 1f, GlobalVariables.value.NeedThreshold);
-        public DoingTracker Insp { get; private set; } = new DoingTracker(DoingType.Inspiration, 1f, GlobalVariables.value.NeedThreshold);
-        public DoingTracker Socl { get; private set; } = new DoingTracker(DoingType.Social, 1f, GlobalVariables.value.NeedThreshold);
-        private DoingTracker[] doingTrackers { get { return new DoingTracker[] { Rest, Food, Insp, Socl }; } }
+        public DoingTracker Rest { get; private set; } = new(DoingType.Rest, 1f, GlobalVariables.value.NeedThreshold);
+        public DoingTracker Food { get; private set; } = new(DoingType.Food, 1f, GlobalVariables.value.NeedThreshold);
+        public DoingTracker Insp { get; private set; } = new(DoingType.Inspiration, 1f, GlobalVariables.value.NeedThreshold);
+        public DoingTracker Socl { get; private set; } = new(DoingType.Social, 1f, GlobalVariables.value.NeedThreshold);
 
         public float RestBurnRate { get { return GlobalVariables.value.BaseRestBurn * Profile.RestDropMultiplier; } }
         public float FoodBurnRate { get { return GlobalVariables.value.BaseFoodBurn * Profile.FoodDropMultiplier; } }
@@ -70,6 +71,7 @@ namespace Devlike.Characters
             Desk = InteractableManager.instance.ClaimWorkPosition();
             Home = InteractableManager.instance.Home;
             curInteract = Home;
+            GetComponent<UI.CharacterButton>().SetCharacter(this);
         }
 
         public void StartWork()
@@ -119,7 +121,7 @@ namespace Devlike.Characters
 
         public void DisplayMoodlet()
         {
-            if (!displayingMoodlet)
+            /*if (!displayingMoodlet)
             {
                 //DOING TYPE MOODLETS
                 List<DoingTracker> needs = new List<DoingTracker>();
@@ -148,7 +150,7 @@ namespace Devlike.Characters
                     moodletTicks = 0;
                     moodlet.HideMoodlet();
                 }
-            }
+            }*/
         }
 
         public void EndWork()

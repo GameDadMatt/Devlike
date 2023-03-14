@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Devlike.Player;
+using Devlike.Characters;
 
 namespace Devlike
 {
@@ -17,11 +18,38 @@ namespace Devlike
                 instance = this;
             }
         }
-
-        public event Action<ActionType, string> OnPlayerAction;
-        public void PlayerAction(ActionType type, string id)
+        
+        //Listen for and send events relacting to a player action
+        public event Action<PlayerAction> OnPlayerAction;
+        public void PlayerAction(PlayerAction action)
         {
-            OnPlayerAction?.Invoke(type, id);
+            OnPlayerAction?.Invoke(action);
+        }
+
+        //Parse the output of a player action after it's been through PlayerManager
+        public void ParsePlayerAction(ActionType type, object obj)
+        {
+            switch (type)
+            {
+                case ActionType.ScopeManagement:
+                    break;
+                case ActionType.TaskManagement:
+                    break;
+                case ActionType.TeamMeeting:
+                    break;
+                case ActionType.CheckProgress:
+                    break;
+                case ActionType.TalkTo:
+                    OnCharacterInteract?.Invoke(obj as Character); //Forward this to the Character Interact event
+                    break;
+            }
+            //OnPlayerAction?.Invoke(type, id);
+        }
+
+        public event Action<Character> OnCharacterInteract;
+        public void CharacterInteract(Character character)
+        {
+            OnCharacterInteract?.Invoke(character);
         }
 
         public event Action<GameState> OnChangeGameState;

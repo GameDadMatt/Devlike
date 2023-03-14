@@ -8,10 +8,9 @@ using Devlike.Tasks;
 namespace Devlike.Characters
 {
     public enum SeedList { Hobbies, FirstNames, LastNames, Nicknames }
-    public enum MoodletType { Tired, Chatty, Hungry, Uninspired, Celebrating }
-    public enum DialogueType { Casual, Work, Personal }
+    public enum MoodletType { Stressed, Happy, LowVelocity, HighVelocity, Celebrating }
+    public enum DramaType { Alignment, Crunching, Miscalculation, Personal, Interpersonal }
     public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
-    public enum IncidentType { }
     public enum CharacterState { Start, Active, End, Inactive }
     public enum DoingType { Rest, Food, Inspiration, Social, Work, Home, Idle }
 

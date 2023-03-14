@@ -16,7 +16,7 @@ namespace Devlike.UI
         public TextMeshProUGUI buttonText;
         [SerializeField]
         public ActionContainer actionContainer;
-        protected PlayerAction thisAction;
+        protected PlayerAction action;
 
         public void Start()
         {
@@ -28,14 +28,19 @@ namespace Devlike.UI
         public virtual void GenerateButton()
         {
             buttonText.SetText(actionContainer.name);
-            thisAction = new PlayerAction(actionContainer.name, actionContainer.type, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
+            action = new PlayerAction(actionContainer.name, actionContainer.type, null, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
+        }
+
+        public void PressButton()
+        {
+            EventManager.instance.PlayerAction(action);
         }
 
         private void UpdateProgress()
         {
-            if(thisAction != null)
+            if(action != null)
             {
-                progressBar.fillAmount = thisAction.Progress;
+                progressBar.fillAmount = action.Progress;
             }
             else
             {

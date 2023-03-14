@@ -82,6 +82,14 @@ public class GlobalVariables : MonoBehaviour
     public float BaseSoclBurn { get { return socialBreaksPerDay / WorkTicks; } }
     public float MoodImpactBurn { get { return moodImpactDays / WorkTicks; } }
 
+    //DIALOGUE
+    [Header("DIALOGUE")]
+    [SerializeField]
+    private float maxWeeklyDramasPercent = 0.2f;
+
+
+    public float MaxWeeklyDramasPercent { get { return maxWeeklyDramasPercent; } }
+
     //TASKS
     [Header("TASKS")]
     [SerializeField]
@@ -164,20 +172,6 @@ public class GlobalVariables : MonoBehaviour
         }
 
         Debug.LogError("Unable to find moodlet of type " + type);
-        return null;
-    }
-
-    public CharacterMoodlet GetMoodlet(DoingType type)
-    {
-        foreach (CharacterMoodlet moodlet in allMoodlets)
-        {
-            if (moodlet.doingTypeResponse && type == moodlet.doingType)
-            {
-                return moodlet;
-            }
-        }
-
-        Debug.LogError("Unable to find moodlet of doing type " + type);
         return null;
     }
 }

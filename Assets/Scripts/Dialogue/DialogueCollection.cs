@@ -9,8 +9,8 @@ namespace Devlike.Characters
     /// </summary>
     public class DialogueCollection : ScriptableObject
     {
-        public List<string> dialogueNames;
-        public DialogueType dialogueType;
+        public List<string> startNodes;
+        public DramaType dramaType;
         public float empathyNeeded;
     }
 }

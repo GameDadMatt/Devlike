@@ -19,7 +19,7 @@ namespace Devlike.UI
         {
             buttonText.SetText(character.Profile.FirstName);
             characterSprite.color = character.Profile.Color;
-            thisAction = new PlayerAction(character.Profile.FullName, actionContainer.type, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
+            action = new PlayerAction(character.Profile.FullName, actionContainer.type, character, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
         }
     }
 }

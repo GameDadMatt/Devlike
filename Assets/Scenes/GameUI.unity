@@ -3269,10 +3269,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1861477920}
     m_Modifications:
-    - target: {fileID: 8958157978009298003, guid: 56b944ed2c8c38d4d89d98e2aa033e0c, type: 3}
-      propertyPath: actionContainer
-      value: 
-      objectReference: {fileID: 11400000, guid: 02260c49c99e2194bb1bf78a4147abd0, type: 2}
     - target: {fileID: 8958157978009298006, guid: 56b944ed2c8c38d4d89d98e2aa033e0c, type: 3}
       propertyPath: m_Name
       value: ProgressButton (0)
