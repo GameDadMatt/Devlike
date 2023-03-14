@@ -172,6 +172,7 @@ MonoBehaviour:
   progressBar: {fileID: 182437160421123192}
   buttonText: {fileID: 182437158574748819}
   actionContainer: {fileID: 11400000, guid: f2da89bf580895943903249cf7581e3b, type: 2}
+  button: {fileID: 105657491131919980}
   characterSprite: {fileID: 182437158466645315}
   character: {fileID: 0}
 --- !u!114 &105657491131919980

@@ -12,9 +12,10 @@ namespace Devlike.Player
         public string ID { get; private set; }
         public object Object { get; private set; }
         public ActionType Type { get; private set; }
+        public bool Active { get; set; }
         public int CompletedTicks { get; set; }
         public int TotalTicks { get; private set; }
-        public float Progress { get { return CompletedTicks / TotalTicks; } }
+        public float Progress { get { return (float)CompletedTicks / (float)TotalTicks; } }
         public bool Completed { get { return CompletedTicks >= TotalTicks; } }
         public int voiceStat = 10;
         public int forteStat = 10;
@@ -51,6 +52,16 @@ namespace Devlike.Player
         {
             //Set the current action to the one that was just passed
             currentAction = ExistingOrNewAction(action);
+            SetActionsInactive();
+            currentAction.Active = true;
+        }
+
+        private void SetActionsInactive()
+        {
+            foreach(PlayerAction action in activeActions)
+            {
+                action.Active = false;
+            }
         }
 
         private void TickAction()
@@ -60,6 +71,7 @@ namespace Devlike.Player
                 currentAction.CompletedTicks++;
                 if (currentAction.Completed)
                 {
+                    Debug.Log("DISPLAY " + currentAction.Type);
                     EventManager.instance.ParsePlayerAction(currentAction.Type, currentAction.Object);
                     activeActions.Remove(currentAction);
 
@@ -67,6 +79,7 @@ namespace Devlike.Player
                     if (activeActions.Count > 0)
                     {
                         currentAction = activeActions[0];
+                        currentAction.Active = true;
                     }
                     else
                     {

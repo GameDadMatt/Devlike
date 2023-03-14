@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Devlike.Timing;
 
 namespace Devlike.UI
 {
@@ -15,6 +16,7 @@ namespace Devlike.UI
         [SerializeField]
         private TextMeshProUGUI dayHour;
 
+        private List<Button> otherButtons = new List<Button>();
         private List<ProgressButton> topButtons = new List<ProgressButton>();
         private List<ProgressButtonCharacter> characterButtons = new List<ProgressButtonCharacter>();
 
@@ -26,16 +28,30 @@ namespace Devlike.UI
             }
         }
 
-        public void RegisterButton(ProgressButton button)
+        private void Start()
+        {
+            TimeManager.instance.OnTick += GameStateChange;
+        }
+
+        public void RegisterButton(object button)
         {
             if(button is ProgressButtonCharacter)
             {
                 characterButtons.Add(button as ProgressButtonCharacter);
             }
+            else if(button is ProgressButton)
+            {
+                ProgressButton pg = button as ProgressButton;
+                topButtons.Add(pg);
+                pg.GenerateButton(); //The top buttons need no additional work
+            }
+            else if(button is Button)
+            {
+                otherButtons.Add(button as Button);
+            }
             else
             {
-                topButtons.Add(button);
-                button.GenerateButton(); //The top buttons need no additional work
+                Debug.LogError("Failed to add " + button);
             }
         }
 
@@ -45,6 +61,61 @@ namespace Devlike.UI
             {
                 characterButtons[i].character = StudioManager.instance.Characters[i];
                 characterButtons[i].GenerateButton();
+            }
+        }
+
+        private void GameStateChange()
+        {
+            //Change the interactivity off by default if we're interacting or paused
+            if(GameManager.instance.State == GameState.Interacting || GameManager.instance.State == GameState.Paused)
+            {
+                ChangeOtherInteractivity(false);
+                ChangePlayerInteractivity(false);
+                ChangeCharacterInteractivity(false);
+            }
+            else if(GameManager.instance.State == GameState.Fast)
+            {
+                ChangeOtherInteractivity(true);
+                //Only allow the player buttons at the top to be interactable if there are characters active
+                if (StudioManager.instance.CharactersActive)
+                {
+                    ChangePlayerInteractivity(true);
+                }
+                else
+                {
+                    ChangePlayerInteractivity(false);
+                }
+            }
+            else
+            {
+                //The game is running at normal speed, so make buttons interactive
+                //We let characters change themselves as appropriate in ProgressButtonCharacter
+                ChangeOtherInteractivity(true);
+                ChangePlayerInteractivity(true);
+            }
+        }
+
+        public void ChangeOtherInteractivity(bool state)
+        {
+            foreach (Button b in otherButtons)
+            {
+                b.interactable = state;
+            }
+        }
+
+        public void ChangePlayerInteractivity(bool state)
+        {
+            foreach (ProgressButton pb in topButtons)
+            {
+                pb.Interactable = state;
+            }
+        }
+
+        public void ChangeCharacterInteractivity(bool state)
+        {
+            foreach (ProgressButtonCharacter pbc in characterButtons)
+            {
+                pbc.Interactable = state;
             }
         }
 

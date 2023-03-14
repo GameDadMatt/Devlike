@@ -11,12 +11,19 @@ namespace Devlike.UI
     public class ProgressButton : MonoBehaviour
     {
         [SerializeField]
-        public Image progressBar;
+        protected Image progressBar;
         [SerializeField]
-        public TextMeshProUGUI buttonText;
+        protected TextMeshProUGUI buttonText;
         [SerializeField]
-        public ActionContainer actionContainer;
+        protected ActionContainer actionContainer;
+        [SerializeField]
+        protected Button button;
         protected PlayerAction action;
+
+        private void Awake()
+        {
+            progressBar.fillAmount = 0f;
+        }
 
         public void Start()
         {
@@ -31,16 +38,31 @@ namespace Devlike.UI
             action = new PlayerAction(actionContainer.name, actionContainer.type, null, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
         }
 
-        public void PressButton()
+        public virtual void PressButton()
         {
             EventManager.instance.PlayerAction(action);
+        }
+
+        public bool Interactable
+        {
+            get
+            {
+                return button.interactable;
+            }
+            set
+            {
+                button.interactable = value;
+            }
         }
 
         private void UpdateProgress()
         {
             if(action != null)
             {
-                progressBar.fillAmount = action.Progress;
+                if (action.Active)
+                {
+                    progressBar.fillAmount = action.Progress;
+                }
             }
             else
             {

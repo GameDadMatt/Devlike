@@ -44,10 +44,10 @@ namespace Devlike.Characters
         private NPCInteractable curInteract;
 
         //Needs
-        public DoingTracker Rest { get; private set; } = new(DoingType.Rest, 1f, GlobalVariables.value.NeedThreshold);
-        public DoingTracker Food { get; private set; } = new(DoingType.Food, 1f, GlobalVariables.value.NeedThreshold);
-        public DoingTracker Insp { get; private set; } = new(DoingType.Inspiration, 1f, GlobalVariables.value.NeedThreshold);
-        public DoingTracker Socl { get; private set; } = new(DoingType.Social, 1f, GlobalVariables.value.NeedThreshold);
+        public DoingTracker Food { get; private set; }
+        public DoingTracker Insp { get; private set; }
+        public DoingTracker Socl { get; private set; }
+        public DoingTracker Rest { get; private set; }
 
         public float RestBurnRate { get { return GlobalVariables.value.BaseRestBurn * Profile.RestDropMultiplier; } }
         public float FoodBurnRate { get { return GlobalVariables.value.BaseFoodBurn * Profile.FoodDropMultiplier; } }
@@ -61,7 +61,15 @@ namespace Devlike.Characters
         //Velocity
         public float Velocity { get { return (GlobalVariables.value.BaseVelocity * Profile.VelocityMultiplier) * CappedMoodImpact; } }
         public float BugChance { get { return (GlobalVariables.value.BaseBugChance * Profile.BugChanceMultiplier) * (GlobalVariables.value.moodImpactMax - CappedMoodImpact); } }
-        
+
+        private void Awake()
+        {
+            Food = new(DoingType.Food, 1f, GlobalVariables.value.NeedThreshold);
+            Insp = new(DoingType.Inspiration, 1f, GlobalVariables.value.NeedThreshold);
+            Socl = new(DoingType.Social, 1f, GlobalVariables.value.NeedThreshold);
+            Rest = new(DoingType.Rest, 1f, GlobalVariables.value.NeedThreshold);
+        }
+
 
         public void SetupCharacter(Profile profile)
         {

@@ -286,6 +286,7 @@ MonoBehaviour:
   progressBar: {fileID: 8958157978107664921}
   buttonText: {fileID: 8958157976171520112}
   actionContainer: {fileID: 11400000, guid: 02260c49c99e2194bb1bf78a4147abd0, type: 2}
+  button: {fileID: 8958157978009298004}
 --- !u!1 &8958157978107664923
 GameObject:
   m_ObjectHideFlags: 0

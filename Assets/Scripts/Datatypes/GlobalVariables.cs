@@ -50,8 +50,9 @@ public class GlobalVariables : MonoBehaviour
     private int dayModifierBase = -3;
     [SerializeField]
     private int traitTicksMultiplier = 2;
-    [SerializeField]
-    private float needThreshold = 0.2f;
+
+    public float NeedThreshold = 0.2f;
+
     [SerializeField]
     private float foodBreaksPerDay = 1f;
     [SerializeField]
@@ -75,7 +76,7 @@ public class GlobalVariables : MonoBehaviour
     public float HighToLowBaseValue { get { return highToLowBaseValue; } }
     public int DayModifierBase { get { return dayModifierBase; } }
     public float TraitDaysMultiplier { get { return traitTicksMultiplier; } }
-    public float NeedThreshold { get { return needThreshold; } }
+    //public float NeedThreshold { get { return needThreshold; } }
     public float BaseFoodBurn { get { return foodBreaksPerDay / WorkTicks; } }
     public float BaseRestBurn { get { return restBreaksPerDay / WorkTicks; } }
     public float BaseInspBurn { get { return inspirationBreaksPerDay / WorkTicks; } }
@@ -86,7 +87,6 @@ public class GlobalVariables : MonoBehaviour
     [Header("DIALOGUE")]
     [SerializeField]
     private float maxWeeklyDramasPercent = 0.2f;
-
 
     public float MaxWeeklyDramasPercent { get { return maxWeeklyDramasPercent; } }
 

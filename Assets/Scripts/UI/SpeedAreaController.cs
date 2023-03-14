@@ -23,6 +23,13 @@ namespace Devlike.UI
         private Sprite fastSprite;
         private GameState storedState = GameState.Paused;
 
+        private void Start()
+        {
+            GameplayUI.instance.RegisterButton(pauseButton);
+            GameplayUI.instance.RegisterButton(playButton);
+            GameplayUI.instance.RegisterButton(fastButton);
+        }
+
         public void Update()
         {
             if(storedState != GameManager.instance.State)
