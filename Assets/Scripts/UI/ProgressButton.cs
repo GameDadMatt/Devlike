@@ -25,9 +25,8 @@ namespace Devlike.UI
             progressBar.fillAmount = 0f;
         }
 
-        public void Start()
+        public void OnEnable()
         {
-            //We do this on Start to give TimeManager time to start up
             TimeManager.instance.OnTick += UpdateProgress;
             GameplayUI.instance.RegisterButton(this);
         }
