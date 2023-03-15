@@ -9,7 +9,7 @@ namespace Devlike.Characters
 {
     public enum SeedList { Hobbies, FirstNames, LastNames, Nicknames }
     public enum MoodletType { Stressed, Happy, LowVelocity, HighVelocity, Celebrating }
-    public enum DramaType { Alignment, Crunching, Miscalculation, Personal, Interpersonal }
+    public enum DramaType { None, Alignment, Crunching, Miscalculation, Complication, Clarification, Communication, Personal, Interpersonal }
     public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
     public enum CharacterState { Start, Active, End, Inactive }
     public enum DoingType { Rest, Food, Inspiration, Social, Work, Home, Idle }

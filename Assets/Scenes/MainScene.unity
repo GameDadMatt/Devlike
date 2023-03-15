@@ -2427,7 +2427,7 @@ MonoBehaviour:
   highToLowBaseValue: 3
   dayModifierBase: -3
   traitTicksMultiplier: 2
-  needThreshold: 0.2
+  NeedThreshold: 0.2
   foodBreaksPerDay: 1
   restBreaksPerDay: 2
   inspirationBreaksPerDay: 4
@@ -2504,6 +2504,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47fca696cd3f4f6489b70703d4e948db, type: 2}
   - {fileID: 11400000, guid: 31811ca9402528d46b223bf39ffcec8d, type: 2}
   maxWeeklyDramasPercent: 0.2
+  allDialogues:
+  - {fileID: 11400000, guid: f3b4f6882ded23d4187377a7c6014d41, type: 2}
   maxTaskPoints: 5
   pointsPerDay: 7
   bugChance: 0.1

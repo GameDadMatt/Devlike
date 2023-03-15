@@ -38,6 +38,7 @@ public class StudioManager : MonoBehaviour
             newchar.transform.position = InteractableManager.instance.Home.thing.transform.position;
             Characters.Add(newchar.GetComponent<Character>());
             Characters[i].SetupCharacter(profiles[i]);
+            Characters[i].CurrentDialogue = DialogueManager.instance.DefaultDialogue; //Give the character a default dialogue
             newchar.name = Characters[i].Profile.FullName;
         }
 

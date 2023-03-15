@@ -1,14 +1,10 @@
-﻿title: Test
+﻿title: Default
 tags:
 ---
 When you approach {FirstName()} they turn from their work and greet you.
--> Trust - Keep doing a great job.
-    Test: I appreciate your trust.
--> Support - Is there anything you need?
-    Test: I appreciate your support.
--> Guide - 
-    Test: I appreciate your guidance.
--> Instruct - This is 
-    Test: I appreciate your instruction.
-Test: This was very enlightening, thank you!
+-> Trust - I'll be around if you need anything.
+-> Support - How can I help you?
+-> Guide - Let's go through your tasks.
+-> Instruct - This is what I want you to do.
+{FirstName()} expresses their thanks for you checking in on them.
 ===

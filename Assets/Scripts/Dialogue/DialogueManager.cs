@@ -21,7 +21,7 @@ namespace Devlike.Characters
                 instance = this;
             }
 
-            dialogueRunner = FindObjectOfType<DialogueRunner>();
+            dialogueRunner = GetComponent<DialogueRunner>();
             dialogueRunner.onDialogueComplete.AddListener(EndConversation);
         }
 
@@ -49,6 +49,14 @@ namespace Devlike.Characters
         {
             Debug.Log("Ended conversation with " + activeCharacter.Profile.FullName);
             DialogueRunning = false;
+        }
+
+        public DialogueContainer DefaultDialogue
+        {
+            get
+            {
+                return new DialogueContainer(GlobalVariables.value.allDialogues[0]); //Dialogue[0] should always be the default dialogue
+            }
         }
 
         [YarnCommand("MoodImpact")]

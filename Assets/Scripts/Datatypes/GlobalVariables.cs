@@ -87,6 +87,7 @@ public class GlobalVariables : MonoBehaviour
     [Header("DIALOGUE")]
     [SerializeField]
     private float maxWeeklyDramasPercent = 0.2f;
+    public List<DialogueCollection> allDialogues = new List<DialogueCollection>();
 
     public float MaxWeeklyDramasPercent { get { return maxWeeklyDramasPercent; } }
 
