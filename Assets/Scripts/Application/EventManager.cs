@@ -26,6 +26,13 @@ namespace Devlike
             OnPlayerAction?.Invoke(action);
         }
 
+        //Listen for and send events relating to the completion of a player action
+        public event Action OnCompletePlayerAction;
+        public void CompletePlayerAction()
+        {
+            OnCompletePlayerAction?.Invoke();
+        }
+
         //Parse the output of a player action after it's been through PlayerManager
         public void ParsePlayerAction(ActionType type, object obj)
         {

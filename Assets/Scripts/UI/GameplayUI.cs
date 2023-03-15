@@ -28,9 +28,10 @@ namespace Devlike.UI
             }
         }
 
-        private void Start()
+        private void OnEnable()
         {
             TimeManager.instance.OnTick += GameStateChange;
+            EventManager.instance.OnCompletePlayerAction += ResetActionButtons;
         }
 
         public void RegisterButton(object button)
@@ -116,6 +117,24 @@ namespace Devlike.UI
             foreach (ProgressButtonCharacter pbc in characterButtons)
             {
                 pbc.Interactable = state;
+            }
+        }
+
+        public void ResetActionButtons()
+        {
+            foreach(ProgressButton pb in topButtons)
+            {
+                if (!pb.InProgress)
+                {
+                    pb.ResetButton();
+                }
+            }
+            foreach(ProgressButtonCharacter pbc in characterButtons)
+            {
+                if (!pbc.InProgress)
+                {
+                    pbc.ResetButton();
+                }
             }
         }
 

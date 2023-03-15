@@ -34,12 +34,34 @@ namespace Devlike.UI
         public virtual void GenerateButton()
         {
             buttonText.SetText(actionContainer.name);
-            action = new PlayerAction(actionContainer.name, actionContainer.type, null, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
+            action = new PlayerAction(this, actionContainer.name, actionContainer.type, null, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
         }
 
         public virtual void PressButton()
         {
             EventManager.instance.PlayerAction(action);
+        }
+
+        public virtual void ResetButton()
+        {
+            progressBar.fillAmount = 0f;
+            button.interactable = true;
+        }
+
+        protected void UpdateProgress()
+        {
+            if(action != null)
+            {
+                if (action.Active)
+                {
+                    button.interactable = false;
+                    progressBar.fillAmount = action.Progress;
+                }
+            }
+            else
+            {
+                Debug.LogError("Action has not been set on " + actionContainer.name + " button");
+            }
         }
 
         public bool Interactable
@@ -54,18 +76,11 @@ namespace Devlike.UI
             }
         }
 
-        private void UpdateProgress()
+        public bool InProgress
         {
-            if(action != null)
+            get
             {
-                if (action.Active)
-                {
-                    progressBar.fillAmount = action.Progress;
-                }
-            }
-            else
-            {
-                Debug.LogError("Action has not been set on " + actionContainer.name + " button");
+                return action.Progress > 0 && !action.Completed;
             }
         }
     }

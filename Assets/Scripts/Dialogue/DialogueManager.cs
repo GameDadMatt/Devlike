@@ -13,6 +13,7 @@ namespace Devlike.Characters
 
         public bool DialogueRunning { get; private set; } = false;
         private static Character activeCharacter;
+        private GameState prevState = GameState.Normal;
 
         private void Awake()
         {
@@ -40,6 +41,7 @@ namespace Devlike.Characters
                     Debug.Log("Started conversation with " + activeCharacter.Profile.FullName);
                     dialogueRunner.StartDialogue(activeCharacter.CurrentDialogue.CurrentStartNode);
                     DialogueRunning = true;
+                    prevState = GameManager.instance.State;
                     EventManager.instance.ChangeGameState(GameState.Interacting);
                 }
             }
@@ -49,6 +51,10 @@ namespace Devlike.Characters
         {
             Debug.Log("Ended conversation with " + activeCharacter.Profile.FullName);
             DialogueRunning = false;
+            //Return to the previous game state
+            EventManager.instance.ChangeGameState(prevState);
+            //Complete the event
+            EventManager.instance.CompletePlayerAction();
         }
 
         public DialogueContainer DefaultDialogue

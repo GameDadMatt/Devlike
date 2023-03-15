@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Devlike.Timing;
+using Devlike.UI;
 
 namespace Devlike.Player
 {
@@ -17,43 +19,53 @@ namespace Devlike.Player
         public int TotalTicks { get; private set; }
         public float Progress { get { return (float)CompletedTicks / (float)TotalTicks; } }
         public bool Completed { get { return CompletedTicks >= TotalTicks; } }
-        public int voiceStat = 10;
-        public int forteStat = 10;
-        public int empathyStat = 10;
 
-        public PlayerAction(string id, ActionType type, object obj, bool randTime, int minTime, int maxTime)
+        public PlayerAction(ProgressButton button, string id, ActionType type, object obj, bool randTime, int minHours, int maxHours)
         {
             ID = id;
             Type = type;
             Object = obj;
             if (randTime)
             {
-                TotalTicks = Random.Range(minTime, maxTime + 1);
+                TotalTicks = Random.Range(minHours, maxHours + 1) * GlobalVariables.value.TicksPerHour;
             }
             else
             {
-                TotalTicks = maxTime;
+                TotalTicks = maxHours * GlobalVariables.value.TicksPerHour;
             }
+        }
+
+        public void Reset()
+        {
+            CompletedTicks = 0;
+            Active = false;
         }
     }
 
     public class PlayerManager : MonoBehaviour
     {
         private List<PlayerAction> activeActions = new List<PlayerAction>();
-        private PlayerAction currentAction;
+        private PlayerAction progressingAction = null;
+        private PlayerAction currentAction = null;
+
+        public int voiceStat = 10;
+        public int forteStat = 10;
+        public int empathyStat = 10;
 
         public void Start()
         {
+
             TimeManager.instance.OnTick += TickAction;
             EventManager.instance.OnPlayerAction += StartAction;
+            EventManager.instance.OnCompletePlayerAction += CompleteAction;
         }
 
         public void StartAction(PlayerAction action)
         {
             //Set the current action to the one that was just passed
-            currentAction = ExistingOrNewAction(action);
+            progressingAction = ExistingOrNewAction(action);
             SetActionsInactive();
-            currentAction.Active = true;
+            progressingAction.Active = true;
         }
 
         private void SetActionsInactive()
@@ -66,27 +78,34 @@ namespace Devlike.Player
 
         private void TickAction()
         {
-            if(currentAction != null)
+            if(progressingAction != null && currentAction == null)
             {
-                currentAction.CompletedTicks++;
-                if (currentAction.Completed)
+                progressingAction.CompletedTicks++;
+                if (progressingAction.Completed)
                 {
-                    Debug.Log("DISPLAY " + currentAction.Type);
-                    EventManager.instance.ParsePlayerAction(currentAction.Type, currentAction.Object);
-                    activeActions.Remove(currentAction);
+                    Debug.Log("DISPLAY " + progressingAction.Type);
+                    EventManager.instance.ParsePlayerAction(progressingAction.Type, progressingAction.Object);
+                    currentAction = progressingAction; //Set the current action, which will stop this function acting on tick until it's done
+                    activeActions.Remove(progressingAction);
 
                     //If there are other actions, go to the next active action
                     if (activeActions.Count > 0)
                     {
-                        currentAction = activeActions[0];
-                        currentAction.Active = true;
+                        progressingAction = activeActions[0];
+                        progressingAction.Active = true;
                     }
                     else
                     {
-                        currentAction = null;
+                        progressingAction = null;
                     }
                 }
-            }            
+            }      
+        }
+
+        private void CompleteAction()
+        {
+            currentAction.Reset();
+            currentAction = null;
         }
 
         /// <summary>

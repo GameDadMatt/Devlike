@@ -20,7 +20,7 @@ namespace Devlike.UI
         {
             buttonText.SetText(character.Profile.FirstName);
             characterSprite.color = character.Profile.Color;
-            action = new PlayerAction(character.Profile.FullName, actionContainer.type, character, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
+            action = new PlayerAction(this, character.Profile.FullName, actionContainer.type, character, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
         }
 
         private void Update()
@@ -46,6 +46,20 @@ namespace Devlike.UI
             {
                 EventManager.instance.PlayerAction(action);
             }            
+        }
+
+        public override void ResetButton()
+        {
+            progressBar.fillAmount = 0f;
+            button.interactable = true;
+            if (curState == CharacterState.Inactive && Interactable)
+            {
+                Interactable = false;
+            }
+            else if (curState != CharacterState.Inactive && !Interactable)
+            {
+                Interactable = true;
+            }
         }
     }
 }
