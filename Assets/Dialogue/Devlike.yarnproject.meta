@@ -10,7 +10,10 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 053561912b1654d80a424bb0696a74ae, type: 3}
   sourceScripts:
   - {fileID: 6391573757903218779, guid: 1fd886415b126b046a3d2c9d5435f761, type: 3}
-  compileErrors: []
+  compileErrors:
+  - 'Parse errors exist in the following files:
+
+    Assets/Dialogue/Dialogue.yarn'
   serializedDeclarations: []
   defaultLanguage: en-AU
   languagesToSourceAssets: []
@@ -18,6 +21,21 @@ ScriptedImporter:
   searchAllAssembliesForActions: 1
   assembliesToSearch: []
   ListOfFunctions:
+  - Name: FullName
+    ReturnType: -> String
+    Parameters: []
+  - Name: Nickname
+    ReturnType: -> String
+    Parameters: []
+  - Name: FirstName
+    ReturnType: -> String
+    Parameters: []
+  - Name: LastName
+    ReturnType: -> String
+    Parameters: []
+  - Name: Profession
+    ReturnType: -> String
+    Parameters: []
   - Name: Random
     ReturnType: -> Single
     Parameters: []

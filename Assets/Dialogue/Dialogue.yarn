@@ -1,14 +1,14 @@
 ﻿title: Test
 tags:
 ---
-Test: Hello there player!
--> Trust
+When you approach {FirstName()} they turn from their work and greet you.
+-> Trust - Keep doing a great job.
     Test: I appreciate your trust.
--> Support
+-> Support - Is there anything you need?
     Test: I appreciate your support.
--> Guide
+-> Guide - 
     Test: I appreciate your guidance.
--> Instruct
+-> Instruct - This is 
     Test: I appreciate your instruction.
 Test: This was very enlightening, thank you!
 ===
