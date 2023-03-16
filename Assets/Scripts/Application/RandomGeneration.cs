@@ -29,8 +29,8 @@ public class RandomGeneration : ExecutableBehaviour
     protected override void OnStart()
     {
         Random.InitState(seed.GetHashCode());
-        weights = GlobalVariables.value.Weights;
-        maxTaskPoints = GlobalVariables.value.MaxTaskPoints;
+        weights = StartingValues.value.Weights;
+        maxTaskPoints = StartingValues.value.MaxTaskPoints;
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ public class RandomGeneration : ExecutableBehaviour
         List<Color> colors = BalancedRandomColors(num);
         for (int i = 0; i < num; i++)
         {
-            profiles.Add(RandomProfile(exp[i], prof[i], RandomTraits(GlobalVariables.value.totalTraits), colors[i]));
+            profiles.Add(RandomProfile(exp[i], prof[i], RandomTraits(StartingValues.value.totalTraits), colors[i]));
         }
 
         return profiles;
@@ -97,7 +97,7 @@ public class RandomGeneration : ExecutableBehaviour
     {
         if(list.Count > 0)
         {
-            return Mathf.CeilToInt(GlobalVariables.value.StudioExperienceTarget - AverageOfTiers(list));
+            return Mathf.CeilToInt(StartingValues.value.StudioExperienceTarget - AverageOfTiers(list));
         }
         return 0;
     }
@@ -163,10 +163,10 @@ public class RandomGeneration : ExecutableBehaviour
     private List<string> RandomNameAndHobby()
     {
         List<string> strings = new List<string>();
-        strings.Add(DataValues.FirstNames[Random.Range(0, DataValues.FirstNames.Count)]);
-        strings.Add(DataValues.LastNames[Random.Range(0, DataValues.LastNames.Count)]);
-        strings.Add(DataValues.Nicknames[Random.Range(0, DataValues.Nicknames.Count)]);
-        strings.Add(DataValues.Hobbies[Random.Range(0, DataValues.Hobbies.Count)]);
+        strings.Add(CodeValues.FirstNames[Random.Range(0, CodeValues.FirstNames.Count)]);
+        strings.Add(CodeValues.LastNames[Random.Range(0, CodeValues.LastNames.Count)]);
+        strings.Add(CodeValues.Nicknames[Random.Range(0, CodeValues.Nicknames.Count)]);
+        strings.Add(CodeValues.Hobbies[Random.Range(0, CodeValues.Hobbies.Count)]);
         return strings;
     }
 
@@ -178,7 +178,7 @@ public class RandomGeneration : ExecutableBehaviour
     {
         get
         {
-            return GlobalVariables.value.characterColours.Evaluate(Random.Range(0f, 1f));
+            return StartingValues.value.characterColours.Evaluate(Random.Range(0f, 1f));
         }
     }
 
@@ -193,7 +193,7 @@ public class RandomGeneration : ExecutableBehaviour
         List<Color> colors = new List<Color>();
         for(int i = 0; i < num; i++)
         {
-            colors.Add(GlobalVariables.value.characterColours.Evaluate(Random.Range(r * i, r * (i + 1))));
+            colors.Add(StartingValues.value.characterColours.Evaluate(Random.Range(r * i, r * (i + 1))));
         }
 
         return colors;
@@ -207,7 +207,7 @@ public class RandomGeneration : ExecutableBehaviour
     /// <returns></returns>
     private Profession RandomProfessionOftype(TaskType type)
     {
-        List<Profession> professions = GlobalVariables.value.allProfessions;
+        List<Profession> professions = StartingValues.value.allProfessions;
         bool selected = false;
         int i = 0;
 
@@ -230,10 +230,10 @@ public class RandomGeneration : ExecutableBehaviour
     /// <returns></returns>
     private List<Trait> RandomTraits(int total)
     {
-        List<Trait> traits = GlobalVariables.value.allTraits;
+        List<Trait> traits = StartingValues.value.allTraits;
         List<Trait> selectedTraits = new List<Trait>();
         int i = 0;
-        while(selectedTraits.Count < GlobalVariables.value.totalTraits)
+        while(selectedTraits.Count < StartingValues.value.totalTraits)
         {
             i = Random.Range(0, traits.Count);
             if (!selectedTraits.Contains(traits[i]))

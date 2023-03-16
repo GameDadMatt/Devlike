@@ -39,7 +39,7 @@ public class StudioProject : ExecutableBehaviour
     private void GenerateProjectScope()
     {
         //Set the project scope
-        ProjectScope = Mathf.CeilToInt((GlobalVariables.value.StudioSize * GlobalVariables.value.PointsPerDay) * DesiredProjectDays);
+        ProjectScope = Mathf.CeilToInt((StartingValues.value.StudioSize * StartingValues.value.PointsPerDay) * DesiredProjectDays);
         List<TaskList> projectScope = RandomGeneration.instance.RandomProjectScope(ProjectScope);
         ArtTasks = projectScope[0];
         ArtTasks.GenerateTaskFromPoints(TaskType.Art, 20);

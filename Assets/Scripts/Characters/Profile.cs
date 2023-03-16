@@ -120,7 +120,7 @@ namespace Devlike.Characters
         /// <returns></returns>
         private float TierLowToHigh(Tier tier)
         {
-            return GlobalVariables.value.LowToHighBaseValue * ((int)tier + 1);
+            return StartingValues.value.LowToHighBaseValue * ((int)tier + 1);
         }
 
         /// <summary>
@@ -130,12 +130,12 @@ namespace Devlike.Characters
         /// <returns></returns>
         private float TierHighToLow(Tier tier)
         {
-            return GlobalVariables.value.HighToLowBaseValue / ((int)tier + 1);
+            return StartingValues.value.HighToLowBaseValue / ((int)tier + 1);
         }
 
         private int TierDayMod(Tier tier)
         {
-            return GlobalVariables.value.DayModifierBase + (int)tier;
+            return StartingValues.value.DayModifierBase + (int)tier;
         }
 
         private Tier ConfidenceAverage(Tier tier)

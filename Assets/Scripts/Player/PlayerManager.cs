@@ -27,11 +27,11 @@ namespace Devlike.Player
             Object = obj;
             if (randTime)
             {
-                TotalTicks = Random.Range(minHours, maxHours + 1) * GlobalVariables.value.TicksPerHour;
+                TotalTicks = Random.Range(minHours, maxHours + 1) * StartingValues.value.TicksPerHour;
             }
             else
             {
-                TotalTicks = maxHours * GlobalVariables.value.TicksPerHour;
+                TotalTicks = maxHours * StartingValues.value.TicksPerHour;
             }
         }
 

@@ -30,7 +30,7 @@ namespace Devlike.Tasks
 
         private float BugChanceFromTier(Tier tier)
         {
-            float bugChance = GlobalVariables.value.BaseBugChance;
+            float bugChance = StartingValues.value.BaseBugChance;
             return bugChance * (int)tier;
         }
 

@@ -33,25 +33,25 @@ namespace Devlike.UI
             Task = task;
             if(Task.Importance == TaskImportance.Bug)
             {
-                frame.color = GlobalVariables.value.bugBorderColor;
+                frame.color = StartingValues.value.bugBorderColor;
             }
             else
             {
-                frame.color = GlobalVariables.value.taskBorderColor;
+                frame.color = StartingValues.value.taskBorderColor;
             }
 
             switch (Task.Type)
             {
                 case TaskType.Art:
-                    background.color = GlobalVariables.value.artTaskColor;
+                    background.color = StartingValues.value.artTaskColor;
                     tmpro.SetText("ART");
                     break;
                 case TaskType.Engineering:
-                    background.color = GlobalVariables.value.engineeringTaskColor;
+                    background.color = StartingValues.value.engineeringTaskColor;
                     tmpro.SetText("ENGINEERING");
                     break;
                 case TaskType.Design:
-                    background.color = GlobalVariables.value.designTaskColor;
+                    background.color = StartingValues.value.designTaskColor;
                     tmpro.SetText("DESIGN");
                     break;
             }

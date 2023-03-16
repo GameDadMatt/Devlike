@@ -24,6 +24,7 @@ namespace Devlike
             //Do Nothing
         }
 
+        #region Player
         //Listen for and send events relacting to a player action
         public event Action<PlayerAction> OnPlayerAction;
         public void PlayerAction(PlayerAction action)
@@ -63,11 +64,24 @@ namespace Devlike
         {
             OnCharacterInteract?.Invoke(character);
         }
+        #endregion
 
+        #region Game
         public event Action<GameState> OnChangeGameState;
         public void ChangeGameState(GameState state)
         {
             OnChangeGameState?.Invoke(state);
         }
+
+        public event Action OnTick;
+        public void Tick()
+        {
+            OnTick?.Invoke();
+        }
+        #endregion
+
+        #region UI
+
+        #endregion
     }
 }

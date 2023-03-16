@@ -10,19 +10,9 @@ using Devlike.UI;
 /// </summary>
 public class StudioManager : ExecutableBehaviour
 {
-    public static StudioManager instance;
-
     [SerializeField]
     private GameObject characterPrefab;
     public List<Character> Characters { get; private set; } = new List<Character>();
-
-    public void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-        }
-    }
 
     protected override void OnStart()
     {
@@ -31,8 +21,8 @@ public class StudioManager : ExecutableBehaviour
 
     public void SpawnCharacters()
     {
-        List<Profile> profiles = RandomGeneration.instance.RandomProfiles(GlobalVariables.value.StudioSize);
-        for (int i = 0; i < GlobalVariables.value.StudioSize; i++)
+        List<Profile> profiles = RandomGeneration.instance.RandomProfiles(StartingValues.value.StudioSize);
+        for (int i = 0; i < StartingValues.value.StudioSize; i++)
         {
             GameObject newchar = Instantiate(characterPrefab);
             newchar.transform.position = InteractableManager.instance.Home.thing.transform.position;

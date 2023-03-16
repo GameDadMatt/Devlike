@@ -7,7 +7,9 @@ public class GameManager : ExecutableBehaviour
 {
     public static GameManager instance;
 
-    public GameState State { get { return TimeManager.instance.State; } }
+    public GameState State { get; set; }
+    public int CurrentTick { get; set; }
+
 
     public void Awake()
     {

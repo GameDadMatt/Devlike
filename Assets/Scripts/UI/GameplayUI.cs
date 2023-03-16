@@ -9,7 +9,6 @@ namespace Devlike.UI
 {
     public class GameplayUI : ExecutableBehaviour
     {
-        public static GameplayUI instance;
 
         [SerializeField]
         private TextMeshProUGUI week;
@@ -20,18 +19,13 @@ namespace Devlike.UI
         private List<ProgressButton> topButtons = new List<ProgressButton>();
         private List<ProgressButtonCharacter> characterButtons = new List<ProgressButtonCharacter>();
 
-        private void Awake()
-        {
-            if(instance == null)
-            {
-                instance = this;
-            }
-        }
-
         protected override void OnStart()
         {
-            TimeManager.instance.OnTick += GameStateChange;
+            EventManager.instance.OnTick += GameStateChange;
             EventManager.instance.OnCompletePlayerAction += ResetActionButtons;
+
+            SetWeek(GameValues.CurrentWeek);
+            SetTime(GameValues.CurrentDay.ToString(), GameValues.CurrentTime)
         }
 
         public void RegisterButton(object button)

@@ -32,9 +32,9 @@ namespace Devlike.Characters
         public MoodletType CurrentEmotion { get; private set; }
 
         //Days
-        public int WorkStart { get { return GlobalVariables.value.WorkStartTick + Profile.WorkStartMod; } }
-        public int WorkEnd { get { return GlobalVariables.value.WorkEndTick + Profile.WorkEndMod; } }
-        public int CurrentTickRef { get { return TimeManager.instance.CurrentTick; } }
+        public int WorkStart { get { return StartingValues.value.WorkStartTick + Profile.WorkStartMod; } }
+        public int WorkEnd { get { return StartingValues.value.WorkEndTick + Profile.WorkEndMod; } }
+        public int CurrentTickRef { get { return GameValues.CurrentTick; } }
         public CharacterState CurrentState { get; set; }
 
         //Position
@@ -49,25 +49,25 @@ namespace Devlike.Characters
         public DoingTracker Socl { get; private set; }
         public DoingTracker Rest { get; private set; }
 
-        public float RestBurnRate { get { return GlobalVariables.value.BaseRestBurn * Profile.RestDropMultiplier; } }
-        public float FoodBurnRate { get { return GlobalVariables.value.BaseFoodBurn * Profile.FoodDropMultiplier; } }
-        public float InspBurnRate { get { return GlobalVariables.value.BaseInspBurn * Profile.InspDropMultiplier; } }
-        public float SoclBurnRate { get { return GlobalVariables.value.BaseSoclBurn * Profile.SoclDropMultiplier; } }
+        public float RestBurnRate { get { return StartingValues.value.BaseRestBurn * Profile.RestDropMultiplier; } }
+        public float FoodBurnRate { get { return StartingValues.value.BaseFoodBurn * Profile.FoodDropMultiplier; } }
+        public float InspBurnRate { get { return StartingValues.value.BaseInspBurn * Profile.InspDropMultiplier; } }
+        public float SoclBurnRate { get { return StartingValues.value.BaseSoclBurn * Profile.SoclDropMultiplier; } }
 
         //Moods
         public float MoodImpact { get; private set; } = 0f;
-        private float MoodImpactBurn { get { return GlobalVariables.value.MoodImpactBurn; } }
+        private float MoodImpactBurn { get { return StartingValues.value.MoodImpactBurn; } }
 
         //Velocity
-        public float Velocity { get { return (GlobalVariables.value.BaseVelocity * Profile.VelocityMultiplier) * CappedMoodImpact; } }
-        public float BugChance { get { return (GlobalVariables.value.BaseBugChance * Profile.BugChanceMultiplier) * (GlobalVariables.value.moodImpactMax - CappedMoodImpact); } }
+        public float Velocity { get { return (StartingValues.value.BaseVelocity * Profile.VelocityMultiplier) * CappedMoodImpact; } }
+        public float BugChance { get { return (StartingValues.value.BaseBugChance * Profile.BugChanceMultiplier) * (StartingValues.value.moodImpactMax - CappedMoodImpact); } }
 
         private void Awake()
         {
-            Food = new(DoingType.Food, 1f, GlobalVariables.value.NeedThreshold);
-            Insp = new(DoingType.Inspiration, 1f, GlobalVariables.value.NeedThreshold);
-            Socl = new(DoingType.Social, 1f, GlobalVariables.value.NeedThreshold);
-            Rest = new(DoingType.Rest, 1f, GlobalVariables.value.NeedThreshold);
+            Food = new(DoingType.Food, 1f, StartingValues.value.NeedThreshold);
+            Insp = new(DoingType.Inspiration, 1f, StartingValues.value.NeedThreshold);
+            Socl = new(DoingType.Social, 1f, StartingValues.value.NeedThreshold);
+            Rest = new(DoingType.Rest, 1f, StartingValues.value.NeedThreshold);
         }
 
 
@@ -187,13 +187,13 @@ namespace Devlike.Characters
         {
             get
             {
-                if(Mood > GlobalVariables.value.moodImpactMax)
+                if(Mood > StartingValues.value.moodImpactMax)
                 {
-                    return GlobalVariables.value.moodImpactMax;
+                    return StartingValues.value.moodImpactMax;
                 }
-                else if(Mood < GlobalVariables.value.moodImpactMin)
+                else if(Mood < StartingValues.value.moodImpactMin)
                 {
-                    return GlobalVariables.value.moodImpactMin;
+                    return StartingValues.value.moodImpactMin;
                 }
                 else
                 {

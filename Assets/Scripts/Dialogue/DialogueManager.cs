@@ -7,8 +7,6 @@ namespace Devlike.Characters
 {
     public class DialogueManager : ExecutableBehaviour
     {
-        public static DialogueManager instance;
-
         private DialogueRunner dialogueRunner;
 
         public bool DialogueRunning { get; private set; } = false;
@@ -17,11 +15,6 @@ namespace Devlike.Characters
 
         private void Awake()
         {
-            if (instance == null)
-            {
-                instance = this;
-            }
-
             dialogueRunner = GetComponent<DialogueRunner>();
             dialogueRunner.onDialogueComplete.AddListener(EndConversation);
         }
@@ -61,7 +54,7 @@ namespace Devlike.Characters
         {
             get
             {
-                return new DialogueContainer(GlobalVariables.value.allDialogues[0]); //Dialogue[0] should always be the default dialogue
+                return new DialogueContainer(StartingValues.value.allDialogues[0]); //Dialogue[0] should always be the default dialogue
             }
         }
 
