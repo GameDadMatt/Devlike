@@ -132,7 +132,7 @@ public class StartingValues : ExecutableBehaviour
         }
     }
 
-    protected override void OnStart()
+    protected override void SetProperties()
     {
         //Load the contents of DataValues
         CodeValues.LoadLists();

@@ -19,11 +19,6 @@ namespace Devlike
             }
         }
 
-        protected override void OnStart()
-        {
-            //Do Nothing
-        }
-
         #region Player
         //Listen for and send events relacting to a player action
         public event Action<PlayerAction> OnPlayerAction;
@@ -64,6 +59,12 @@ namespace Devlike
         {
             OnCharacterInteract?.Invoke(character);
         }
+
+        public event Action<Character> OnCharacterSelect;
+        public void CharacterSelect(Character click)
+        {
+            OnCharacterSelect?.Invoke(click);
+        }
         #endregion
 
         #region Game
@@ -78,10 +79,26 @@ namespace Devlike
         {
             OnTick?.Invoke();
         }
+
+        public event Action OnSetCharacters;
+        public void SetCharacters()
+        {
+            OnSetCharacters?.Invoke();
+        }
+
+        public event Action<InteractPosition> OnRegisterInteractable;
+        public void RegisterInteractable(InteractPosition position)
+        {
+            OnRegisterInteractable?.Invoke(position);
+        }
         #endregion
 
         #region UI
-
+        public event Action<object> OnRegisterButton;
+        public void RegisterButton(object button)
+        {
+            OnRegisterButton?.Invoke(button);
+        }
         #endregion
     }
 }

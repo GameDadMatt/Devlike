@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1614124542255639271}
   - component: {fileID: 1614124542255639270}
   - component: {fileID: 1614124542255639275}
-  - component: {fileID: 7121251513092024995}
   - component: {fileID: 1614124542255639274}
   m_Layer: 0
   m_Name: Character
@@ -118,18 +117,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1614124543844919095}
   moodlet: {fileID: 6388885449606378824}
---- !u!114 &7121251513092024995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614124542255639269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca8ee074ee41ef04b9604ec45e28ff10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1614124542255639274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadGroup: 0
+  RequiredScripts: []
   type: 3
 --- !u!1 &1614124542942725618
 GameObject:
@@ -308,6 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84944cde5ad09a24da79ad9b796a6f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadGroup: 0
+  RequiredScripts: []
   type: 3
 --- !u!1 &1614124543844919093
 GameObject:

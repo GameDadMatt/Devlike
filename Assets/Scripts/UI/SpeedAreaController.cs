@@ -21,21 +21,21 @@ namespace Devlike.UI
         private Sprite playSprite;
         [SerializeField]
         private Sprite fastSprite;
-        private GameState storedState = GameState.Paused;
+        private GameState lastState = GameState.Paused;
 
         private void Start()
         {
-            GameplayUI.instance.RegisterButton(pauseButton);
-            GameplayUI.instance.RegisterButton(playButton);
-            GameplayUI.instance.RegisterButton(fastButton);
+            EventManager.instance.RegisterButton(pauseButton);
+            EventManager.instance.RegisterButton(playButton);
+            EventManager.instance.RegisterButton(fastButton);
         }
 
         public void Update()
         {
-            if(storedState != GameManager.instance.State)
+            if(lastState != GameValues.CurrentState)
             {
-                storedState = GameManager.instance.State;
-                switch (storedState)
+                lastState = GameValues.CurrentState;
+                switch (lastState)
                 {
                     case GameState.Paused:
                         pauseButton.interactable = false;

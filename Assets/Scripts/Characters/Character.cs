@@ -75,11 +75,10 @@ namespace Devlike.Characters
         {
             Profile = profile;
             spriteRenderer.material.color = Profile.Color;
-            TimeManager.instance.OnTick += Tick;
+            EventManager.instance.OnTick += Tick;
             Desk = InteractableManager.instance.ClaimWorkPosition();
             Home = InteractableManager.instance.Home;
             curInteract = Home;
-            GetComponent<UI.CharacterButton>().SetCharacter(this);
         }
 
         public void StartWork()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Devlike.Characters;
+using Devlike;
 
 public class DevOutput : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class DevOutput : MonoBehaviour
     private bool selected = false;
     public TextMeshProUGUI output;
 
-    public void Start()
+    public void OnEnable()
     {
-        GameManager.instance.OnCharacterSelect += SelectCharacter;
+        EventManager.instance.OnCharacterSelect += SelectCharacter;
     }
 
     public void SelectCharacter(Character click)

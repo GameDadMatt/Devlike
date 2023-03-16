@@ -9,23 +9,28 @@ namespace Devlike.UI
 {
     public class GameplayUI : ExecutableBehaviour
     {
-
         [SerializeField]
         private TextMeshProUGUI week;
         [SerializeField]
         private TextMeshProUGUI dayHour;
 
+        private GameState lastState = GameState.Normal;
         private List<Button> otherButtons = new List<Button>();
         private List<ProgressButton> topButtons = new List<ProgressButton>();
         private List<ProgressButtonCharacter> characterButtons = new List<ProgressButtonCharacter>();
 
-        protected override void OnStart()
+        protected override void SetListeners()
         {
-            EventManager.instance.OnTick += GameStateChange;
+            EventManager.instance.OnTick += GameTick;
             EventManager.instance.OnCompletePlayerAction += ResetActionButtons;
+            EventManager.instance.OnSetCharacters += GenerateCharacterButtons;
+            EventManager.instance.OnRegisterButton += RegisterButton;
+        }
 
+        protected override void Launch()
+        {
             SetWeek(GameValues.CurrentWeek);
-            SetTime(GameValues.CurrentDay.ToString(), GameValues.CurrentTime)
+            SetTime(GameValues.CurrentDay.ToString(), GameValues.CurrentTime);
         }
 
         public void RegisterButton(object button)
@@ -52,41 +57,53 @@ namespace Devlike.UI
 
         public void GenerateCharacterButtons()
         {
-            for(int i = 0; i < StudioManager.instance.Characters.Count; i++)
+            Debug.Log(characterButtons.Count + " Buttons");
+            for(int i = 0; i < GameValues.Characters.Count; i++)
             {
-                characterButtons[i].character = StudioManager.instance.Characters[i];
+                characterButtons[i].character = GameValues.Characters[i];
                 characterButtons[i].GenerateButton();
             }
         }
 
-        private void GameStateChange()
+        private void GameTick()
         {
-            //Change the interactivity off by default if we're interacting or paused
-            if(GameManager.instance.State == GameState.Interacting || GameManager.instance.State == GameState.Paused)
+            if(GameValues.CurrentState != lastState)
             {
-                ChangeOtherInteractivity(false);
-                ChangePlayerInteractivity(false);
-                ChangeCharacterInteractivity(false);
-            }
-            else if(GameManager.instance.State == GameState.Fast)
-            {
-                ChangeOtherInteractivity(true);
-                //Only allow the player buttons at the top to be interactable if there are characters active
-                if (StudioManager.instance.CharactersActive)
+                lastState = GameValues.CurrentState;
+
+                //Change the interactivity off by default if we're interacting or paused
+                if (lastState == GameState.Interacting || lastState == GameState.Paused)
                 {
-                    ChangePlayerInteractivity(true);
+                    ChangeOtherInteractivity(false);
+                    ChangePlayerInteractivity(false);
+                    ChangeCharacterInteractivity(false);
+                }
+                else if (lastState == GameState.Fast)
+                {
+                    ChangeOtherInteractivity(true);
+                    //Only allow the player buttons at the top to be interactable if there are characters active
+                    if (GameValues.CharactersActive)
+                    {
+                        ChangePlayerInteractivity(true);
+                    }
+                    else
+                    {
+                        ChangePlayerInteractivity(false);
+                    }
                 }
                 else
                 {
-                    ChangePlayerInteractivity(false);
+                    //The game is running at normal speed, so make buttons interactive
+                    //We let characters change themselves as appropriate in ProgressButtonCharacter
+                    ChangeOtherInteractivity(true);
+                    ChangePlayerInteractivity(true);
                 }
             }
-            else
+            
+            if(lastState != GameState.Interacting && lastState != GameState.Paused)
             {
-                //The game is running at normal speed, so make buttons interactive
-                //We let characters change themselves as appropriate in ProgressButtonCharacter
-                ChangeOtherInteractivity(true);
-                ChangePlayerInteractivity(true);
+                SetWeek(GameValues.CurrentWeek);
+                SetTime(GameValues.CurrentDay.ToString(), GameValues.CurrentTime);
             }
         }
 

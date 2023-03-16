@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public enum LoadGroup { Essential, Early, Late }
+public enum LaunchStep { SetListeners, SetProperties, RegisterObjects, Launch, AfterDelay }
 
 //Unity sucks, so we have this instead of using the Script Execution Order
 public class ScriptExecutionGroup : MonoBehaviour
 {
     public static ScriptExecutionGroup instance;
 
-    private int loading = 0;
-    private List<UnityEngine.Object> reportedScripts = new List<UnityEngine.Object>();
-    private List<UnityEngine.Object> launchedScripts = new List<UnityEngine.Object>();
+    private int registered = 0;
 
     private void Awake()
     {
@@ -24,52 +22,28 @@ public class ScriptExecutionGroup : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LaunchGroups());
+        StartCoroutine(ExecuteSteps());
     }
 
-    public event Action<LoadGroup> OnGroupReady;
-    public void Register(UnityEngine.Object script)
+    public event Action<LaunchStep> OnLaunchStep;
+    public void Register()
     {
-        reportedScripts.Add(script);
+        registered++;
     }
 
-    public void Launched(UnityEngine.Object script)
+    private IEnumerator ExecuteSteps()
     {
-        launchedScripts.Add(script);
-    }
+        yield return new WaitForSeconds(0.1f);
 
-    private IEnumerator LaunchGroups()
-    {
-        while (RegisteredObjects < WaitingObjects)
+        while (registered < WaitingObjects)
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(0.1f);
         }
 
-        //If everything is registered and waiting, we can go
-        for (loading = 0; loading <= (int)LoadGroup.Late; loading++)
+        for(int i = 0; i < (int)LaunchStep.AfterDelay +1; i++)
         {
-            yield return new WaitForEndOfFrame();
-            OnGroupReady?.Invoke((LoadGroup)loading);
-        }
-    }
-
-    public bool TypeIsLaunched(Type type)
-    {
-        foreach(UnityEngine.Object obj in launchedScripts)
-        {
-            if(obj.GetType() == type)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private int RegisteredObjects
-    {
-        get
-        {
-            return reportedScripts.Count;
+            OnLaunchStep?.Invoke((LaunchStep)i);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -77,7 +51,7 @@ public class ScriptExecutionGroup : MonoBehaviour
     {
         get
         {
-            return OnGroupReady.GetInvocationList().Length;
+            return OnLaunchStep.GetInvocationList().Length;
         }
     }
 }

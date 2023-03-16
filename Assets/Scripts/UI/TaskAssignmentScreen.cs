@@ -59,17 +59,17 @@ namespace Devlike.UI
 
         private void DrawCharacterColumns()
         {
-            characterColumnArea.sizeDelta = new Vector2(columnWidth * StudioManager.instance.Characters.Count, characterColumnArea.rect.height);
+            characterColumnArea.sizeDelta = new Vector2(columnWidth * GameValues.Characters.Count, characterColumnArea.rect.height);
             List<TaskColumn> containers = backlogColumns;            
 
-            for (int i = 0; i < StudioManager.instance.Characters.Count; i++)
+            for (int i = 0; i < GameValues.Characters.Count; i++)
             {
                 //If this character exists
-                if(StudioManager.instance.Characters.Count > i)
+                if(GameValues.Characters.Count > i)
                 {
                     GameObject columnObj = Instantiate(characterColumnPrefab, characterColumnArea);
                     TaskColumn taskColumn = columnObj.GetComponent<TaskColumn>();
-                    Character owner = StudioManager.instance.Characters[i];
+                    Character owner = GameValues.Characters[i];
                     taskColumn.CharacterColumn(owner);
                     containers.Add(taskColumn);
                     //SPAWN IN ALL THE TASKS FROM THIS CHARACTER

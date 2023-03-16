@@ -11,22 +11,18 @@ namespace Devlike.Characters
 
         public bool DialogueRunning { get; private set; } = false;
         private static Character activeCharacter;
-        private GameState prevState = GameState.Normal;
+        private GameState lastState = GameState.Normal;
 
-        private void Awake()
+        protected override void SetListeners()
         {
+            EventManager.instance.OnCharacterInteract += StartConversation;
             dialogueRunner = GetComponent<DialogueRunner>();
             dialogueRunner.onDialogueComplete.AddListener(EndConversation);
         }
 
-        protected override void OnStart()
-        {
-            EventManager.instance.OnCharacterInteract += StartConversation;
-        }
-
         private void StartConversation(Character character)
         {
-            if(GameManager.instance.State != GameState.Interacting && GameManager.instance.State != GameState.Paused)
+            if(GameValues.CurrentState != GameState.Interacting && GameValues.CurrentState != GameState.Paused)
             {
                 if (!DialogueRunning)
                 {
@@ -34,7 +30,7 @@ namespace Devlike.Characters
                     Debug.Log("Started conversation with " + activeCharacter.Profile.FullName);
                     dialogueRunner.StartDialogue(activeCharacter.CurrentDialogue.CurrentStartNode);
                     DialogueRunning = true;
-                    prevState = GameManager.instance.State;
+                    lastState = GameValues.CurrentState;
                     EventManager.instance.ChangeGameState(GameState.Interacting);
                 }
             }
@@ -45,7 +41,7 @@ namespace Devlike.Characters
             Debug.Log("Ended conversation with " + activeCharacter.Profile.FullName);
             DialogueRunning = false;
             //Return to the previous game state
-            EventManager.instance.ChangeGameState(prevState);
+            EventManager.instance.ChangeGameState(lastState);
             //Complete the event
             EventManager.instance.CompletePlayerAction();
         }

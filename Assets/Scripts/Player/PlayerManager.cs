@@ -52,9 +52,9 @@ namespace Devlike.Player
         public int forteStat = 10;
         public int empathyStat = 10;
 
-        protected override void OnStart()
+        protected override void SetListeners()
         {
-            TimeManager.instance.OnTick += TickAction;
+            EventManager.instance.OnTick += TickAction;
             EventManager.instance.OnPlayerAction += StartAction;
             EventManager.instance.OnCompletePlayerAction += CompleteAction;
         }

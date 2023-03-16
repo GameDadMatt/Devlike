@@ -18,20 +18,19 @@ namespace Devlike.Timing
 
         private float seconds = 0f;
         [SerializeField]
-        private GameState state = GameState.Paused;
-        private Day CurrentDay { get { return (Day)GameValues.CurrentDay; } }
+        private GameState lastState = GameState.Paused;
 
-        protected override void OnStart()
+        protected override void SetListeners()
         {
             GameValues.CurrentDayInt = 1;
             EventManager.instance.OnChangeGameState += UpdateSpeed;
-            GameManager.instance.State = state;
+            GameValues.CurrentState = lastState; //Set the starting state
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (state != GameState.Paused && state != GameState.Interacting)
+            if (lastState != GameState.Paused && lastState != GameState.Interacting)
             {
                 seconds += Time.deltaTime;
                 if (seconds >= TickLength)
@@ -55,10 +54,10 @@ namespace Devlike.Timing
 
         private void UpdateSpeed(GameState state)
         {
-            if(state != this.state)
+            if(state != this.lastState)
             {
-                this.state = state;
-                GameManager.instance.State = state; //Update the Game Manager state
+                this.lastState = state;
+                GameValues.CurrentState = state; //Update the Game Manager state
             }            
         }
 
@@ -66,25 +65,24 @@ namespace Devlike.Timing
         {
             BehaviorManager.instance.Tick();
 
-            currentTick++;
+            GameValues.CurrentTick++;
 
-            GameplayUI.instance.SetTime(CurrentDay.ToString(), DisplayTime);
             UpdateLighting();
 
             //Change the speed if characters are or are not active
-            if (!StudioManager.instance.CharactersActive && state == GameState.Normal)
+            if (!GameValues.CharactersActive && lastState == GameState.Normal)
             {
                 EventManager.instance.ChangeGameState(GameState.Fast);
             }
-            else if(StudioManager.instance.CharactersActive && state == GameState.Fast)
+            else if(GameValues.CharactersActive && lastState == GameState.Fast)
             {
                 EventManager.instance.ChangeGameState(GameState.Normal);
             }
 
             //Check if the day has ended
-            if (currentTick > StartingValues.value.DayEndTick)
+            if (GameValues.CurrentTick > StartingValues.value.DayEndTick)
             {
-                currentTick = 0;
+                GameValues.CurrentTick = 0;
                 NextDay();
             }
 
@@ -94,12 +92,11 @@ namespace Devlike.Timing
 
         private void NextDay()
         {
-            currentDay++;
-            if(currentDay > 6)
+            GameValues.CurrentDayInt++;
+            if(GameValues.CurrentDayInt > 6)
             {
-                currentWeek++;
-                GameplayUI.instance.SetWeek(currentWeek);
-                currentDay = 0;
+                GameValues.CurrentWeek++;
+                GameValues.CurrentDayInt = 0;
             }
         }
 
@@ -107,11 +104,11 @@ namespace Devlike.Timing
         {
             get
             {
-                if(state == GameState.Normal)
+                if(lastState == GameState.Normal)
                 {
                     return StartingValues.value.TickLength;
                 }
-                else if (state == GameState.Fast)
+                else if (lastState == GameState.Fast)
                 {
                     return StartingValues.value.IdleTickLength;
                 }
@@ -126,7 +123,7 @@ namespace Devlike.Timing
         {
             get
             {
-                float percent = (float)currentTick / (float)StartingValues.value.DayEndTick;
+                float percent = (float)GameValues.CurrentTick / (float)StartingValues.value.DayEndTick;
                 return percent;
             }
         }

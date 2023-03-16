@@ -20,15 +20,15 @@ namespace Devlike.UI
         protected Button button;
         protected PlayerAction action;
 
-        private void Awake()
+        protected override void SetListeners()
         {
+            EventManager.instance.OnTick += UpdateProgress;
             progressBar.fillAmount = 0f;
         }
 
-        protected override void OnStart()
+        protected override void RegisterObjects()
         {
-            TimeManager.instance.OnTick += UpdateProgress;
-            GameplayUI.instance.RegisterButton(this);
+            EventManager.instance.RegisterButton(this);
         }
 
         public virtual void GenerateButton()

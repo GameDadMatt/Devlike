@@ -26,7 +26,7 @@ public class RandomGeneration : ExecutableBehaviour
         }
     }
 
-    protected override void OnStart()
+    protected override void SetProperties()
     {
         Random.InitState(seed.GetHashCode());
         weights = StartingValues.value.Weights;

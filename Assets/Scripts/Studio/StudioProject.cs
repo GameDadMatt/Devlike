@@ -31,7 +31,7 @@ public class StudioProject : ExecutableBehaviour
         }
     }
 
-    protected override void OnStart()
+    protected override void SetProperties()
     {
         GenerateProjectScope();
     }

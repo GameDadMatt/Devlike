@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Devlike.Characters;
+using Devlike;
 
 public class NPCInteractable
 {
@@ -21,37 +22,39 @@ public class NPCInteractable
 
 public class InteractableManager : ExecutableBehaviour
 {
+    //InteractableManager still needs to be a singleton for easy access from the BehaviourTree
     public static InteractableManager instance;
 
     private int posIDs = 1;
-    private List<NPCInteractable> interactables = new List<NPCInteractable>();
-    public NPCInteractable Home { get; private set; }
+    [SerializeField]
+    public GameObject homePosition;
+    public List<NPCInteractable> Interactables { get; private set; } = new List<NPCInteractable>();
+    public NPCInteractable Home { get { return new NPCInteractable(0, DoingType.Home, homePosition); } }
 
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
-        }        
+        }
     }
 
-    protected override void OnStart()
+    protected override void SetListeners()
     {
-        //Do nothing
+        EventManager.instance.OnRegisterInteractable += RegisterInteractable;
     }
 
-    public void RegisterInteractable(RegisterInteractPosition ip)
+    public void RegisterInteractable(InteractPosition ip)
     {
         NPCInteractable pos = new NPCInteractable(posIDs, ip.type, ip.gameObject);
         if (ip.type != DoingType.Home)
         {
-            interactables.Add(pos);
+            Interactables.Add(pos);
             posIDs++;
         }
         else
         {
-            pos.id = 0;
-            Home = pos;
+            Debug.LogError("Home is already assigned");
         }
     }
 
@@ -65,7 +68,7 @@ public class InteractableManager : ExecutableBehaviour
     public NPCInteractable RandomPosOfType(DoingType type)
     {
         List<NPCInteractable> ps = new List<NPCInteractable>();
-        foreach(NPCInteractable p in interactables)
+        foreach(NPCInteractable p in Interactables)
         {
             if(p.type == type && !p.inUse)
             {
