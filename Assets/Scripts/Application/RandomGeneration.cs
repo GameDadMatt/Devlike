@@ -24,6 +24,10 @@ public class RandomGeneration : ExecutableBehaviour
         {
             instance = this;
         }
+        else
+        {
+            Debug.LogWarning("Multiple copies of " + name + " detected");
+        }
     }
 
     protected override void SetProperties()

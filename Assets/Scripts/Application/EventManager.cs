@@ -17,6 +17,10 @@ namespace Devlike
             {
                 instance = this;
             }
+            else
+            {
+                Debug.LogWarning("Multiple copies of " + name + " detected");
+            }
         }
 
         #region Player

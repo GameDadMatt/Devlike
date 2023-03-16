@@ -18,6 +18,10 @@ public class ScriptExecutionGroup : MonoBehaviour
         {
             instance = this;
         }
+        else
+        {
+            Debug.LogWarning("Multiple copies of " + name + " detected");
+        }
     }
 
     private void Start()

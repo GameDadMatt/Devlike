@@ -12,6 +12,10 @@ public class GameManager : ExecutableBehaviour
         if(instance == null)
         {
             instance = this;
-        }        
+        }
+        else
+        {
+            Debug.LogWarning("Multiple copies of " + name + " detected");
+        }
     }
 }
