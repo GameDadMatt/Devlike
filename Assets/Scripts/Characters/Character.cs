@@ -76,6 +76,10 @@ namespace Devlike.Characters
             Profile = profile;
             spriteRenderer.material.color = Profile.Color;
             EventManager.instance.OnTick += Tick;
+        }
+
+        public void SetPositions()
+        {
             Desk = InteractableManager.instance.ClaimWorkPosition();
             Home = InteractableManager.instance.Home;
             curInteract = Home;

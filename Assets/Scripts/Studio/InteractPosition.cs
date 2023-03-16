@@ -10,6 +10,11 @@ public class InteractPosition : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.instance.RegisterInteractable(this);
+        InteractableManager.instance.OnGetInteractables += RegisterInteractable;
+    }
+
+    public void RegisterInteractable()
+    {
+        InteractableManager.instance.RegisterInteractable(this);
     }
 }

@@ -85,12 +85,6 @@ namespace Devlike
         {
             OnSetCharacters?.Invoke();
         }
-
-        public event Action<InteractPosition> OnRegisterInteractable;
-        public void RegisterInteractable(InteractPosition position)
-        {
-            OnRegisterInteractable?.Invoke(position);
-        }
         #endregion
 
         #region UI

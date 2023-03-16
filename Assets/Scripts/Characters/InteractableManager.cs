@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,19 +34,42 @@ public class InteractableManager : ExecutableBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("Multiple copies of " + name + " detected");
         }
     }
 
     protected override void SetListeners()
     {
-        EventManager.instance.OnRegisterInteractable += RegisterInteractable;
+        //Get the interactables after the characters have been set
+        EventManager.instance.OnSetCharacters += GetInteractables;
+    }
+
+    protected override void AfterDelay()
+    {
+        Debug.Log("Doing after delay " + GameValues.Characters.Count);
+        //Set character positions
+        foreach(Character character in GameValues.Characters)
+        {
+            character.SetPositions();
+        }
+    }
+
+    public event Action OnGetInteractables;
+    private void GetInteractables()
+    {
+        Debug.Log("Get interactables");
+        OnGetInteractables?.Invoke();
     }
 
     public void RegisterInteractable(InteractPosition ip)
     {
+        Debug.Log("Registering " + ip.type);
         NPCInteractable pos = new NPCInteractable(posIDs, ip.type, ip.gameObject);
         if (ip.type != DoingType.Home)
         {
@@ -78,7 +102,7 @@ public class InteractableManager : ExecutableBehaviour
 
         if(ps.Count > 1)
         {
-            int rand = Random.Range(0, ps.Count);
+            int rand = UnityEngine.Random.Range(0, ps.Count);
             return ps[rand];
         }
         else if(ps.Count == 1)

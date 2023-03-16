@@ -42,6 +42,7 @@ public class ScriptExecutionGroup : MonoBehaviour
 
         for(int i = 0; i < (int)LaunchStep.AfterDelay +1; i++)
         {
+            Debug.Log("Step " + i);
             OnLaunchStep?.Invoke((LaunchStep)i);
             yield return new WaitForSeconds(0.1f);
         }
