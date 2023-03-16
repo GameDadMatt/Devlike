@@ -8,7 +8,7 @@ using Devlike.Timing;
 
 namespace Devlike.UI
 {
-    public class ProgressButton : MonoBehaviour
+    public class ProgressButton : ExecutableBehaviour
     {
         [SerializeField]
         protected Image progressBar;
@@ -25,7 +25,7 @@ namespace Devlike.UI
             progressBar.fillAmount = 0f;
         }
 
-        public void OnEnable()
+        protected override void OnStart()
         {
             TimeManager.instance.OnTick += UpdateProgress;
             GameplayUI.instance.RegisterButton(this);

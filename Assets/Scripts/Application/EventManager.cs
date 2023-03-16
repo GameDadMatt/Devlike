@@ -7,18 +7,23 @@ using Devlike.Characters;
 
 namespace Devlike
 {
-    public class EventManager : MonoBehaviour
+    public class EventManager : ExecutableBehaviour
     {
         public static EventManager instance;
 
-        public void OnEnable()
+        public void Awake()
         {
             if (instance == null)
             {
                 instance = this;
             }
         }
-        
+
+        protected override void OnStart()
+        {
+            //Do Nothing
+        }
+
         //Listen for and send events relacting to a player action
         public event Action<PlayerAction> OnPlayerAction;
         public void PlayerAction(PlayerAction action)

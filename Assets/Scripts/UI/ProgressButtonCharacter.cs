@@ -25,19 +25,22 @@ namespace Devlike.UI
 
         private void Update()
         {
-            //Update this button internally based upon this logic
-            if(curState != character.CurrentState)
+            if(character != null)
             {
-                curState = character.CurrentState;
-                if(curState == CharacterState.Inactive && Interactable)
+                //Update this button internally based upon this logic
+                if (curState != character.CurrentState)
                 {
-                    Interactable = false;
+                    curState = character.CurrentState;
+                    if (curState == CharacterState.Inactive && Interactable)
+                    {
+                        Interactable = false;
+                    }
+                    else if (curState != CharacterState.Inactive && !Interactable)
+                    {
+                        Interactable = true;
+                    }
                 }
-                else if (curState != CharacterState.Inactive && !Interactable)
-                {
-                    Interactable = true;
-                }
-            }
+            }            
         }
 
         public override void PressButton()

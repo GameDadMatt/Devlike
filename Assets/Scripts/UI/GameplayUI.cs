@@ -7,7 +7,7 @@ using Devlike.Timing;
 
 namespace Devlike.UI
 {
-    public class GameplayUI : MonoBehaviour
+    public class GameplayUI : ExecutableBehaviour
     {
         public static GameplayUI instance;
 
@@ -28,7 +28,7 @@ namespace Devlike.UI
             }
         }
 
-        private void OnEnable()
+        protected override void OnStart()
         {
             TimeManager.instance.OnTick += GameStateChange;
             EventManager.instance.OnCompletePlayerAction += ResetActionButtons;

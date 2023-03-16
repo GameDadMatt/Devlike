@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 579d770a4826b7741b56cbc2c44d2d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadGroup: 1
   week: {fileID: 1451900717}
   dayHour: {fileID: 453793865}
 --- !u!1001 &292519423
@@ -1913,6 +1914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c7868006baed744a34f634d00a5408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadGroup: 0
 --- !u!1 &976585466
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ using Devlike.UI;
 /// <summary>
 /// Manages the studio, the project, and the characters
 /// </summary>
-public class StudioManager : MonoBehaviour
+public class StudioManager : ExecutableBehaviour
 {
     public static StudioManager instance;
 
@@ -24,7 +24,7 @@ public class StudioManager : MonoBehaviour
         }
     }
 
-    public void Start()
+    protected override void OnStart()
     {
         SpawnCharacters();
     }

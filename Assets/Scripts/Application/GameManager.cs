@@ -3,7 +3,7 @@ using UnityEngine;
 using Devlike.Characters;
 using Devlike.Timing;
 
-public class GameManager : MonoBehaviour
+public class GameManager : ExecutableBehaviour
 {
     public static GameManager instance;
 
@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }        
+    }
+
+    protected override void OnStart()
+    {
+        //Do nothing
     }
 
     public event Action<Character> OnCharacterSelect;

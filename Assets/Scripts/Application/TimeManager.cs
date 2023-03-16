@@ -7,7 +7,7 @@ using Devlike.UI;
 
 namespace Devlike.Timing
 {
-    public class TimeManager : MonoBehaviour
+    public class TimeManager : ExecutableBehaviour
     {
         public static TimeManager instance;
 
@@ -33,7 +33,7 @@ namespace Devlike.Timing
             }
         }
 
-        public void Start()
+        protected override void OnStart()
         {
             GameplayUI.instance.SetWeek(CurrentWeek);
             GameplayUI.instance.SetTime(CurrentDay.ToString(), DisplayTime);

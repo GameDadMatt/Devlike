@@ -5,7 +5,7 @@ using Yarn.Unity;
 
 namespace Devlike.Characters
 {
-    public class DialogueManager : MonoBehaviour
+    public class DialogueManager : ExecutableBehaviour
     {
         public static DialogueManager instance;
 
@@ -26,7 +26,7 @@ namespace Devlike.Characters
             dialogueRunner.onDialogueComplete.AddListener(EndConversation);
         }
 
-        private void Start()
+        protected override void OnStart()
         {
             EventManager.instance.OnCharacterInteract += StartConversation;
         }

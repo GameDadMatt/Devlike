@@ -8,7 +8,7 @@ using Devlike.Tasks;
 /// <summary>
 /// Variables to be tracked globally in the game
 /// </summary>
-public class GlobalVariables : MonoBehaviour
+public class GlobalVariables : ExecutableBehaviour
 {
     public static GlobalVariables value;
 
@@ -130,7 +130,10 @@ public class GlobalVariables : MonoBehaviour
         {
             value = this;
         }
+    }
 
+    protected override void OnStart()
+    {
         //Load the contents of DataValues
         DataValues.LoadLists();
         Debug.Log("Loaded Lists");

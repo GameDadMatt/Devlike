@@ -42,7 +42,7 @@ namespace Devlike.Player
         }
     }
 
-    public class PlayerManager : MonoBehaviour
+    public class PlayerManager : ExecutableBehaviour
     {
         private List<PlayerAction> activeActions = new List<PlayerAction>();
         private PlayerAction progressingAction = null;
@@ -52,9 +52,8 @@ namespace Devlike.Player
         public int forteStat = 10;
         public int empathyStat = 10;
 
-        public void Start()
+        protected override void OnStart()
         {
-
             TimeManager.instance.OnTick += TickAction;
             EventManager.instance.OnPlayerAction += StartAction;
             EventManager.instance.OnCompletePlayerAction += CompleteAction;

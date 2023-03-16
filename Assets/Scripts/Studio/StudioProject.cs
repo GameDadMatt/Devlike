@@ -6,7 +6,7 @@ using Devlike.Tasks;
 /// <summary>
 /// Sets up the project the studio will be undertaking, and tracks its completion
 /// </summary>
-public class StudioProject : MonoBehaviour
+public class StudioProject : ExecutableBehaviour
 {
     public static StudioProject instance;
 
@@ -31,7 +31,7 @@ public class StudioProject : MonoBehaviour
         }
     }
 
-    public void Start()
+    protected override void OnStart()
     {
         GenerateProjectScope();
     }

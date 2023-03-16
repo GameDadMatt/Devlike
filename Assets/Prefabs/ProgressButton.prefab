@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f1c46ce91f4d3468f5ce97e72698ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadGroup: 2
   progressBar: {fileID: 8958157978107664921}
   buttonText: {fileID: 8958157976171520112}
   actionContainer: {fileID: 11400000, guid: 02260c49c99e2194bb1bf78a4147abd0, type: 2}

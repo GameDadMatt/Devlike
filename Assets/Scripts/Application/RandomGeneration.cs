@@ -7,7 +7,7 @@ using Devlike.Tasks;
 /// <summary>
 /// Handles random generation of projects and characters
 /// </summary>
-public class RandomGeneration : MonoBehaviour
+public class RandomGeneration : ExecutableBehaviour
 {
     public static RandomGeneration instance;
 
@@ -24,7 +24,10 @@ public class RandomGeneration : MonoBehaviour
         {
             instance = this;
         }
+    }
 
+    protected override void OnStart()
+    {
         Random.InitState(seed.GetHashCode());
         weights = GlobalVariables.value.Weights;
         maxTaskPoints = GlobalVariables.value.MaxTaskPoints;

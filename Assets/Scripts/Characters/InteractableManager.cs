@@ -19,7 +19,7 @@ public class NPCInteractable
     }
 }
 
-public class InteractableManager : MonoBehaviour
+public class InteractableManager : ExecutableBehaviour
 {
     public static InteractableManager instance;
 
@@ -33,6 +33,11 @@ public class InteractableManager : MonoBehaviour
         {
             instance = this;
         }        
+    }
+
+    protected override void OnStart()
+    {
+        //Do nothing
     }
 
     public void RegisterInteractable(RegisterInteractPosition ip)

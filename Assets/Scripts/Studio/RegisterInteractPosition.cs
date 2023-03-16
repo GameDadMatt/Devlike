@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Devlike.Characters;
 
-public class RegisterInteractPosition : MonoBehaviour
+public class RegisterInteractPosition : ExecutableBehaviour
 {
     public DoingType type;
 
-    private void OnEnable()
+    protected override void OnStart()
     {
         InteractableManager.instance.RegisterInteractable(this);
     }
