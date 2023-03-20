@@ -30,7 +30,7 @@ public static class GameValues
             string ampm = "am";
             float h = Mathf.FloorToInt(HoursMinutes);
             float m = HoursMinutes % 1;
-            m = 60 * m;
+            m = Mathf.Round(60 * m);
             if (h > 12)
             {
                 h -= 12;
