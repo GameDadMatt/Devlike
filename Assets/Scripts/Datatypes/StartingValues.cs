@@ -28,6 +28,10 @@ public class StartingValues : ExecutableBehaviour
     private int dayEndHour = 24;
     [SerializeField]
     private int timeUnitTicks = 6;
+    [SerializeField]
+    private int minNeedRestoreTicks = 6;
+    [SerializeField]
+    private int maxNeedRestoreTicks = 12;
 
     public float TickLength { get { return tickLength; } private set { tickLength = value; } }
     public float IdleTickLength { get { return idleTickLength; } private set { idleTickLength = value; } }
@@ -36,6 +40,8 @@ public class StartingValues : ExecutableBehaviour
     public int WorkEndTick { get { return workEndHour * ticksPerHour; } }
     public int DayEndTick { get { return dayEndHour * ticksPerHour; } }
     private int WorkTicks { get { return WorkEndTick - WorkStartTick; } }
+    public int MinNeedTicks { get { return minNeedRestoreTicks; } }
+    public int MaxNeedTicks { get { return maxNeedRestoreTicks; } }
 
     //CHARACTER
     [Header("CHARACTERS")]
@@ -76,7 +82,6 @@ public class StartingValues : ExecutableBehaviour
     public float HighToLowBaseValue { get { return highToLowBaseValue; } }
     public int DayModifierBase { get { return dayModifierBase; } }
     public float TraitDaysMultiplier { get { return traitTicksMultiplier; } }
-    //public float NeedThreshold { get { return needThreshold; } }
     public float BaseFoodBurn { get { return foodBreaksPerDay / WorkTicks; } }
     public float BaseRestBurn { get { return restBreaksPerDay / WorkTicks; } }
     public float BaseInspBurn { get { return inspirationBreaksPerDay / WorkTicks; } }

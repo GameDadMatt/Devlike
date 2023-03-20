@@ -54,6 +54,8 @@ namespace Devlike.Characters
         public float InspBurnRate { get { return StartingValues.value.BaseInspBurn * Profile.InspDropMultiplier; } }
         public float SoclBurnRate { get { return StartingValues.value.BaseSoclBurn * Profile.SoclDropMultiplier; } }
 
+        public int RestoreTicks { get { return RandomGeneration.instance.RandomRestoreTime; } }
+
         //Moods
         public float MoodImpact { get; private set; } = 0f;
         private float MoodImpactBurn { get { return StartingValues.value.MoodImpactBurn; } }

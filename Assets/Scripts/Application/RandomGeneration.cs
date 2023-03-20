@@ -92,6 +92,14 @@ public class RandomGeneration : ExecutableBehaviour
         }
     }
 
+    public int RandomRestoreTime
+    {
+        get
+        {
+            return Random.Range(StartingValues.value.MinNeedTicks, StartingValues.value.MaxNeedTicks + 1);
+        }
+    }
+
     /// <summary>
     /// Rounds up from the average of a given list
     /// </summary>

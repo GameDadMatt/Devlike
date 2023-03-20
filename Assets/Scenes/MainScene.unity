@@ -2403,6 +2403,8 @@ MonoBehaviour:
   workEndHour: 17
   dayEndHour: 24
   timeUnitTicks: 6
+  minNeedRestoreTicks: 6
+  maxNeedRestoreTicks: 12
   totalTraits: 3
   moodletDisplayTicks: 4
   lowToHighBaseValue: 0.35
@@ -2480,7 +2482,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f65b973206df55845b57c157ab423672, type: 2}
   - {fileID: 11400000, guid: f9c361315bd1d5b4da69261c900370e0, type: 2}
   - {fileID: 11400000, guid: 7e306fc565db5fb46ae8f0bc835c682b, type: 2}
-  allMoodlets: []
+  allMoodlets:
+  - {fileID: 11400000, guid: 5fcf9fee7656d3d499bf8b2d7adfa6ec, type: 2}
+  - {fileID: 11400000, guid: acd6d64e371f69b4dabb4b2da6087207, type: 2}
+  - {fileID: 11400000, guid: 0260201bebcf961458e8a3106c93ce63, type: 2}
+  - {fileID: 11400000, guid: 733afc6bf05598245a5c148797924f25, type: 2}
+  - {fileID: 11400000, guid: 72a51fb30c76b20438b55f0580632b30, type: 2}
+  - {fileID: 11400000, guid: dd9f77e0b27f45b4697506dbe4019f8b, type: 2}
+  - {fileID: 11400000, guid: 1c55d5dd9635fbe459ba1ca47db45747, type: 2}
+  - {fileID: 11400000, guid: f8d7a2e26933db747858606c4b1eff5e, type: 2}
   maxWeeklyDramasPercent: 0.2
   allDialogues:
   - {fileID: 11400000, guid: f3b4f6882ded23d4187377a7c6014d41, type: 2}

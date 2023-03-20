@@ -69,7 +69,6 @@ public class InteractableManager : ExecutableBehaviour
 
     public void RegisterInteractable(InteractPosition ip)
     {
-        Debug.Log("Registering " + ip.type);
         NPCInteractable pos = new NPCInteractable(posIDs, ip.type, ip.gameObject);
         if (ip.type != DoingType.Home)
         {
