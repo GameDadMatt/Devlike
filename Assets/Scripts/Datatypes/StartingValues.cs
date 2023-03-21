@@ -68,6 +68,8 @@ public class StartingValues : ExecutableBehaviour
     [SerializeField]
     private float socialBreaksPerDay = 3f;
     [SerializeField]
+    private float baseAlignmentDriftPerDay = 0.1f;
+    [SerializeField]
     private float moodImpactDays = 2.5f;
     public float moodImpactMax = 1.5f;
     public float moodImpactMin = 0.1f;
@@ -86,6 +88,7 @@ public class StartingValues : ExecutableBehaviour
     public float BaseRestBurn { get { return restBreaksPerDay / WorkTicks; } }
     public float BaseInspBurn { get { return inspirationBreaksPerDay / WorkTicks; } }
     public float BaseSoclBurn { get { return socialBreaksPerDay / WorkTicks; } }
+    public float BaseAlignBurn { get { return baseAlignmentDriftPerDay / WorkTicks; } }
     public float MoodImpactBurn { get { return moodImpactDays / WorkTicks; } }
 
     //DIALOGUE

@@ -6,12 +6,14 @@ using Devlike.Characters;
 //Values that are updated during gameplay
 public static class GameValues
 {
+    //TIME
     public static int CurrentTick { get; set; }
     public static int CurrentDayInt { get; set;}
     public static Day CurrentDay { get { return (Day)CurrentDayInt; } }
     public static int CurrentWeek { get; set; }
     public static GameState CurrentState { get; set; }
 
+    //CHARACTERS
     public static List<Character> Characters { get; set; } = new List<Character>();
 
     private static float HoursMinutes
@@ -62,6 +64,18 @@ public static class GameValues
                 }
             }
             return false;
+        }
+    }
+
+    public static float Alignment
+    {
+        get
+        {
+            float alignment = 0;
+            foreach(Character c in Characters)
+            {
+
+            }
         }
     }
 }

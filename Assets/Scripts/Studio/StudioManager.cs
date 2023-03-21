@@ -11,6 +11,13 @@ public class StudioManager : ExecutableBehaviour
 {
     [SerializeField]
     private GameObject characterPrefab;
+    private float crunchPressure;
+    private float teamAlignment;
+
+    protected override void SetListeners()
+    {
+        EventManager.instance.OnTick += Tick;
+    }
 
     protected override void Launch()
     {
@@ -32,5 +39,10 @@ public class StudioManager : ExecutableBehaviour
 
         //Our characters have been set
         EventManager.instance.SetCharacters();
+    }
+
+    private void Tick()
+    {
+
     }
 }

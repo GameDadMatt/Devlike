@@ -32,8 +32,10 @@ namespace Devlike.Characters
         public MoodletType CurrentEmotion { get; private set; }
 
         //Days
-        public int WorkStart { get { return StartingValues.value.WorkStartTick + Profile.WorkStartMod; } }
-        public int WorkEnd { get { return StartingValues.value.WorkEndTick + Profile.WorkEndMod; } }
+        private int WorkStartTweak = 0;
+        private int WorkEndTweak = 0;
+        public int WorkStart { get { return StartingValues.value.WorkStartTick + Profile.WorkStartMod + WorkStartTweak; } }
+        public int WorkEnd { get { return StartingValues.value.WorkEndTick + Profile.WorkEndMod + WorkEndTweak; } }
         public int CurrentTickRef { get { return GameValues.CurrentTick; } }
         public CharacterState CurrentState { get; set; }
 
@@ -53,6 +55,10 @@ namespace Devlike.Characters
         public float FoodBurnRate { get { return StartingValues.value.BaseFoodBurn * Profile.FoodDropMultiplier; } }
         public float InspBurnRate { get { return StartingValues.value.BaseInspBurn * Profile.InspDropMultiplier; } }
         public float SoclBurnRate { get { return StartingValues.value.BaseSoclBurn * Profile.SoclDropMultiplier; } }
+
+        private float alignment = 0f;
+        public float Alignment { get { return alignment; } }
+        public float AlignBurnRate { get { return StartingValues.value.BaseAlignBurn * Profile.AlignDropMultiplier; } }
 
         public int RestoreTicks { get { return RandomGeneration.instance.RandomRestoreTime; } }
 
@@ -164,6 +170,12 @@ namespace Devlike.Characters
                     moodlet.HideMoodlet();
                 }
             }*/
+        }
+
+        public void SetCrunching(int tweak)
+        {
+            WorkStartTweak = tweak;
+            WorkEndTweak = tweak;
         }
 
         public void EndWork()

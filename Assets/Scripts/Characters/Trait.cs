@@ -18,17 +18,21 @@ namespace Devlike.Characters
         public Tier inspirationDrop = Tier.Average;
         public Tier socialDrop = Tier.Average;
 
+        public Tier moodImpact = Tier.Average;
         public Tier empathyBarrier = Tier.Average;
         public Tier burnout = Tier.Average;
         public Tier bugChance = Tier.Average;
+        public Tier crunchDesire = Tier.Average;
 
         [Header("Lower Tier = Lower Return")]
         public Tier confidence = Tier.Average;
         public Tier velocity = Tier.Average;
-        public Tier moodImpact = Tier.Average;
-        public Tier baseMood = Tier.Average;
 
         public Tier dayStart = Tier.Average;
         public Tier dayEnd = Tier.Average;
+
+        [Header("Percentiles")]
+        public Tier baseMood = Tier.Average;
+        public Tier alignment = Tier.Average;
     }
 }
