@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Devlike.Tasks;
 using Devlike.Characters;
+using Devlike.Project;
 
 namespace Devlike.UI
 {
     /// <summary>
     /// The screen that allows tasks to be assigned to characters or the backlog
     /// </summary>
-    public class TaskAssignmentScreen : MonoBehaviour
+    public class TaskAssignmentScreen : ExecutableBehaviour
     {
         public static TaskAssignmentScreen instance;
+
+        private GlobalProject project;
+        private GlobalStudio studio;
 
         [SerializeField]
         private GameObject taskPrefab;
@@ -40,7 +44,13 @@ namespace Devlike.UI
             gameObject.SetActive(false);
         }
 
-        public void OnEnable()
+        protected override void SetProperties()
+        {
+            project = GameManager.instance.GetGlobal("Project") as GlobalProject;
+            studio = GameManager.instance.GetGlobal("Studio") as GlobalStudio;
+        }
+
+        protected override void Launch()
         {
             GenerateScreen();
         }
@@ -59,17 +69,17 @@ namespace Devlike.UI
 
         private void DrawCharacterColumns()
         {
-            characterColumnArea.sizeDelta = new Vector2(columnWidth * GameValues.Characters.Count, characterColumnArea.rect.height);
+            characterColumnArea.sizeDelta = new Vector2(columnWidth * studio.Characters.Count, characterColumnArea.rect.height);
             List<TaskColumn> containers = backlogColumns;            
 
-            for (int i = 0; i < GameValues.Characters.Count; i++)
+            for (int i = 0; i < studio.Characters.Count; i++)
             {
                 //If this character exists
-                if(GameValues.Characters.Count > i)
+                if(studio.Characters.Count > i)
                 {
                     GameObject columnObj = Instantiate(characterColumnPrefab, characterColumnArea);
                     TaskColumn taskColumn = columnObj.GetComponent<TaskColumn>();
-                    Character owner = GameValues.Characters[i];
+                    Character owner = studio.Characters[i];
                     taskColumn.CharacterColumn(owner);
                     containers.Add(taskColumn);
                     //SPAWN IN ALL THE TASKS FROM THIS CHARACTER

@@ -9,10 +9,19 @@ using Devlike;
 /// </summary>
 public class StudioManager : ExecutableBehaviour
 {
+    private GlobalStudio studio;
+    private GlobalDialogue dialogue;
+    private GlobalProject project;
+
     [SerializeField]
     private GameObject characterPrefab;
-    private float crunchPressure;
-    private float teamAlignment;
+
+    protected override void SetProperties()
+    {
+        studio = GameManager.instance.GetGlobal("Studio") as GlobalStudio;
+        dialogue = GameManager.instance.GetGlobal("Dialogue") as GlobalDialogue;
+        project = GameManager.instance.GetGlobal("Project") as GlobalProject;
+    }
 
     protected override void SetListeners()
     {
@@ -26,23 +35,26 @@ public class StudioManager : ExecutableBehaviour
 
     public void SpawnCharacters()
     {
-        List<Profile> profiles = RandomGeneration.instance.RandomProfiles(StartingValues.value.StudioSize);
-        for (int i = 0; i < StartingValues.value.StudioSize; i++)
+        List<Profile> profiles = RandomGeneration.instance.RandomProfiles(studio.StudioSize);
+        List<Character> characters = new List<Character>();
+
+        for (int i = 0; i < studio.StudioSize; i++)
         {
             GameObject newchar = Instantiate(characterPrefab);
             newchar.transform.position = InteractableManager.instance.Home.thing.transform.position;
-            GameValues.Characters.Add(newchar.GetComponent<Character>());
-            GameValues.Characters[i].SetupCharacter(profiles[i]);
-            GameValues.Characters[i].CurrentDialogue = StartingValues.value.DefaultDialogue; //Give the character a default dialogue
-            newchar.name = GameValues.Characters[i].Profile.FullName;
+            characters.Add(newchar.GetComponent<Character>());
+            characters[i].SetupCharacter(profiles[i]);
+            characters[i].CurrentDialogue = dialogue.DefaultDialogue; //Give the character a default dialogue
+            newchar.name = characters[i].Profile.FullName;
         }
 
+        studio.SetCharacters(characters);
         //Our characters have been set
         EventManager.instance.SetCharacters();
     }
 
     private void Tick()
     {
-
+        //Debug.Log(studio.Alignment);
     }
 }

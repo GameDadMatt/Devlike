@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Devlike.Tasks;
-using Devlike.Timing;
 using BehaviorDesigner.Runtime;
 
 namespace Devlike.Characters
@@ -12,10 +11,15 @@ namespace Devlike.Characters
     /// </summary>
     public class Character : MonoBehaviour
     {
+        private GlobalCharacter character;
+        private GlobalStudio studio;
+        private GlobalTime time;
+        private GlobalProject project;
+
         [SerializeField]
-        private Renderer spriteRenderer;
+        private SpriteRenderer characterSprite;
         [SerializeField]
-        private Moodlet moodlet;
+        private Moodlet moodletDisplay;
         private bool displayingMoodlet = false;
         private int moodletTicks = 0;
 
@@ -34,9 +38,10 @@ namespace Devlike.Characters
         //Days
         private int WorkStartTweak = 0;
         private int WorkEndTweak = 0;
-        public int WorkStart { get { return StartingValues.value.WorkStartTick + Profile.WorkStartMod + WorkStartTweak; } }
-        public int WorkEnd { get { return StartingValues.value.WorkEndTick + Profile.WorkEndMod + WorkEndTweak; } }
-        public int CurrentTickRef { get { return GameValues.CurrentTick; } }
+        public int WorkStart { get { return time.WorkStartTick + Profile.WorkStartMod + WorkStartTweak; } }
+        public int WorkEnd { get { return time.WorkEndTick + Profile.WorkEndMod + WorkEndTweak; } }
+        private int WorkTicks { get { return WorkEnd - WorkStart; } }
+        public int CurrentTickRef { get { return time.CurrentTick; } }
         public CharacterState CurrentState { get; set; }
 
         //Position
@@ -51,39 +56,45 @@ namespace Devlike.Characters
         public DoingTracker Socl { get; private set; }
         public DoingTracker Rest { get; private set; }
 
-        public float RestBurnRate { get { return StartingValues.value.BaseRestBurn * Profile.RestDropMultiplier; } }
-        public float FoodBurnRate { get { return StartingValues.value.BaseFoodBurn * Profile.FoodDropMultiplier; } }
-        public float InspBurnRate { get { return StartingValues.value.BaseInspBurn * Profile.InspDropMultiplier; } }
-        public float SoclBurnRate { get { return StartingValues.value.BaseSoclBurn * Profile.SoclDropMultiplier; } }
+        public float RestBurnRate { get { return (character.RestBreaksPerDay / WorkTicks) * Profile.RestDropMultiplier; } }
+        public float FoodBurnRate { get { return (character.FoodBreaksPerDay / WorkTicks) * Profile.FoodDropMultiplier; } }
+        public float InspBurnRate { get { return (character.InspBreaksPerDay / WorkTicks) * Profile.InspDropMultiplier; } }
+        public float SoclBurnRate { get { return (character.SoclBreaksPerDay / WorkTicks) * Profile.SoclDropMultiplier; } }
 
         private float alignment = 0f;
         public float Alignment { get { return alignment; } }
-        public float AlignBurnRate { get { return StartingValues.value.BaseAlignBurn * Profile.AlignDropMultiplier; } }
+        public float AlignBurnRate { get { return (character.AlignmentDriftPerDay / WorkTicks) * Profile.AlignDropMultiplier; } }
 
         public int RestoreTicks { get { return RandomGeneration.instance.RandomRestoreTime; } }
 
         //Moods
         public float MoodImpact { get; private set; } = 0f;
-        private float MoodImpactBurn { get { return StartingValues.value.MoodImpactBurn; } }
+        private float MoodImpactBurn { get { return (character.MoodImpactDuration / WorkTicks) * Profile.MoodImpactMultiplier; } }
 
         //Velocity
-        public float Velocity { get { return (StartingValues.value.BaseVelocity * Profile.VelocityMultiplier) * CappedMoodImpact; } }
-        public float BugChance { get { return (StartingValues.value.BaseBugChance * Profile.BugChanceMultiplier) * (StartingValues.value.moodImpactMax - CappedMoodImpact); } }
+        public float Velocity { get { return ((project.BasePointsPerDay/ WorkTicks) * Profile.VelocityMultiplier) * CappedMoodImpact; } }
+        public float BugChance { get { return (project.BaseBugChance * Profile.BugChanceMultiplier) * (character.MoodImpactMax - CappedMoodImpact); } }
 
-        private void Awake()
+        private void OnEnable()
         {
-            Food = new(DoingType.Food, 1f, StartingValues.value.NeedThreshold);
-            Insp = new(DoingType.Inspiration, 1f, StartingValues.value.NeedThreshold);
-            Socl = new(DoingType.Social, 1f, StartingValues.value.NeedThreshold);
-            Rest = new(DoingType.Rest, 1f, StartingValues.value.NeedThreshold);
-        }
+            EventManager.instance.OnTick += Tick;
 
+            character = GameManager.instance.GetGlobal("Character") as GlobalCharacter;
+            studio = GameManager.instance.GetGlobal("Studio") as GlobalStudio;
+            time = GameManager.instance.GetGlobal("Time") as GlobalTime;
+            project = GameManager.instance.GetGlobal("Project") as GlobalProject;
+
+            Food = new(DoingType.Food, 1f, character.NeedThreshold);
+            Insp = new(DoingType.Inspiration, 1f, character.NeedThreshold);
+            Socl = new(DoingType.Social, 1f, character.NeedThreshold);
+            Rest = new(DoingType.Rest, 1f, character.NeedThreshold);
+        }
 
         public void SetupCharacter(Profile profile)
         {
+            Debug.Log("Sprite Renderer = " + characterSprite + ", Profile Colour = " + profile.Color);
             Profile = profile;
-            spriteRenderer.material.color = Profile.Color;
-            EventManager.instance.OnTick += Tick;
+            characterSprite.material.color = Profile.Color;
         }
 
         public void SetPositions()
@@ -204,13 +215,13 @@ namespace Devlike.Characters
         {
             get
             {
-                if(Mood > StartingValues.value.moodImpactMax)
+                if(Mood > character.MoodImpactMax)
                 {
-                    return StartingValues.value.moodImpactMax;
+                    return character.MoodImpactMax;
                 }
-                else if(Mood < StartingValues.value.moodImpactMin)
+                else if(Mood < character.MoodImpactMin)
                 {
-                    return StartingValues.value.moodImpactMin;
+                    return character.MoodImpactMin;
                 }
                 else
                 {

@@ -7,11 +7,20 @@ namespace Devlike.Characters
 {
     public class DialogueManager : ExecutableBehaviour
     {
+        private GlobalGame game;
+        private GlobalDialogue dialogue;
+
         private DialogueRunner dialogueRunner;
 
         public bool DialogueRunning { get; private set; } = false;
         private static Character activeCharacter;
         private GameState lastState = GameState.Normal;
+
+        protected override void SetProperties()
+        {
+            game = GameManager.instance.GetGlobal("Game") as GlobalGame;
+            dialogue = GameManager.instance.GetGlobal("Dialogue") as GlobalDialogue;
+        }
 
         protected override void SetListeners()
         {
@@ -22,7 +31,7 @@ namespace Devlike.Characters
 
         private void StartConversation(Character character)
         {
-            if(GameValues.CurrentState != GameState.Interacting && GameValues.CurrentState != GameState.Paused)
+            if(game.CurrentState != GameState.Interacting && game.CurrentState != GameState.Paused)
             {
                 if (!DialogueRunning)
                 {
@@ -30,7 +39,7 @@ namespace Devlike.Characters
                     Debug.Log("Started conversation with " + activeCharacter.Profile.FullName);
                     dialogueRunner.StartDialogue(activeCharacter.CurrentDialogue.CurrentStartNode);
                     DialogueRunning = true;
-                    lastState = GameValues.CurrentState;
+                    lastState = game.CurrentState;
                     EventManager.instance.ChangeGameState(GameState.Interacting);
                 }
             }
@@ -44,14 +53,6 @@ namespace Devlike.Characters
             EventManager.instance.ChangeGameState(lastState);
             //Complete the event
             EventManager.instance.CompletePlayerAction();
-        }
-
-        public DialogueContainer DefaultDialogue
-        {
-            get
-            {
-                return new DialogueContainer(StartingValues.value.allDialogues[0]); //Dialogue[0] should always be the default dialogue
-            }
         }
 
         [YarnCommand("MoodImpact")]

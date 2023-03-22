@@ -20,18 +20,18 @@ namespace Devlike.Player
         public float Progress { get { return (float)CompletedTicks / (float)TotalTicks; } }
         public bool Completed { get { return CompletedTicks >= TotalTicks; } }
 
-        public PlayerAction(ProgressButton button, string id, ActionType type, object obj, bool randTime, int minHours, int maxHours)
+        public PlayerAction(GlobalTime time, ProgressButton button, string id, ActionType type, object obj, bool randTime, int minHours, int maxHours)
         {
             ID = id;
             Type = type;
             Object = obj;
             if (randTime)
             {
-                TotalTicks = Random.Range(minHours, maxHours + 1) * StartingValues.value.TicksPerHour;
+                TotalTicks = Random.Range(minHours, maxHours + 1) * time.TicksPerHour;
             }
             else
             {
-                TotalTicks = maxHours * StartingValues.value.TicksPerHour;
+                TotalTicks = maxHours * time.TicksPerHour;
             }
         }
 

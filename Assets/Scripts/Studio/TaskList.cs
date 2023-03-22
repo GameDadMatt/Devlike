@@ -41,14 +41,14 @@ namespace Devlike.Tasks
         /// </summary>
         /// <param name="type"></param>
         /// <param name="total"></param>
-        public void GenerateTaskFromPoints(TaskType type, int total)
+        public void GenerateTaskFromPoints(TaskType type, int total, float baseBugChance)
         {
             if(taskPoints.Count > 0)
             {
                 while (tasks.Count < total && taskPoints.Count != 0)
                 {
                     int points = taskPoints.Dequeue();
-                    tasks.Add(new TaskContainer(type, TaskImportance.None, RandomGeneration.instance.RandomTier, points));
+                    tasks.Add(new TaskContainer(type, TaskImportance.None, RandomGeneration.instance.RandomTier, baseBugChance, points));
                 }
             }
         }

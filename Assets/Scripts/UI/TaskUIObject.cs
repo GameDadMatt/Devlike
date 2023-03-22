@@ -30,28 +30,30 @@ namespace Devlike.UI
 
         public void Setup(TaskContainer task)
         {
+            GlobalProject project = GameManager.instance.GetGlobal("Project") as GlobalProject;
+
             Task = task;
             if(Task.Importance == TaskImportance.Bug)
             {
-                frame.color = StartingValues.value.bugBorderColor;
+                frame.color = project.BugBorder;
             }
             else
             {
-                frame.color = StartingValues.value.taskBorderColor;
+                frame.color = project.TaskBorder;
             }
 
             switch (Task.Type)
             {
                 case TaskType.Art:
-                    background.color = StartingValues.value.artTaskColor;
+                    background.color = project.ArtTask;
                     tmpro.SetText("ART");
                     break;
                 case TaskType.Engineering:
-                    background.color = StartingValues.value.engineeringTaskColor;
+                    background.color = project.EngineeringTask;
                     tmpro.SetText("ENGINEERING");
                     break;
                 case TaskType.Design:
-                    background.color = StartingValues.value.designTaskColor;
+                    background.color = project.DesignTask;
                     tmpro.SetText("DESIGN");
                     break;
             }

@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 namespace Devlike.UI
 {
-    public class SpeedAreaController : MonoBehaviour
+    public class SpeedAreaController : ExecutableBehaviour
     {
+        private GlobalGame game;
+
         [SerializeField]
         private Image speedDisplay;
         [SerializeField]
@@ -21,20 +23,33 @@ namespace Devlike.UI
         private Sprite playSprite;
         [SerializeField]
         private Sprite fastSprite;
-        private GameState lastState = GameState.Paused;
 
-        private void Start()
+        private bool started = false;
+        private GameState lastState;
+
+        protected override void SetProperties()
+        {
+            game = GameManager.instance.GetGlobal("Game") as GlobalGame;
+            lastState = game.CurrentState;
+        }
+
+        protected override void SetListeners()
         {
             EventManager.instance.RegisterButton(pauseButton);
             EventManager.instance.RegisterButton(playButton);
             EventManager.instance.RegisterButton(fastButton);
         }
 
+        protected override void AfterDelay()
+        {
+            started = true;
+        }
+
         public void Update()
         {
-            if(lastState != GameValues.CurrentState)
+            if(started && lastState != game.CurrentState)
             {
-                lastState = GameValues.CurrentState;
+                lastState = game.CurrentState;
                 switch (lastState)
                 {
                     case GameState.Paused:

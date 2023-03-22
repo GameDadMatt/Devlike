@@ -115,8 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21af8ed87b596d4f90a695a769c5edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1614124543844919095}
-  moodlet: {fileID: 6388885449606378824}
+  characterSprite: {fileID: 1614124543844919095}
+  moodletDisplay: {fileID: 6388885449606378824}
 --- !u!114 &1614124542255639274
 MonoBehaviour:
   m_ObjectHideFlags: 0

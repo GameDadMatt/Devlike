@@ -10,6 +10,8 @@ namespace Devlike.UI
 {
     public class ProgressButton : ExecutableBehaviour
     {
+        protected GlobalTime time;
+
         [SerializeField]
         protected Image progressBar;
         [SerializeField]
@@ -19,6 +21,11 @@ namespace Devlike.UI
         [SerializeField]
         protected Button button;
         protected PlayerAction action;
+
+        protected override void SetProperties()
+        {
+            time = GameManager.instance.GetGlobal("Time") as GlobalTime;
+        }
 
         protected override void SetListeners()
         {
@@ -34,7 +41,7 @@ namespace Devlike.UI
         public virtual void GenerateButton()
         {
             buttonText.SetText(actionContainer.name);
-            action = new PlayerAction(this, actionContainer.name, actionContainer.type, null, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
+            action = new PlayerAction(time, this, actionContainer.name, actionContainer.type, null, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
         }
 
         public virtual void PressButton()

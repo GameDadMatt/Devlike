@@ -57,7 +57,7 @@ namespace Devlike.Characters
         public float Engineering { get; private set; } = 0.2f;
         public float Design { get; private set; } = 0.2f;
 
-        public Profile(string fname, string lname, string nname, string hobby, Tier experience, Profession profession, List<Trait> traits, Color color)
+        public Profile(GlobalCharacter character, int ticksPerHour, string fname, string lname, string nname, string hobby, Tier experience, Profession profession, List<Trait> traits, Color color)
         {
             FirstName = fname;
             LastName = lname;
@@ -65,61 +65,65 @@ namespace Devlike.Characters
             Hobby = hobby;
             Experience = experience;
             Color = color;
-            ApplyProfession(profession);
+            ApplyProfession(character, profession);
 
             foreach(Trait trait in traits)
             {
-                ApplyTrait(trait);
+                ApplyTrait(character, ticksPerHour, trait);
             }
+
+            //WorkStart and WorkEnd are averaged across their modifiers
+            WorkStartMod /= character.TotalTraits;
+            WorkEndMod /= character.TotalTraits;
         }
 
-        private void ApplyProfession(Profession p)
+        private void ApplyProfession(GlobalCharacter character, Profession p)
         {
             Profession = p;
-            ApplySkill(p.primarySkill);
-            ApplySkill(p.secondarySkill);
+            ApplySkill(character, p.primarySkill);
+            ApplySkill(character, p.secondarySkill);
         }
 
-        private void ApplySkill(Skill skill)
+        private void ApplySkill(GlobalCharacter character, Skill skill)
         {
             switch (skill.type)
             {
                 case TaskType.Art:
-                    Art *= TierLowToHigh(skill.tier);
+                    Art *= TierLowToHigh(character, skill.tier);
                     break;
                 case TaskType.Engineering:
-                    Engineering *= TierLowToHigh(skill.tier);
+                    Engineering *= TierLowToHigh(character, skill.tier);
                     break;
                 case TaskType.Design:
-                    Design *= TierLowToHigh(skill.tier);
+                    Design *= TierLowToHigh(character, skill.tier);
                     break;
             }
         }
 
-        private void ApplyTrait(Trait trait)
+        private void ApplyTrait(GlobalCharacter character, int ticksPerHour, Trait trait)
         {
             TraitNames.Add(trait.name);
             Confidence = ConfidenceAverage(trait.confidence);
 
             //Low Tier = High Return
-            RestDropMultiplier = TierHighToLow(trait.restDrop);
-            FoodDropMultiplier = TierHighToLow(trait.foodDrop);
-            InspDropMultiplier = TierHighToLow(trait.inspirationDrop);
-            SoclDropMultiplier = TierHighToLow(trait.socialDrop);
-            AlignDropMultiplier = TierHighToLow(trait.alignment);
+            RestDropMultiplier = TierHighToLow(character, trait.restDrop);
+            FoodDropMultiplier = TierHighToLow(character, trait.foodDrop);
+            InspDropMultiplier = TierHighToLow(character, trait.inspirationDrop);
+            SoclDropMultiplier = TierHighToLow(character, trait.socialDrop);
+            AlignDropMultiplier = TierHighToLow(character, trait.alignment);
 
-            CrunchDesire = TierHighToLow(trait.crunchDesire);
-            EmpathyBarrierMultiplier = TierHighToLow(trait.empathyBarrier);
+            CrunchDesire = TierHighToLow(character, trait.crunchDesire);
+            EmpathyBarrierMultiplier = TierHighToLow(character, trait.empathyBarrier);
 
-            BugChanceMultiplier = TierHighToLow(trait.bugChance);
-            BurnoutMultiplier = TierHighToLow(trait.burnout);
-            MoodImpactMultiplier = TierHighToLow(trait.moodImpact);
+            BugChanceMultiplier = TierHighToLow(character, trait.bugChance);
+            BurnoutMultiplier = TierHighToLow(character, trait.burnout);
+            MoodImpactMultiplier = TierHighToLow(character, trait.moodImpact);
 
             //Low Tier = Low Return
-            VelocityMultiplier = TierLowToHigh(trait.velocity);         
+            VelocityMultiplier = TierLowToHigh(character, trait.velocity);         
 
-            WorkStartMod += TierDayMod(trait.dayStart);
-            WorkEndMod += TierDayMod(trait.dayEnd);
+            WorkStartMod += TierDayMod(character, ticksPerHour, trait.dayStart);
+            WorkEndMod += TierDayMod(character, ticksPerHour, trait.dayEnd);
 
             //Percentages
             BaseMood = TierPercentage(trait.baseMood);
@@ -131,9 +135,9 @@ namespace Devlike.Characters
         /// </summary>
         /// <param name="tier"></param>
         /// <returns></returns>
-        private float TierLowToHigh(Tier tier)
+        private float TierLowToHigh(GlobalCharacter character, Tier tier)
         {
-            return StartingValues.value.LowToHighBaseValue * ((int)tier + 1);
+            return character.LowToHighBaseValue * ((int)tier + 1);
         }
 
         /// <summary>
@@ -141,14 +145,14 @@ namespace Devlike.Characters
         /// </summary>
         /// <param name="tier"></param>
         /// <returns></returns>
-        private float TierHighToLow(Tier tier)
+        private float TierHighToLow(GlobalCharacter character, Tier tier)
         {
-            return StartingValues.value.HighToLowBaseValue / ((int)tier + 1);
+            return character.HighToLowBaseValue / ((int)tier + 1);
         }
 
-        private int TierDayMod(Tier tier)
+        private int TierDayMod(GlobalCharacter character, int ticksPerHour, Tier tier)
         {
-            return StartingValues.value.DayModifierBase + (int)tier;
+            return (character.DayHoursModifier + (int)tier) * ticksPerHour;
         }
 
         private float TierPercentage(Tier tier)

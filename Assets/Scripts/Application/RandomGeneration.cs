@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Devlike.Characters;
 using Devlike.Tasks;
+using Devlike.Project;
+using Devlike;
 
 /// <summary>
 /// Handles random generation of projects and characters
@@ -11,12 +13,11 @@ public class RandomGeneration : ExecutableBehaviour
 {
     public static RandomGeneration instance;
 
-    [SerializeField]
-    private string seed;
-    public string Seed { get { return seed; } }
-
-    private ChanceWeights weights;
-    private int maxTaskPoints;
+    private GlobalGame game;
+    private GlobalStudio studio;
+    private GlobalCharacter character;
+    private GlobalTime time;
+    private GlobalProject project;
 
     public void Awake()
     {
@@ -32,9 +33,13 @@ public class RandomGeneration : ExecutableBehaviour
 
     protected override void SetProperties()
     {
-        Random.InitState(seed.GetHashCode());
-        weights = StartingValues.value.Weights;
-        maxTaskPoints = StartingValues.value.MaxTaskPoints;
+        game = GameManager.instance.GetGlobal("Game") as GlobalGame;
+        studio = GameManager.instance.GetGlobal("Studio") as GlobalStudio;
+        character = GameManager.instance.GetGlobal("Character") as GlobalCharacter;
+        time = GameManager.instance.GetGlobal("Time") as GlobalTime;
+        project = GameManager.instance.GetGlobal("Project") as GlobalProject;
+
+        Random.InitState(game.Seed.GetHashCode());
     }
 
     /// <summary>
@@ -50,7 +55,7 @@ public class RandomGeneration : ExecutableBehaviour
         List<Color> colors = BalancedRandomColors(num);
         for (int i = 0; i < num; i++)
         {
-            profiles.Add(RandomProfile(exp[i], prof[i], RandomTraits(StartingValues.value.totalTraits), colors[i]));
+            profiles.Add(RandomProfile(exp[i], prof[i], RandomTraits(character.TotalTraits), colors[i]));
         }
 
         return profiles;
@@ -96,7 +101,7 @@ public class RandomGeneration : ExecutableBehaviour
     {
         get
         {
-            return Random.Range(StartingValues.value.MinNeedTicks, StartingValues.value.MaxNeedTicks + 1);
+            return Random.Range(time.MinNeedTicks, time.MaxNeedTicks + 1);
         }
     }
 
@@ -109,7 +114,7 @@ public class RandomGeneration : ExecutableBehaviour
     {
         if(list.Count > 0)
         {
-            return Mathf.CeilToInt(StartingValues.value.StudioExperienceTarget - AverageOfTiers(list));
+            return Mathf.CeilToInt(studio.StudioExperienceTarget - AverageOfTiers(list));
         }
         return 0;
     }
@@ -138,14 +143,14 @@ public class RandomGeneration : ExecutableBehaviour
     private List<Profession> BalancedProfessions(int num)
     {
         List<Profession> professions = new List<Profession>();
-        TaskType lastGenerated = weights.RandomFromWeights;
+        TaskType lastGenerated = studio.Weights.RandomFromWeights;
         for(int i = 0; i < num; i++)
         {
             //Ensure we don't repeatedly generate the same profession multiple times in a row
-            TaskType random = weights.RandomFromWeights;
+            TaskType random = studio.Weights.RandomFromWeights;
             while (random == lastGenerated)
             {
-                random = weights.RandomFromWeights;
+                random = studio.Weights.RandomFromWeights;
             }
 
             lastGenerated = random;
@@ -165,7 +170,7 @@ public class RandomGeneration : ExecutableBehaviour
     private Profile RandomProfile(Tier exp, Profession prof, List<Trait> traits, Color color)
     {
         List<string> strings = RandomNameAndHobby();
-        return new Profile(strings[0], strings[1], strings[2], strings[3], exp, prof, traits, color);
+        return new Profile(character, time.TicksPerHour, strings[0], strings[1], strings[2], strings[3], exp, prof, traits, color);
     }
 
     /// <summary>
@@ -190,7 +195,7 @@ public class RandomGeneration : ExecutableBehaviour
     {
         get
         {
-            return StartingValues.value.characterColours.Evaluate(Random.Range(0f, 1f));
+            return character.CharacterColours.Evaluate(Random.Range(0f, 1f));
         }
     }
 
@@ -205,7 +210,7 @@ public class RandomGeneration : ExecutableBehaviour
         List<Color> colors = new List<Color>();
         for(int i = 0; i < num; i++)
         {
-            colors.Add(StartingValues.value.characterColours.Evaluate(Random.Range(r * i, r * (i + 1))));
+            colors.Add(character.CharacterColours.Evaluate(Random.Range(r * i, r * (i + 1))));
         }
 
         return colors;
@@ -219,7 +224,7 @@ public class RandomGeneration : ExecutableBehaviour
     /// <returns></returns>
     private Profession RandomProfessionOftype(TaskType type)
     {
-        List<Profession> professions = StartingValues.value.allProfessions;
+        List<Profession> professions = character.Professions;
         bool selected = false;
         int i = 0;
 
@@ -242,10 +247,10 @@ public class RandomGeneration : ExecutableBehaviour
     /// <returns></returns>
     private List<Trait> RandomTraits(int total)
     {
-        List<Trait> traits = StartingValues.value.allTraits;
+        List<Trait> traits = character.Traits;
         List<Trait> selectedTraits = new List<Trait>();
         int i = 0;
-        while(selectedTraits.Count < StartingValues.value.totalTraits)
+        while(selectedTraits.Count < character.TotalTraits)
         {
             i = Random.Range(0, traits.Count);
             if (!selectedTraits.Contains(traits[i]))
@@ -259,9 +264,9 @@ public class RandomGeneration : ExecutableBehaviour
 
     public List<TaskList> RandomProjectScope(int num)
     {
-        float art = Random.Range(weights.art, weights.art * 1.3f);
-        float des = Random.Range(weights.des, weights.des * 1.3f);
-        float eng = Random.Range(weights.eng, weights.eng * 1.3f);
+        float art = Random.Range(studio.Weights.art, studio.Weights.art * 1.3f);
+        float des = Random.Range(studio.Weights.des, studio.Weights.des * 1.3f);
+        float eng = Random.Range(studio.Weights.eng, studio.Weights.eng * 1.3f);
         ChanceWeights cw = new ChanceWeights(art, des, eng);
 
         List<TaskList> output = new List<TaskList>();
@@ -288,7 +293,7 @@ public class RandomGeneration : ExecutableBehaviour
 
     public int RandomPoints(int limit)
     {
-        int points = Random.Range(1, maxTaskPoints);
+        int points = Random.Range(1, project.MaxTaskPoints);
         if (points >= limit)
         {
             points = limit;
@@ -296,13 +301,13 @@ public class RandomGeneration : ExecutableBehaviour
         return points;
     }
 
-    public void RandomGenerateBug(float task, float character)
+    public void RandomGenerateBug(float taskChance, float characterChance)
     {
-        float chance = (task + character) / 2;
+        float chance = (taskChance + characterChance) / 2;
         bool bug = Random.Range(0f, 1f) > chance;
         if (bug)
         {
-            StudioProject.instance.AddTask(new TaskContainer(RandomType, TaskImportance.Bug, Tier.Lowest, RandomPoints(maxTaskPoints)));
+            StudioProject.instance.AddTask(new TaskContainer(RandomType, TaskImportance.Bug, Tier.Lowest, project.BaseBugChance, RandomPoints(project.MaxTaskPoints)));
         }
     }
 }

@@ -1143,7 +1143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3d3cf349cb49e4c85a8f15b24be8b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: Devlike
 --- !u!114 &665656985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1180,6 +1179,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d460648e4e4fe4ea4220de5b001420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ResetOnStart: 1
+  globalObjects:
+  - {fileID: 11400000, guid: 587906fc8fa7fb246a8d2f69af3eac81, type: 2}
+  - {fileID: 11400000, guid: d2ce7dce081f3d3468a747574cf808f3, type: 2}
+  - {fileID: 11400000, guid: 7e802f02dba28ec48904b75fe37e721f, type: 2}
+  - {fileID: 11400000, guid: 0ddcf9bead7ea1e46baf083db588551e, type: 2}
+  - {fileID: 11400000, guid: c9d32062ddd785647a074c3953de3683, type: 2}
+  - {fileID: 11400000, guid: 8d4681013474d2c48a1d12aae8ddc85b, type: 2}
 --- !u!1 &685295320
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,7 +2343,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1438213536}
-  - component: {fileID: 1438213538}
   - component: {fileID: 1438213537}
   - component: {fileID: 1438213543}
   - component: {fileID: 1438213540}
@@ -2384,130 +2390,6 @@ MonoBehaviour:
   - {fileID: 1909918140}
   Preset: {fileID: 11400000, guid: 987c6392641e68246a078f2bfe148471, type: 2}
   lastState: 0
---- !u!114 &1438213538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438213534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37edd821f7d76694683d5507934925c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tickLength: 0.5
-  idleTickLength: 0.05
-  ticksPerHour: 20
-  workStartHour: 9
-  workEndHour: 17
-  dayEndHour: 24
-  timeUnitTicks: 6
-  minNeedRestoreTicks: 6
-  maxNeedRestoreTicks: 12
-  totalTraits: 3
-  moodletDisplayTicks: 4
-  lowToHighBaseValue: 0.35
-  highToLowBaseValue: 3
-  dayModifierBase: -3
-  traitTicksMultiplier: 2
-  NeedThreshold: 0.2
-  foodBreaksPerDay: 1
-  restBreaksPerDay: 2
-  inspirationBreaksPerDay: 4
-  socialBreaksPerDay: 4
-  moodImpactDays: 2.5
-  moodImpactMax: 1.5
-  moodImpactMin: 0.1
-  characterColours:
-    serializedVersion: 2
-    key0: {r: 1, g: 0.44313726, b: 0.80784315, a: 1}
-    key1: {r: 0.7254902, g: 0.40392157, b: 1, a: 1}
-    key2: {r: 0.003921569, g: 0.8039216, b: 0.99607843, a: 0}
-    key3: {r: 0.019607844, g: 1, b: 0.6313726, a: 0}
-    key4: {r: 1, g: 0.9843137, b: 0.5882353, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 16384
-    ctime2: 32768
-    ctime3: 49151
-    ctime4: 65535
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 5
-    m_NumAlphaKeys: 2
-  allTraits:
-  - {fileID: 11400000, guid: 1798a9f9312f3a7419f48d1efa085e5c, type: 2}
-  - {fileID: 11400000, guid: 824bf69d20852d742b730f1244c5f0d9, type: 2}
-  - {fileID: 11400000, guid: b26cf7b8f4ed6b348a90b528c40b3614, type: 2}
-  - {fileID: 11400000, guid: a6af5dc847f205a4db11ea6cba3a7835, type: 2}
-  - {fileID: 11400000, guid: e2c46aa40ca96214083bdba534b0ce6c, type: 2}
-  - {fileID: 11400000, guid: 5e7fef34f22c3124db4cdd21ba929636, type: 2}
-  - {fileID: 11400000, guid: 5eb510580b400e2469d7bca699078135, type: 2}
-  - {fileID: 11400000, guid: cb74edadc85a41a42862dfe44ee0cdd5, type: 2}
-  - {fileID: 11400000, guid: 2480c8aa64dc5724e899f4898e904fef, type: 2}
-  - {fileID: 11400000, guid: 017473c1754f39348ba164e0b20b47f5, type: 2}
-  - {fileID: 11400000, guid: ec8f9389b686fb84f817f2a30649fbdd, type: 2}
-  - {fileID: 11400000, guid: fcf54208089d7ee4eba95e114737abbb, type: 2}
-  - {fileID: 11400000, guid: 848e23847a43c594ba8d162279e8ab37, type: 2}
-  - {fileID: 11400000, guid: f0aa1c6e42775094f88941d05151c2be, type: 2}
-  - {fileID: 11400000, guid: 764f20d5f1fc4fc4fae4d1f354fe9026, type: 2}
-  - {fileID: 11400000, guid: 48923108c6f0a8a40be852b99b78b8ab, type: 2}
-  - {fileID: 11400000, guid: 7e8b3166237e3a743825f2462291f5ba, type: 2}
-  - {fileID: 11400000, guid: 256b84f85c24b0a46a758bd95a7efc9c, type: 2}
-  - {fileID: 11400000, guid: 4e47b5783443f904dbbd654866969dcb, type: 2}
-  - {fileID: 11400000, guid: d30dd15b174cb474db51bb26b48ad03b, type: 2}
-  allProfessions:
-  - {fileID: 11400000, guid: 141db700016df9940a16fe0f6a776078, type: 2}
-  - {fileID: 11400000, guid: 13a526c9ee359fa4b97ebf18cb9d1b3d, type: 2}
-  - {fileID: 11400000, guid: f52fb195b9aa6cb40b59c49f86c85ed3, type: 2}
-  - {fileID: 11400000, guid: 3c2232a3c4b013b46ac163f18a222275, type: 2}
-  - {fileID: 11400000, guid: f8a6d303310d08c479f3c6fe05c9b9a1, type: 2}
-  - {fileID: 11400000, guid: cb98be33c327c1043b63ce6cb2b2339d, type: 2}
-  - {fileID: 11400000, guid: d044cc5a37a57c54896265ddeb640575, type: 2}
-  - {fileID: 11400000, guid: 91d0595f07792b34da027fd361bfb9e3, type: 2}
-  - {fileID: 11400000, guid: 8dbbabd539d6b1b44b9e3a6d0dc1876e, type: 2}
-  - {fileID: 11400000, guid: f65b973206df55845b57c157ab423672, type: 2}
-  - {fileID: 11400000, guid: f9c361315bd1d5b4da69261c900370e0, type: 2}
-  - {fileID: 11400000, guid: 7e306fc565db5fb46ae8f0bc835c682b, type: 2}
-  allMoodlets:
-  - {fileID: 11400000, guid: 5fcf9fee7656d3d499bf8b2d7adfa6ec, type: 2}
-  - {fileID: 11400000, guid: acd6d64e371f69b4dabb4b2da6087207, type: 2}
-  - {fileID: 11400000, guid: 0260201bebcf961458e8a3106c93ce63, type: 2}
-  - {fileID: 11400000, guid: 733afc6bf05598245a5c148797924f25, type: 2}
-  - {fileID: 11400000, guid: 72a51fb30c76b20438b55f0580632b30, type: 2}
-  - {fileID: 11400000, guid: dd9f77e0b27f45b4697506dbe4019f8b, type: 2}
-  - {fileID: 11400000, guid: 1c55d5dd9635fbe459ba1ca47db45747, type: 2}
-  - {fileID: 11400000, guid: f8d7a2e26933db747858606c4b1eff5e, type: 2}
-  maxWeeklyDramasPercent: 0.2
-  allDialogues:
-  - {fileID: 11400000, guid: f3b4f6882ded23d4187377a7c6014d41, type: 2}
-  maxTaskPoints: 5
-  pointsPerDay: 7
-  bugChance: 0.1
-  artTaskColor: {r: 1, g: 0.5820617, b: 0, a: 1}
-  designTaskColor: {r: 0.36449426, g: 0.7924528, b: 0.13830544, a: 1}
-  engineeringTaskColor: {r: 0, g: 0.5819402, b: 1, a: 1}
-  taskBorderColor: {r: 1, g: 1, b: 1, a: 1}
-  bugBorderColor: {r: 0.7169812, g: 0.1318975, b: 0.1318975, a: 1}
-  studioSize: 8
-  weights:
-    art: 1
-    des: 0.6
-    eng: 1
-  studioExperienceTarget: 2.5
 --- !u!114 &1438213540
 MonoBehaviour:
   m_ObjectHideFlags: 0

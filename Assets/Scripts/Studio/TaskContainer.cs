@@ -20,18 +20,17 @@ namespace Devlike.Tasks
         public TaskState State { get; private set; } = TaskState.Idle;
         public float DonePoints { get; private set; } = 0f;
 
-        public TaskContainer(TaskType type, TaskImportance importance, Tier bugChance, int points)
+        public TaskContainer(TaskType type, TaskImportance importance, Tier bugChance, float baseBugChance, int points)
         {
             Type = type;
             Importance = importance;
-            BugChance = BugChanceFromTier(bugChance);
+            BugChance = BugChanceFromTier(bugChance, baseBugChance);
             Points = points;
         }
 
-        private float BugChanceFromTier(Tier tier)
+        private float BugChanceFromTier(Tier tier, float baseBugChance)
         {
-            float bugChance = StartingValues.value.BaseBugChance;
-            return bugChance * (int)tier;
+            return baseBugChance * (int)tier;
         }
 
         public bool CompleteTask(float velocity, float cBugChance)
