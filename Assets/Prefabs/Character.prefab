@@ -122,7 +122,7 @@ MonoBehaviour:
   gTime: {fileID: 11400000, guid: 8d4681013474d2c48a1d12aae8ddc85b, type: 2}
   gProject: {fileID: 11400000, guid: 0ddcf9bead7ea1e46baf083db588551e, type: 2}
   characterSprite: {fileID: 1614124543844919095}
-  moodletDisplay: {fileID: 6388885449606378824}
+  moodlet: {fileID: 6388885449606378824}
 --- !u!114 &2195522722408380995
 MonoBehaviour:
   m_ObjectHideFlags: 0

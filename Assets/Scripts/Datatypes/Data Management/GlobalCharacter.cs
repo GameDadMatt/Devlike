@@ -12,7 +12,7 @@ namespace Devlike
         [SerializeField]
         private int totalTraits;
         [SerializeField]
-        private int moodletDisplayTicks;
+        private float moodletDisplayHours, moodletCooldownHours, moodletDelayHours;
         [SerializeField]
         private float lowToHighBaseValue, highToLowBaseValue;
         [SerializeField]
@@ -22,7 +22,7 @@ namespace Devlike
         [SerializeField]
         private float needThreshold;
         [SerializeField]
-        private float foodBreaksPerDay, restBreaksPerDay, inspirationBreaksPerDay, socialBreaksPerDay, alignmentBase, alignmentDriftPerDay;
+        private float foodBreaksPerDay, restBreaksPerDay, inspirationBreaksPerDay, socialBreaksPerDay, alignmentBase, alignmentDriftPerDay, crunchDriftPerDay;
         [SerializeField]
         private float moodImpactDays, moodImpactMax, moodImpactMin;
 
@@ -38,7 +38,9 @@ namespace Devlike
 
         //Returns
         public int TotalTraits { get => totalTraits; }
-        public float MoodletDisplayTicks { get => moodletDisplayTicks; }
+        public float MoodletDisplayHours { get => moodletDisplayHours; }
+        public float MoodletCooldownHours { get => moodletCooldownHours; }
+        public float MoodletDelayHours { get => moodletDelayHours; }
         public float LowToHighBaseValue { get => lowToHighBaseValue; }
         public float HighToLowBaseValue { get => highToLowBaseValue; }
         public int DayHoursModifier { get => dayHoursModifier; }
@@ -50,6 +52,9 @@ namespace Devlike
         public float SoclBreaksPerDay { get => socialBreaksPerDay; }
         public float AlignmentBase { get => alignmentBase; }
         public float AlignmentDriftPerDay { get => alignmentDriftPerDay; }
+        public float CrunchDriftPerDay { get => crunchDriftPerDay; }
+
+
         public float MoodImpactDuration { get => moodImpactDays; }
         public float MoodImpactMin { get => moodImpactMin; }
         public float MoodImpactMax { get => moodImpactMax; }
@@ -85,13 +90,13 @@ namespace Devlike
             return null;
         }
 
-        public CharacterMoodlet GetMoodlet(MoodletType type)
+        public Sprite GetMoodletSprite(MoodletType type)
         {
             foreach (CharacterMoodlet moodlet in moodlets)
             {
                 if (type == moodlet.type)
                 {
-                    return moodlet;
+                    return moodlet.sprite;
                 }
             }
 

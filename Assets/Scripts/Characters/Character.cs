@@ -23,9 +23,7 @@ namespace Devlike.Characters
         [SerializeField]
         private SpriteRenderer characterSprite;
         [SerializeField]
-        private Moodlet moodletDisplay;
-        private bool displayingMoodlet = false;
-        private int moodletTicks = 0;
+        private Moodlet moodlet;
 
         //Refs
         public Profile Profile { get; private set; }
@@ -109,6 +107,7 @@ namespace Devlike.Characters
                     Insp.curValue -= InspBurnRate;
                     Socl.curValue -= SoclBurnRate;
                     UpdateMood();
+                    Tasker.UpdateDrift();
                     if(CurrentDoing == DoingType.Work)
                     {
                         Tasker.DoTasks();
@@ -125,36 +124,19 @@ namespace Devlike.Characters
 
         public void DisplayMoodlet()
         {
-            /*if (!displayingMoodlet)
+            if(moodlet.Ready && Dialogue.HasDrama)
             {
-                //DOING TYPE MOODLETS
-                List<DoingTracker> needs = new List<DoingTracker>();
-                foreach(DoingTracker tracker in doingTrackers)
-                {
-                    if (tracker.NearThreshold)
-                    {
-                        Debug.Log("Tracker " + tracker.type + " is at " + tracker.curValue);
-                        needs.Add(tracker);
-                    }
-                }
-                if(needs.Count > 0)
-                {
-                    DoingTracker randomTracker = needs[Random.Range(0, needs.Count)];
-                    CharacterMoodlet m = GlobalVariables.value.GetMoodlet(randomTracker.type); //Get a moodlet based on the doing type
-                    moodlet.DisplayMoodlet(m.sprite);
-                    displayingMoodlet = true;
-                }
+                Sprite sprite = gCharacter.GetMoodletSprite(MoodletType.HasDrama);
+                int delayTicks = Mathf.RoundToInt(Random.Range(0, gCharacter.MoodletDelayHours) * gTime.TicksPerHour);
+                int displayTicks = Mathf.RoundToInt(gCharacter.MoodletDisplayHours * gTime.TicksPerHour);
+                int cooldownTicks = Mathf.RoundToInt(gCharacter.MoodletCooldownHours * gTime.TicksPerHour);
+                moodlet.NewMoodlet(sprite, delayTicks, displayTicks, cooldownTicks);
             }
-            else
+            else if (!moodlet.Ready)
             {
-                moodletTicks++;
-                if(moodletTicks > GlobalVariables.value.MoodletDisplayTicks)
-                {
-                    displayingMoodlet = false;
-                    moodletTicks = 0;
-                    moodlet.HideMoodlet();
-                }
-            }*/
+                Debug.Log("Moodlet on " + Profile.FullName);
+                moodlet.Tick();
+            }
         }
 
         public void EndWork()
@@ -174,6 +156,16 @@ namespace Devlike.Characters
         public void ImpactMood(float impact)
         {
             moodImpact += (impact * Profile.MoodImpactMultiplier);
+        }
+
+        public void ImpactAlignment(float impact)
+        {
+            Tasker.ImpactAlignment(impact);
+        }
+
+        public void SetCrunchPressure(float pressure)
+        {
+            Tasker.SetCrunchPressure(pressure);
         }
 
         private void UpdateMood()

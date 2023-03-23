@@ -21,6 +21,7 @@ namespace Devlike.Characters
 
         private TaskList tasks = new TaskList();
         private float alignment = 0;
+        private float crunchDesire = 0;
         private float crunchPressure = 0;
         private float velocityMod = 0;
         private float bugMod = 0;
@@ -66,6 +67,56 @@ namespace Devlike.Characters
             Tasks.DoTask(Velocity, BugChance);
         }
 
+        public void UpdateDrift()
+        {
+            AlignmentDrift();
+            CrunchDrift();
+        }
+
+        private void AlignmentDrift()
+        {
+            float drift = (gCharacter.AlignmentDriftPerDay * thisCharacter.Profile.AlignDriftMultiplier) / WorkTicks;
+            if (alignment > thisCharacter.Profile.NaturalAlignment)
+            {
+                alignment -= drift;
+            }
+            else
+            {
+                alignment -= drift / 2; //Alignment drops slower below the character's base alignment
+            }
+        }
+
+        private void CrunchDrift()
+        {
+            //CrunchPressure cannot reduce past the CrunchThreshold without direct intervention
+            //CrunchDrift moves CrunchDesire towards the current CrunchPressure
+            Debug.Log("Add Crunch Drift");
+            /*if (crunchPressure > thisCharacter.Profile.CrunchThreshold)
+            {
+                crunchPressure -= gCharacter.CrunchDriftPerDay / WorkTicks;
+            }*/
+        }
+
+        public void ImpactAlignment(float value)
+        {
+            alignment += value;
+        }
+
+        public void RestoreAlignment(float bonus)
+        {
+            alignment = thisCharacter.Profile.NaturalAlignment + bonus;
+        }
+
+        public void SetCrunchPressure(float pressure)
+        {
+            crunchPressure = pressure;
+        }
+
+        public void ReduceCrunchPressure(float value)
+        {
+            crunchPressure -= value;
+        }
+
         public void TweakHours(int ticksInHour, int dayStartHours, int dayEndHours)
         {
             workStartTweak = dayStartHours * ticksInHour;
@@ -98,37 +149,12 @@ namespace Devlike.Characters
             }            
         }
 
-        public void AlignmentDrift()
+        public bool Crunching
         {
-            float drift = (gCharacter.AlignmentDriftPerDay * thisCharacter.Profile.AlignDriftMultiplier) / WorkTicks;
-            if (alignment > thisCharacter.Profile.NaturalAlignment)
+            get
             {
-                alignment -= drift;
+                return crunchDesire >= thisCharacter.Profile.CrunchThreshold;
             }
-            else
-            {
-                alignment -= drift / 2; //Alignment drops slower below the character's base alignment
-            }
-        }
-
-        public void RestoreAlignment(float bonus)
-        {
-            alignment = thisCharacter.Profile.NaturalAlignment + bonus;
-        }
-
-        public void SetCrunchPressure()
-        {
-
-        }
-
-        public void UpdateCrunchPressure()
-        {
-
-        }
-
-        public void ReduceCrunchPressure(float value)
-        {
-            crunchPressure -= value;
         }
     }
 }

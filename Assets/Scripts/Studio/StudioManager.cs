@@ -52,6 +52,11 @@ public class StudioManager : ExecutableBehaviour
         }
 
         gStudio.SetCharacters(characters);
+
+        //As it's an initial setup, generate dramas
+        WeekStart();
+        DayStart();
+
         //Our characters have been set
         EventManager.instance.SetCharacters();
     }
@@ -63,8 +68,10 @@ public class StudioManager : ExecutableBehaviour
 
     private void DayStart()
     {
+        Debug.LogWarning("Day Start");
         if (dramaDays.Contains(gTime.CurrentDayInt))
         {
+            Debug.LogWarning("Dramas!");
             List<Character> availableCharacters = CharactersWithoutDrama;
             if (availableCharacters.Count > 0)
             {
@@ -87,6 +94,7 @@ public class StudioManager : ExecutableBehaviour
 
     private void WeekStart()
     {
+        Debug.LogWarning("Week Start");
         weekDramas = RandomGeneration.instance.ArtificialDramaQueue();
         dramaDays = RandomGeneration.instance.RandomPositionsFromList(weekDramas.Count, 7);
     }

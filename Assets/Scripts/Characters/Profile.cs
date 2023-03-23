@@ -45,7 +45,6 @@ namespace Devlike.Characters
 
         //What is this character's likeliness to crunch
         public float CrunchThreshold { get; private set; } = 0f;
-        public float CrunchPressure { get; private set; } = 0f;
 
         //How early or late does the character start and end the day
         public int WorkStartMod { get; private set; } = 0;

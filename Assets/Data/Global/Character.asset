@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Character
   m_EditorClassIdentifier: 
   totalTraits: 3
-  moodletDisplayTicks: 4
+  moodletDisplayHours: 1
+  moodletCooldownHours: 2
+  moodletDelayHours: 2
   lowToHighBaseValue: 0.35
   highToLowBaseValue: 3
   dayHoursModifier: -3
@@ -24,6 +26,7 @@ MonoBehaviour:
   socialBreaksPerDay: 3
   alignmentBase: 0
   alignmentDriftPerDay: 0.1
+  crunchDriftPerDay: 0
   moodImpactDays: 2.5
   moodImpactMax: 1.5
   moodImpactMin: 0.5
