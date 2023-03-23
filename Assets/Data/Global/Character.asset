@@ -22,6 +22,7 @@ MonoBehaviour:
   restBreaksPerDay: 3
   inspirationBreaksPerDay: 3
   socialBreaksPerDay: 3
+  alignmentBase: 0
   alignmentDriftPerDay: 0.1
   moodImpactDays: 2.5
   moodImpactMax: 1.5

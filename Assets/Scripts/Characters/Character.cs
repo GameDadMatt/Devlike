@@ -23,28 +23,16 @@ namespace Devlike.Characters
         private bool displayingMoodlet = false;
         private int moodletTicks = 0;
 
-        //Personality
+        //Refs
         public Profile Profile { get; private set; }
+        public Worker Worker { get; private set; }
+        public int CurrentTickRef { get { return time.CurrentTick; } }
+        public CharacterState CurrentState { get; set; }
 
         //Dialogue
         public DialogueContainer CurrentDialogue { get; set; }
 
-        //Tasks
-        public TaskList Tasks { get; private set; } = new TaskList();
-        public int NumTasks { get { return Tasks.TotalCount; } }
-        public TaskType CurrentTask { get; private set; }
-        public MoodletType CurrentEmotion { get; private set; }
-
-        //Days
-        private int WorkStartTweak = 0;
-        private int WorkEndTweak = 0;
-        public int WorkStart { get { return time.WorkStartTick + Profile.WorkStartMod + WorkStartTweak; } }
-        public int WorkEnd { get { return time.WorkEndTick + Profile.WorkEndMod + WorkEndTweak; } }
-        private int WorkTicks { get { return WorkEnd - WorkStart; } }
-        public int CurrentTickRef { get { return time.CurrentTick; } }
-        public CharacterState CurrentState { get; set; }
-
-        //Position
+        //Positions
         public DoingType CurrentDoing { get; set; }
         public NPCInteractable Desk { get; private set; }
         public NPCInteractable Home { get; private set; }
@@ -56,24 +44,21 @@ namespace Devlike.Characters
         public DoingTracker Socl { get; private set; }
         public DoingTracker Rest { get; private set; }
 
-        public float RestBurnRate { get { return (character.RestBreaksPerDay / WorkTicks) * Profile.RestDropMultiplier; } }
-        public float FoodBurnRate { get { return (character.FoodBreaksPerDay / WorkTicks) * Profile.FoodDropMultiplier; } }
-        public float InspBurnRate { get { return (character.InspBreaksPerDay / WorkTicks) * Profile.InspDropMultiplier; } }
-        public float SoclBurnRate { get { return (character.SoclBreaksPerDay / WorkTicks) * Profile.SoclDropMultiplier; } }
-
-        private float alignment = 0f;
-        public float Alignment { get { return alignment; } }
-        public float AlignBurnRate { get { return (character.AlignmentDriftPerDay / WorkTicks) * Profile.AlignDropMultiplier; } }
-
-        public int RestoreTicks { get { return RandomGeneration.instance.RandomRestoreTime; } }
+        public float RestBurnRate { get { return (character.RestBreaksPerDay / Worker.WorkTicks) * Profile.RestDropMultiplier; } }
+        public float FoodBurnRate { get { return (character.FoodBreaksPerDay / Worker.WorkTicks) * Profile.FoodDropMultiplier; } }
+        public float InspBurnRate { get { return (character.InspBreaksPerDay / Worker.WorkTicks) * Profile.InspDropMultiplier; } }
+        public float SoclBurnRate { get { return (character.SoclBreaksPerDay / Worker.WorkTicks) * Profile.SoclDropMultiplier; } }
+        
 
         //Moods
         public float MoodImpact { get; private set; } = 0f;
-        private float MoodImpactBurn { get { return (character.MoodImpactDuration / WorkTicks) * Profile.MoodImpactMultiplier; } }
+        private float MoodImpactBurn { get { return (character.MoodImpactDuration / Worker.WorkTicks) * Profile.MoodImpactMultiplier; } }
 
-        //Velocity
-        public float Velocity { get { return ((project.BasePointsPerDay/ WorkTicks) * Profile.VelocityMultiplier) * CappedMoodImpact; } }
-        public float BugChance { get { return (project.BaseBugChance * Profile.BugChanceMultiplier) * (character.MoodImpactMax - CappedMoodImpact); } }
+        //Behaviour Designer References
+        public int NumTasks { get => Worker.NumTasks; }
+        public int WorkStart { get => Worker.WorkStart; }
+        public int WorkEnd { get => Worker.WorkEnd; }
+        public int RestoreTicks { get => RandomGeneration.instance.RandomRestoreTime; }
 
         private void OnEnable()
         {
@@ -94,6 +79,7 @@ namespace Devlike.Characters
         {
             Debug.Log("Sprite Renderer = " + characterSprite + ", Profile Colour = " + profile.Color);
             Profile = profile;
+            Worker = new Worker(this, character, time, project);
             characterSprite.material.color = Profile.Color;
         }
 
@@ -125,7 +111,10 @@ namespace Devlike.Characters
                     Insp.curValue -= InspBurnRate;
                     Socl.curValue -= SoclBurnRate;
                     MoodImpact -= MoodImpactBurn;
-                    DoTasks();
+                    if(CurrentDoing == DoingType.Work)
+                    {
+                        Worker.DoTasks(CappedMoodImpact, character.MoodImpactMax);
+                    }
                     DisplayMoodlet();
                     break;
                 case CharacterState.End:
@@ -133,19 +122,6 @@ namespace Devlike.Characters
                     break;
                 case CharacterState.Inactive:
                     break;
-            }
-        }
-
-        public void DoTasks()
-        {
-            if(CurrentDoing == DoingType.Work)
-            {
-                Tasks.DoTask(Velocity, BugChance);
-                Debug.Log(Profile.FullName + " is working!");
-            }
-            else if(CurrentDoing == DoingType.Idle)
-            {
-                //Debug.Log(Profile.FullName + " is idle!");
             }
         }
 
@@ -181,12 +157,6 @@ namespace Devlike.Characters
                     moodlet.HideMoodlet();
                 }
             }*/
-        }
-
-        public void SetCrunching(int tweak)
-        {
-            WorkStartTweak = tweak;
-            WorkEndTweak = tweak;
         }
 
         public void EndWork()

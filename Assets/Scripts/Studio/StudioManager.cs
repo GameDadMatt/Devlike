@@ -26,6 +26,8 @@ public class StudioManager : ExecutableBehaviour
     protected override void SetListeners()
     {
         EventManager.instance.OnTick += Tick;
+        EventManager.instance.OnDayStart += DayStart;
+        EventManager.instance.OnWeekStart += WeekStart;
     }
 
     protected override void Launch()
@@ -51,6 +53,16 @@ public class StudioManager : ExecutableBehaviour
         studio.SetCharacters(characters);
         //Our characters have been set
         EventManager.instance.SetCharacters();
+    }
+
+    private void DayStart()
+    {
+
+    }
+
+    private void WeekStart()
+    {
+
     }
 
     private void Tick()

@@ -10,21 +10,21 @@ namespace Devlike
     {
         [Header("BASE VALUES")]
         [SerializeField]
-        private int totalTraits; // = 3;
+        private int totalTraits;
         [SerializeField]
-        private int moodletDisplayTicks; // = 4;
+        private int moodletDisplayTicks;
         [SerializeField]
-        private float lowToHighBaseValue, highToLowBaseValue; // = 0.35f, 3.0f;
+        private float lowToHighBaseValue, highToLowBaseValue;
         [SerializeField]
         private int dayHoursModifier;
 
         [Header("NEEDS")]
         [SerializeField]
-        private float needThreshold; // = 0.2f;
+        private float needThreshold;
         [SerializeField]
-        private float foodBreaksPerDay, restBreaksPerDay, inspirationBreaksPerDay, socialBreaksPerDay, alignmentDriftPerDay; //1f, 4f, 3f, 3f, 0.1f;
+        private float foodBreaksPerDay, restBreaksPerDay, inspirationBreaksPerDay, socialBreaksPerDay, alignmentBase, alignmentDriftPerDay;
         [SerializeField]
-        private float moodImpactDays, moodImpactMax, moodImpactMin; // 2.5f, 1.5f, 0.1f;
+        private float moodImpactDays, moodImpactMax, moodImpactMin;
 
         [Header("OTHER")]
         [SerializeField]
@@ -48,6 +48,7 @@ namespace Devlike
         public float RestBreaksPerDay { get => restBreaksPerDay; }
         public float InspBreaksPerDay { get => inspirationBreaksPerDay; }
         public float SoclBreaksPerDay { get => socialBreaksPerDay; }
+        public float AlignmentBase { get => alignmentBase; }
         public float AlignmentDriftPerDay { get => alignmentDriftPerDay; }
         public float MoodImpactDuration { get => moodImpactDays; }
         public float MoodImpactMin { get => moodImpactMin; }

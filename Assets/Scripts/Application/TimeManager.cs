@@ -107,7 +107,9 @@ namespace Devlike.Timing
             {
                 time.CurrentWeek++;
                 time.CurrentDayInt = 0;
+                EventManager.instance.WeekStart();
             }
+            EventManager.instance.DayStart();
         }
 
         private float TickLength

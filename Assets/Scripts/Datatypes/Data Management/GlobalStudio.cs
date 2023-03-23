@@ -53,7 +53,7 @@ namespace Devlike
                 float alignment = 0;
                 foreach (Character c in Characters)
                 {
-                    alignment += c.Alignment;
+                    alignment += c.Worker.Alignment;
                 }
                 alignment /= studioSize;
                 return alignment;

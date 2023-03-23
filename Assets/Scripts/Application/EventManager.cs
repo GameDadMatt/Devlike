@@ -84,6 +84,18 @@ namespace Devlike
             OnTick?.Invoke();
         }
 
+        public event Action OnDayStart;
+        public void DayStart()
+        {
+            OnDayStart?.Invoke();
+        }
+
+        public event Action OnWeekStart;
+        public void WeekStart()
+        {
+            OnWeekStart?.Invoke();
+        }
+
         public event Action OnSetCharacters;
         public void SetCharacters()
         {
