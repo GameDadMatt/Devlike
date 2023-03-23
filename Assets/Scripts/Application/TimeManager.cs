@@ -8,9 +8,12 @@ namespace Devlike.Timing
 {
     public class TimeManager : ExecutableBehaviour
     {
-        private GlobalGame game;
-        private GlobalTime time;
-        private GlobalStudio studio;
+        [SerializeField]
+        private GlobalGame gGame;
+        [SerializeField]
+        private GlobalTime gTime;
+        [SerializeField]
+        private GlobalStudio gStudio;
 
         [SerializeField]
         private Light DirectionalLight;
@@ -25,11 +28,7 @@ namespace Devlike.Timing
 
         protected override void SetProperties()
         {
-            time = GameManager.instance.GetGlobal("Time") as GlobalTime;
-            game = GameManager.instance.GetGlobal("Game") as GlobalGame;
-            studio = GameManager.instance.GetGlobal("Studio") as GlobalStudio;
-
-            lastState = game.CurrentState;
+            lastState = gGame.CurrentState;
         }
 
         protected override void SetListeners()
@@ -67,7 +66,7 @@ namespace Devlike.Timing
             if(state != this.lastState)
             {
                 this.lastState = state;
-                game.UpdateGameState(state); //Update the Game Manager state
+                gGame.UpdateGameState(state); //Update the Game Manager state
             }            
         }
 
@@ -75,24 +74,24 @@ namespace Devlike.Timing
         {
             BehaviorManager.instance.Tick();
 
-            time.CurrentTick++;
+            gTime.CurrentTick++;
 
             UpdateLighting();
 
             //Change the speed if characters are or are not active
-            if (!studio.CharactersActive && lastState == GameState.Normal)
+            if (!gStudio.CharactersActive && lastState == GameState.Normal)
             {
                 EventManager.instance.ChangeGameState(GameState.Fast);
             }
-            else if(studio.CharactersActive && lastState == GameState.Fast)
+            else if(gStudio.CharactersActive && lastState == GameState.Fast)
             {
                 EventManager.instance.ChangeGameState(GameState.Normal);
             }
 
             //Check if the day has ended
-            if (time.CurrentTick > time.DayEndTick)
+            if (gTime.CurrentTick > gTime.DayEndTick)
             {
-                time.CurrentTick = 0;
+                gTime.CurrentTick = 0;
                 NextDay();
             }
 
@@ -102,11 +101,11 @@ namespace Devlike.Timing
 
         private void NextDay()
         {
-            time.CurrentDayInt++;
-            if(time.CurrentDayInt > 6)
+            gTime.CurrentDayInt++;
+            if(gTime.CurrentDayInt > 6)
             {
-                time.CurrentWeek++;
-                time.CurrentDayInt = 0;
+                gTime.CurrentWeek++;
+                gTime.CurrentDayInt = 0;
                 EventManager.instance.WeekStart();
             }
             EventManager.instance.DayStart();
@@ -118,11 +117,11 @@ namespace Devlike.Timing
             {
                 if(lastState == GameState.Normal)
                 {
-                    return time.TickLength;
+                    return gTime.TickLength;
                 }
                 else if (lastState == GameState.Fast)
                 {
-                    return time.FastTickLength;
+                    return gTime.FastTickLength;
                 }
                 else
                 {
@@ -135,7 +134,7 @@ namespace Devlike.Timing
         {
             get
             {
-                float percent = (float)time.CurrentTick / (float)time.DayEndTick;
+                float percent = (float)gTime.CurrentTick / (float)gTime.DayEndTick;
                 return percent;
             }
         }

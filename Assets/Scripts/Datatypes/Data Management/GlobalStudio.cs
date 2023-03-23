@@ -12,11 +12,14 @@ namespace Devlike
         [SerializeField]
         private int studioSize; // = 0;
         [SerializeField]
+        private int workDays;
+        [SerializeField]
         private ChanceWeights weights;
         [SerializeField]
         private float studioExperienceTarget; // = 2.5f;
 
         public int StudioSize { get => studioSize; }
+        public int WorkDays { get => workDays; }
         public ChanceWeights Weights { get => weights; }
         public float StudioExperienceTarget { get => studioExperienceTarget; }
 
@@ -53,7 +56,7 @@ namespace Devlike
                 float alignment = 0;
                 foreach (Character c in Characters)
                 {
-                    alignment += c.Worker.Alignment;
+                    alignment += c.Tasker.Alignment;
                 }
                 alignment /= studioSize;
                 return alignment;

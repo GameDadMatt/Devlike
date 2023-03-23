@@ -14,8 +14,10 @@ namespace Devlike.UI
     {
         public static TaskAssignmentScreen instance;
 
-        private GlobalProject project;
-        private GlobalStudio studio;
+        [SerializeField]
+        private GlobalProject gProject;
+        [SerializeField]
+        private GlobalStudio gStudio;
 
         [SerializeField]
         private GameObject taskPrefab;
@@ -44,12 +46,6 @@ namespace Devlike.UI
             gameObject.SetActive(false);
         }
 
-        protected override void SetProperties()
-        {
-            project = GameManager.instance.GetGlobal("Project") as GlobalProject;
-            studio = GameManager.instance.GetGlobal("Studio") as GlobalStudio;
-        }
-
         protected override void Launch()
         {
             GenerateScreen();
@@ -69,17 +65,17 @@ namespace Devlike.UI
 
         private void DrawCharacterColumns()
         {
-            characterColumnArea.sizeDelta = new Vector2(columnWidth * studio.Characters.Count, characterColumnArea.rect.height);
+            characterColumnArea.sizeDelta = new Vector2(columnWidth * gStudio.Characters.Count, characterColumnArea.rect.height);
             List<TaskColumn> containers = backlogColumns;            
 
-            for (int i = 0; i < studio.Characters.Count; i++)
+            for (int i = 0; i < gStudio.Characters.Count; i++)
             {
                 //If this character exists
-                if(studio.Characters.Count > i)
+                if(gStudio.Characters.Count > i)
                 {
                     GameObject columnObj = Instantiate(characterColumnPrefab, characterColumnArea);
                     TaskColumn taskColumn = columnObj.GetComponent<TaskColumn>();
-                    Character owner = studio.Characters[i];
+                    Character owner = gStudio.Characters[i];
                     taskColumn.CharacterColumn(owner);
                     containers.Add(taskColumn);
                     //SPAWN IN ALL THE TASKS FROM THIS CHARACTER

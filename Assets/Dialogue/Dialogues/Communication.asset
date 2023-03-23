@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3ac14e3de51836488f2884cacbe8176, type: 3}
-  m_Name: Default
+  m_Name: Communication
   m_EditorClassIdentifier: 
   startNodes:
-  - Default
-  dramaType: 0
+  - Communication
+  dramaType: 6
   empathyNeeded: 0
-  moodImpact: 0
+  moodImpact: 1
+  crunchPressure: 0.2
+  alignmentPressure: 0.8
+  trigger: 0

@@ -9,9 +9,12 @@ namespace Devlike.UI
 {
     public class GameplayUI : ExecutableBehaviour
     {
-        private GlobalGame game;
-        private GlobalTime time;
-        private GlobalStudio studio;
+        [SerializeField]
+        private GlobalGame gGame;
+        [SerializeField]
+        private GlobalTime gTime;
+        [SerializeField]
+        private GlobalStudio gStudio;
 
         [SerializeField]
         private TextMeshProUGUI week;
@@ -26,10 +29,7 @@ namespace Devlike.UI
 
         protected override void SetProperties()
         {
-            game = GameManager.instance.GetGlobal("Game") as GlobalGame;
-            time = GameManager.instance.GetGlobal("Time") as GlobalTime;
-            studio = GameManager.instance.GetGlobal("Studio") as GlobalStudio;
-            lastState = game.CurrentState;
+            lastState = gGame.CurrentState;
         }
 
         protected override void SetListeners()
@@ -42,8 +42,8 @@ namespace Devlike.UI
 
         protected override void Launch()
         {
-            SetWeek(time.CurrentWeek);
-            SetTime(time.CurrentDay.ToString(), time.CurrentTime);
+            SetWeek(gTime.CurrentWeek);
+            SetTime(gTime.CurrentDay.ToString(), gTime.CurrentTime);
         }
 
         public void RegisterButton(object button)
@@ -71,18 +71,18 @@ namespace Devlike.UI
         public void GenerateCharacterButtons()
         {
             Debug.Log(characterButtons.Count + " Buttons");
-            for(int i = 0; i < studio.Characters.Count; i++)
+            for(int i = 0; i < gStudio.Characters.Count; i++)
             {
-                characterButtons[i].character = studio.Characters[i];
+                characterButtons[i].character = gStudio.Characters[i];
                 characterButtons[i].GenerateButton();
             }
         }
 
         private void GameTick()
         {
-            if(game.CurrentState != lastState)
+            if(gGame.CurrentState != lastState)
             {
-                lastState = game.CurrentState;
+                lastState = gGame.CurrentState;
 
                 //Change the interactivity off by default if we're interacting or paused
                 if (lastState == GameState.Interacting || lastState == GameState.Paused)
@@ -95,7 +95,7 @@ namespace Devlike.UI
                 {
                     ChangeOtherInteractivity(true);
                     //Only allow the player buttons at the top to be interactable if there are characters active
-                    if (studio.CharactersActive)
+                    if (gStudio.CharactersActive)
                     {
                         ChangePlayerInteractivity(true);
                     }
@@ -115,8 +115,8 @@ namespace Devlike.UI
             
             if(lastState != GameState.Interacting && lastState != GameState.Paused)
             {
-                SetWeek(time.CurrentWeek);
-                SetTime(time.CurrentDay.ToString(), time.CurrentTime);
+                SetWeek(gTime.CurrentWeek);
+                SetTime(gTime.CurrentDay.ToString(), gTime.CurrentTime);
             }
         }
 

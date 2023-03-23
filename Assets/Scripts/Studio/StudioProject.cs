@@ -12,8 +12,10 @@ namespace Devlike.Project
     {
         public static StudioProject instance;
 
-        private GlobalStudio studio;
-        private GlobalProject project;
+        [SerializeField]
+        private GlobalStudio gStudio;
+        [SerializeField]
+        private GlobalProject gProject;
 
         [SerializeField]
         private int DesiredProjectDays;
@@ -38,23 +40,20 @@ namespace Devlike.Project
 
         protected override void SetProperties()
         {
-            studio = GameManager.instance.GetGlobal("Studio") as GlobalStudio;
-            project = GameManager.instance.GetGlobal("Project") as GlobalProject;
-
             GenerateProjectScope();
         }
 
         private void GenerateProjectScope()
         {
             //Set the project scope
-            ProjectScope = Mathf.CeilToInt((studio.StudioSize * project.BasePointsPerDay) * DesiredProjectDays);
+            ProjectScope = Mathf.CeilToInt((gStudio.StudioSize * gProject.BaseTaskPointsPerDay) * DesiredProjectDays);
             List<TaskList> projectScope = RandomGeneration.instance.RandomProjectScope(ProjectScope);
             ArtTasks = projectScope[0];
-            ArtTasks.GenerateTaskFromPoints(TaskType.Art, 20, project.BaseBugChance);
+            ArtTasks.GenerateTaskFromPoints(TaskType.Art, 20, gProject.BaseBugChance);
             DesTasks = projectScope[1];
-            DesTasks.GenerateTaskFromPoints(TaskType.Design, 20, project.BaseBugChance);
+            DesTasks.GenerateTaskFromPoints(TaskType.Design, 20, gProject.BaseBugChance);
             EngTasks = projectScope[2];
-            EngTasks.GenerateTaskFromPoints(TaskType.Engineering, 20, project.BaseBugChance);
+            EngTasks.GenerateTaskFromPoints(TaskType.Engineering, 20, gProject.BaseBugChance);
 
             Debug.Log("Total Scope = Art " + ArtTasks.TotalPoints + " points, Design " + DesTasks.TotalPoints + " points, Engineering " + EngTasks.TotalPoints + "\n Current Scope = Art " + ArtTasks.RemainingPoints + " points in " + ArtTasks.ActiveCount + " tasks, Design " + DesTasks.RemainingPoints + " points in " + ArtTasks.ActiveCount + " tasks, Engineering " + EngTasks.RemainingPoints + " points in " + EngTasks.ActiveCount + " tasks.");
         }

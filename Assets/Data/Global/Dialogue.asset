@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4319393f40f25c743bcbc2784b57c586, type: 3}
   m_Name: Dialogue
   m_EditorClassIdentifier: 
-  maxWeeklyDramasPercent: 0.2
+  maxWeeklyArtificialDramas: 3
   defaultDialogue: {fileID: 11400000, guid: f3b4f6882ded23d4187377a7c6014d41, type: 2}
   dialogues:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 21fa48e9e29d6b048abe41932db14f71, type: 2}
+  - {fileID: 11400000, guid: 2f5d0861ff40e9d459069525ea9e2ef2, type: 2}
+  - {fileID: 11400000, guid: b35c470ffd63ca74c9d4d481846fba59, type: 2}
+  - {fileID: 11400000, guid: de01998adcd12914d987b4986278710c, type: 2}
+  - {fileID: 11400000, guid: 363d445fa1fe14749a848feeb8b8c5e4, type: 2}
+  - {fileID: 11400000, guid: 6d68978ed558ffe419eab951638b41f4, type: 2}
+  - {fileID: 11400000, guid: 3bee710394f6e2d41b87a73a05c821be, type: 2}
+  - {fileID: 11400000, guid: 39d9218627cb60f49869eff9631c4530, type: 2}

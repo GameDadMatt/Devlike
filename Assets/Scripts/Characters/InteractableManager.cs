@@ -26,7 +26,8 @@ public class InteractableManager : ExecutableBehaviour
     //InteractableManager still needs to be a singleton for easy access from the BehaviourTree
     public static InteractableManager instance;
 
-    private GlobalStudio studio;
+    [SerializeField]
+    private GlobalStudio gStudio;
 
     private int posIDs = 1;
     [SerializeField]
@@ -46,11 +47,6 @@ public class InteractableManager : ExecutableBehaviour
         }
     }
 
-    protected override void SetProperties()
-    {
-        studio = GameManager.instance.GetGlobal("Studio") as GlobalStudio;
-    }
-
     protected override void SetListeners()
     {
         //Get the interactables after the characters have been set
@@ -59,9 +55,9 @@ public class InteractableManager : ExecutableBehaviour
 
     protected override void AfterDelay()
     {
-        Debug.Log("Doing after delay " + studio.Characters.Count);
+        Debug.Log("Doing after delay " + gStudio.Characters.Count);
         //Set character positions
-        foreach(Character character in studio.Characters)
+        foreach(Character character in gStudio.Characters)
         {
             character.SetPositions();
         }

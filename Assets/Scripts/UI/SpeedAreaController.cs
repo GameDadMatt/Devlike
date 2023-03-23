@@ -7,7 +7,8 @@ namespace Devlike.UI
 {
     public class SpeedAreaController : ExecutableBehaviour
     {
-        private GlobalGame game;
+        [SerializeField]
+        private GlobalGame gGame;
 
         [SerializeField]
         private Image speedDisplay;
@@ -29,8 +30,7 @@ namespace Devlike.UI
 
         protected override void SetProperties()
         {
-            game = GameManager.instance.GetGlobal("Game") as GlobalGame;
-            lastState = game.CurrentState;
+            lastState = gGame.CurrentState;
         }
 
         protected override void SetListeners()
@@ -47,9 +47,9 @@ namespace Devlike.UI
 
         public void Update()
         {
-            if(started && lastState != game.CurrentState)
+            if(started && lastState != gGame.CurrentState)
             {
-                lastState = game.CurrentState;
+                lastState = gGame.CurrentState;
                 switch (lastState)
                 {
                     case GameState.Paused:

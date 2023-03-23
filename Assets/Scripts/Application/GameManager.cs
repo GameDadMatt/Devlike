@@ -56,18 +56,4 @@ public class GameManager : ExecutableBehaviour
 
         Debug.LogWarning("Values reset");
     }
-
-    public GlobalObject GetGlobal(string name)
-    {
-        foreach(GlobalObject obj in globalObjects)
-        {
-            if(obj.name == name)
-            {
-                return obj;
-            }
-        }
-
-        Debug.LogError("Unable to find property of name " + name);
-        return null;
-    }
 }

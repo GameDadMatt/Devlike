@@ -11,7 +11,7 @@ namespace Devlike
         [SerializeField]
         private int maxTaskPoints; // = 5;
         [SerializeField]
-        private float basePointsPerDay; // = 7f;
+        private int baseTaskPointsPerDay; // = 7f;
         [SerializeField]
         private float bugChance; // = 0.1f;
 
@@ -19,7 +19,7 @@ namespace Devlike
         private Color artTaskColor, designTaskColor, engineeringTaskColor, taskBorderColor, bugBorderColor;
 
         public int MaxTaskPoints { get => maxTaskPoints; }
-        public float BasePointsPerDay { get => basePointsPerDay; }
+        public int BaseTaskPointsPerDay { get => baseTaskPointsPerDay; }
         public float BaseBugChance { get => bugChance; }
 
         public Color ArtTask { get => artTaskColor; }

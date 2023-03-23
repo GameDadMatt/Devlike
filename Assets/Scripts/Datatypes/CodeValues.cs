@@ -13,6 +13,7 @@ namespace Devlike.Characters
     public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
     public enum CharacterState { Start, Active, End, Inactive }
     public enum DoingType { Rest, Food, Inspiration, Social, Work, Home, Idle }
+    public enum TriggerEvent { None, Crunch, Alignment, Conflict  }
 
     /// <summary>
     /// Contains the tier and type to inform a character skill

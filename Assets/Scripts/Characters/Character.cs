@@ -11,10 +11,14 @@ namespace Devlike.Characters
     /// </summary>
     public class Character : MonoBehaviour
     {
-        private GlobalCharacter character;
-        private GlobalStudio studio;
-        private GlobalTime time;
-        private GlobalProject project;
+        [SerializeField]
+        private GlobalCharacter gCharacter;
+        [SerializeField]
+        private GlobalStudio gStudio;
+        [SerializeField]
+        private GlobalTime gTime;
+        [SerializeField]
+        private GlobalProject gProject;
 
         [SerializeField]
         private SpriteRenderer characterSprite;
@@ -25,12 +29,10 @@ namespace Devlike.Characters
 
         //Refs
         public Profile Profile { get; private set; }
-        public Worker Worker { get; private set; }
-        public int CurrentTickRef { get { return time.CurrentTick; } }
+        public CharacterTasker Tasker { get; private set; }
+        public CharacterDialogue Dialogue { get; private set; }
+        public int CurrentTickRef { get { return gTime.CurrentTick; } }
         public CharacterState CurrentState { get; set; }
-
-        //Dialogue
-        public DialogueContainer CurrentDialogue { get; set; }
 
         //Positions
         public DoingType CurrentDoing { get; set; }
@@ -44,42 +46,38 @@ namespace Devlike.Characters
         public DoingTracker Socl { get; private set; }
         public DoingTracker Rest { get; private set; }
 
-        public float RestBurnRate { get { return (character.RestBreaksPerDay / Worker.WorkTicks) * Profile.RestDropMultiplier; } }
-        public float FoodBurnRate { get { return (character.FoodBreaksPerDay / Worker.WorkTicks) * Profile.FoodDropMultiplier; } }
-        public float InspBurnRate { get { return (character.InspBreaksPerDay / Worker.WorkTicks) * Profile.InspDropMultiplier; } }
-        public float SoclBurnRate { get { return (character.SoclBreaksPerDay / Worker.WorkTicks) * Profile.SoclDropMultiplier; } }
-        
+        public float RestBurnRate { get { return (gCharacter.RestBreaksPerDay / Tasker.WorkTicks) * Profile.RestDropMultiplier; } }
+        public float FoodBurnRate { get { return (gCharacter.FoodBreaksPerDay / Tasker.WorkTicks) * Profile.FoodDropMultiplier; } }
+        public float InspBurnRate { get { return (gCharacter.InspBreaksPerDay / Tasker.WorkTicks) * Profile.InspDropMultiplier; } }
+        public float SoclBurnRate { get { return (gCharacter.SoclBreaksPerDay / Tasker.WorkTicks) * Profile.SoclDropMultiplier; } }
 
         //Moods
-        public float MoodImpact { get; private set; } = 0f;
-        private float MoodImpactBurn { get { return (character.MoodImpactDuration / Worker.WorkTicks) * Profile.MoodImpactMultiplier; } }
+        private float moodImpact = 0;
+        private float MoodImpactBurn { get { return (gCharacter.MoodImpactDuration * Profile.MoodImpactMultiplier) / Tasker.WorkTicks; } }
 
         //Behaviour Designer References
-        public int NumTasks { get => Worker.NumTasks; }
-        public int WorkStart { get => Worker.WorkStart; }
-        public int WorkEnd { get => Worker.WorkEnd; }
+        public int NumTasks { get => Tasker.NumTasks; }
+        public int WorkStart { get => Tasker.WorkStart; }
+        public int WorkEnd { get => Tasker.WorkEnd; }
         public int RestoreTicks { get => RandomGeneration.instance.RandomRestoreTime; }
 
         private void OnEnable()
         {
             EventManager.instance.OnTick += Tick;
 
-            character = GameManager.instance.GetGlobal("Character") as GlobalCharacter;
-            studio = GameManager.instance.GetGlobal("Studio") as GlobalStudio;
-            time = GameManager.instance.GetGlobal("Time") as GlobalTime;
-            project = GameManager.instance.GetGlobal("Project") as GlobalProject;
+            Tasker = GetComponent<CharacterTasker>();
+            Dialogue = GetComponent<CharacterDialogue>();
 
-            Food = new(DoingType.Food, 1f, character.NeedThreshold);
-            Insp = new(DoingType.Inspiration, 1f, character.NeedThreshold);
-            Socl = new(DoingType.Social, 1f, character.NeedThreshold);
-            Rest = new(DoingType.Rest, 1f, character.NeedThreshold);
+            Food = new(DoingType.Food, 1f, gCharacter.NeedThreshold);
+            Insp = new(DoingType.Inspiration, 1f, gCharacter.NeedThreshold);
+            Socl = new(DoingType.Social, 1f, gCharacter.NeedThreshold);
+            Rest = new(DoingType.Rest, 1f, gCharacter.NeedThreshold);
         }
 
         public void SetupCharacter(Profile profile)
         {
             Debug.Log("Sprite Renderer = " + characterSprite + ", Profile Colour = " + profile.Color);
             Profile = profile;
-            Worker = new Worker(this, character, time, project);
             characterSprite.material.color = Profile.Color;
         }
 
@@ -110,10 +108,10 @@ namespace Devlike.Characters
                     Food.curValue -= FoodBurnRate;
                     Insp.curValue -= InspBurnRate;
                     Socl.curValue -= SoclBurnRate;
-                    MoodImpact -= MoodImpactBurn;
+                    UpdateMood();
                     if(CurrentDoing == DoingType.Work)
                     {
-                        Worker.DoTasks(CappedMoodImpact, character.MoodImpactMax);
+                        Tasker.DoTasks();
                     }
                     DisplayMoodlet();
                     break;
@@ -173,11 +171,36 @@ namespace Devlike.Characters
             transform.position = curInteract.thing.transform.position;
         }
 
+        public void ImpactMood(float impact)
+        {
+            moodImpact += (impact * Profile.MoodImpactMultiplier);
+        }
+
+        private void UpdateMood()
+        {
+            if (moodImpact < 0)
+            {
+                moodImpact += MoodImpactBurn;
+                if(moodImpact > 0)
+                {
+                    moodImpact = 0;
+                }
+            }
+            else if (moodImpact > 0)
+            {
+                moodImpact -= MoodImpactBurn;
+                if(moodImpact < 0)
+                {
+                    moodImpact = 0;
+                }
+            }
+        }
+
         public float Mood
         {
             get
             {
-                return (Profile.BaseMood * ((Rest.curValue + Food.curValue + Insp.curValue + Socl.curValue) / 4)) + MoodImpact;
+                return Profile.BaseMood + moodImpact;
             }
         }
 
@@ -185,13 +208,13 @@ namespace Devlike.Characters
         {
             get
             {
-                if(Mood > character.MoodImpactMax)
+                if(Mood > gCharacter.MoodImpactMax)
                 {
-                    return character.MoodImpactMax;
+                    return gCharacter.MoodImpactMax;
                 }
-                else if(Mood < character.MoodImpactMin)
+                else if(Mood < gCharacter.MoodImpactMin)
                 {
-                    return character.MoodImpactMin;
+                    return gCharacter.MoodImpactMin;
                 }
                 else
                 {
@@ -200,14 +223,17 @@ namespace Devlike.Characters
             }
         }
 
-        public void ChangeMoodImpact(float impact)
+        public float InverseCappedMoodImpact
         {
-            MoodImpact += impact;
+            get
+            {
+                return gCharacter.MoodImpactMax - CappedMoodImpact;
+            }
         }
 
-        public void ChangeBugChanceMod(float mod)
+        public void ChangeMoodImpact(float impact)
         {
-
+            moodImpact += impact;
         }
     }
 }

@@ -238,6 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 579d770a4826b7741b56cbc2c44d2d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gGame: {fileID: 11400000, guid: 7e802f02dba28ec48904b75fe37e721f, type: 2}
+  gTime: {fileID: 11400000, guid: 8d4681013474d2c48a1d12aae8ddc85b, type: 2}
+  gStudio: {fileID: 11400000, guid: c9d32062ddd785647a074c3953de3683, type: 2}
   week: {fileID: 1451900717}
   dayHour: {fileID: 453793865}
 --- !u!1001 &292519423
@@ -380,9 +383,9 @@ RectTransform:
   m_Father: {fileID: 1209996823}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 66.625, y: -10}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &350580755
@@ -1282,9 +1285,9 @@ RectTransform:
   m_Father: {fileID: 1209996823}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 96.625, y: -10}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &680410993
@@ -1501,9 +1504,9 @@ RectTransform:
   m_Father: {fileID: 1209996823}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 36.625, y: -10}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &704190766
@@ -1672,6 +1675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a12141ecb338b4d88fab998548ca60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gGame: {fileID: 11400000, guid: 7e802f02dba28ec48904b75fe37e721f, type: 2}
   speedDisplay: {fileID: 1839855556}
   pauseButton: {fileID: 704190766}
   playButton: {fileID: 350580755}
@@ -1913,6 +1917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c7868006baed744a34f634d00a5408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gGame: {fileID: 0}
+  gDialogue: {fileID: 0}
 --- !u!1 &976585466
 GameObject:
   m_ObjectHideFlags: 0

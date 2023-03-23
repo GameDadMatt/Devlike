@@ -9,12 +9,16 @@ namespace Devlike
     public class GlobalDialogue : GlobalObject
     {
         [SerializeField]
-        private float maxWeeklyDramasPercent; // = 0.2f;
+        private float minWeeklyArtificialDramas;
+        [SerializeField]
+        private float maxWeeklyArtificialDramas;
         [SerializeField]
         private DialogueCollection defaultDialogue;
         [SerializeField]
         private List<DialogueCollection> dialogues = new List<DialogueCollection>();
 
+        public float MinWeeklyArtificialDramas { get => minWeeklyArtificialDramas; }
+        public float MaxWeeklyArtificialDramas { get => maxWeeklyArtificialDramas; }
         public DialogueContainer DefaultDialogue { get { return new DialogueContainer(defaultDialogue); } }
         public List<DialogueCollection> Dialogues { get => dialogues; }
     }

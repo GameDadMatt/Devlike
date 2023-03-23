@@ -27,7 +27,7 @@ namespace Devlike.UI
         public void CharacterColumn(Character owner)
         {
             Owner = owner;
-            Tasks = owner.Worker.Tasks;
+            Tasks = owner.Tasker.Tasks;
             nameText.SetText(Owner.Profile.FirstName + " " + Owner.Profile.LastName);
             profText.SetText(Owner.Profile.Profession.name);
         }

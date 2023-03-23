@@ -11,6 +11,10 @@ namespace Devlike.Characters
         public List<string> startNodes;
         public DramaType dramaType;
         public float empathyNeeded;
+        public float moodImpact;
+        public float crunchPressure;
+        public float alignmentPressure;
+        public TriggerEvent trigger;
         public int stepInList = 0;
 
         public DialogueContainer(DialogueCollection collection)
@@ -19,6 +23,10 @@ namespace Devlike.Characters
             startNodes = collection.startNodes;
             dramaType = collection.dramaType;
             empathyNeeded = collection.empathyNeeded;
+            moodImpact = collection.moodImpact;
+            crunchPressure = collection.crunchPressure;
+            alignmentPressure = collection.alignmentPressure;
+            trigger = collection.trigger;
         }
 
         public void NextDialogueStep()

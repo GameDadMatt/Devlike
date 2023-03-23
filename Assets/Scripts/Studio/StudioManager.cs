@@ -9,19 +9,20 @@ using Devlike;
 /// </summary>
 public class StudioManager : ExecutableBehaviour
 {
-    private GlobalStudio studio;
-    private GlobalDialogue dialogue;
-    private GlobalProject project;
+    [SerializeField]
+    private GlobalStudio gStudio;
+    [SerializeField]
+    private GlobalDialogue gDialogue;
+    [SerializeField]
+    private GlobalProject gProject;
+    [SerializeField]
+    private GlobalTime gTime;
 
     [SerializeField]
     private GameObject characterPrefab;
 
-    protected override void SetProperties()
-    {
-        studio = GameManager.instance.GetGlobal("Studio") as GlobalStudio;
-        dialogue = GameManager.instance.GetGlobal("Dialogue") as GlobalDialogue;
-        project = GameManager.instance.GetGlobal("Project") as GlobalProject;
-    }
+    private Queue<DialogueContainer> weekDramas = new Queue<DialogueContainer>();
+    private List<int> dramaDays = new List<int>();
 
     protected override void SetListeners()
     {
@@ -37,36 +38,88 @@ public class StudioManager : ExecutableBehaviour
 
     public void SpawnCharacters()
     {
-        List<Profile> profiles = RandomGeneration.instance.RandomProfiles(studio.StudioSize);
+        List<Profile> profiles = RandomGeneration.instance.RandomProfiles(gStudio.StudioSize);
         List<Character> characters = new List<Character>();
 
-        for (int i = 0; i < studio.StudioSize; i++)
+        for (int i = 0; i < gStudio.StudioSize; i++)
         {
             GameObject newchar = Instantiate(characterPrefab);
             newchar.transform.position = InteractableManager.instance.Home.thing.transform.position;
             characters.Add(newchar.GetComponent<Character>());
             characters[i].SetupCharacter(profiles[i]);
-            characters[i].CurrentDialogue = dialogue.DefaultDialogue; //Give the character a default dialogue
+            characters[i].Dialogue.SetDialogue(gDialogue.DefaultDialogue); //Give the character a default dialogue
             newchar.name = characters[i].Profile.FullName;
         }
 
-        studio.SetCharacters(characters);
+        gStudio.SetCharacters(characters);
         //Our characters have been set
         EventManager.instance.SetCharacters();
-    }
-
-    private void DayStart()
-    {
-
-    }
-
-    private void WeekStart()
-    {
-
     }
 
     private void Tick()
     {
         //Debug.Log(studio.Alignment);
+    }
+
+    private void DayStart()
+    {
+        if (dramaDays.Contains(gTime.CurrentDayInt))
+        {
+            List<Character> availableCharacters = CharactersWithoutDrama;
+            if (availableCharacters.Count > 0)
+            {
+                List<int> dramas = new List<int>();
+                for (int i = 0; i < dramaDays.Count; i++)
+                {
+                    if (dramaDays[i] == gTime.CurrentDayInt)
+                    {
+                        dramas.Add(i);
+                    }
+                }
+                List<int> characterPos = RandomGeneration.instance.RandomUnrepeatedPositionsFromList(dramas.Count, availableCharacters.Count);
+                foreach(int i in characterPos)
+                {
+                    availableCharacters[i].Dialogue.SetDialogue(weekDramas.Dequeue());
+                }
+            }
+        }
+    }
+
+    private void WeekStart()
+    {
+        weekDramas = RandomGeneration.instance.ArtificialDramaQueue();
+        dramaDays = RandomGeneration.instance.RandomPositionsFromList(weekDramas.Count, 7);
+    }
+
+    public List<Character> CharactersWithoutDrama
+    {
+        get
+        {
+            List<Character> availableCharacters = new List<Character>();
+            foreach(Character character in gStudio.Characters)
+            {
+                if(character.Dialogue.CurrentDialogue.dramaType == DramaType.None)
+                {
+                    availableCharacters.Add(character);
+                }
+            }
+            return availableCharacters;
+        }
+    }
+
+    public List<Character> CharactersWithDrama
+    {
+        get
+        {
+            List<Character> dramaCharacters = new List<Character>();
+            foreach (Character character in gStudio.Characters)
+            {
+                if (character.Dialogue.CurrentDialogue.dramaType != DramaType.None)
+                {
+                    dramaCharacters.Add(character);
+                }
+            }
+            return dramaCharacters;
+        }
     }
 }

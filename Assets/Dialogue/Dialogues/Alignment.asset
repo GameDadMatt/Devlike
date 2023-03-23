@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3ac14e3de51836488f2884cacbe8176, type: 3}
-  m_Name: Default
+  m_Name: Alignment
   m_EditorClassIdentifier: 
   startNodes:
-  - Default
-  dramaType: 0
+  - Alignment
+  dramaType: 1
   empathyNeeded: 0
-  moodImpact: 0
+  moodImpact: 2
+  crunchPressure: 0.2
+  alignmentPressure: 1
+  trigger: 2

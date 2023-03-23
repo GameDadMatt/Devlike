@@ -22,7 +22,6 @@ namespace Devlike.Characters
         public Tier empathyBarrier = Tier.Average;
         public Tier burnout = Tier.Average;
         public Tier bugChance = Tier.Average;
-        public Tier crunchDesire = Tier.Average;
 
         [Header("Lower Tier = Lower Return")]
         public Tier confidence = Tier.Average;
@@ -34,5 +33,6 @@ namespace Devlike.Characters
         [Header("Percentiles")]
         public Tier baseMood = Tier.Average;
         public Tier alignment = Tier.Average;
+        public Tier crunchThreshold = Tier.Average;
     }
 }

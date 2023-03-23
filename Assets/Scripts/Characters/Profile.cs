@@ -32,7 +32,7 @@ namespace Devlike.Characters
         public float FoodDropMultiplier { get; private set; } = 1f;
         public float InspDropMultiplier { get; private set; } = 1f;
         public float SoclDropMultiplier { get; private set; } = 1f;
-        public float AlignDropMultiplier { get; private set; } = 1f;
+        public float AlignDriftMultiplier { get; private set; } = 1f;
 
         //How much empathy is needed to see this characters moodlets
         public float EmpathyBarrierMultiplier { get; private set; } = 1f;
@@ -42,8 +42,10 @@ namespace Devlike.Characters
         public float BaseMood { get; private set; } = 0.5f; //Percentage
         //What is the alignment of this character normally
         public float NaturalAlignment { get; private set; } = 0f; //Percentage
+
         //What is this character's likeliness to crunch
-        public float CrunchDesire { get; private set; } = 0f;
+        public float CrunchThreshold { get; private set; } = 0f;
+        public float CrunchPressure { get; private set; } = 0f;
 
         //How early or late does the character start and end the day
         public int WorkStartMod { get; private set; } = 0;
@@ -110,9 +112,9 @@ namespace Devlike.Characters
             FoodDropMultiplier = TierHighToLow(character, trait.foodDrop);
             InspDropMultiplier = TierHighToLow(character, trait.inspirationDrop);
             SoclDropMultiplier = TierHighToLow(character, trait.socialDrop);
-            AlignDropMultiplier = TierHighToLow(character, trait.alignment);
+            AlignDriftMultiplier = TierHighToLow(character, trait.alignment);
 
-            CrunchDesire = TierHighToLow(character, trait.crunchDesire);
+            CrunchThreshold = TierHighToLow(character, trait.crunchThreshold);
             EmpathyBarrierMultiplier = TierHighToLow(character, trait.empathyBarrier);
 
             BugChanceMultiplier = TierHighToLow(character, trait.bugChance);
@@ -128,6 +130,7 @@ namespace Devlike.Characters
             //Percentages
             BaseMood = TierPercentage(trait.baseMood);
             NaturalAlignment = AlignmentCalc(trait.alignment, Experience);
+            CrunchThreshold = TierPercentage(trait.crunchThreshold);
         }
 
         /// <summary>

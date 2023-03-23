@@ -7,20 +7,16 @@ namespace Devlike.Characters
 {
     public class DialogueManager : ExecutableBehaviour
     {
-        private GlobalGame game;
-        private GlobalDialogue dialogue;
+        [SerializeField]
+        private GlobalGame gGame;
+        [SerializeField]
+        private GlobalDialogue gDialogue;
 
         private DialogueRunner dialogueRunner;
 
         public bool DialogueRunning { get; private set; } = false;
         private static Character activeCharacter;
         private GameState lastState = GameState.Normal;
-
-        protected override void SetProperties()
-        {
-            game = GameManager.instance.GetGlobal("Game") as GlobalGame;
-            dialogue = GameManager.instance.GetGlobal("Dialogue") as GlobalDialogue;
-        }
 
         protected override void SetListeners()
         {
@@ -31,15 +27,15 @@ namespace Devlike.Characters
 
         private void StartConversation(Character character)
         {
-            if(game.CurrentState != GameState.Interacting && game.CurrentState != GameState.Paused)
+            if(gGame.CurrentState != GameState.Interacting && gGame.CurrentState != GameState.Paused)
             {
                 if (!DialogueRunning)
                 {
                     activeCharacter = character;
                     Debug.Log("Started conversation with " + activeCharacter.Profile.FullName);
-                    dialogueRunner.StartDialogue(activeCharacter.CurrentDialogue.CurrentStartNode);
+                    dialogueRunner.StartDialogue(activeCharacter.Dialogue.CurrentDialogue.CurrentStartNode);
                     DialogueRunning = true;
-                    lastState = game.CurrentState;
+                    lastState = gGame.CurrentState;
                     EventManager.instance.ChangeGameState(GameState.Interacting);
                 }
             }

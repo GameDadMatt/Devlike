@@ -10,6 +10,9 @@ namespace Devlike.UI
     [RequireComponent(typeof(Image))]
     public class TaskUIObject : MonoBehaviour
     {
+        [SerializeField]
+        private GlobalProject gProject;
+
         public TaskContainer Task { get; private set; }
         [SerializeField]
         private Image frame;
@@ -30,30 +33,28 @@ namespace Devlike.UI
 
         public void Setup(TaskContainer task)
         {
-            GlobalProject project = GameManager.instance.GetGlobal("Project") as GlobalProject;
-
             Task = task;
             if(Task.Importance == TaskImportance.Bug)
             {
-                frame.color = project.BugBorder;
+                frame.color = gProject.BugBorder;
             }
             else
             {
-                frame.color = project.TaskBorder;
+                frame.color = gProject.TaskBorder;
             }
 
             switch (Task.Type)
             {
                 case TaskType.Art:
-                    background.color = project.ArtTask;
+                    background.color = gProject.ArtTask;
                     tmpro.SetText("ART");
                     break;
                 case TaskType.Engineering:
-                    background.color = project.EngineeringTask;
+                    background.color = gProject.EngineeringTask;
                     tmpro.SetText("ENGINEERING");
                     break;
                 case TaskType.Design:
-                    background.color = project.DesignTask;
+                    background.color = gProject.DesignTask;
                     tmpro.SetText("DESIGN");
                     break;
             }
