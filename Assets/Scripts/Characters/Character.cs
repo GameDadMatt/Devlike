@@ -126,7 +126,6 @@ namespace Devlike.Characters
                     {
                         Tasker.DoTasks();
                     }
-                    DisplayMoodlet();
                     break;
                 case CharacterState.End:
                     EndWork();
@@ -136,9 +135,10 @@ namespace Devlike.Characters
             }
         }
 
-        private void CheckMood()
+        public void CheckMood()
         {
-
+            //Activated from StudioManager
+            //Do a mood check and set appropriate moodlet based on current stats
         }
 
         private void DisplayMoodlet()

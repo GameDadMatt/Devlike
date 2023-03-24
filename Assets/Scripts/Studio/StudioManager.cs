@@ -68,7 +68,8 @@ public class StudioManager : ExecutableBehaviour
 
     private void DayStart()
     {
-        Debug.LogWarning("Day Start");
+        Debug.LogWarning("Day Start: Check character moods");
+        SetNaturalCharacterMoods();
         if (dramaDays.Contains(gTime.CurrentDayInt))
         {
             Debug.LogWarning("Dramas!");
@@ -97,6 +98,14 @@ public class StudioManager : ExecutableBehaviour
         Debug.LogWarning("Week Start");
         weekDramas = RandomGeneration.instance.ArtificialDramaQueue();
         dramaDays = RandomGeneration.instance.RandomPositionsFromList(weekDramas.Count, 7);
+    }
+
+    public void SetNaturalCharacterMoods()
+    {
+        foreach(Character character in gStudio.Characters)
+        {
+            character.CheckMood();
+        }
     }
 
     public List<Character> CharactersWithoutDrama
