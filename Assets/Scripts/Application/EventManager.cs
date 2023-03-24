@@ -101,6 +101,12 @@ namespace Devlike
         {
             OnSetCharacters?.Invoke();
         }
+
+        public event Action<string, bool, Sprite> OnSetCharacterMoodlet;
+        public void SetCharacterMoodlet(string id, bool active, Sprite sprite)
+        {
+            OnSetCharacterMoodlet?.Invoke(id, active, sprite);
+        }
         #endregion
 
         #region UI

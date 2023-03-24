@@ -19,6 +19,7 @@ namespace Devlike.UI
         public override void GenerateButton()
         {
             buttonText.SetText(character.Profile.FirstName);
+            GetComponent<MoodletDisplay>().RegisterMoodlet(character.ID);
             characterSprite.color = character.Profile.Color;
             action = new PlayerAction(gTime, this, character.Profile.FullName, actionContainer.type, character, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
         }

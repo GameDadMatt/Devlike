@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1614124542255639275}
   - component: {fileID: 2195522722408380995}
   - component: {fileID: 4414229033747083321}
+  - component: {fileID: 788759043739988308}
   - component: {fileID: 1614124542255639274}
   m_Layer: 0
   m_Name: Character
@@ -122,7 +123,7 @@ MonoBehaviour:
   gTime: {fileID: 11400000, guid: 8d4681013474d2c48a1d12aae8ddc85b, type: 2}
   gProject: {fileID: 11400000, guid: 0ddcf9bead7ea1e46baf083db588551e, type: 2}
   characterSprite: {fileID: 1614124543844919095}
-  moodlet: {fileID: 6388885449606378824}
+  moodletDisplay: {fileID: 7504642381874759101}
 --- !u!114 &2195522722408380995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +153,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gDialogue: {fileID: 11400000, guid: d2ce7dce081f3d3468a747574cf808f3, type: 2}
+--- !u!114 &788759043739988308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614124542255639269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a90b1cd7239fb44a5268bf148e9c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1614124542255639274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,7 +555,7 @@ GameObject:
   - component: {fileID: 8807157526297740713}
   - component: {fileID: 5162088794966824376}
   - component: {fileID: 825377351540164446}
-  - component: {fileID: 6388885449606378824}
+  - component: {fileID: 7504642381874759101}
   m_Layer: 5
   m_Name: Moodlet Canvas
   m_TagString: Untagged
@@ -632,7 +645,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6388885449606378824
+--- !u!114 &7504642381874759101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -641,8 +654,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7717897103787605914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33a90b1cd7239fb44a5268bf148e9c77, type: 3}
+  m_Script: {fileID: 11500000, guid: 705fa91731e425a4cbccb22e76b5be5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moodletArea: {fileID: 6388544761411100004}
+  moodletBG: {fileID: 6388544761411100004}
   moodletImage: {fileID: 4709106912729098212}

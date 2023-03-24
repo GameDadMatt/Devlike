@@ -23,12 +23,13 @@ namespace Devlike.Characters
         [SerializeField]
         private SpriteRenderer characterSprite;
         [SerializeField]
-        private Moodlet moodlet;
+        private UI.MoodletDisplay moodletDisplay;
 
         //Refs
         public Profile Profile { get; private set; }
         public CharacterTasker Tasker { get; private set; }
         public CharacterDialogue Dialogue { get; private set; }
+        public CharacterMoodlet Moodlet { get; private set; }
         public int CurrentTickRef { get { return gTime.CurrentTick; } }
         public CharacterState CurrentState { get; set; }
 
@@ -59,12 +60,23 @@ namespace Devlike.Characters
         public int WorkEnd { get => Tasker.WorkEnd; }
         public int RestoreTicks { get => RandomGeneration.instance.RandomRestoreTime; }
 
+        public string ID
+        {
+            get
+            {
+                var hash = new Hash128();
+                hash.Append(Profile.FullNameAndAlias);
+                return hash.ToString();
+            }
+        }
+
         private void OnEnable()
         {
             EventManager.instance.OnTick += Tick;
 
             Tasker = GetComponent<CharacterTasker>();
             Dialogue = GetComponent<CharacterDialogue>();
+            Moodlet = GetComponent<CharacterMoodlet>();
 
             Food = new(DoingType.Food, 1f, gCharacter.NeedThreshold);
             Insp = new(DoingType.Inspiration, 1f, gCharacter.NeedThreshold);
@@ -77,6 +89,8 @@ namespace Devlike.Characters
             Debug.Log("Sprite Renderer = " + characterSprite + ", Profile Colour = " + profile.Color);
             Profile = profile;
             characterSprite.material.color = Profile.Color;
+            Moodlet.RegisterCharacter(ID);
+            moodletDisplay.RegisterMoodlet(ID);
         }
 
         public void SetPositions()
@@ -122,20 +136,25 @@ namespace Devlike.Characters
             }
         }
 
-        public void DisplayMoodlet()
+        private void CheckMood()
         {
-            if(moodlet.Ready && Dialogue.HasDrama)
+
+        }
+
+        private void DisplayMoodlet()
+        {
+            if(Moodlet.Ready && Dialogue.HasDrama)
             {
                 Sprite sprite = gCharacter.GetMoodletSprite(MoodletType.HasDrama);
                 int delayTicks = Mathf.RoundToInt(Random.Range(0, gCharacter.MoodletDelayHours) * gTime.TicksPerHour);
                 int displayTicks = Mathf.RoundToInt(gCharacter.MoodletDisplayHours * gTime.TicksPerHour);
                 int cooldownTicks = Mathf.RoundToInt(gCharacter.MoodletCooldownHours * gTime.TicksPerHour);
-                moodlet.NewMoodlet(sprite, delayTicks, displayTicks, cooldownTicks);
+                Moodlet.NewMoodlet(sprite, delayTicks, displayTicks, cooldownTicks);
             }
-            else if (!moodlet.Ready)
+            else if (!Moodlet.Ready)
             {
                 Debug.Log("Moodlet on " + Profile.FullName);
-                moodlet.Tick();
+                Moodlet.Tick();
             }
         }
 

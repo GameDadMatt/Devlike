@@ -34,7 +34,7 @@ namespace Devlike
         [SerializeField]
         private List<Profession> professions = new List<Profession>();
         [SerializeField]
-        private List<CharacterMoodlet> moodlets = new List<CharacterMoodlet>();
+        private List<Moodlet> moodlets = new List<Moodlet>();
 
         //Returns
         public int TotalTraits { get => totalTraits; }
@@ -62,7 +62,7 @@ namespace Devlike
         public Gradient CharacterColours { get => characterColours; }
         public List<Trait> Traits { get => traits; }
         public List<Profession> Professions { get => professions; }
-        public List<CharacterMoodlet> Moodlets { get => moodlets; }
+        public List<Moodlet> Moodlets { get => moodlets; }
 
         public Trait GetTrait(string name)
         {
@@ -92,7 +92,7 @@ namespace Devlike
 
         public Sprite GetMoodletSprite(MoodletType type)
         {
-            foreach (CharacterMoodlet moodlet in moodlets)
+            foreach (Moodlet moodlet in moodlets)
             {
                 if (type == moodlet.type)
                 {
