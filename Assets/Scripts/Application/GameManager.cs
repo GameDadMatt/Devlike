@@ -12,7 +12,19 @@ public class GameManager : ExecutableBehaviour
     [SerializeField]
     private bool ResetOnStart;
     [SerializeField]
-    private List<GlobalObject> globalObjects = new List<GlobalObject>();
+    private GlobalGame gGame;
+    [SerializeField]
+    private GlobalTime gTime;
+    [SerializeField]
+    private GlobalStudio gStudio;
+    [SerializeField]
+    private GlobalProject gProject;
+    [SerializeField]
+    private GlobalCharacter gCharacter;
+    [SerializeField]
+    private GlobalDialogue gDialogue;
+
+    private GlobalObject[] GlobalObjects { get { return new GlobalObject[] { gGame, gTime, gStudio, gProject, gCharacter, gDialogue }; } }
 
     public void Awake()
     {
@@ -35,7 +47,7 @@ public class GameManager : ExecutableBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Delete))
         {
-            EventManager.instance.ChangeGameState(GameState.Paused);
+            gGame.UpdateGameState(GameState.Paused);
             ResetGlobal();
         }
     }
@@ -49,7 +61,7 @@ public class GameManager : ExecutableBehaviour
 
     public void ResetGlobal()
     {
-        foreach (GlobalObject obj in globalObjects)
+        foreach (GlobalObject obj in GlobalObjects)
         {
             obj.ResetValues();
         }

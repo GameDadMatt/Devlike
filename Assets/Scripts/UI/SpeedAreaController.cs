@@ -25,79 +25,99 @@ namespace Devlike.UI
         [SerializeField]
         private Sprite fastSprite;
 
-        private bool started = false;
         private GameState lastState;
+        private GameSpeed displayedSpeed;
 
         protected override void SetProperties()
         {
             lastState = gGame.CurrentState;
+            displayedSpeed = gGame.CurrentSpeed;
         }
 
         protected override void SetListeners()
         {
+            gGame.OnGameSpeedChange += SpeedChange;
+            gGame.OnGameStateChange += StateChange;
             EventManager.instance.RegisterButton(pauseButton);
             EventManager.instance.RegisterButton(playButton);
             EventManager.instance.RegisterButton(fastButton);
         }
 
-        protected override void AfterDelay()
+        private void StateChange()
         {
-            started = true;
-        }
-
-        public void Update()
-        {
-            if(started && lastState != gGame.CurrentState)
+            if(lastState != gGame.CurrentState)
             {
                 lastState = gGame.CurrentState;
-                switch (lastState)
-                {
-                    case GameState.Paused:
-                        pauseButton.interactable = false;
-                        playButton.interactable = true;
-                        fastButton.interactable = true;
-                        ChangeSpeedDisplay(pausedSprite);
-                        break;
-                    case GameState.Interacting:
-                        pauseButton.interactable = false;
-                        playButton.interactable = false ;
-                        fastButton.interactable = false;
-                        ChangeSpeedDisplay(pausedSprite);
-                        break;
-                    case GameState.Normal:
-                        pauseButton.interactable = true;
-                        playButton.interactable = false;
-                        fastButton.interactable = true;
-                        ChangeSpeedDisplay(playSprite);
-                        break;
-                    case GameState.Fast:
-                        pauseButton.interactable = true;
-                        playButton.interactable = true;
-                        fastButton.interactable = false;
-                        ChangeSpeedDisplay(fastSprite);
-                        break;
-                }
+                UpdateButtons();
             }
         }
 
-        public void ChangeSpeedDisplay(Sprite sprite)
+        private void SpeedChange()
+        {
+            if(displayedSpeed != gGame.CurrentSpeed || lastState != gGame.CurrentState)
+            {
+                lastState = gGame.CurrentState;
+                displayedSpeed = gGame.CurrentSpeed;
+                UpdateButtons();
+            }
+        }
+
+        private void UpdateButtons()
+        {
+            switch (gGame.CurrentState)
+            {
+                case GameState.Paused:
+                    pauseButton.interactable = false;
+                    playButton.interactable = true;
+                    fastButton.interactable = true;
+                    ChangeDisplayedSpeed(pausedSprite);
+                    break;
+                case GameState.Ticking:
+                    switch (gGame.CurrentSpeed)
+                    {
+                        case GameSpeed.Normal:
+                            pauseButton.interactable = true;
+                            playButton.interactable = false;
+                            fastButton.interactable = true;
+                            ChangeDisplayedSpeed(playSprite);
+                            break;
+                        case GameSpeed.Fast:
+                            pauseButton.interactable = true;
+                            playButton.interactable = true;
+                            fastButton.interactable = false;
+                            ChangeDisplayedSpeed(fastSprite);
+                            break;
+                    }
+                    break;
+                case GameState.Interacting:
+                    pauseButton.interactable = false;
+                    playButton.interactable = false;
+                    fastButton.interactable = false;
+                    ChangeDisplayedSpeed(pausedSprite);
+                    break;
+            }
+        }
+
+        public void ChangeDisplayedSpeed(Sprite sprite)
         {
             speedDisplay.sprite = sprite;
         }
 
         public void PauseButton()
         {
-            EventManager.instance.ChangeGameState(GameState.Paused);
+            gGame.UpdateGameState(GameState.Paused);
         }
 
         public void NormalSpeedButton()
         {
-            EventManager.instance.ChangeGameState(GameState.Normal);
+            gGame.UpdateGameState(GameState.Ticking);
+            gGame.UpdateGameSpeed(GameSpeed.Normal);
         }
 
         public void FastSpeedButton()
         {
-            EventManager.instance.ChangeGameState(GameState.Fast);
+            gGame.UpdateGameState(GameState.Ticking);
+            gGame.UpdateGameSpeed(GameSpeed.Fast);
         }
     }
 }

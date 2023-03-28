@@ -38,7 +38,8 @@ namespace Devlike.Tasks
     public enum TaskImportance { None, Bug, Required }
 }
 
-public enum GameState { Paused, Normal, Fast, Interacting }
+public enum GameState { Paused, Ticking, Interacting }
+public enum GameSpeed { Normal, Fast }
 public enum Tier { Lowest, Low, Average, High, Highest }
 public enum Day { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday }
 

@@ -23,23 +23,11 @@ namespace Devlike.Timing
         private LightingPreset Preset;
 
         private float seconds = 0f;
-        [SerializeField]
-        private GameState lastState;
-
-        protected override void SetProperties()
-        {
-            lastState = gGame.CurrentState;
-        }
-
-        protected override void SetListeners()
-        {
-            EventManager.instance.OnChangeGameState += UpdateSpeed;
-        }
 
         // Update is called once per frame
         void Update()
         {
-            if (lastState != GameState.Paused && lastState != GameState.Interacting)
+            if (gGame.CurrentState != GameState.Paused && gGame.CurrentState != GameState.Interacting)
             {
                 seconds += Time.deltaTime;
                 if (seconds >= TickLength)
@@ -61,15 +49,6 @@ namespace Devlike.Timing
             }
         }
 
-        private void UpdateSpeed(GameState state)
-        {
-            if(state != this.lastState)
-            {
-                this.lastState = state;
-                gGame.UpdateGameState(state); //Update the Game Manager state
-            }            
-        }
-
         public void Tick()
         {
             BehaviorManager.instance.Tick();
@@ -79,13 +58,13 @@ namespace Devlike.Timing
             UpdateLighting();
 
             //Change the speed if characters are or are not active
-            if (!gStudio.CharactersActive && lastState == GameState.Normal)
+            if (!gStudio.CharactersActive && gGame.CurrentSpeed == GameSpeed.Normal)
             {
-                EventManager.instance.ChangeGameState(GameState.Fast);
+                gGame.UpdateGameSpeed(GameSpeed.Fast);
             }
-            else if(gStudio.CharactersActive && lastState == GameState.Fast)
+            else if(gStudio.CharactersActive && gGame.CurrentSpeed == GameSpeed.Fast)
             {
-                EventManager.instance.ChangeGameState(GameState.Normal);
+                gGame.UpdateGameSpeed(GameSpeed.Normal);
             }
 
             //Check if the day has ended
@@ -115,11 +94,11 @@ namespace Devlike.Timing
         {
             get
             {
-                if(lastState == GameState.Normal)
+                if(gGame.CurrentSpeed == GameSpeed.Normal)
                 {
                     return gTime.TickLength;
                 }
-                else if (lastState == GameState.Fast)
+                else if (gGame.CurrentSpeed == GameSpeed.Fast)
                 {
                     return gTime.FastTickLength;
                 }

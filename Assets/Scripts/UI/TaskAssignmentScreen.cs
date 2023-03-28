@@ -49,6 +49,7 @@ namespace Devlike.UI
         protected override void SetListeners()
         {
             EventManager.instance.OnDisplayUI += DisplayScreen;
+            EventManager.instance.OnCloseUI += CloseScreen;
         }
 
         protected override void Launch()
@@ -106,6 +107,14 @@ namespace Devlike.UI
             if(type == Player.ActionType.TaskManagement)
             {
                 canvas.enabled = true;
+            }
+        }
+
+        private void CloseScreen()
+        {
+            if (canvas.enabled)
+            {
+                canvas.enabled = false;
             }
         }
     }

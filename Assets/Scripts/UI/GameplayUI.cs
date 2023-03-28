@@ -42,6 +42,7 @@ namespace Devlike.UI
             EventManager.instance.OnSetCharacters += GenerateCharacterButtons;
             EventManager.instance.OnRegisterButton += RegisterButton;
             EventManager.instance.OnDisplayUI += DisplayUI;
+            EventManager.instance.OnCloseUI += CloseUI;
         }
 
         protected override void Launch()
@@ -93,27 +94,13 @@ namespace Devlike.UI
                 {
                     ChangeOtherInteractivity(false);
                     ChangePlayerInteractivity(false);
-                    ChangeCharacterInteractivity(false);
-                }
-                else if (lastState == GameState.Fast)
-                {
-                    ChangeOtherInteractivity(true);
-                    //Only allow the player buttons at the top to be interactable if there are characters active
-                    if (gStudio.CharactersActive)
-                    {
-                        ChangePlayerInteractivity(true);
-                    }
-                    else
-                    {
-                        ChangePlayerInteractivity(false);
-                    }
+                    ForceCharacterInteractivity(false);
                 }
                 else
                 {
-                    //The game is running at normal speed, so make buttons interactive
-                    //We let characters change themselves as appropriate in ProgressButtonCharacter
                     ChangeOtherInteractivity(true);
                     ChangePlayerInteractivity(true);
+                    ResetCharacterInteractivity();
                 }
             }
             
@@ -126,9 +113,16 @@ namespace Devlike.UI
 
         public void DisplayUI(ActionType type)
         {
-            EventManager.instance.ChangeGameState(GameState.Interacting);
+            lastState = gGame.CurrentState;
+            gGame.UpdateGameState(GameState.Interacting);
             canvas.enabled = false;
             ResetActionButtons();
+        }
+
+        public void CloseUI()
+        {
+            gGame.UpdateGameState(GameState.Paused);
+            canvas.enabled = true;
         }
 
         public void ChangeOtherInteractivity(bool state)
@@ -147,11 +141,26 @@ namespace Devlike.UI
             }
         }
 
-        public void ChangeCharacterInteractivity(bool state)
+        public void ForceCharacterInteractivity(bool state)
         {
             foreach (ProgressButtonCharacter pbc in characterButtons)
             {
                 pbc.Interactable = state;
+            }
+        }
+
+        public void ResetCharacterInteractivity()
+        {
+            foreach(ProgressButtonCharacter pbc in characterButtons)
+            {
+                if(pbc.character.CurrentState == Characters.CharacterState.Active)
+                {
+                    pbc.Interactable = true;
+                }
+                else
+                {
+                    pbc.Interactable = false;
+                }
             }
         }
 

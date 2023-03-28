@@ -1925,8 +1925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c7868006baed744a34f634d00a5408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gGame: {fileID: 0}
-  gDialogue: {fileID: 0}
+  gGame: {fileID: 11400000, guid: 7e802f02dba28ec48904b75fe37e721f, type: 2}
+  gDialogue: {fileID: 11400000, guid: d2ce7dce081f3d3468a747574cf808f3, type: 2}
 --- !u!1 &976585466
 GameObject:
   m_ObjectHideFlags: 0

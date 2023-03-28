@@ -63,6 +63,12 @@ namespace Devlike
             OnDisplayUI?.Invoke(type);
         }
 
+        public event Action OnCloseUI;
+        public void CloseUI()
+        {
+            OnCloseUI?.Invoke();
+        }
+
         public event Action<Character> OnCharacterInteract;
         public void CharacterInteract(Character character)
         {
@@ -77,12 +83,6 @@ namespace Devlike
         #endregion
 
         #region Game
-        public event Action<GameState> OnChangeGameState;
-        public void ChangeGameState(GameState state)
-        {
-            OnChangeGameState?.Invoke(state);
-        }
-
         public event Action OnTick;
         public void Tick()
         {

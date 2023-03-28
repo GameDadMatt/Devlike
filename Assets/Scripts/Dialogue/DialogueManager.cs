@@ -16,7 +16,6 @@ namespace Devlike.Characters
 
         public bool DialogueRunning { get; private set; } = false;
         private static Character activeCharacter;
-        private GameState lastState = GameState.Normal;
 
         protected override void SetListeners()
         {
@@ -35,8 +34,7 @@ namespace Devlike.Characters
                     Debug.Log("Started conversation with " + activeCharacter.Profile.FullName);
                     dialogueRunner.StartDialogue(activeCharacter.Dialogue.CurrentDialogue.CurrentStartNode);
                     DialogueRunning = true;
-                    lastState = gGame.CurrentState;
-                    EventManager.instance.ChangeGameState(GameState.Interacting);
+                    gGame.UpdateGameState(GameState.Interacting);
                 }
             }
         }
@@ -45,9 +43,8 @@ namespace Devlike.Characters
         {
             Debug.Log("Ended conversation with " + activeCharacter.Profile.FullName);
             DialogueRunning = false;
-            //Return to the previous game state
-            EventManager.instance.ChangeGameState(lastState);
             //Complete the event
+            gGame.UpdateGameState(GameState.Ticking);
             EventManager.instance.CompletePlayerAction();
         }
 
