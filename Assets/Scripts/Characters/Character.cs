@@ -86,7 +86,6 @@ namespace Devlike.Characters
 
         public void SetupCharacter(Profile profile)
         {
-            Debug.Log("Sprite Renderer = " + characterSprite + ", Profile Colour = " + profile.Color);
             Profile = profile;
             characterSprite.material.color = Profile.Color;
             Moodlet.RegisterCharacter(ID);

@@ -28,7 +28,7 @@ namespace Devlike.Characters
 
         //Character
         //How easy it is for this character to be overwhelmed, based on confidence
-        public int WorkloadPoints { get { return (gProject.BaseTaskPointsPerDay + TaskEstimateAdjustment) * gStudio.WorkDays; } }
+        public int WorkloadPoints { get { return (gProject.BaseTaskPointsPerDay + TaskEstimateAdjustment) * gStudio.WorkWeekDays; } }
 
         //How accurate this characters estimations are, based on confidence and experience
         public int TaskEstimateAdjustment { get { return Mathf.RoundToInt(((float)thisCharacter.Profile.Confidence + (float)thisCharacter.Profile.Experience) / 2); } }

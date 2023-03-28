@@ -12,14 +12,14 @@ namespace Devlike
         [SerializeField]
         private int studioSize; // = 0;
         [SerializeField]
-        private int workDays;
+        private int workWeekDays;
         [SerializeField]
         private ChanceWeights weights;
         [SerializeField]
         private float studioExperienceTarget; // = 2.5f;
 
         public int StudioSize { get => studioSize; }
-        public int WorkDays { get => workDays; }
+        public int WorkWeekDays { get => workWeekDays; }
         public ChanceWeights Weights { get => weights; }
         public float StudioExperienceTarget { get => studioExperienceTarget; }
 

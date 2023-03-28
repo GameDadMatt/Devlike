@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Devlike.Characters;
 using Devlike.Tasks;
-using Devlike.Project;
 using Devlike;
 
 /// <summary>
@@ -297,7 +296,7 @@ public class RandomGeneration : ExecutableBehaviour
         bool bug = Random.Range(0f, 1f) > chance;
         if (bug)
         {
-            StudioProject.instance.AddTask(new TaskContainer(RandomType, TaskImportance.Bug, Tier.Lowest, gProject.BaseBugChance, RandomPoints(gProject.MaxTaskPoints)));
+            gProject.AddTask(new TaskContainer(RandomType, TaskImportance.Bug, Tier.Lowest, gProject.BaseBugChance, RandomPoints(gProject.MaxTaskPoints)));
         }
     }
 

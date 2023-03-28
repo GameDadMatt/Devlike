@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9788c4a484b23da41855462d1835ba41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskType: 0
 --- !u!114 &3276346599126262671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cece84ad5a936b04eb9b567a5ca8f45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gProject: {fileID: 11400000, guid: 0ddcf9bead7ea1e46baf083db588551e, type: 2}
   frame: {fileID: 3276346599205628990}
   tmpro: {fileID: 3276346600972812490}
   points:

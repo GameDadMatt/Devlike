@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Studio
   m_EditorClassIdentifier: 
   studioSize: 8
+  workWeekDays: 5
   weights:
     art: 4
     des: 3

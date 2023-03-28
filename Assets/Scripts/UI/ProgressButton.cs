@@ -21,6 +21,8 @@ namespace Devlike.UI
         protected ActionContainer actionContainer;
         [SerializeField]
         protected Button button;
+        [SerializeField]
+        protected bool overrideDisable = false;
         protected PlayerAction action;
 
         protected override void SetListeners()
@@ -38,6 +40,10 @@ namespace Devlike.UI
         {
             buttonText.SetText(actionContainer.name);
             action = new PlayerAction(gTime, this, actionContainer.name, actionContainer.type, null, actionContainer.randomCompleteTime, actionContainer.minHoursToComplete, actionContainer.maxHoursToComplete);
+            if (overrideDisable)
+            {
+                button.interactable = false;
+            }
         }
 
         public virtual void PressButton()
@@ -48,7 +54,10 @@ namespace Devlike.UI
         public virtual void ResetButton()
         {
             progressBar.fillAmount = 0f;
-            button.interactable = true;
+            if (!overrideDisable)
+            {
+                button.interactable = true;
+            }            
         }
 
         protected void UpdateProgress()
@@ -75,7 +84,10 @@ namespace Devlike.UI
             }
             set
             {
-                button.interactable = value;
+                if (!overrideDisable)
+                {
+                    button.interactable = value;
+                }
             }
         }
 

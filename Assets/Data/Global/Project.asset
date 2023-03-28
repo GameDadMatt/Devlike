@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac50bbd2ab6fc34db48eb2357dbcb40, type: 3}
   m_Name: Project
   m_EditorClassIdentifier: 
+  desiredProjectDays: 50
   maxTaskPoints: 5
-  basePointsPerDay: 7
+  baseTaskPointsPerDay: 7
   bugChance: 0.1
   artTaskColor: {r: 1, g: 0.5820617, b: 0, a: 1}
   designTaskColor: {r: 0.36449426, g: 0.7924528, b: 0.13830544, a: 1}

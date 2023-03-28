@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Devlike.Tasks;
 using Devlike.Characters;
-using Devlike.Project;
 
 namespace Devlike.UI
 {
@@ -19,6 +18,7 @@ namespace Devlike.UI
         [SerializeField]
         private GlobalStudio gStudio;
 
+        private Canvas canvas;
         [SerializeField]
         private GameObject taskPrefab;
         [SerializeField]
@@ -43,12 +43,18 @@ namespace Devlike.UI
             }
 
             //Make sure the GameObject is hidden
-            gameObject.SetActive(false);
+            canvas = GetComponent<Canvas>();
+        }
+
+        protected override void SetListeners()
+        {
+            EventManager.instance.OnDisplayUI += DisplayScreen;
         }
 
         protected override void Launch()
         {
             GenerateScreen();
+            canvas.enabled = false;
         }
 
         private void GenerateScreen()
@@ -56,8 +62,8 @@ namespace Devlike.UI
             //BACKLOG
             for(int i = 0; i < 3; i++)
             {
-                backlogColumns[i].Tasks = StudioProject.instance.TaskLists[i];
-                GenerateTasks(StudioProject.instance.TaskLists[i], backlogColumns[i].Area);
+                backlogColumns[i].Tasks = gProject.TaskLists[i];
+                GenerateTasks(gProject.TaskLists[i], backlogColumns[i].Area);
             }
 
             DrawCharacterColumns();
@@ -92,6 +98,14 @@ namespace Devlike.UI
             {
                 GameObject obj = Instantiate(taskPrefab, parent);
                 obj.GetComponent<TaskUIObject>().Setup(task);
+            }
+        }
+
+        private void DisplayScreen(Player.ActionType type)
+        {
+            if(type == Player.ActionType.TaskManagement)
+            {
+                canvas.enabled = true;
             }
         }
     }

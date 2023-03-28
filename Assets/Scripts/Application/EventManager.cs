@@ -44,18 +44,23 @@ namespace Devlike
             switch (type)
             {
                 case ActionType.ScopeManagement:
-                    break;
                 case ActionType.TaskManagement:
+                case ActionType.CheckProgress:
+                    OnDisplayUI?.Invoke(type);
                     break;
                 case ActionType.TeamMeeting:
-                    break;
-                case ActionType.CheckProgress:
                     break;
                 case ActionType.TalkTo:
                     OnCharacterInteract?.Invoke(obj as Character); //Forward this to the Character Interact event
                     break;
             }
             //OnPlayerAction?.Invoke(type, id);
+        }
+
+        public event Action<ActionType> OnDisplayUI;
+        public void DisplayUI(ActionType type)
+        {
+            OnDisplayUI?.Invoke(type);
         }
 
         public event Action<Character> OnCharacterInteract;

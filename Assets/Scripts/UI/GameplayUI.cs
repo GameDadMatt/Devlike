@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Devlike.Timing;
+using Devlike.Player;
 
 namespace Devlike.UI
 {
@@ -16,6 +17,7 @@ namespace Devlike.UI
         [SerializeField]
         private GlobalStudio gStudio;
 
+        private Canvas canvas;
         [SerializeField]
         private TextMeshProUGUI week;
         [SerializeField]
@@ -30,6 +32,7 @@ namespace Devlike.UI
         protected override void SetProperties()
         {
             lastState = gGame.CurrentState;
+            canvas = GetComponent<Canvas>();
         }
 
         protected override void SetListeners()
@@ -38,6 +41,7 @@ namespace Devlike.UI
             EventManager.instance.OnCompletePlayerAction += ResetActionButtons;
             EventManager.instance.OnSetCharacters += GenerateCharacterButtons;
             EventManager.instance.OnRegisterButton += RegisterButton;
+            EventManager.instance.OnDisplayUI += DisplayUI;
         }
 
         protected override void Launch()
@@ -118,6 +122,13 @@ namespace Devlike.UI
                 SetWeek(gTime.CurrentWeek);
                 SetTime(gTime.CurrentDay.ToString(), gTime.CurrentTime);
             }
+        }
+
+        public void DisplayUI(ActionType type)
+        {
+            EventManager.instance.ChangeGameState(GameState.Interacting);
+            canvas.enabled = false;
+            ResetActionButtons();
         }
 
         public void ChangeOtherInteractivity(bool state)

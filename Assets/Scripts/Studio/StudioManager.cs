@@ -31,6 +31,12 @@ public class StudioManager : ExecutableBehaviour
         EventManager.instance.OnWeekStart += WeekStart;
     }
 
+    protected override void SetProperties()
+    {
+        Debug.Log("TEST");
+        gProject.GenerateProjectScope(gStudio.StudioSize);
+    }
+
     protected override void Launch()
     {
         SpawnCharacters();
