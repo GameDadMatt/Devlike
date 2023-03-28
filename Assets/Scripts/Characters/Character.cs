@@ -54,6 +54,13 @@ namespace Devlike.Characters
         private float moodImpact = 0;
         private float MoodImpactBurn { get { return (gCharacter.MoodImpactDuration * Profile.MoodImpactMultiplier) / Tasker.WorkTicks; } }
 
+        //THRESHOLDS
+        public Threshold CrunchThreshold { get; private set; }
+        public Threshold BadMoodThreshold { get; private set; }
+        public Threshold GoodMoodThreadhold { get; private set; }
+        public Threshold LowVelocityThreshold { get; private set; } //Low velocity threshold is a percentage of expected output
+        public Threshold OverwhelmedThreshold { get; private set; }
+
         //Behaviour Designer References
         public int NumTasks { get => Tasker.NumTasks; }
         public int WorkStart { get => Tasker.WorkStart; }
@@ -90,6 +97,14 @@ namespace Devlike.Characters
             characterSprite.material.color = Profile.Color;
             Moodlet.RegisterCharacter(ID);
             moodletDisplay.RegisterMoodlet(ID);
+
+            //Setup thresholds
+            CrunchThreshold = new Threshold(Profile.CrunchPoint);
+            BadMoodThreshold = new Threshold(Profile.BadMoodPoint);
+            GoodMoodThreadhold = new Threshold(Profile.GoodMoodPoint);
+            LowVelocityThreshold = new Threshold(Profile.LowVelocityPoint);
+            LowVelocityThreshold.SetScale(gProject.BaseTaskPointsPerDay);
+            OverwhelmedThreshold = new Threshold(Profile.OverwhelmedPoint);
         }
 
         public void SetPositions()
@@ -119,7 +134,7 @@ namespace Devlike.Characters
                     Food.curValue -= FoodBurnRate;
                     Insp.curValue -= InspBurnRate;
                     Socl.curValue -= SoclBurnRate;
-                    UpdateMood();
+                    SetCheckMood();
                     Tasker.UpdateDrift();
                     if(CurrentDoing == DoingType.Work)
                     {
@@ -134,9 +149,26 @@ namespace Devlike.Characters
             }
         }
 
-        public void CheckMood()
+        public void SetCheckMood()
         {
-            //Activated from StudioManager
+            if (moodImpact < 0)
+            {
+                moodImpact += MoodImpactBurn;
+                if (moodImpact > 0)
+                {
+                    moodImpact = 0;
+                }
+            }
+            else if (moodImpact > 0)
+            {
+                moodImpact -= MoodImpactBurn;
+                if (moodImpact < 0)
+                {
+                    moodImpact = 0;
+                }
+            }
+
+
             //Do a mood check and set appropriate moodlet based on current stats
         }
 
@@ -184,26 +216,6 @@ namespace Devlike.Characters
         public void SetCrunchPressure(float pressure)
         {
             Tasker.SetCrunchPressure(pressure);
-        }
-
-        private void UpdateMood()
-        {
-            if (moodImpact < 0)
-            {
-                moodImpact += MoodImpactBurn;
-                if(moodImpact > 0)
-                {
-                    moodImpact = 0;
-                }
-            }
-            else if (moodImpact > 0)
-            {
-                moodImpact -= MoodImpactBurn;
-                if(moodImpact < 0)
-                {
-                    moodImpact = 0;
-                }
-            }
         }
 
         public float Mood

@@ -22,9 +22,16 @@ namespace Devlike
         [SerializeField]
         private float needThreshold;
         [SerializeField]
-        private float foodBreaksPerDay, restBreaksPerDay, inspirationBreaksPerDay, socialBreaksPerDay, alignmentBase, alignmentDriftPerDay, crunchDriftPerDay;
+        private float foodBreaksPerDay, restBreaksPerDay, inspirationBreaksPerDay, socialBreaksPerDay;
+
+        [Header("MOODS")]
+        [SerializeField]
+        private float alignmentBase, alignmentDriftPerDay, crunchDriftPerDay;
         [SerializeField]
         private float moodImpactDays, moodImpactMax, moodImpactMin;
+        [Tooltip("Thresholds should be on a scale of 0 to 1, and will track as a percentage")]
+        [SerializeField]
+        private float crunchThreshold, overwhelmedThreshold, badMoodThreshold, goodMoodThreshold, lowVelocityThreshold;
 
         [Header("OTHER")]
         [SerializeField]
@@ -54,11 +61,18 @@ namespace Devlike
         public float AlignmentDriftPerDay { get => alignmentDriftPerDay; }
         public float CrunchDriftPerDay { get => crunchDriftPerDay; }
 
-
         public float MoodImpactDuration { get => moodImpactDays; }
         public float MoodImpactMin { get => moodImpactMin; }
         public float MoodImpactMax { get => moodImpactMax; }
 
+        //THRESHOLDS
+        public float CrunchThreshold { get => crunchThreshold; }
+        public float OverwhelmedThreshold { get => overwhelmedThreshold; }
+        public float BadMoodThreshold { get => badMoodThreshold; }
+        public float GoodMoodThreshold { get => goodMoodThreshold; }
+        public float LowVelocityThreshold { get => lowVelocityThreshold; }
+
+        //MISC
         public Gradient CharacterColours { get => characterColours; }
         public List<Trait> Traits { get => traits; }
         public List<Profession> Professions { get => professions; }

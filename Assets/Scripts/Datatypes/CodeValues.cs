@@ -8,7 +8,7 @@ using Devlike.Tasks;
 namespace Devlike.Characters
 {
     public enum SeedList { Hobbies, FirstNames, LastNames, Nicknames }
-    public enum MoodletType { HasDrama, BadMood, NoTask, CompletedTask, GoodMood, LowVelocity, Overwhelmed, GeneratedBug }
+    public enum MoodletType { HasDrama, BadMood, GoodMood, LowVelocity, Overwhelmed, NoTask, CompletedTask, GeneratedBug }
     public enum DramaType { None, Alignment, Crunching, Miscalculation, Complication, Clarification, Communication, Personal, Interpersonal }
     public enum RelationType { Partner, Child, Parent, Grandparent, Sibling }
     public enum CharacterState { Start, Active, End, Inactive }
@@ -133,6 +133,41 @@ public class ChanceWeights
         get
         {
             return eng / Total;
+        }
+    }
+}
+
+//Used to keep track of values that have a threshold point
+[System.Serializable]
+public class Threshold
+{
+    public float Point { get; private set; }
+    public float Value { get; set; } = 0f;
+    private float scale = 1f; //The top end of the scale this value tracks, to convert to percentages
+
+    public Threshold(float point)
+    {
+        Point = point;
+    }
+
+    public void SetScale(float scale)
+    {
+        this.scale = scale;
+    }
+
+    public bool OverThreshold
+    {
+        get
+        {
+            return (Value / scale) > Point;
+        }
+    }
+
+    public bool UnderThreshold
+    {
+        get
+        {
+            return (Value / scale) < Point;
         }
     }
 }

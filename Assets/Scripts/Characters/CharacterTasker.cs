@@ -20,11 +20,6 @@ namespace Devlike.Characters
         private Character thisCharacter;
 
         private TaskList tasks = new TaskList();
-        private float alignment = 0;
-        private float crunchDesire = 0;
-        private float crunchPressure = 0;
-        private float velocityMod = 0;
-        private float bugMod = 0;
 
         //Character
         //How easy it is for this character to be overwhelmed, based on confidence
@@ -47,10 +42,17 @@ namespace Devlike.Characters
         public int WorkTicks { get { return WorkEnd - WorkStart; } }
 
         //Alignment
+        private float alignment = 0;
         public float Alignment { get { return alignment; } }
 
         //Crunch
+        private float crunchDesire = 0;
+        private float crunchPressure = 0;
         public float CrunchPressure { get { return crunchPressure; } }
+
+        //Modifiers
+        private float velocityMod = 0;
+        private float bugMod = 0;
 
         private void OnEnable()
         {
@@ -153,7 +155,7 @@ namespace Devlike.Characters
         {
             get
             {
-                return crunchDesire >= thisCharacter.Profile.CrunchThreshold;
+                return thisCharacter.Profile.CrunchPoint.OverThreshold;
             }
         }
     }

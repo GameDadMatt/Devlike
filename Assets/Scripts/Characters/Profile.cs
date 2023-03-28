@@ -43,8 +43,12 @@ namespace Devlike.Characters
         //What is the alignment of this character normally
         public float NaturalAlignment { get; private set; } = 0f; //Percentage
 
-        //What is this character's likeliness to crunch
-        public float CrunchThreshold { get; private set; } = 0f;
+        //THRESHOLDS
+        public float CrunchPoint { get; private set; }
+        public float BadMoodPoint { get; private set; }
+        public float GoodMoodPoint { get; private set; }
+        public float LowVelocityPoint { get; private set; }
+        public float OverwhelmedPoint { get; private set; }
 
         //How early or late does the character start and end the day
         public int WorkStartMod { get; private set; } = 0;
@@ -58,7 +62,7 @@ namespace Devlike.Characters
         public float Engineering { get; private set; } = 0.2f;
         public float Design { get; private set; } = 0.2f;
 
-        public Profile(GlobalCharacter character, int ticksPerHour, string fname, string lname, string nname, string hobby, Tier experience, Profession profession, List<Trait> traits, Color color)
+        public Profile(GlobalCharacter gCharacter, GlobalTime gTime, string fname, string lname, string nname, string hobby, Tier experience, Profession profession, List<Trait> traits, Color color)
         {
             FirstName = fname;
             LastName = lname;
@@ -66,70 +70,73 @@ namespace Devlike.Characters
             Hobby = hobby;
             Experience = experience;
             Color = color;
-            ApplyProfession(character, profession);
+            ApplyProfession(gCharacter, profession);
 
             foreach(Trait trait in traits)
             {
-                ApplyTrait(character, ticksPerHour, trait);
+                ApplyTrait(gCharacter, gTime, trait);
             }
 
             //WorkStart and WorkEnd are averaged across their modifiers
-            WorkStartMod /= character.TotalTraits;
-            WorkEndMod /= character.TotalTraits;
+            WorkStartMod /= gCharacter.TotalTraits;
+            WorkEndMod /= gCharacter.TotalTraits;
         }
 
-        private void ApplyProfession(GlobalCharacter character, Profession p)
+        private void ApplyProfession(GlobalCharacter gCharacter, Profession p)
         {
             Profession = p;
-            ApplySkill(character, p.primarySkill);
-            ApplySkill(character, p.secondarySkill);
+            ApplySkill(gCharacter, p.primarySkill);
+            ApplySkill(gCharacter, p.secondarySkill);
         }
 
-        private void ApplySkill(GlobalCharacter character, Skill skill)
+        private void ApplySkill(GlobalCharacter gCharacter, Skill skill)
         {
             switch (skill.type)
             {
                 case TaskType.Art:
-                    Art *= TierLowToHigh(character, skill.tier);
+                    Art *= TierLowToHigh(gCharacter, skill.tier);
                     break;
                 case TaskType.Engineering:
-                    Engineering *= TierLowToHigh(character, skill.tier);
+                    Engineering *= TierLowToHigh(gCharacter, skill.tier);
                     break;
                 case TaskType.Design:
-                    Design *= TierLowToHigh(character, skill.tier);
+                    Design *= TierLowToHigh(gCharacter, skill.tier);
                     break;
             }
         }
 
-        private void ApplyTrait(GlobalCharacter character, int ticksPerHour, Trait trait)
+        private void ApplyTrait(GlobalCharacter gCharacter, GlobalTime gTime, Trait trait)
         {
             TraitNames.Add(trait.name);
             Confidence = ConfidenceAverage(trait.confidence);
 
             //Low Tier = High Return
-            RestDropMultiplier = TierHighToLow(character, trait.restDrop);
-            FoodDropMultiplier = TierHighToLow(character, trait.foodDrop);
-            InspDropMultiplier = TierHighToLow(character, trait.inspirationDrop);
-            SoclDropMultiplier = TierHighToLow(character, trait.socialDrop);
-            AlignDriftMultiplier = TierHighToLow(character, trait.alignment);
+            RestDropMultiplier = TierHighToLow(gCharacter, trait.restDrop);
+            FoodDropMultiplier = TierHighToLow(gCharacter, trait.foodDrop);
+            InspDropMultiplier = TierHighToLow(gCharacter, trait.inspirationDrop);
+            SoclDropMultiplier = TierHighToLow(gCharacter, trait.socialDrop);
+            AlignDriftMultiplier = TierHighToLow(gCharacter, trait.alignment);
 
-            CrunchThreshold = TierHighToLow(character, trait.crunchThreshold);
-            EmpathyBarrierMultiplier = TierHighToLow(character, trait.empathyBarrier);
+            EmpathyBarrierMultiplier = TierHighToLow(gCharacter, trait.empathyBarrier);
 
-            BugChanceMultiplier = TierHighToLow(character, trait.bugChance);
-            BurnoutMultiplier = TierHighToLow(character, trait.burnout);
-            MoodImpactMultiplier = TierHighToLow(character, trait.moodImpact);
+            BugChanceMultiplier = TierHighToLow(gCharacter, trait.bugChance);
+            BurnoutMultiplier = TierHighToLow(gCharacter, trait.burnout);
+            MoodImpactMultiplier = TierHighToLow(gCharacter, trait.moodImpact);
 
             //Low Tier = Low Return
-            VelocityMultiplier = TierLowToHigh(character, trait.velocity);         
+            VelocityMultiplier = TierLowToHigh(gCharacter, trait.velocity);         
 
-            WorkStartMod += TierDayMod(character, ticksPerHour, trait.dayStart);
-            WorkEndMod += TierDayMod(character, ticksPerHour, trait.dayEnd);
+            WorkStartMod += TierDayMod(gCharacter, gTime.TicksPerHour, trait.dayStart);
+            WorkEndMod += TierDayMod(gCharacter, gTime.TicksPerHour, trait.dayEnd);
 
             //Percentages
             BaseMood = TierPercentage(trait.baseMood);
             NaturalAlignment = AlignmentCalc(trait.alignment, Experience);
-            CrunchThreshold = TierPercentage(trait.crunchThreshold);
+            CrunchPoint = gCharacter.CrunchThreshold * InverseTierPercentage(trait.crunchThreshold);
+            BadMoodPoint = gCharacter.BadMoodThreshold * TierPercentage(trait.baseMood);
+            GoodMoodPoint = gCharacter.GoodMoodThreshold * InverseTierPercentage(trait.baseMood);
+            LowVelocityPoint = gCharacter.LowVelocityThreshold * TierPercentage(trait.velocity);
+            OverwhelmedPoint = gCharacter.OverwhelmedThreshold * TierPercentage(ConfidenceAverage(trait.velocity));
         }
 
         /// <summary>
@@ -160,6 +167,11 @@ namespace Devlike.Characters
         private float TierPercentage(Tier tier)
         {
             return (float)tier / (float)Tier.Highest;
+        }
+
+        private float InverseTierPercentage(Tier tier)
+        {
+            return 1f - (float)tier / (float)Tier.Highest;
         }
 
         private Tier ConfidenceAverage(Tier tier)
