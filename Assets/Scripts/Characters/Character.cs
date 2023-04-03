@@ -27,9 +27,9 @@ namespace Devlike.Characters
 
         //Refs
         public Profile Profile { get; private set; }
-        public CharacterTasker Tasker { get; private set; }
-        public CharacterDialogue Dialogue { get; private set; }
-        public CharacterMoodlet Moodlet { get; private set; }
+        public CharacterTasker CharacterTasker { get; private set; }
+        public CharacterDialogue CharacterDialogue { get; private set; }
+        public CharacterMoodlet CharacterMoodlet { get; private set; }
         public int CurrentTickRef { get { return gTime.CurrentTick; } }
         public CharacterState CurrentState { get; set; }
 
@@ -45,14 +45,15 @@ namespace Devlike.Characters
         public DoingTracker Socl { get; private set; }
         public DoingTracker Rest { get; private set; }
 
-        public float RestBurnRate { get { return (gCharacter.RestBreaksPerDay / Tasker.WorkTicks) * Profile.RestDropMultiplier; } }
-        public float FoodBurnRate { get { return (gCharacter.FoodBreaksPerDay / Tasker.WorkTicks) * Profile.FoodDropMultiplier; } }
-        public float InspBurnRate { get { return (gCharacter.InspBreaksPerDay / Tasker.WorkTicks) * Profile.InspDropMultiplier; } }
-        public float SoclBurnRate { get { return (gCharacter.SoclBreaksPerDay / Tasker.WorkTicks) * Profile.SoclDropMultiplier; } }
+        public float RestBurnRate { get { return (gCharacter.RestBreaksPerDay / CharacterTasker.WorkTicks) * Profile.RestDropMultiplier; } }
+        public float FoodBurnRate { get { return (gCharacter.FoodBreaksPerDay / CharacterTasker.WorkTicks) * Profile.FoodDropMultiplier; } }
+        public float InspBurnRate { get { return (gCharacter.InspBreaksPerDay / CharacterTasker.WorkTicks) * Profile.InspDropMultiplier; } }
+        public float SoclBurnRate { get { return (gCharacter.SoclBreaksPerDay / CharacterTasker.WorkTicks) * Profile.SoclDropMultiplier; } }
 
         //Moods
+        private MoodletType currentMood = MoodletType.None;
         private float moodImpact = 0;
-        private float MoodImpactBurn { get { return (gCharacter.MoodImpactDuration * Profile.MoodImpactMultiplier) / Tasker.WorkTicks; } }
+        private float MoodImpactBurn { get { return (gCharacter.MoodImpactDuration * Profile.MoodImpactMultiplier) / CharacterTasker.WorkTicks; } }
 
         //THRESHOLDS
         public Threshold CrunchThreshold { get; private set; }
@@ -62,9 +63,9 @@ namespace Devlike.Characters
         public Threshold OverwhelmedThreshold { get; private set; }
 
         //Behaviour Designer References
-        public int NumTasks { get => Tasker.NumTasks; }
-        public int WorkStart { get => Tasker.WorkStart; }
-        public int WorkEnd { get => Tasker.WorkEnd; }
+        public int NumTasks { get => CharacterTasker.NumTasks; }
+        public int WorkStart { get => CharacterTasker.WorkStart; }
+        public int WorkEnd { get => CharacterTasker.WorkEnd; }
         public int RestoreTicks { get => RandomGeneration.instance.RandomRestoreTime; }
 
         public string ID
@@ -81,9 +82,9 @@ namespace Devlike.Characters
         {
             EventManager.instance.OnTick += Tick;
 
-            Tasker = GetComponent<CharacterTasker>();
-            Dialogue = GetComponent<CharacterDialogue>();
-            Moodlet = GetComponent<CharacterMoodlet>();
+            CharacterTasker = GetComponent<CharacterTasker>();
+            CharacterDialogue = GetComponent<CharacterDialogue>();
+            CharacterMoodlet = GetComponent<CharacterMoodlet>();
 
             Food = new(DoingType.Food, 1f, gCharacter.NeedThreshold);
             Insp = new(DoingType.Inspiration, 1f, gCharacter.NeedThreshold);
@@ -95,7 +96,7 @@ namespace Devlike.Characters
         {
             Profile = profile;
             characterSprite.material.color = Profile.Color;
-            Moodlet.RegisterCharacter(ID);
+            CharacterMoodlet.RegisterCharacter(ID);
             moodletDisplay.RegisterMoodlet(ID);
 
             //Setup thresholds
@@ -120,6 +121,7 @@ namespace Devlike.Characters
             Food.curValue = Random.Range(0.8f, 1f);
             Insp.curValue = Random.Range(0.1f, 1f);
             Socl.curValue = Random.Range(0.1f, 1f);
+            moodImpact += Random.Range(-1f, 1f);
         }
 
         public void Tick()
@@ -134,22 +136,23 @@ namespace Devlike.Characters
                     Food.curValue -= FoodBurnRate;
                     Insp.curValue -= InspBurnRate;
                     Socl.curValue -= SoclBurnRate;
-                    SetCheckMood();
-                    Tasker.UpdateDrift();
+                    UpdateMood();
+                    CharacterTasker.UpdateDrift();
                     if(CurrentDoing == DoingType.Work)
                     {
-                        Tasker.DoTasks();
+                        CharacterTasker.DoTasks();
                     }
                     break;
                 case CharacterState.End:
                     EndWork();
+                    CharacterMoodlet.ClearMoodlet();
                     break;
                 case CharacterState.Inactive:
                     break;
             }
         }
 
-        public void SetCheckMood()
+        private void UpdateMood()
         {
             if (moodImpact < 0)
             {
@@ -168,25 +171,103 @@ namespace Devlike.Characters
                 }
             }
 
-
             //Do a mood check and set appropriate moodlet based on current stats
+            NaturalMoodCheck();
         }
 
-        private void DisplayMoodlet()
+        private void NaturalMoodCheck()
         {
-            if(Moodlet.Ready && Dialogue.HasDrama)
+            if(currentMood == MoodletType.None)
             {
-                Sprite sprite = gCharacter.GetMoodletSprite(MoodletType.HasDrama);
+                List<MoodletType> possibleMoods = new List<MoodletType>();
+
+                //BAD MOOD
+                if (BadMoodThreshold.UnderThreshold)
+                {
+                    possibleMoods.Add(MoodletType.BadMood);
+                }
+
+                //GOOD MOOD
+                if (GoodMoodThreadhold.OverThreshold)
+                {
+                    possibleMoods.Add(MoodletType.GoodMood);
+                }
+
+                //LOW VELOCITY
+                if (LowVelocityThreshold.UnderThreshold)
+                {
+                    possibleMoods.Add(MoodletType.LowVelocity);
+                }
+
+                //HIGH VELOCITY
+                //To be implemented
+
+                //OVERWHELMED
+                if (OverwhelmedThreshold.OverThreshold)
+                {
+                    possibleMoods.Add(MoodletType.Overwhelmed);
+                }
+
+                //CRUNCHING
+                if (CrunchThreshold.OverThreshold)
+                {
+                    possibleMoods.Add(MoodletType.HasDrama);
+                }
+
+                //Set everything
+                if(possibleMoods.Count > 0)
+                {
+                    int random = Random.Range(0, possibleMoods.Count);
+                    DisplayMoodlet(possibleMoods[random]);
+                    CharacterDialogue.DialogueFromMood(possibleMoods[random]);
+                }
+            }
+        }
+
+        public void TempMoodlet(MoodletType type)
+        {
+            if(type != MoodletType.None && CharacterMoodlet.TempDisplayReady)
+            {
+                Sprite sprite = gCharacter.GetMoodletSprite(type);
+                int displayTicks = Mathf.RoundToInt(gCharacter.MoodletDisplayHours * gTime.TicksPerHour);
+                int cooldownTicks = Mathf.RoundToInt(gCharacter.MoodletCooldownHours * gTime.TicksPerHour);
+                CharacterMoodlet.NewTempMoodlet(sprite, displayTicks, cooldownTicks);
+            }
+        }
+
+        private void DisplayMoodlet(MoodletType type)
+        {
+            if (!CharacterMoodlet.DisplayReady)
+            {
+                CharacterMoodlet.Tick();
+            }
+            else if (type != MoodletType.None && CharacterMoodlet.DisplayReady)
+            {
+                currentMood = type;
+
+                Sprite sprite = gCharacter.GetMoodletSprite(currentMood);
                 int delayTicks = Mathf.RoundToInt(Random.Range(0, gCharacter.MoodletDelayHours) * gTime.TicksPerHour);
                 int displayTicks = Mathf.RoundToInt(gCharacter.MoodletDisplayHours * gTime.TicksPerHour);
                 int cooldownTicks = Mathf.RoundToInt(gCharacter.MoodletCooldownHours * gTime.TicksPerHour);
-                Moodlet.NewMoodlet(sprite, delayTicks, displayTicks, cooldownTicks);
+                CharacterMoodlet.NewMoodlet(sprite, delayTicks, displayTicks, cooldownTicks);
             }
-            else if (!Moodlet.Ready)
-            {
-                Debug.Log("Moodlet on " + Profile.FullName);
-                Moodlet.Tick();
-            }
+        }
+
+        public void SetMoodAndDialogue(MoodletType mood, DialogueContainer dialogue)
+        {
+            currentMood = mood;
+            CharacterDialogue.NewDialogue(dialogue);
+            DisplayMoodlet(mood);
+        }
+
+        public void ClearMoodlet()
+        {
+
+        }
+
+        public void ResolveMood()
+        {
+            currentMood = MoodletType.None;
         }
 
         public void EndWork()
@@ -203,19 +284,34 @@ namespace Devlike.Characters
             transform.position = curInteract.thing.transform.position;
         }
 
-        public void ImpactMood(float impact)
+        public void ImproveMood(float impact)
         {
             moodImpact += (impact * Profile.MoodImpactMultiplier);
         }
 
-        public void ImpactAlignment(float impact)
+        public void LowerMood(float impact)
         {
-            Tasker.ImpactAlignment(impact);
+            moodImpact -= (impact * Profile.MoodImpactMultiplier);
+        }
+
+        public void AlignmentImpact(float impact)
+        {
+            CharacterTasker.ImpactAlignment(impact);
+        }
+
+        public void AlignmentRestore(float impact)
+        {
+            CharacterTasker.RestoreAlignment(impact);
         }
 
         public void SetCrunchPressure(float pressure)
         {
-            Tasker.SetCrunchPressure(pressure);
+            CharacterTasker.SetCrunchPressure(pressure);
+        }
+
+        public void ReduceCrunchPressure(float pressure)
+        {
+            CharacterTasker.ReduceCrunchPressure(pressure);
         }
 
         public float Mood

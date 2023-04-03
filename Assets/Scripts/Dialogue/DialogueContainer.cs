@@ -9,24 +9,34 @@ namespace Devlike.Characters
     {
         public string name;
         public List<string> startNodes;
-        public DramaType dramaType;
-        public float empathyNeeded;
-        public float moodImpact;
-        public float crunchPressure;
-        public float alignmentPressure;
-        public TriggerEvent trigger;
+        public DialogueType dramaType;
+        public float empathyBase;
         public int stepInList = 0;
+        //Positive
+        public float raiseMood;
+        public float lowerCrunch;
+        public float raiseAlignment;
+        //Negative
+        public float lowerMood;
+        public float raiseCrunch;
+        public float lowerAlignment;
+        public TriggerEvent trigger;
 
         public DialogueContainer(DialogueCollection collection)
         {
             name = collection.name;
             startNodes = collection.startNodes;
-            dramaType = collection.dramaType;
-            empathyNeeded = collection.empathyNeeded;
-            moodImpact = collection.moodImpact;
-            crunchPressure = collection.crunchPressure;
-            alignmentPressure = collection.alignmentPressure;
-            trigger = collection.trigger;
+            dramaType = collection.dialogueType;
+            empathyBase = collection.empathyBase;
+            //Positive
+            raiseMood = collection.increaseMood;
+            lowerCrunch = collection.decreaseCrunch;
+            raiseAlignment = collection.increaseAlignment;
+            //Negative
+            lowerMood = collection.decreaseMood;
+            raiseCrunch = collection.increaseCrunch;
+            lowerAlignment = collection.decreaseAlignment;
+            trigger = collection.triggerEvent;
         }
 
         public void NextDialogueStep()

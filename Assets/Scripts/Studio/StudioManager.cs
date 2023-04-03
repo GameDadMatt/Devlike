@@ -53,7 +53,7 @@ public class StudioManager : ExecutableBehaviour
             newchar.transform.position = InteractableManager.instance.Home.thing.transform.position;
             characters.Add(newchar.GetComponent<Character>());
             characters[i].SetupCharacter(profiles[i]);
-            characters[i].Dialogue.SetDialogue(gDialogue.DefaultDialogue); //Give the character a default dialogue
+            characters[i].CharacterDialogue.SetDefault(gDialogue.DefaultDialogue); //Give the character a default dialogue
             newchar.name = characters[i].Profile.FullName;
         }
 
@@ -91,7 +91,7 @@ public class StudioManager : ExecutableBehaviour
                 List<int> characterPos = RandomGeneration.instance.RandomUnrepeatedPositionsFromList(dramas.Count, availableCharacters.Count);
                 foreach(int i in characterPos)
                 {
-                    availableCharacters[i].Dialogue.SetDialogue(weekDramas.Dequeue());
+                    availableCharacters[i].CharacterDialogue.NewDialogue(weekDramas.Dequeue());
                 }
             }
         }
@@ -111,7 +111,7 @@ public class StudioManager : ExecutableBehaviour
             List<Character> availableCharacters = new List<Character>();
             foreach(Character character in gStudio.Characters)
             {
-                if(character.Dialogue.CurrentDialogue.dramaType == DramaType.None)
+                if(character.CharacterDialogue.CurrentDialogue.dramaType == DialogueType.None)
                 {
                     availableCharacters.Add(character);
                 }
@@ -127,7 +127,7 @@ public class StudioManager : ExecutableBehaviour
             List<Character> dramaCharacters = new List<Character>();
             foreach (Character character in gStudio.Characters)
             {
-                if (character.Dialogue.CurrentDialogue.dramaType != DramaType.None)
+                if (character.CharacterDialogue.CurrentDialogue.dramaType != DialogueType.None)
                 {
                     dramaCharacters.Add(character);
                 }

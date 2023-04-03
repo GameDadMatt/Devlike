@@ -21,5 +21,33 @@ namespace Devlike
         public float MaxWeeklyArtificialDramas { get => maxWeeklyArtificialDramas; }
         public DialogueContainer DefaultDialogue { get { return new DialogueContainer(defaultDialogue); } }
         public List<DialogueCollection> Dialogues { get => dialogues; }
+
+        public DialogueContainer GetDialogueOfType(DialogueType type)
+        {
+            foreach(DialogueCollection dialogue in dialogues)
+            {
+                if(dialogue.dialogueType == type)
+                {
+                    return new DialogueContainer(dialogue);
+                }
+            }
+
+            Debug.LogError("Unable to find dialogue of type " + type);
+            return null;
+        }
+
+        public DialogueContainer GetDialogueOfMoodlet(MoodletType type)
+        {
+            foreach (DialogueCollection dialogue in dialogues)
+            {
+                if (dialogue.moodletType == type)
+                {
+                    return new DialogueContainer(dialogue);
+                }
+            }
+
+            Debug.LogError("Unable to find dialogue of moodlet type " + type);
+            return null;
+        }
     }
 }

@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startNodes:
   - Miscalculation
-  dramaType: 3
-  empathyNeeded: 0
-  moodImpact: 3
-  crunchPressure: 0.5
-  alignmentPressure: 0
+  dialogueType: 3
+  empathyBase: 0
+  increaseMood: 2
+  decreaseCrunch: -0.5
+  increaseAlignment: 0
+  decreaseMood: -3
+  increaseCrunch: 1
+  decreaseAlignment: 0
+  triggerEvent: 1

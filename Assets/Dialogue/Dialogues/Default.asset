@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startNodes:
   - Default
-  dramaType: 0
-  empathyNeeded: 0
-  moodImpact: 0
+  dialogueType: 15
+  empathyBase: 0
+  increaseMood: 1
+  decreaseCrunch: 0
+  increaseAlignment: 0
+  decreaseMood: 0
+  increaseCrunch: 0
+  decreaseAlignment: 0
+  triggerEvent: 0

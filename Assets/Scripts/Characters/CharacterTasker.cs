@@ -17,7 +17,7 @@ namespace Devlike.Characters
         [SerializeField]
         private GlobalCharacter gCharacter;
 
-        private Character thisCharacter;
+        private Character character;
 
         private TaskList tasks = new TaskList();
 
@@ -26,7 +26,7 @@ namespace Devlike.Characters
         public int WorkloadPoints { get { return (gProject.BaseTaskPointsPerDay + TaskEstimateAdjustment) * gStudio.WorkWeekDays; } }
 
         //How accurate this characters estimations are, based on confidence and experience
-        public int TaskEstimateAdjustment { get { return Mathf.RoundToInt(((float)thisCharacter.Profile.Confidence + (float)thisCharacter.Profile.Experience) / 2); } }
+        public int TaskEstimateAdjustment { get { return Mathf.RoundToInt(((float)character.Profile.Confidence + (float)character.Profile.Experience) / 2); } }
 
         //Tasks
         public TaskList Tasks { get => tasks; }
@@ -37,8 +37,8 @@ namespace Devlike.Characters
         //Days
         private int workStartTweak = 0;
         private int workEndTweak = 0;
-        public int WorkStart { get { return gTime.WorkStartTick + thisCharacter.Profile.WorkStartMod + workStartTweak; } }
-        public int WorkEnd { get { return gTime.WorkEndTick + thisCharacter.Profile.WorkEndMod + workEndTweak; } }
+        public int WorkStart { get { return gTime.WorkStartTick + character.Profile.WorkStartMod + workStartTweak; } }
+        public int WorkEnd { get { return gTime.WorkEndTick + character.Profile.WorkEndMod + workEndTweak; } }
         public int WorkTicks { get { return WorkEnd - WorkStart; } }
 
         //Alignment
@@ -56,7 +56,9 @@ namespace Devlike.Characters
 
         private void OnEnable()
         {
-            thisCharacter = GetComponent<Character>();
+            character = GetComponent<Character>();
+            Tasks.OnBugCreated += GenerateBug;
+            Tasks.OnTaskComplete += CompleteTask;
         }
 
         public void SetTasks(TaskList tasks)
@@ -66,7 +68,29 @@ namespace Devlike.Characters
 
         public void DoTasks()
         {
-            Tasks.DoTask(Velocity, BugChance);
+            if (Tasks.HasTasks)
+            {
+                Tasks.DoTask(Velocity, BugChance);
+            }
+            else
+            {
+                NoTask();
+            }
+        }
+
+        public void GenerateBug()
+        {
+            character.TempMoodlet(MoodletType.GeneratedBug);
+        }
+
+        public void CompleteTask()
+        {
+            character.TempMoodlet(MoodletType.CompletedTask);
+        }
+
+        public void NoTask()
+        {
+            character.TempMoodlet(MoodletType.NoTask);
         }
 
         public void UpdateDrift()
@@ -77,8 +101,8 @@ namespace Devlike.Characters
 
         private void AlignmentDrift()
         {
-            float drift = (gCharacter.AlignmentDriftPerDay * thisCharacter.Profile.AlignDriftMultiplier) / WorkTicks;
-            if (alignment > thisCharacter.Profile.NaturalAlignment)
+            float drift = (gCharacter.AlignmentDriftPerDay * character.Profile.AlignDriftMultiplier) / WorkTicks;
+            if (alignment > character.Profile.NaturalAlignment)
             {
                 alignment -= drift;
             }
@@ -106,7 +130,7 @@ namespace Devlike.Characters
 
         public void RestoreAlignment(float bonus)
         {
-            alignment = thisCharacter.Profile.NaturalAlignment + bonus;
+            alignment = character.Profile.NaturalAlignment + bonus;
         }
 
         public void SetCrunchPressure(float pressure)
@@ -139,7 +163,7 @@ namespace Devlike.Characters
         {
             get
             {
-                return (((gProject.BaseTaskPointsPerDay / WorkTicks) * thisCharacter.Profile.VelocityMultiplier) * thisCharacter.CappedMoodImpact) + velocityMod;
+                return (((gProject.BaseTaskPointsPerDay / WorkTicks) * character.Profile.VelocityMultiplier) * character.CappedMoodImpact) + velocityMod;
             }            
         }
 
@@ -147,7 +171,7 @@ namespace Devlike.Characters
         {
             get
             {
-                return ((gProject.BaseBugChance * thisCharacter.Profile.BugChanceMultiplier) * thisCharacter.InverseCappedMoodImpact) + bugMod;
+                return ((gProject.BaseBugChance * character.Profile.BugChanceMultiplier) * character.InverseCappedMoodImpact) + bugMod;
             }            
         }
 
@@ -155,7 +179,7 @@ namespace Devlike.Characters
         {
             get
             {
-                return thisCharacter.Profile.CrunchPoint.OverThreshold;
+                return character.CrunchThreshold.OverThreshold;
             }
         }
     }

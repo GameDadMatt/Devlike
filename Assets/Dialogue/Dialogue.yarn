@@ -1,4 +1,9 @@
-﻿title: Default
+﻿title: NoDialogue
+position: -2,-139
+---
+You have a brief conversation with {FirstName()}. They do not seem to have any problems right now.
+===
+title: Default
 tags:
 ---
 When you approach {FirstName()} they turn from their work and greet you.
@@ -15,7 +20,7 @@ ALIGNMENT PLACEHOLDER EVENT
 -> Trust -
 -> Support -
 -> Guide -
--> Instruct
+-> Instruct -
 ===
 title: Crunching
 position: 1,274
@@ -24,7 +29,7 @@ CRUNCHING PLACEHOLDER EVENT
 -> Trust -
 -> Support -
 -> Guide -
--> Instruct
+-> Instruct -
 ===
 title: Miscalculation
 position: 3,407
@@ -33,7 +38,7 @@ MISCALCULATION PLACEHOLDER EVENT
 -> Trust -
 -> Support -
 -> Guide -
--> Instruct
+-> Instruct -
 ===
 title: Complication
 position: 5,548
@@ -42,7 +47,7 @@ COMPLICATION PLACEHOLDER EVENT
 -> Trust -
 -> Support -
 -> Guide -
--> Instruct
+-> Instruct -
 ===
 title: Clarification
 position: 4,680
@@ -51,7 +56,7 @@ CLARIFICATION PLACEHOLDER EVENT
 -> Trust -
 -> Support -
 -> Guide -
--> Instruct
+-> Instruct -
 ===
 title: Communication
 position: 4,813
@@ -60,7 +65,7 @@ COMMUNICATION PLACEHOLDER EVENT
 -> Trust -
 -> Support -
 -> Guide -
--> Instruct
+-> Instruct -
 ===
 title: Personal
 position: 4,947
@@ -69,7 +74,7 @@ PERSONAL PLACEHOLDER EVENT
 -> Trust -
 -> Support -
 -> Guide -
--> Instruct
+-> Instruct -
 ===
 title: Interpersonal
 position: 4,1083
@@ -78,5 +83,55 @@ INTERPERSONAL PLACEHOLDER EVENT
 -> Trust -
 -> Support -
 -> Guide -
--> Instruct
+-> Instruct -
+===
+title: BadMood
+position: 6,1219
+---
+BAD MOOD PLACEHOLDER EVENT
+-> Trust -
+-> Support -
+-> Guide -
+-> Instruct -
+===
+title: GoodMood
+position: 4,1357
+---
+GOOD MOOD PLACEHOLDER EVENT
+-> Trust -
+-> Support -
+-> Guide -
+-> Instruct -
+===
+title: LowVelocity
+position: 4,1490
+---
+LOW VELOCITY PLACEHOLDER EVENT
+-> Trust -
+-> Support -
+-> Guide -
+-> Instruct -
+===
+title: Overwhelmed
+position: 5,1623
+---
+OVERWHELMED PLACEHOLDER EVENT
+-> Trust -
+-> Support -
+-> Guide -
+-> Instruct -
+===
+title: HighVelocity
+position: 5,1755
+---
+HIGH VELOCITY PLACEHOLDER EVENT
+-> Trust -
+-> Support -
+-> Guide -
+-> Instruct -
+===
+title: NoTask
+position: 4,1886
+---
+{FirstName()} remarks that you've not assigned them any work this week, and so they are currently uncertain of what they need to be doing. You should assign them tasks in the task tracker.
 ===

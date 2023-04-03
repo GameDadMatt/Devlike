@@ -100,21 +100,20 @@ namespace Devlike
                     return prof;
                 }
             }
-            Debug.LogError("Could not find a profession by the name of " + name + ". Was it added to the All Professions list on GlobalVariables?");
+            Debug.LogError("Could not find a profession by the name of " + name + ". Was it added to the Professions list on GlobalCharacter?");
             return null;
         }
 
         public Sprite GetMoodletSprite(MoodletType type)
         {
-            foreach (Moodlet moodlet in moodlets)
+            foreach(Moodlet moodlet in moodlets)
             {
-                if (type == moodlet.type)
+                if(moodlet.type == type)
                 {
                     return moodlet.sprite;
                 }
             }
-
-            Debug.LogError("Unable to find moodlet of type " + type);
+            Debug.LogError("Could not find a moodlet of type " + type + ". Was it added to the Moodlets list on GlobalCharacter?");
             return null;
         }
     }

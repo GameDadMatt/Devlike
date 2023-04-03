@@ -171,7 +171,7 @@ public class RandomGeneration : ExecutableBehaviour
     private Profile RandomProfile(Tier exp, Profession prof, List<Trait> traits, Color color)
     {
         List<string> strings = RandomNameAndHobby();
-        return new Profile(gCharacter, gProject, gTime, strings[0], strings[1], strings[2], strings[3], exp, prof, traits, color);
+        return new Profile(gCharacter, gTime, strings[0], strings[1], strings[2], strings[3], exp, prof, traits, color);
     }
 
     /// <summary>
@@ -290,7 +290,7 @@ public class RandomGeneration : ExecutableBehaviour
         return points;
     }
 
-    public void RandomGenerateBug(float taskChance, float characterChance)
+    public bool RandomGenerateBug(float taskChance, float characterChance)
     {
         float chance = (taskChance + characterChance) / 2;
         bool bug = Random.Range(0f, 1f) > chance;
@@ -298,6 +298,8 @@ public class RandomGeneration : ExecutableBehaviour
         {
             gProject.AddTask(new TaskContainer(RandomType, TaskImportance.Bug, Tier.Lowest, gProject.BaseBugChance, RandomPoints(gProject.MaxTaskPoints)));
         }
+
+        return bug;
     }
 
     public Queue<DialogueContainer> ArtificialDramaQueue()

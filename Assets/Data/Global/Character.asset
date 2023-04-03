@@ -30,6 +30,11 @@ MonoBehaviour:
   moodImpactDays: 2.5
   moodImpactMax: 1.5
   moodImpactMin: 0.5
+  crunchThreshold: 0.75
+  overwhelmedThreshold: 0.75
+  badMoodThreshold: 0.25
+  goodMoodThreshold: 0.75
+  lowVelocityThreshold: 0.5
   characterColours:
     serializedVersion: 2
     key0: {r: 1, g: 0.44313726, b: 0.80784315, a: 1}
@@ -94,11 +99,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9c361315bd1d5b4da69261c900370e0, type: 2}
   - {fileID: 11400000, guid: 7e306fc565db5fb46ae8f0bc835c682b, type: 2}
   moodlets:
-  - {fileID: 11400000, guid: 5fcf9fee7656d3d499bf8b2d7adfa6ec, type: 2}
-  - {fileID: 11400000, guid: acd6d64e371f69b4dabb4b2da6087207, type: 2}
-  - {fileID: 11400000, guid: 0260201bebcf961458e8a3106c93ce63, type: 2}
-  - {fileID: 11400000, guid: 733afc6bf05598245a5c148797924f25, type: 2}
-  - {fileID: 11400000, guid: 72a51fb30c76b20438b55f0580632b30, type: 2}
+  - {fileID: 11400000, guid: 2c1a0e6c778bd694dadbee494dd2f7cc, type: 2}
+  - {fileID: 11400000, guid: 4cb80abf4dabe1c4097fd805bcfb62ea, type: 2}
+  - {fileID: 11400000, guid: 7963e97138a89874c99d0ef5a9003ea5, type: 2}
+  - {fileID: 11400000, guid: 621e6df2dcb5e85419b34174bde822d4, type: 2}
+  - {fileID: 11400000, guid: 3f5b2508f175fe6409315245c8d84fc9, type: 2}
+  - {fileID: 11400000, guid: ccc70134d599be947942266889c7eee9, type: 2}
   - {fileID: 11400000, guid: dd9f77e0b27f45b4697506dbe4019f8b, type: 2}
   - {fileID: 11400000, guid: 1c55d5dd9635fbe459ba1ca47db45747, type: 2}
-  - {fileID: 11400000, guid: f8d7a2e26933db747858606c4b1eff5e, type: 2}
+  - {fileID: 11400000, guid: 0487e0d5270011d4facba47260c93743, type: 2}

@@ -20,6 +20,8 @@ namespace Devlike.Tasks
         public TaskState State { get; private set; } = TaskState.Idle;
         public float DonePoints { get; private set; } = 0f;
 
+        public bool GeneratedBug { get; private set; }
+
         public TaskContainer(TaskType type, TaskImportance importance, Tier bugChance, float baseBugChance, int points)
         {
             Type = type;
@@ -33,8 +35,10 @@ namespace Devlike.Tasks
             return baseBugChance * (int)tier;
         }
 
-        public bool CompleteTask(float velocity, float cBugChance)
+        public void DoTask(float velocity, float cBugChance)
         {
+            GeneratedBug = false; //We reset this bool every time we attempt the task to report appropriately
+
             if(State != TaskState.InProgress)
             {
                 State = TaskState.InProgress;
@@ -44,7 +48,7 @@ namespace Devlike.Tasks
             //Risk generating a bug every tick
             if (Importance != TaskImportance.Bug)
             {
-                RandomGeneration.instance.RandomGenerateBug(BugChance, cBugChance);
+                GeneratedBug = RandomGeneration.instance.RandomGenerateBug(BugChance, cBugChance);
             }
 
             //Check if the task is done
@@ -53,9 +57,7 @@ namespace Devlike.Tasks
             {
                 State = TaskState.Complete;
                 Debug.LogWarning("Completed " + Type + " ID " + ID);
-                return true; //This task is complete
             }
-            return false; //This task requires more work
         }
 
         public string ID

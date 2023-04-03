@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d6025ebdbf01104da97bb4e05868ec6, type: 3}
-  m_Name: Completed Task
+  m_Name: LowVelocity
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 10185ef9e29733041b10a78f09e4564a, type: 3}
-  type: 3
+  sprite: {fileID: 21300000, guid: ac27e229c603a4e46913cafa013ba4b5, type: 3}
+  type: 4

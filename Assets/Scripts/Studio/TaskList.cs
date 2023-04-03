@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Devlike.Tasks
     public class TaskList
     {
         public int TotalPoints { get; private set; }
-        private Queue<int> taskPoints;
+        private Queue<int> taskPoints; //This is only used for the Backlogs
         private List<TaskContainer> tasks;
         public List<TaskContainer> Tasks { get { return tasks; } }
         private TaskContainer doingTask;
@@ -68,6 +69,9 @@ namespace Devlike.Tasks
             tasks = list;
         }
 
+        //Actions
+        public event Action OnTaskComplete;
+        public event Action OnBugCreated;
         public void DoTask(float velocity, float bugChance)
         {
             if(doingTask == null)
@@ -76,11 +80,19 @@ namespace Devlike.Tasks
                 tasks.RemoveAt(0);
             }
 
-            if(doingTask.CompleteTask(velocity, bugChance))
+            doingTask.DoTask(velocity, bugChance);
+
+            if (doingTask.GeneratedBug)
+            {
+                OnBugCreated?.Invoke();
+            }
+
+            if (doingTask.State == TaskState.Complete)
             {
                 //Task done, load the next task
                 doingTask = tasks[0];
                 tasks.RemoveAt(0);
+                OnTaskComplete?.Invoke();
             }
         }
 
@@ -118,6 +130,14 @@ namespace Devlike.Tasks
             get
             {
                 return tasks.Count + taskPoints.Count;
+            }
+        }
+
+        public bool HasTasks
+        {
+            get
+            {
+                return ActiveCount > 0;
             }
         }
     }

@@ -32,7 +32,7 @@ namespace Devlike.Characters
                 {
                     activeCharacter = character;
                     Debug.Log("Started conversation with " + activeCharacter.Profile.FullName);
-                    dialogueRunner.StartDialogue(activeCharacter.Dialogue.CurrentDialogue.CurrentStartNode);
+                    dialogueRunner.StartDialogue(activeCharacter.CharacterDialogue.CurrentDialogue.CurrentStartNode);
                     DialogueRunning = true;
                     gGame.UpdateGameState(GameState.Interacting);
                 }
@@ -44,6 +44,7 @@ namespace Devlike.Characters
             Debug.Log("Ended conversation with " + activeCharacter.Profile.FullName);
             DialogueRunning = false;
             //Complete the event
+            activeCharacter.CharacterDialogue.ResolveDialogue();
             gGame.UpdateGameState(GameState.Ticking);
             EventManager.instance.CompletePlayerAction();
         }

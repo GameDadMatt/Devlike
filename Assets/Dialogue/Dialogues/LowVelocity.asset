@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3ac14e3de51836488f2884cacbe8176, type: 3}
-  m_Name: Alignment
+  m_Name: LowVelocity
   m_EditorClassIdentifier: 
   startNodes:
-  - Alignment
-  dialogueType: 1
-  empathyBase: 0
+  - LowVelocity
+  dialogueType: 11
+  empathyBase: 5
   increaseMood: 2
-  decreaseCrunch: 0
-  increaseAlignment: 1
+  decreaseCrunch: -0.5
+  increaseAlignment: 0
   decreaseMood: -3
   increaseCrunch: 1
-  decreaseAlignment: -1
-  triggerEvent: 2
+  decreaseAlignment: 0
+  triggerEvent: 1
