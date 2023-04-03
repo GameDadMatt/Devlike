@@ -68,14 +68,7 @@ namespace Devlike.Characters
 
         public void DoTasks()
         {
-            if (Tasks.HasTasks)
-            {
-                Tasks.DoTask(Velocity, BugChance);
-            }
-            else
-            {
-                NoTask();
-            }
+            Tasks.DoTask(Velocity, BugChance);
         }
 
         public void GenerateBug()
@@ -86,11 +79,6 @@ namespace Devlike.Characters
         public void CompleteTask()
         {
             character.TempMoodlet(MoodletType.CompletedTask);
-        }
-
-        public void NoTask()
-        {
-            character.TempMoodlet(MoodletType.NoTask);
         }
 
         public void UpdateDrift()

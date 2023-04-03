@@ -12,7 +12,7 @@ namespace Devlike
         [SerializeField]
         private int totalTraits;
         [SerializeField]
-        private float moodletDisplayHours, moodletCooldownHours, moodletDelayHours;
+        private float moodletDisplayHours, moodletCooldownHoursMin, moodletCooldownHoursMax, moodletDelayHoursMin, moodletDelayHoursMax;
         [SerializeField]
         private float lowToHighBaseValue, highToLowBaseValue;
         [SerializeField]
@@ -46,8 +46,6 @@ namespace Devlike
         //Returns
         public int TotalTraits { get => totalTraits; }
         public float MoodletDisplayHours { get => moodletDisplayHours; }
-        public float MoodletCooldownHours { get => moodletCooldownHours; }
-        public float MoodletDelayHours { get => moodletDelayHours; }
         public float LowToHighBaseValue { get => lowToHighBaseValue; }
         public float HighToLowBaseValue { get => highToLowBaseValue; }
         public int DayHoursModifier { get => dayHoursModifier; }
@@ -77,6 +75,23 @@ namespace Devlike
         public List<Trait> Traits { get => traits; }
         public List<Profession> Professions { get => professions; }
         public List<Moodlet> Moodlets { get => moodlets; }
+
+        //MOODLET DELAYS
+        public float MoodletCooldownHours
+        {
+            get
+            {
+                return Random.Range(moodletCooldownHoursMin, moodletCooldownHoursMax);
+            }
+        }
+
+        public float MoodletDelayHours
+        {
+            get
+            {
+                return Random.Range(moodletDelayHoursMin, moodletCooldownHoursMax);
+            }
+        }
 
         public Trait GetTrait(string name)
         {

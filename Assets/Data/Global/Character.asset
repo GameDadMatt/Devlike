@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalTraits: 3
   moodletDisplayHours: 1
-  moodletCooldownHours: 2
-  moodletDelayHours: 0.5
+  moodletCooldownHoursMin: 1
+  moodletCooldownHoursMax: 4
+  moodletDelayHoursMin: 1
+  moodletDelayHoursMax: 4
   lowToHighBaseValue: 0.35
   highToLowBaseValue: 3
   dayHoursModifier: -3

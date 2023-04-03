@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,7 +45,6 @@ namespace Devlike.Characters
         private void DisplayMoodlet()
         {
             displaying = true;
-            Debug.LogWarning("Displaying Moodlet!");
             EventManager.instance.SetCharacterMoodlet(id, true, currentSprite);
         }
 
@@ -54,6 +54,7 @@ namespace Devlike.Characters
             EventManager.instance.SetCharacterMoodlet(id, false, currentSprite);
         }
 
+        public event Action OnMoodletCompleted;
         public void Tick()
         {
             //TEMP MOODLETS
@@ -62,7 +63,7 @@ namespace Devlike.Characters
                 tempDisplayTicks--;
                 if(tempDisplayTicks == 0)
                 {
-                    HideMoodlet();
+                    EventManager.instance.SetCharacterMoodlet(id, false, currentSprite);
                 }
             }
             else if(tempMoodletCooldown > 0)
@@ -94,6 +95,7 @@ namespace Devlike.Characters
                 if(cooldownTicks == 0)
                 {
                     Ticking = false;
+                    OnMoodletCompleted?.Invoke();
                 }
             }
         }

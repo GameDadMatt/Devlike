@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CompletedTask
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 10185ef9e29733041b10a78f09e4564a, type: 3}
-  type: 8
+  type: 9

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4319393f40f25c743bcbc2784b57c586, type: 3}
   m_Name: Dialogue
   m_EditorClassIdentifier: 
-  minWeeklyArtificialDramas: 3
-  maxWeeklyArtificialDramas: 12
+  minWeeklyArtificialDramas: 0
+  maxWeeklyArtificialDramas: 4
   defaultDialogue: {fileID: 11400000, guid: e65002c27e4d5e54ab6ccded7fd2cde6, type: 2}
   dialogues:
   - {fileID: 11400000, guid: 21fa48e9e29d6b048abe41932db14f71, type: 2}

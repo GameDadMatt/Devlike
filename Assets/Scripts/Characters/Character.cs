@@ -51,7 +51,7 @@ namespace Devlike.Characters
         public float SoclBurnRate { get { return (gCharacter.SoclBreaksPerDay / CharacterTasker.WorkTicks) * Profile.SoclDropMultiplier; } }
 
         //Moods
-        private MoodletType currentMood = MoodletType.None;
+        private MoodletType currentMoodlet = MoodletType.None;
         private float moodImpact = 0;
         private float MoodImpactBurn { get { return (gCharacter.MoodImpactDuration * Profile.MoodImpactMultiplier) / CharacterTasker.WorkTicks; } }
 
@@ -85,6 +85,7 @@ namespace Devlike.Characters
             CharacterTasker = GetComponent<CharacterTasker>();
             CharacterDialogue = GetComponent<CharacterDialogue>();
             CharacterMoodlet = GetComponent<CharacterMoodlet>();
+            CharacterMoodlet.OnMoodletCompleted += EndMoodlet;
 
             Food = new(DoingType.Food, 1f, gCharacter.NeedThreshold);
             Insp = new(DoingType.Inspiration, 1f, gCharacter.NeedThreshold);
@@ -136,16 +137,7 @@ namespace Devlike.Characters
                     Food.curValue -= FoodBurnRate;
                     Insp.curValue -= InspBurnRate;
                     Socl.curValue -= SoclBurnRate;
-                    UpdateMood();
-                    CharacterTasker.UpdateDrift();
-                    if (CharacterMoodlet.Ticking)
-                    {
-                        CharacterMoodlet.Tick();
-                    }
-                    if (CurrentDoing == DoingType.Work)
-                    {
-                        CharacterTasker.DoTasks();
-                    }
+                    OnActiveTick();
                     break;
                 case CharacterState.End:
                     EndWork();
@@ -153,6 +145,30 @@ namespace Devlike.Characters
                     break;
                 case CharacterState.Inactive:
                     break;
+            }
+        }
+
+        private void OnActiveTick()
+        {
+            //Update the mood
+            UpdateMood();
+            //Update the character's drift
+            CharacterTasker.UpdateDrift();
+
+            //Update the moodlets
+            if (CharacterMoodlet.Ticking)
+            {
+                CharacterMoodlet.Tick();
+            }
+
+            //Do work if there is any. Otherwise, display a moodlet
+            if (CurrentDoing == DoingType.Work)
+            {
+                CharacterTasker.DoTasks();
+            }
+            else if (CurrentDoing == DoingType.Idle)
+            {
+                TempMoodlet(MoodletType.NoTask);
             }
         }
 
@@ -182,7 +198,7 @@ namespace Devlike.Characters
         private void NaturalMoodCheck()
         {
             //If we have no current mood, set one
-            if(currentMood == MoodletType.None)
+            if(currentMoodlet == MoodletType.None)
             {
                 List<MoodletType> possibleMoods = new List<MoodletType>();
 
@@ -235,7 +251,7 @@ namespace Devlike.Characters
             {
                 Sprite sprite = gCharacter.GetMoodletSprite(type);
                 int displayTicks = Mathf.RoundToInt(gCharacter.MoodletDisplayHours * gTime.TicksPerHour);
-                int cooldownTicks = Mathf.RoundToInt(gCharacter.MoodletCooldownHours * gTime.TicksPerHour);
+                int cooldownTicks = 0; //Mathf.RoundToInt(gCharacter.MoodletCooldownHours * gTime.TicksPerHour);
                 CharacterMoodlet.NewTempMoodlet(sprite, displayTicks, cooldownTicks);
             }
         }
@@ -247,9 +263,9 @@ namespace Devlike.Characters
             if (type != MoodletType.None)
             {
                 Debug.Log("Setting up moodlet of type " + type);
-                currentMood = type;
+                currentMoodlet = type;
 
-                Sprite sprite = gCharacter.GetMoodletSprite(currentMood);
+                Sprite sprite = gCharacter.GetMoodletSprite(currentMoodlet);
                 int delayTicks = Mathf.RoundToInt(Random.Range(0, gCharacter.MoodletDelayHours) * gTime.TicksPerHour);
                 int displayTicks = Mathf.RoundToInt(gCharacter.MoodletDisplayHours * gTime.TicksPerHour);
                 int cooldownTicks = Mathf.RoundToInt(gCharacter.MoodletCooldownHours * gTime.TicksPerHour);
@@ -257,9 +273,14 @@ namespace Devlike.Characters
             }
         }
 
+        private void EndMoodlet()
+        {
+            currentMoodlet = MoodletType.None;
+        }
+
         public void SetMoodAndDialogue(MoodletType mood, DialogueContainer dialogue)
         {
-            currentMood = mood;
+            currentMoodlet = mood;
             CharacterDialogue.NewDialogue(dialogue);
             SetupMoodlet(mood);
         }
@@ -271,7 +292,7 @@ namespace Devlike.Characters
 
         public void ResolveMood()
         {
-            currentMood = MoodletType.None;
+            currentMoodlet = MoodletType.None;
         }
 
         public void EndWork()
