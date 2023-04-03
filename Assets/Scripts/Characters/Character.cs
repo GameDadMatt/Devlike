@@ -138,7 +138,11 @@ namespace Devlike.Characters
                     Socl.curValue -= SoclBurnRate;
                     UpdateMood();
                     CharacterTasker.UpdateDrift();
-                    if(CurrentDoing == DoingType.Work)
+                    if (CharacterMoodlet.Ticking)
+                    {
+                        CharacterMoodlet.Tick();
+                    }
+                    if (CurrentDoing == DoingType.Work)
                     {
                         CharacterTasker.DoTasks();
                     }
@@ -177,6 +181,7 @@ namespace Devlike.Characters
 
         private void NaturalMoodCheck()
         {
+            //If we have no current mood, set one
             if(currentMood == MoodletType.None)
             {
                 List<MoodletType> possibleMoods = new List<MoodletType>();
@@ -218,7 +223,7 @@ namespace Devlike.Characters
                 if(possibleMoods.Count > 0)
                 {
                     int random = Random.Range(0, possibleMoods.Count);
-                    DisplayMoodlet(possibleMoods[random]);
+                    SetupMoodlet(possibleMoods[random]);
                     CharacterDialogue.DialogueFromMood(possibleMoods[random]);
                 }
             }
@@ -235,14 +240,13 @@ namespace Devlike.Characters
             }
         }
 
-        private void DisplayMoodlet(MoodletType type)
+        private void SetupMoodlet(MoodletType type)
         {
-            if (!CharacterMoodlet.DisplayReady)
+            CharacterMoodlet.ClearMoodlet(); //Clear the moodlet first, just in case
+
+            if (type != MoodletType.None)
             {
-                CharacterMoodlet.Tick();
-            }
-            else if (type != MoodletType.None && CharacterMoodlet.DisplayReady)
-            {
+                Debug.Log("Setting up moodlet of type " + type);
                 currentMood = type;
 
                 Sprite sprite = gCharacter.GetMoodletSprite(currentMood);
@@ -257,7 +261,7 @@ namespace Devlike.Characters
         {
             currentMood = mood;
             CharacterDialogue.NewDialogue(dialogue);
-            DisplayMoodlet(mood);
+            SetupMoodlet(mood);
         }
 
         public void ClearMoodlet()

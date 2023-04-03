@@ -15,6 +15,7 @@ MonoBehaviour:
   startNodes:
   - GoodMood
   dialogueType: 10
+  moodletType: 6
   empathyBase: 0
   increaseMood: 2
   decreaseCrunch: 0

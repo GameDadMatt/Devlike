@@ -21,7 +21,7 @@ public class StudioManager : ExecutableBehaviour
     [SerializeField]
     private GameObject characterPrefab;
 
-    private Queue<DialogueContainer> weekDramas = new Queue<DialogueContainer>();
+    private Queue<DialogueCollection> weekDramas = new Queue<DialogueCollection>();
     private List<int> dramaDays = new List<int>();
 
     protected override void SetListeners()
@@ -33,7 +33,6 @@ public class StudioManager : ExecutableBehaviour
 
     protected override void SetProperties()
     {
-        Debug.Log("TEST");
         gProject.GenerateProjectScope(gStudio.StudioSize);
     }
 
@@ -91,7 +90,8 @@ public class StudioManager : ExecutableBehaviour
                 List<int> characterPos = RandomGeneration.instance.RandomUnrepeatedPositionsFromList(dramas.Count, availableCharacters.Count);
                 foreach(int i in characterPos)
                 {
-                    availableCharacters[i].CharacterDialogue.NewDialogue(weekDramas.Dequeue());
+                    DialogueCollection dialogue = weekDramas.Dequeue();
+                    availableCharacters[i].SetMoodAndDialogue(dialogue.moodletType, new DialogueContainer(dialogue));
                 }
             }
         }

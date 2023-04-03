@@ -116,7 +116,9 @@ namespace Devlike.Characters
         {
             //CrunchPressure cannot reduce past the CrunchThreshold without direct intervention
             //CrunchDrift moves CrunchDesire towards the current CrunchPressure
-            Debug.Log("Add Crunch Drift");
+
+            //Debug.Log("Add Crunch Drift");
+
             /*if (crunchPressure > thisCharacter.Profile.CrunchThreshold)
             {
                 crunchPressure -= gCharacter.CrunchDriftPerDay / WorkTicks;

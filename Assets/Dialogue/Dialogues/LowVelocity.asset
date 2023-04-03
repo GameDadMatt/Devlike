@@ -15,6 +15,7 @@ MonoBehaviour:
   startNodes:
   - LowVelocity
   dialogueType: 11
+  moodletType: 4
   empathyBase: 5
   increaseMood: 2
   decreaseCrunch: -0.5

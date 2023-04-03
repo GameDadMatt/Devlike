@@ -7,7 +7,7 @@ namespace Devlike.Characters
 {
     public class CharacterMoodlet : MonoBehaviour
     {
-        public bool DisplayReady { get; private set; } = true;
+        public bool Ticking { get; private set; } = false;
         private string id = "";
         private bool displaying = false;
         private int delayTicks = 0;
@@ -26,7 +26,8 @@ namespace Devlike.Characters
 
         public void NewMoodlet(Sprite sprite, int delay, int display, int cooldown)
         {
-            DisplayReady = false;
+            Debug.Log("New moodlet " + delay + " " + display + " " + cooldown);
+            Ticking = true;
             currentSprite = sprite;
             delayTicks = delay;
             displayTicks = display;
@@ -43,6 +44,7 @@ namespace Devlike.Characters
         private void DisplayMoodlet()
         {
             displaying = true;
+            Debug.LogWarning("Displaying Moodlet!");
             EventManager.instance.SetCharacterMoodlet(id, true, currentSprite);
         }
 
@@ -91,7 +93,7 @@ namespace Devlike.Characters
                 cooldownTicks--;
                 if(cooldownTicks == 0)
                 {
-                    DisplayReady = true;
+                    Ticking = false;
                 }
             }
         }

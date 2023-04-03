@@ -15,7 +15,7 @@ MonoBehaviour:
   totalTraits: 3
   moodletDisplayHours: 1
   moodletCooldownHours: 2
-  moodletDelayHours: 2
+  moodletDelayHours: 0.5
   lowToHighBaseValue: 0.35
   highToLowBaseValue: 3
   dayHoursModifier: -3
@@ -108,3 +108,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dd9f77e0b27f45b4697506dbe4019f8b, type: 2}
   - {fileID: 11400000, guid: 1c55d5dd9635fbe459ba1ca47db45747, type: 2}
   - {fileID: 11400000, guid: 0487e0d5270011d4facba47260c93743, type: 2}
+  - {fileID: 11400000, guid: 2b8fc1e6a41778542ab59e8fcbb6e25b, type: 2}

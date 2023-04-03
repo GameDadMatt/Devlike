@@ -302,14 +302,14 @@ public class RandomGeneration : ExecutableBehaviour
         return bug;
     }
 
-    public Queue<DialogueContainer> ArtificialDramaQueue()
+    public Queue<DialogueCollection> ArtificialDramaQueue()
     {
         int num = Mathf.RoundToInt(Random.Range(gDialogue.MinWeeklyArtificialDramas, gDialogue.MaxWeeklyArtificialDramas));
-        Queue<DialogueContainer> dramas = new Queue<DialogueContainer>();
+        Queue<DialogueCollection> dramas = new Queue<DialogueCollection>();
         for(int i = 0; i < num; i++)
         {
             DialogueCollection drama = gDialogue.Dialogues[Random.Range(0, gDialogue.Dialogues.Count)];
-            dramas.Enqueue(new DialogueContainer(drama));
+            dramas.Enqueue(drama);
         }
         return dramas;
     }

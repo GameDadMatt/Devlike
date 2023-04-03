@@ -50,7 +50,7 @@ namespace Devlike.Characters
                 character.ImproveMood(currentDialogue.raiseMood);
                 character.AlignmentRestore(currentDialogue.raiseAlignment);
                 character.ReduceCrunchPressure(currentDialogue.lowerCrunch);
-                Debug.Log("Applying dialogue outcome, mood: " + currentDialogue.raiseMood + ", alignment: " + currentDialogue.raiseAlignment + ", crunch: " + currentDialogue.lowerCrunch);
+                Debug.Log("Resolving dialogue " + currentDialogue.name + ", mood: " + currentDialogue.raiseMood + ", alignment: " + currentDialogue.raiseAlignment + ", crunch: " + currentDialogue.lowerCrunch);
 
                 currentDialogue = noDialogue;
             }
@@ -63,7 +63,7 @@ namespace Devlike.Characters
                 character.LowerMood(currentDialogue.lowerMood); //This is a negative outcome
                 character.AlignmentImpact(currentDialogue.lowerAlignment);
                 character.SetCrunchPressure(currentDialogue.raiseCrunch);
-                Debug.Log("Applying dialogue outcome, mood: " + currentDialogue.lowerMood + ", alignment: " + currentDialogue.lowerAlignment + ", crunch: " + currentDialogue.raiseCrunch);
+                Debug.Log("Clearing dialogue " + currentDialogue.name + ", mood: " + currentDialogue.lowerMood + ", alignment: " + currentDialogue.lowerAlignment + ", crunch: " + currentDialogue.raiseCrunch);
 
                 currentDialogue = noDialogue;
             }

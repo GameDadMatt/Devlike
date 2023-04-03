@@ -15,6 +15,7 @@ MonoBehaviour:
   startNodes:
   - Default
   dialogueType: 15
+  moodletType: 2
   empathyBase: 0
   increaseMood: 1
   decreaseCrunch: 0

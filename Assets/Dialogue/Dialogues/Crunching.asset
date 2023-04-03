@@ -15,6 +15,7 @@ MonoBehaviour:
   startNodes:
   - Crunching
   dialogueType: 2
+  moodletType: 1
   empathyBase: 5
   increaseMood: 1
   decreaseCrunch: -1

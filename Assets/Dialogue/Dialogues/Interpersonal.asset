@@ -15,6 +15,7 @@ MonoBehaviour:
   startNodes:
   - Interpersonal
   dialogueType: 8
+  moodletType: 2
   empathyBase: 5
   increaseMood: 1
   decreaseCrunch: 0

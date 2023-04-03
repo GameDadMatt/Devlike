@@ -15,6 +15,7 @@ MonoBehaviour:
   startNodes:
   - Miscalculation
   dialogueType: 3
+  moodletType: 1
   empathyBase: 0
   increaseMood: 2
   decreaseCrunch: -0.5
