@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6025ebdbf01104da97bb4e05868ec6, type: 3}
   m_Name: HasDrama
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: d70dae32d4eaf0d4e994a376a43ec7d2, type: 3}
+  sprite: {fileID: 21300000, guid: d4962a7c42a736647bae56c73f8907f3, type: 3}
   type: 1

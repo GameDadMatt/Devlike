@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6025ebdbf01104da97bb4e05868ec6, type: 3}
   m_Name: CompletedTask
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 10185ef9e29733041b10a78f09e4564a, type: 3}
+  sprite: {fileID: 21300000, guid: dc66d40eb787c694387e5a591b7c06ce, type: 3}
   type: 9

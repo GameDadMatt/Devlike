@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6025ebdbf01104da97bb4e05868ec6, type: 3}
   m_Name: Overwhelmed
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 34ba54aa67d0852489cc4e13c3690f17, type: 3}
+  sprite: {fileID: 21300000, guid: 7032ae33434e5934c964c0066c6ee8c2, type: 3}
   type: 6

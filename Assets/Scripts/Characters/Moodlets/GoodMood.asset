@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6025ebdbf01104da97bb4e05868ec6, type: 3}
   m_Name: GoodMood
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 22cbc27bd9542584f9133a39c86a18a2, type: 3}
+  sprite: {fileID: 21300000, guid: 736f87353c65846479c5b6cb15e9e290, type: 3}
   type: 7

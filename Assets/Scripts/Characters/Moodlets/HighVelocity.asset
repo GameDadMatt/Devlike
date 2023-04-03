@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6025ebdbf01104da97bb4e05868ec6, type: 3}
   m_Name: HighVelocity
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: e0298c39284d85a42b303df67c28433f, type: 3}
+  sprite: {fileID: 21300000, guid: cbadca7467c6a8a4fa218191d2ba2aca, type: 3}
   type: 5

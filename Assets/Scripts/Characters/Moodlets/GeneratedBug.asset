@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6025ebdbf01104da97bb4e05868ec6, type: 3}
   m_Name: GeneratedBug
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 9c34314655407974da25875b02298f19, type: 3}
+  sprite: {fileID: 21300000, guid: a1808907697332f4283fc1ad30e88dff, type: 3}
   type: 10
