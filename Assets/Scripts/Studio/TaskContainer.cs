@@ -32,7 +32,7 @@ namespace Devlike.Tasks
 
         private float BugChanceFromTier(Tier tier, float baseBugChance)
         {
-            return baseBugChance * (int)tier;
+            return baseBugChance * ((int)tier - 1);
         }
 
         public void DoTask(float velocity, float cBugChance)

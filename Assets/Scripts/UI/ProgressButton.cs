@@ -66,6 +66,7 @@ namespace Devlike.UI
             {
                 if (action.Active)
                 {
+                    Debug.Log("Setting action on " + name);
                     button.interactable = false;
                     progressBar.fillAmount = action.Progress;
                 }

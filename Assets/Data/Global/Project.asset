@@ -15,7 +15,7 @@ MonoBehaviour:
   desiredProjectDays: 50
   maxTaskPoints: 5
   baseTaskPointsPerDay: 7
-  bugChance: 0.1
+  bugChance: 0.001
   artTaskColor: {r: 1, g: 0.5820617, b: 0, a: 1}
   designTaskColor: {r: 0.36449426, g: 0.7924528, b: 0.13830544, a: 1}
   engineeringTaskColor: {r: 0, g: 0.5819402, b: 1, a: 1}

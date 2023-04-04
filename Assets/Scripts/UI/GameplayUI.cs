@@ -129,6 +129,7 @@ namespace Devlike.UI
         {
             gGame.UpdateGameState(GameState.Paused);
             canvas.enabled = true;
+            EventManager.instance.CompletePlayerAction();
         }
 
         public void ChangeOtherInteractivity(bool state)

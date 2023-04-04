@@ -118,8 +118,8 @@ namespace Devlike.Characters
             AlignDriftMultiplier = TierHighToLow(gCharacter, trait.alignment);
 
             EmpathyBarrierMultiplier = TierHighToLow(gCharacter, trait.empathyBarrier);
-
             BugChanceMultiplier = TierHighToLow(gCharacter, trait.bugChance);
+
             BurnoutMultiplier = TierHighToLow(gCharacter, trait.burnout);
             MoodImpactMultiplier = TierHighToLow(gCharacter, trait.moodImpact);
 
@@ -132,6 +132,7 @@ namespace Devlike.Characters
             //Percentages
             BaseMood = TierPercentage(trait.baseMood);
             NaturalAlignment = AlignmentCalc(trait.alignment, Experience);
+
             CrunchPoint = gCharacter.CrunchThreshold * InverseTierPercentage(trait.crunchThreshold);
             BadMoodPoint = gCharacter.BadMoodThreshold * TierPercentage(trait.baseMood);
             GoodMoodPoint = gCharacter.GoodMoodThreshold * InverseTierPercentage(trait.baseMood);
