@@ -71,9 +71,8 @@ namespace Devlike.Characters
                 ApplyTrait(gCharacter, gTime, trait);
             }
 
-            //WorkStart and WorkEnd are averaged across their modifiers
-            WorkStartMod /= gCharacter.TotalTraits;
-            WorkEndMod /= gCharacter.TotalTraits;
+            //Average out the traits
+            AverageTraits(gCharacter.TotalTraits);
         }
 
         private void ApplyProfession(Profession p)
@@ -93,13 +92,13 @@ namespace Devlike.Characters
             switch (skill.type)
             {
                 case TaskType.Art:
-                    Art += TierLowToHigh(skill.tier);
+                    Art += TierSkillMultiplier(skill.tier);
                     break;
                 case TaskType.Engineering:
-                    Engineering += TierLowToHigh(skill.tier);
+                    Engineering += TierSkillMultiplier(skill.tier);
                     break;
                 case TaskType.Design:
-                    Design += TierLowToHigh(skill.tier);
+                    Design += TierSkillMultiplier(skill.tier);
                     break;
             }
         }
@@ -110,27 +109,52 @@ namespace Devlike.Characters
             Confidence = ConfidenceAverage(trait.confidence);
 
             //Low Tier = High Return
-            RestDropMultiplier = TierHighToLow(trait.restDrop);
-            FoodDropMultiplier = TierHighToLow(trait.foodDrop);
-            InspDropMultiplier = TierHighToLow(trait.inspirationDrop);
-            SoclDropMultiplier = TierHighToLow(trait.socialDrop);
-            AlignDriftMultiplier = TierHighToLow(trait.alignment);
+            RestDropMultiplier += TierHighToLow(trait.restDrop);
+            FoodDropMultiplier += TierHighToLow(trait.foodDrop);
+            InspDropMultiplier += TierHighToLow(trait.inspirationDrop);
+            SoclDropMultiplier += TierHighToLow(trait.socialDrop);
+            AlignDriftMultiplier += TierHighToLow(trait.alignment);
 
-            EmpathyBarrierMultiplier = TierHighToLow(trait.empathyBarrier);
-            BugChanceMultiplier = TierHighToLow(trait.bugChance);
+            EmpathyBarrierMultiplier += TierHighToLow(trait.empathyBarrier);
+            BugChanceMultiplier += TierHighToLow(trait.bugChance);
 
-            BurnoutMultiplier = TierHighToLow(trait.burnout);
-            MoodImpactMultiplier = TierHighToLow(trait.moodImpact);
+            BurnoutMultiplier += TierHighToLow(trait.burnout);
+            MoodImpactMultiplier += TierHighToLow(trait.moodImpact);
 
             //Low Tier = Low Return
-            VelocityMultiplier = TierLowToHigh(trait.velocity);
-            BaseMood = TierLowToHigh(trait.baseMood);
-            CrunchThreshold = TierLowToHigh(trait.crunchThreshold);
+            VelocityMultiplier += TierLowToHigh(trait.velocity);
+            BaseMood += TierLowToHigh(trait.baseMood);
+            CrunchThreshold += TierLowToHigh(trait.crunchThreshold);
 
             WorkStartMod += TierDayMod(gCharacter, gTime.TicksPerHour, trait.dayStart);
             WorkEndMod += TierDayMod(gCharacter, gTime.TicksPerHour, trait.dayEnd);
 
-            NaturalAlignment = AlignmentCalc(trait.alignment, Experience);
+            NaturalAlignment += AlignmentCalc(trait.alignment, Experience);
+        }
+
+        private void AverageTraits(int count)
+        {
+            //Low Tier = High Return
+            RestDropMultiplier /= (float)count;
+            FoodDropMultiplier /= (float)count;
+            InspDropMultiplier /= (float)count;
+            SoclDropMultiplier /= (float)count;
+            AlignDriftMultiplier /= (float)count;
+
+            EmpathyBarrierMultiplier /= (float)count;
+            BugChanceMultiplier /= (float)count;
+
+            BurnoutMultiplier /= (float)count;
+            MoodImpactMultiplier /= (float)count;
+
+            WorkStartMod /= count;
+            WorkEndMod /= count;
+
+            //Low Tier = Low Return
+            VelocityMultiplier /= (float)count;
+            BaseMood /= (float)count;
+            CrunchThreshold /= (float)count;
+            NaturalAlignment /= (float)count;
         }
 
         /// <summary>
@@ -176,6 +200,25 @@ namespace Devlike.Characters
                     return 0.8f;
                 case Tier.Highest:
                     return 0.5f;
+            }
+            Debug.LogError("Failed to find tier " + tier);
+            return 1f;
+        }
+
+        private float TierSkillMultiplier(Tier tier)
+        {
+            switch (tier)
+            {
+                case Tier.Lowest:
+                    return 0.05f;
+                case Tier.Low:
+                    return 0.1f;
+                case Tier.Average:
+                    return 0.5f;
+                case Tier.High:
+                    return 0.8f;
+                case Tier.Highest:
+                    return 1f;
             }
             Debug.LogError("Failed to find tier " + tier);
             return 1f;

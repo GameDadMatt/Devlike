@@ -29,11 +29,12 @@ namespace Devlike.UI
         private RectTransform characterColumnArea;
         [SerializeField]
         private Transform backlogColumnArea;
+        [SerializeField]
+        private int charactersPerPage = 4;
 
         private int curPage = 0;
         private float columnWidth = 980f / 4f;
-        [SerializeField]
-        private int charactersPerPage = 4;
+        private List<TaskColumn> allColumns;
 
         public void Awake()
         {
@@ -60,37 +61,28 @@ namespace Devlike.UI
 
         private void GenerateScreen()
         {
-            //BACKLOG
-            for(int i = 0; i < 3; i++)
+            characterColumnArea.sizeDelta = new Vector2(columnWidth * gStudio.Characters.Count, characterColumnArea.rect.height);
+            allColumns = backlogColumns;
+
+            for (int i = 0; i < backlogColumns.Count; i++)
             {
                 backlogColumns[i].Tasks = gProject.TaskLists[i];
-                GenerateTasks(gProject.TaskLists[i], backlogColumns[i].Area);
             }
-
-            DrawCharacterColumns();
-        }
-
-        private void DrawCharacterColumns()
-        {
-            characterColumnArea.sizeDelta = new Vector2(columnWidth * gStudio.Characters.Count, characterColumnArea.rect.height);
-            List<TaskColumn> containers = backlogColumns;            
 
             for (int i = 0; i < gStudio.Characters.Count; i++)
             {
                 //If this character exists
-                if(gStudio.Characters.Count > i)
+                if (gStudio.Characters.Count > i)
                 {
                     GameObject columnObj = Instantiate(characterColumnPrefab, characterColumnArea);
                     TaskColumn taskColumn = columnObj.GetComponent<TaskColumn>();
                     Character owner = gStudio.Characters[i];
-                    taskColumn.CharacterColumn(owner);
-                    containers.Add(taskColumn);
-                    //SPAWN IN ALL THE TASKS FROM THIS CHARACTER
-                    GenerateTasks(taskColumn.Tasks, taskColumn.Area);
-                }           
+                    taskColumn.CharacterColumn(owner); //Assign the character and their tasks to this column
+                    allColumns.Add(taskColumn);
+                }
             }
 
-            DragTaskManager.instance.SetContainerAreas(containers);
+            DragTaskManager.instance.SetContainerAreas(allColumns);
         }
 
         private void GenerateTasks(TaskList list, Transform parent)
@@ -102,10 +94,34 @@ namespace Devlike.UI
             }
         }
 
+        private void DrawColumnContents()
+        {
+            foreach(TaskColumn column in allColumns)
+            {
+                Debug.Log("Creating " + column.Tasks.Total + " tasks");
+                GenerateTasks(column.Tasks, column.Area.transform);
+            }
+        }
+
+        private void ClearColumnContents()
+        {
+            foreach (TaskColumn column in allColumns)
+            {
+                //Update the column task list based on its current state
+                column.UpdateTaskList();
+                //Clear the contents of the column
+                for (int i = column.Area.childCount - 1; i >= 0; i--)
+                {
+                    Destroy(column.Area.GetChild(i).gameObject);
+                }
+            }
+        }
+
         private void DisplayScreen(Player.ActionType type)
         {
-            if(type == Player.ActionType.TaskManagement)
+            if (type == Player.ActionType.TaskManagement)
             {
+                DrawColumnContents();
                 canvas.enabled = true;
             }
         }
@@ -115,6 +131,7 @@ namespace Devlike.UI
             if (canvas.enabled)
             {
                 canvas.enabled = false;
+                ClearColumnContents();
             }
         }
     }

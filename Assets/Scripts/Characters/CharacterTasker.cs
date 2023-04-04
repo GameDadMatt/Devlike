@@ -18,6 +18,9 @@ namespace Devlike.Characters
         private GlobalCharacter gCharacter;
 
         private Character character;
+        private float Art { get => character.Profile.Art; }
+        private float Design { get => character.Profile.Design; }
+        private float Engineering { get => character.Profile.Engineering; }
 
         private TaskList tasks = new TaskList();
 
@@ -30,7 +33,7 @@ namespace Devlike.Characters
 
         //Tasks
         public TaskList Tasks { get => tasks; }
-        public int NumTasks { get { return tasks.TotalCount; } }
+        public int NumTasks { get { return tasks.TotalWithPoints; } }
         public TaskType CurrentTask { get; private set; }
         public MoodletType CurrentEmotion { get; private set; }
 
@@ -68,7 +71,7 @@ namespace Devlike.Characters
 
         public void DoTasks()
         {
-            Tasks.DoTask(character.Profile.FullName, Velocity / (float)WorkTicks, BugChance);
+            Tasks.DoTask(Art, Design, Engineering, Velocity / (float)WorkTicks, BugChance);
         }
 
         public void GenerateBug()

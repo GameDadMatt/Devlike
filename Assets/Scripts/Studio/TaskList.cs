@@ -72,12 +72,25 @@ namespace Devlike.Tasks
         //Actions
         public event Action OnTaskComplete;
         public event Action OnBugCreated;
-        public void DoTask(string cname, float velocity, float bugChance)
+        public void DoTask(float art, float design, float engineering, float velocity, float bugChance)
         {
             if(doingTask == null)
             {
                 doingTask = tasks[0];
                 tasks.RemoveAt(0);
+            }
+
+            switch (doingTask.Type)
+            {
+                case TaskType.Art:
+                    velocity *= art;
+                    break;
+                case TaskType.Engineering:
+                    velocity *= engineering;
+                    break;
+                case TaskType.Design:
+                    velocity *= design;
+                    break;
             }
 
             doingTask.DoTask(velocity, bugChance);
@@ -117,7 +130,7 @@ namespace Devlike.Tasks
             }
         }
 
-        public int ActiveCount
+        public int Total
         {
             get
             {
@@ -125,7 +138,7 @@ namespace Devlike.Tasks
             }
         }
 
-        public int TotalCount
+        public int TotalWithPoints
         {
             get
             {
@@ -137,7 +150,7 @@ namespace Devlike.Tasks
         {
             get
             {
-                return ActiveCount > 0;
+                return Total > 0;
             }
         }
     }

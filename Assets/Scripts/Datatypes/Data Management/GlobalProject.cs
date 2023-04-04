@@ -52,7 +52,7 @@ namespace Devlike
             EngTasks = projectScope[2];
             EngTasks.GenerateTaskFromPoints(TaskType.Engineering, 20, BaseBugChance);
 
-            Debug.Log("Total Scope = Art " + ArtTasks.TotalPoints + " points, Design " + DesTasks.TotalPoints + " points, Engineering " + EngTasks.TotalPoints + "\n Current Scope = Art " + ArtTasks.RemainingPoints + " points in " + ArtTasks.ActiveCount + " tasks, Design " + DesTasks.RemainingPoints + " points in " + ArtTasks.ActiveCount + " tasks, Engineering " + EngTasks.RemainingPoints + " points in " + EngTasks.ActiveCount + " tasks.");
+            Debug.Log("Total Scope = Art " + ArtTasks.TotalPoints + " points, Design " + DesTasks.TotalPoints + " points, Engineering " + EngTasks.TotalPoints + "\n Current Scope = Art " + ArtTasks.RemainingPoints + " points in " + ArtTasks.Total + " tasks, Design " + DesTasks.RemainingPoints + " points in " + ArtTasks.Total + " tasks, Engineering " + EngTasks.RemainingPoints + " points in " + EngTasks.Total + " tasks.");
         }
 
         public void AddTask(TaskContainer task)

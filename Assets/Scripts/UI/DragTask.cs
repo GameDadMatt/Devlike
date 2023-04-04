@@ -57,11 +57,11 @@ namespace Devlike.UI
                 }
 
                 //Update the task list on the column
-                TaskColumn column = DragTaskManager.instance.GetTaskColumn(worldCenterPoint + eventData.delta);
+                /*TaskColumn column = DragTaskManager.instance.GetTaskColumn(worldCenterPoint + eventData.delta);
                 if(column != null)
                 {
                     column.UpdateTaskList();
-                }
+                }*/
 
                 curPos = transform.position;
             }
