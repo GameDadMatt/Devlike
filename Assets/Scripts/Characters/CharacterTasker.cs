@@ -68,7 +68,7 @@ namespace Devlike.Characters
 
         public void DoTasks()
         {
-            Tasks.DoTask(character.Profile.FullName, Velocity, BugChance);
+            Tasks.DoTask(character.Profile.FullName, Velocity / (float)WorkTicks, BugChance);
         }
 
         public void GenerateBug()
@@ -155,7 +155,7 @@ namespace Devlike.Characters
         {
             get
             {
-                return (gProject.BaseTaskPointsPerDay / (float)WorkTicks) * character.Profile.VelocityMultiplier;
+                return gProject.BaseTaskPointsPerDay * character.Profile.VelocityMultiplier;
             }
         }
 
@@ -163,7 +163,7 @@ namespace Devlike.Characters
         {
             get
             {
-                return (((gProject.BaseTaskPointsPerDay / (float)WorkTicks) * character.Profile.VelocityMultiplier) * character.CappedMoodImpact) + velocityMod;
+                return (gProject.BaseTaskPointsPerDay * character.Profile.VelocityMultiplier * character.CappedMoodImpact) + velocityMod;
             }            
         }
 
@@ -171,7 +171,7 @@ namespace Devlike.Characters
         {
             get
             {
-                return ((float)Tasks.RemainingPoints / (float)gStudio.WorkWeekDays) / (float)WorkTicks;
+                return ((float)Tasks.RemainingPoints / (float)gStudio.WorkWeekDays);
             }
         }
 

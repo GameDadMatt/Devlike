@@ -80,7 +80,6 @@ namespace Devlike.Tasks
                 tasks.RemoveAt(0);
             }
 
-            Debug.Log(cname + " is doing " + doingTask.Type + " " + doingTask.ID);
             doingTask.DoTask(velocity, bugChance);
 
             if (doingTask.GeneratedBug)

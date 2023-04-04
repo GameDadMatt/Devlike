@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desiredProjectDays: 50
   maxTaskPoints: 5
-  baseTaskPointsPerDay: 7
+  baseTaskPointsPerDay: 2
   bugChance: 0.001
   artTaskColor: {r: 1, g: 0.5820617, b: 0, a: 1}
   designTaskColor: {r: 0.36449426, g: 0.7924528, b: 0.13830544, a: 1}
