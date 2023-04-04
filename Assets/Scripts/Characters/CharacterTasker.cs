@@ -151,12 +151,28 @@ namespace Devlike.Characters
             this.bugMod = bugMod;
         }
 
+        public float ExpectedVelocity
+        {
+            get
+            {
+                return (gProject.BaseTaskPointsPerDay / (float)WorkTicks) * character.Profile.VelocityMultiplier;
+            }
+        }
+
         public float Velocity
         {
             get
             {
-                return (((gProject.BaseTaskPointsPerDay / WorkTicks) * character.Profile.VelocityMultiplier) * character.CappedMoodImpact) + velocityMod;
+                return (((gProject.BaseTaskPointsPerDay / (float)WorkTicks) * character.Profile.VelocityMultiplier) * character.CappedMoodImpact) + velocityMod;
             }            
+        }
+
+        public float NeededVelocity
+        {
+            get
+            {
+                return ((float)Tasks.RemainingPoints / (float)gStudio.WorkWeekDays) / (float)WorkTicks;
+            }
         }
 
         public float BugChance

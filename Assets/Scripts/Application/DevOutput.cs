@@ -55,8 +55,10 @@ public class DevOutput : MonoBehaviour
             "\n EmpathyMod " + p.EmpathyBarrierMultiplier + ", MoodMod " + p.MoodImpactMultiplier + ", DayStartMod " + p.WorkStartMod + ", DayEndMod " + p.WorkEndMod + ", BurnoutpMod " + p.BurnoutMultiplier +
             "\n ArtSkill " + p.Art + ", EngineeringSkill " + p.Engineering + ", DesignSkill " + p.Design + ", VelocityMultiplier " + p.VelocityMultiplier + ", BugChanceMultiplier " + p.BugChanceMultiplier +
             "\n CURRENT VALUES" +
-            "\n Rest " + c.Rest.curValue + ", Food " + c.Food.curValue + ", Insp " + c.Insp.curValue + ", Socl " + c.Socl.curValue +
-            "\n Velocity " + t.Velocity + ", Alignment " + t.Alignment + ", CrunchPressure " + t.CrunchPressure;
+            "\n Rest " + c.Rest.curValue + ", Food " + c.Food.curValue + ", Insp " + c.Insp.curValue + ", Socl " + c.Socl.curValue + ", CappedMoodImpact " + c.CappedMoodImpact +
+            "\n Velocity " + t.Velocity + ", Alignment " + t.Alignment + ", CrunchPressure " + t.CrunchPressure +
+            "\n THRESHOLDS" +
+            "\n Crunch " + c.CrunchThreshold + ", Good Mood " + c.GoodMoodThreadhold + ", Bad Mood " + c.BadMoodThreshold + ", Overwhelmed " + c.OverwhelmedThreshold + ", Low Velocity " + c.LowVelocityThreshold;
 
             output.text = disp;
         }

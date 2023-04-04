@@ -293,7 +293,7 @@ public class RandomGeneration : ExecutableBehaviour
     public bool RandomGenerateBug(float taskChance, float characterChance)
     {
         float chance = (taskChance + characterChance) / 2;
-        bool bug = Random.Range(0f, 1f) > chance;
+        bool bug = Random.Range(0f, 1f) < chance;
         if (bug)
         {
             gProject.AddTask(new TaskContainer(RandomType, TaskImportance.Bug, Tier.Lowest, gProject.BaseBugChance, RandomPoints(gProject.MaxTaskPoints)));

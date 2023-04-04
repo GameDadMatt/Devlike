@@ -32,10 +32,10 @@ MonoBehaviour:
   moodImpactDays: 2.5
   moodImpactMax: 1.5
   moodImpactMin: 0.5
-  crunchThreshold: 0.75
-  overwhelmedThreshold: 0.75
-  badMoodThreshold: 0.25
-  goodMoodThreshold: 0.75
+  crunchThreshold: 1.25
+  overwhelmedThreshold: 1.5
+  badMoodThreshold: 0.5
+  goodMoodThreshold: 1.25
   lowVelocityThreshold: 0.5
   characterColours:
     serializedVersion: 2

@@ -101,12 +101,11 @@ namespace Devlike.Characters
             moodletDisplay.RegisterMoodlet(ID);
 
             //Setup thresholds
-            CrunchThreshold = new Threshold(Profile.CrunchPoint);
-            BadMoodThreshold = new Threshold(Profile.BadMoodPoint);
-            GoodMoodThreadhold = new Threshold(Profile.GoodMoodPoint);
-            LowVelocityThreshold = new Threshold(Profile.LowVelocityPoint);
-            LowVelocityThreshold.SetScale(gProject.BaseTaskPointsPerDay);
-            OverwhelmedThreshold = new Threshold(Profile.OverwhelmedPoint);
+            CrunchThreshold = new Threshold(Profile.CrunchThreshold * CharacterTasker.ExpectedVelocity * gCharacter.CrunchThreshold);
+            BadMoodThreshold = new Threshold(Profile.BaseMood * gCharacter.BadMoodThreshold);
+            GoodMoodThreadhold = new Threshold(Profile.BaseMood * gCharacter.GoodMoodThreshold);
+            LowVelocityThreshold = new Threshold(CharacterTasker.ExpectedVelocity * gCharacter.LowVelocityThreshold);
+            OverwhelmedThreshold = new Threshold(CharacterTasker.ExpectedVelocity * gCharacter.OverwhelmedThreshold);
         }
 
         public void SetPositions()
@@ -190,6 +189,12 @@ namespace Devlike.Characters
                     moodImpact = 0;
                 }
             }
+
+            BadMoodThreshold.Value = Mood;
+            GoodMoodThreadhold.Value = Mood;
+            CrunchThreshold.Value = CharacterTasker.CrunchPressure;
+            LowVelocityThreshold.Value = CharacterTasker.Velocity;
+            OverwhelmedThreshold.Value = CharacterTasker.NeededVelocity;
 
             //Do a mood check and set appropriate moodlet based on current stats
             NaturalMoodCheck();

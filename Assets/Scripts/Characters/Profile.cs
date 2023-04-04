@@ -42,13 +42,7 @@ namespace Devlike.Characters
         public float BaseMood { get; private set; } = 0.5f; //Percentage
         //What is the alignment of this character normally
         public float NaturalAlignment { get; private set; } = 0f; //Percentage
-
-        //THRESHOLDS
-        public float CrunchPoint { get; private set; }
-        public float BadMoodPoint { get; private set; }
-        public float GoodMoodPoint { get; private set; }
-        public float LowVelocityPoint { get; private set; }
-        public float OverwhelmedPoint { get; private set; }
+        public float CrunchThreshold { get; private set; } = 0f;
 
         //How early or late does the character start and end the day
         public int WorkStartMod { get; private set; } = 0;
@@ -70,7 +64,7 @@ namespace Devlike.Characters
             Hobby = hobby;
             Experience = experience;
             Color = color;
-            ApplyProfession(gCharacter, profession);
+            ApplyProfession(profession);
 
             foreach(Trait trait in traits)
             {
@@ -82,11 +76,16 @@ namespace Devlike.Characters
             WorkEndMod /= gCharacter.TotalTraits;
         }
 
-        private void ApplyProfession(GlobalCharacter gCharacter, Profession p)
+        private void ApplyProfession(Profession p)
         {
             Profession = p;
             ApplySkill(p.primarySkill);
             ApplySkill(p.secondarySkill);
+
+            //Average out the skills
+            Art /= 2;
+            Engineering /= 2;
+            Design /= 2;
         }
 
         private void ApplySkill(Skill skill)
@@ -94,13 +93,13 @@ namespace Devlike.Characters
             switch (skill.type)
             {
                 case TaskType.Art:
-                    Art *= TierLowToHigh(skill.tier);
+                    Art += TierLowToHigh(skill.tier);
                     break;
                 case TaskType.Engineering:
-                    Engineering *= TierLowToHigh(skill.tier);
+                    Engineering += TierLowToHigh(skill.tier);
                     break;
                 case TaskType.Design:
-                    Design *= TierLowToHigh(skill.tier);
+                    Design += TierLowToHigh(skill.tier);
                     break;
             }
         }
@@ -123,17 +122,10 @@ namespace Devlike.Characters
             BurnoutMultiplier = TierHighToLow(trait.burnout);
             MoodImpactMultiplier = TierHighToLow(trait.moodImpact);
 
-            CrunchPoint = gCharacter.CrunchThreshold * TierHighToLow(trait.crunchThreshold);
-            GoodMoodPoint = gCharacter.GoodMoodThreshold * TierHighToLow(trait.baseMood);
-
             //Low Tier = Low Return
             VelocityMultiplier = TierLowToHigh(trait.velocity);
             BaseMood = TierLowToHigh(trait.baseMood);
-
-            BadMoodPoint = gCharacter.BadMoodThreshold * TierLowToHigh(trait.baseMood);
-            LowVelocityPoint = gCharacter.LowVelocityThreshold * TierLowToHigh(trait.velocity);
-            OverwhelmedPoint = gCharacter.OverwhelmedThreshold * TierLowToHigh(ConfidenceAverage(trait.velocity));
-
+            CrunchThreshold = TierLowToHigh(trait.crunchThreshold);
 
             WorkStartMod += TierDayMod(gCharacter, gTime.TicksPerHour, trait.dayStart);
             WorkEndMod += TierDayMod(gCharacter, gTime.TicksPerHour, trait.dayEnd);

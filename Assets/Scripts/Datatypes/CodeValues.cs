@@ -141,25 +141,19 @@ public class ChanceWeights
 [System.Serializable]
 public class Threshold
 {
-    public float Point { get; private set; }
+    public float Point { get; private set; } = 0f;
     public float Value { get; set; } = 0f;
-    private float scale = 1f; //The top end of the scale this value tracks, to convert to percentages
 
     public Threshold(float point)
     {
         Point = point;
     }
 
-    public void SetScale(float scale)
-    {
-        this.scale = scale;
-    }
-
     public bool OverThreshold
     {
         get
         {
-            return (Value / scale) > Point;
+            return Value > Point;
         }
     }
 
@@ -167,8 +161,13 @@ public class Threshold
     {
         get
         {
-            return (Value / scale) < Point;
+            return Value < Point;
         }
+    }
+
+    public override string ToString()
+    {
+        return Value + " / " + Point;
     }
 }
 
