@@ -33,7 +33,7 @@ namespace Devlike.UI
         private int charactersPerPage = 4;
 
         private int curPage = 0;
-        private float columnWidth = 980f / 4f;
+        private float ColumnWidth { get => characterColumnArea.rect.width / (float)charactersPerPage; }
         private List<TaskColumn> allColumns;
 
         public void Awake()
@@ -61,7 +61,8 @@ namespace Devlike.UI
 
         private void GenerateScreen()
         {
-            characterColumnArea.sizeDelta = new Vector2(columnWidth * gStudio.Characters.Count, characterColumnArea.rect.height);
+            //We use this in case we decide to have more than 4 characters on screen
+            characterColumnArea.sizeDelta = new Vector2(ColumnWidth * gStudio.Characters.Count, characterColumnArea.sizeDelta.y);
             allColumns = backlogColumns;
 
             for (int i = 0; i < backlogColumns.Count; i++)

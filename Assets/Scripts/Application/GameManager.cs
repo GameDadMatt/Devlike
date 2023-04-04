@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Devlike.Characters;
 using Devlike.Timing;
 using Devlike;
@@ -35,6 +36,13 @@ public class GameManager : ExecutableBehaviour
         else
         {
             Debug.LogWarning("Multiple copies of " + name + " detected");
+        }
+
+        if (!Application.isEditor)
+        {
+            //Load other scenes
+            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            SceneManager.LoadScene(2, LoadSceneMode.Additive);
         }
 
         if (ResetOnStart)
