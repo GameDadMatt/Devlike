@@ -42,7 +42,6 @@ namespace Devlike.Tasks
             if(State != TaskState.InProgress)
             {
                 State = TaskState.InProgress;
-                Debug.LogWarning("Started " + Type + ", ID " + ID);
             }
 
             //Risk generating a bug every tick

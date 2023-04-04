@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05c45fa6248c8724d81777cff5ed6811, type: 3}
-  m_Name: Team Meeting
+  m_Name: Talk To
   m_EditorClassIdentifier: 
-  type: 2
+  type: 4
   randomCompleteTime: 1
-  minHoursToComplete: 1
-  maxHoursToComplete: 4
+  minHoursToComplete: 0.25
+  maxHoursToComplete: 2

@@ -72,7 +72,7 @@ namespace Devlike.Tasks
         //Actions
         public event Action OnTaskComplete;
         public event Action OnBugCreated;
-        public void DoTask(float velocity, float bugChance)
+        public void DoTask(string cname, float velocity, float bugChance)
         {
             if(doingTask == null)
             {
@@ -80,6 +80,7 @@ namespace Devlike.Tasks
                 tasks.RemoveAt(0);
             }
 
+            Debug.Log(cname + " is doing " + doingTask.Type + " " + doingTask.ID);
             doingTask.DoTask(velocity, bugChance);
 
             if (doingTask.GeneratedBug)

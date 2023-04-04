@@ -15,4 +15,4 @@ MonoBehaviour:
   type: 3
   randomCompleteTime: 0
   minHoursToComplete: 0
-  maxHoursToComplete: 6
+  maxHoursToComplete: 2

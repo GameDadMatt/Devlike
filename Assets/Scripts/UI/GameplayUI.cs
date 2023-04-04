@@ -19,6 +19,10 @@ namespace Devlike.UI
 
         private Canvas canvas;
         [SerializeField]
+        private GameObject charButtonPrefab;
+        [SerializeField]
+        private GameObject characterBar;
+        [SerializeField]
         private TextMeshProUGUI week;
         [SerializeField]
         private TextMeshProUGUI dayHour;
@@ -75,11 +79,13 @@ namespace Devlike.UI
 
         public void GenerateCharacterButtons()
         {
-            Debug.Log(characterButtons.Count + " Buttons");
             for(int i = 0; i < gStudio.Characters.Count; i++)
             {
-                characterButtons[i].character = gStudio.Characters[i];
-                characterButtons[i].GenerateButton();
+                GameObject cbtn = Instantiate(charButtonPrefab, characterBar.transform);
+                ProgressButtonCharacter cbtnc = cbtn.GetComponent<ProgressButtonCharacter>();
+                cbtnc.character = gStudio.Characters[i];
+                cbtnc.GenerateButton();
+                characterButtons.Add(cbtnc);
             }
         }
 

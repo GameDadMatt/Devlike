@@ -18,6 +18,8 @@ namespace Devlike.UI
 
         public override void GenerateButton()
         {
+            //Because we're doing this manually, we have to call SetListeners ourself
+            SetListeners();
             buttonText.SetText(character.Profile.FirstName);
             GetComponent<MoodletDisplay>().RegisterMoodlet(character.ID);
             characterSprite.color = character.Profile.Color;
@@ -48,6 +50,7 @@ namespace Devlike.UI
         {
             if(character.CurrentState != CharacterState.Inactive)
             {
+                Debug.Log("Click! Action is: " + action.Type);
                 EventManager.instance.PlayerAction(action);
             }            
         }

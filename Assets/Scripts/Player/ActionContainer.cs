@@ -9,7 +9,7 @@ namespace Devlike.Player
     {
         public ActionType type;
         public bool randomCompleteTime;
-        public int minHoursToComplete = 0;
-        public int maxHoursToComplete = 0;
+        public float minHoursToComplete = 0f;
+        public float maxHoursToComplete = 0f;
     }
 }

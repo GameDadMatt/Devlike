@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd6d76f2accb8a478a75015cd729044, type: 3}
   m_Name: Studio
   m_EditorClassIdentifier: 
-  studioSize: 8
+  studioSize: 4
   workWeekDays: 5
   weights:
     art: 4

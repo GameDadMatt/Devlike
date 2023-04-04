@@ -43,6 +43,11 @@ public class GameManager : ExecutableBehaviour
         }
     }
 
+    protected override void AfterDelay()
+    {
+        EventManager.instance.DisplayUI(Devlike.Player.ActionType.TaskManagement);
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Delete))

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Character
   m_EditorClassIdentifier: 
   totalTraits: 3
-  moodletDisplayHours: 1
-  moodletCooldownHoursMin: 1
+  moodletDisplayHours: 1.5
+  moodletCooldownHoursMin: 2
   moodletCooldownHoursMax: 4
-  moodletDelayHoursMin: 1
-  moodletDelayHoursMax: 4
+  moodletDelayHoursMin: 0.5
+  moodletDelayHoursMax: 5
   lowToHighBaseValue: 0.35
   highToLowBaseValue: 3
   dayHoursModifier: -3

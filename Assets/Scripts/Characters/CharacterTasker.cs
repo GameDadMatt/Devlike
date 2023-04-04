@@ -68,16 +68,18 @@ namespace Devlike.Characters
 
         public void DoTasks()
         {
-            Tasks.DoTask(Velocity, BugChance);
+            Tasks.DoTask(character.Profile.FullName, Velocity, BugChance);
         }
 
         public void GenerateBug()
         {
+            Debug.Log(character.Profile.FullName + " has generated a bug");
             character.TempMoodlet(MoodletType.GeneratedBug);
         }
 
         public void CompleteTask()
         {
+            Debug.Log(character.Profile.FullName + " has completed a task");
             character.TempMoodlet(MoodletType.CompletedTask);
         }
 
