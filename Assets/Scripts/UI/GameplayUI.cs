@@ -19,6 +19,8 @@ namespace Devlike.UI
 
         private Canvas canvas;
         [SerializeField]
+        private DevOutput devOutput;
+        [SerializeField]
         private GameObject charButtonPrefab;
         [SerializeField]
         private GameObject characterBar;
@@ -53,6 +55,7 @@ namespace Devlike.UI
         {
             SetWeek(gTime.CurrentWeek);
             SetTime(gTime.CurrentDay.ToString(), gTime.CurrentTime);
+            devOutput.SetupDevConsole();
         }
 
         public void RegisterButton(object button)

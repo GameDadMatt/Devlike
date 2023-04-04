@@ -85,22 +85,22 @@ namespace Devlike.Characters
         private void ApplyProfession(GlobalCharacter gCharacter, Profession p)
         {
             Profession = p;
-            ApplySkill(gCharacter, p.primarySkill);
-            ApplySkill(gCharacter, p.secondarySkill);
+            ApplySkill(p.primarySkill);
+            ApplySkill(p.secondarySkill);
         }
 
-        private void ApplySkill(GlobalCharacter gCharacter, Skill skill)
+        private void ApplySkill(Skill skill)
         {
             switch (skill.type)
             {
                 case TaskType.Art:
-                    Art *= TierLowToHigh(gCharacter, skill.tier);
+                    Art *= TierLowToHigh(skill.tier);
                     break;
                 case TaskType.Engineering:
-                    Engineering *= TierLowToHigh(gCharacter, skill.tier);
+                    Engineering *= TierLowToHigh(skill.tier);
                     break;
                 case TaskType.Design:
-                    Design *= TierLowToHigh(gCharacter, skill.tier);
+                    Design *= TierLowToHigh(skill.tier);
                     break;
             }
         }
@@ -111,33 +111,34 @@ namespace Devlike.Characters
             Confidence = ConfidenceAverage(trait.confidence);
 
             //Low Tier = High Return
-            RestDropMultiplier = TierHighToLow(gCharacter, trait.restDrop);
-            FoodDropMultiplier = TierHighToLow(gCharacter, trait.foodDrop);
-            InspDropMultiplier = TierHighToLow(gCharacter, trait.inspirationDrop);
-            SoclDropMultiplier = TierHighToLow(gCharacter, trait.socialDrop);
-            AlignDriftMultiplier = TierHighToLow(gCharacter, trait.alignment);
+            RestDropMultiplier = TierHighToLow(trait.restDrop);
+            FoodDropMultiplier = TierHighToLow(trait.foodDrop);
+            InspDropMultiplier = TierHighToLow(trait.inspirationDrop);
+            SoclDropMultiplier = TierHighToLow(trait.socialDrop);
+            AlignDriftMultiplier = TierHighToLow(trait.alignment);
 
-            EmpathyBarrierMultiplier = TierHighToLow(gCharacter, trait.empathyBarrier);
-            BugChanceMultiplier = TierHighToLow(gCharacter, trait.bugChance);
+            EmpathyBarrierMultiplier = TierHighToLow(trait.empathyBarrier);
+            BugChanceMultiplier = TierHighToLow(trait.bugChance);
 
-            BurnoutMultiplier = TierHighToLow(gCharacter, trait.burnout);
-            MoodImpactMultiplier = TierHighToLow(gCharacter, trait.moodImpact);
+            BurnoutMultiplier = TierHighToLow(trait.burnout);
+            MoodImpactMultiplier = TierHighToLow(trait.moodImpact);
+
+            CrunchPoint = gCharacter.CrunchThreshold * TierHighToLow(trait.crunchThreshold);
+            GoodMoodPoint = gCharacter.GoodMoodThreshold * TierHighToLow(trait.baseMood);
 
             //Low Tier = Low Return
-            VelocityMultiplier = TierLowToHigh(gCharacter, trait.velocity);         
+            VelocityMultiplier = TierLowToHigh(trait.velocity);
+            BaseMood = TierLowToHigh(trait.baseMood);
+
+            BadMoodPoint = gCharacter.BadMoodThreshold * TierLowToHigh(trait.baseMood);
+            LowVelocityPoint = gCharacter.LowVelocityThreshold * TierLowToHigh(trait.velocity);
+            OverwhelmedPoint = gCharacter.OverwhelmedThreshold * TierLowToHigh(ConfidenceAverage(trait.velocity));
+
 
             WorkStartMod += TierDayMod(gCharacter, gTime.TicksPerHour, trait.dayStart);
             WorkEndMod += TierDayMod(gCharacter, gTime.TicksPerHour, trait.dayEnd);
 
-            //Percentages
-            BaseMood = TierPercentage(trait.baseMood);
             NaturalAlignment = AlignmentCalc(trait.alignment, Experience);
-
-            CrunchPoint = gCharacter.CrunchThreshold * InverseTierPercentage(trait.crunchThreshold);
-            BadMoodPoint = gCharacter.BadMoodThreshold * TierPercentage(trait.baseMood);
-            GoodMoodPoint = gCharacter.GoodMoodThreshold * InverseTierPercentage(trait.baseMood);
-            LowVelocityPoint = gCharacter.LowVelocityThreshold * TierPercentage(trait.velocity);
-            OverwhelmedPoint = gCharacter.OverwhelmedThreshold * TierPercentage(ConfidenceAverage(trait.velocity));
         }
 
         /// <summary>
@@ -145,9 +146,23 @@ namespace Devlike.Characters
         /// </summary>
         /// <param name="tier"></param>
         /// <returns></returns>
-        private float TierLowToHigh(GlobalCharacter character, Tier tier)
+        private float TierLowToHigh(Tier tier)
         {
-            return character.LowToHighBaseValue * ((int)tier + 1);
+            switch (tier)
+            {
+                case Tier.Lowest:
+                    return 0.5f;
+                case Tier.Low:
+                    return 0.8f;
+                case Tier.Average:
+                    return 1f;
+                case Tier.High:
+                    return 1.2f;
+                case Tier.Highest:
+                    return 1.5f;
+            }
+            Debug.LogError("Failed to find tier " + tier);
+            return 1f;
         }
 
         /// <summary>
@@ -155,24 +170,28 @@ namespace Devlike.Characters
         /// </summary>
         /// <param name="tier"></param>
         /// <returns></returns>
-        private float TierHighToLow(GlobalCharacter character, Tier tier)
+        private float TierHighToLow(Tier tier)
         {
-            return character.HighToLowBaseValue / ((int)tier + 1);
+            switch (tier)
+            {
+                case Tier.Lowest:
+                    return 1.5f;
+                case Tier.Low:
+                    return 1.2f;
+                case Tier.Average:
+                    return 1f;
+                case Tier.High:
+                    return 0.8f;
+                case Tier.Highest:
+                    return 0.5f;
+            }
+            Debug.LogError("Failed to find tier " + tier);
+            return 1f;
         }
 
         private int TierDayMod(GlobalCharacter character, int ticksPerHour, Tier tier)
         {
             return (character.DayHoursModifier + (int)tier) * ticksPerHour;
-        }
-
-        private float TierPercentage(Tier tier)
-        {
-            return (float)tier / (float)Tier.Highest;
-        }
-
-        private float InverseTierPercentage(Tier tier)
-        {
-            return 1f - (float)tier / (float)Tier.Highest;
         }
 
         private Tier ConfidenceAverage(Tier tier)
@@ -184,7 +203,7 @@ namespace Devlike.Characters
         //Factors experience into the calculation
         private float AlignmentCalc(Tier alignment, Tier experience)
         {
-            return (TierPercentage(alignment) + TierPercentage(experience)) / 2f;
+            return (TierLowToHigh(alignment) + TierLowToHigh(experience)) / 2f;
         }
     }
 }

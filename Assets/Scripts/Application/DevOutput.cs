@@ -7,25 +7,41 @@ using Devlike;
 
 public class DevOutput : MonoBehaviour
 {
+    [SerializeField]
+    private Canvas devConsole;
     private Character c;
     private Profile p;
+    private CharacterTasker t;
     private bool selected = false;
     public TextMeshProUGUI output;
 
-    public void OnEnable()
+    public void SetupDevConsole()
     {
         EventManager.instance.OnCharacterSelect += SelectCharacter;
     }
 
     public void SelectCharacter(Character click)
     {
+        Debug.Log("Character Selected");
         c = click;
         p = c.Profile;
+        t = c.CharacterTasker;
         selected = true;
+
+        if (!devConsole.enabled)
+        {
+            devConsole.enabled = true;
+        }
     }
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.BackQuote))
+        {
+            Debug.Log("~");
+            devConsole.enabled = !devConsole.enabled;
+        }
+
         if (selected)
         {
             string disp;
@@ -35,11 +51,12 @@ public class DevOutput : MonoBehaviour
                 disp += " " + trait + ", ";
             }
             disp += "\n RestMod " + p.RestDropMultiplier + ", FoodMod " + p.FoodDropMultiplier + ", InspMod " + p.InspDropMultiplier + ", SoclMod " + p.SoclDropMultiplier +
-            "\n EmpathyMod " + p.EmpathyBarrierMultiplier + ", MoodMod " + p.MoodImpactMultiplier + ", DayStartMod " + p.WorkStartMod + ", DayEndMod " + p.WorkEndMod + ", VelocityMod " + p.VelocityMultiplier + ", BuglocityMod " + p.BugChanceMultiplier + ", BurnoutpMod " + p.BurnoutMultiplier +
-            "\n ArtSkill " + p.Art + ", EngineeringSkill " + p.Engineering + ", DesignSkill " + p.Design +
+            "\n RestBurn " + c.RestBurnRate + ", FoodBurn " + c.FoodBurnRate + ", InspBurn " + c.InspBurnRate + ", SoclBurn " + c.SoclBurnRate +
+            "\n EmpathyMod " + p.EmpathyBarrierMultiplier + ", MoodMod " + p.MoodImpactMultiplier + ", DayStartMod " + p.WorkStartMod + ", DayEndMod " + p.WorkEndMod + ", BurnoutpMod " + p.BurnoutMultiplier +
+            "\n ArtSkill " + p.Art + ", EngineeringSkill " + p.Engineering + ", DesignSkill " + p.Design + ", VelocityMultiplier " + p.VelocityMultiplier + ", BugChanceMultiplier " + p.BugChanceMultiplier +
             "\n CURRENT VALUES" +
             "\n Rest " + c.Rest.curValue + ", Food " + c.Food.curValue + ", Insp " + c.Insp.curValue + ", Socl " + c.Socl.curValue +
-            "\n RestBurn " + c.RestBurnRate + ", FoodBurn " + c.FoodBurnRate + ", InspBurn " + c.InspBurnRate + ", SoclBurn " + c.SoclBurnRate;
+            "\n Velocity " + t.Velocity + ", Alignment " + t.Alignment + ", CrunchPressure " + t.CrunchPressure;
 
             output.text = disp;
         }

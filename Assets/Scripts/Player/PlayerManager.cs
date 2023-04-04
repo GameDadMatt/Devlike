@@ -103,8 +103,12 @@ namespace Devlike.Player
 
         private void CompleteAction()
         {
-            currentAction.Reset();
-            currentAction = null;
+            if (currentAction != null)
+            {
+                currentAction.Reset();
+                currentAction = null;
+            }
+            Debug.LogWarning("CompleteAction called when there is no current action");
         }
 
         /// <summary>

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 using Devlike.Player;
 using Devlike.Timing;
@@ -9,7 +10,7 @@ using Devlike.Characters;
 
 namespace Devlike.UI
 {
-    public class ProgressButtonCharacter : ProgressButton
+    public class ProgressButtonCharacter : ProgressButton, IPointerClickHandler
     {
         public Image characterSprite;
         [HideInInspector]
@@ -46,13 +47,16 @@ namespace Devlike.UI
             }            
         }
 
-        public override void PressButton()
+        public void OnPointerClick(PointerEventData eventData)
         {
-            if(character.CurrentState != CharacterState.Inactive)
+            if(eventData.button == PointerEventData.InputButton.Left)
             {
-                Debug.Log("Click! Action is: " + action.Type);
                 EventManager.instance.PlayerAction(action);
-            }            
+            }
+            else if(eventData.button == PointerEventData.InputButton.Right)
+            {
+                EventManager.instance.CharacterSelect(character);
+            }
         }
 
         public override void ResetButton()
