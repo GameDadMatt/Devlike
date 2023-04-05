@@ -69,6 +69,10 @@ namespace Devlike.UI
                     button.interactable = false;
                     progressBar.fillAmount = action.Progress;
                 }
+                else if(!action.Active && action.Progress > 0)
+                {
+                    button.interactable = true;
+                }
             }
             else
             {
