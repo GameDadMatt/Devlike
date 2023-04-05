@@ -39,6 +39,7 @@ namespace Devlike
         }
 
         //Parse the output of a player action after it's been through PlayerManager
+        public event Action<Character> OnCharacterInteract;
         public void ParsePlayerAction(ActionType type, object obj)
         {
             switch (type)
@@ -67,12 +68,6 @@ namespace Devlike
         public void CloseUI()
         {
             OnCloseUI?.Invoke();
-        }
-
-        public event Action<Character> OnCharacterInteract;
-        public void CharacterInteract(Character character)
-        {
-            OnCharacterInteract?.Invoke(character);
         }
 
         public event Action<Character> OnCharacterSelect;

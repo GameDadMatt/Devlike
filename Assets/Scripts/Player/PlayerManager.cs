@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Devlike.Timing;
 using Devlike.UI;
+using Devlike.Characters;
 
 namespace Devlike.Player
 {
@@ -44,6 +45,9 @@ namespace Devlike.Player
 
     public class PlayerManager : ExecutableBehaviour
     {
+        [SerializeField]
+        private GlobalStudio gStudio;
+
         private List<PlayerAction> activeActions = new List<PlayerAction>();
         private PlayerAction progressingAction = null;
         private PlayerAction currentAction = null;
@@ -79,23 +83,38 @@ namespace Devlike.Player
         {
             if(progressingAction != null && currentAction == null)
             {
-                progressingAction.CompletedTicks++;
-                if (progressingAction.Completed)
+                if (gStudio.CharactersActive)
                 {
-                    Debug.Log("DISPLAY " + progressingAction.Type);
-                    EventManager.instance.ParsePlayerAction(progressingAction.Type, progressingAction.Object);
-                    currentAction = progressingAction; //Set the current action, which will stop this function acting on tick until it's done
-                    activeActions.Remove(progressingAction);
-
-                    //If there are other actions, go to the next active action
-                    if (activeActions.Count > 0)
+                    //If we are talking to a character, and that character is not active, do not progress this action any further
+                    if(progressingAction.Type == ActionType.TalkTo)
                     {
-                        progressingAction = activeActions[0];
-                        progressingAction.Active = true;
+                        Character target = progressingAction.Object as Character;
+                        if(target.CurrentState != CharacterState.Active)
+                        {
+                            return;
+                        }
                     }
-                    else
+
+                    progressingAction.CompletedTicks++;
+                    if (progressingAction.Completed)
                     {
+                        Debug.Log("DISPLAY " + progressingAction.Type);
+                        EventManager.instance.ParsePlayerAction(progressingAction.Type, progressingAction.Object);
+                        currentAction = progressingAction; //Set the current action, which will stop this function acting on tick until it's done
+                        activeActions.Remove(progressingAction);
+
                         progressingAction = null;
+
+                        //If there are other actions, go to the next active action
+                        /*if (activeActions.Count > 0)
+                        {
+                            progressingAction = activeActions[0];
+                            progressingAction.Active = true;
+                        }
+                        else
+                        {
+                            progressingAction = null;
+                        }*/
                     }
                 }
             }      
