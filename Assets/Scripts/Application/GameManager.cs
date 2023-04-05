@@ -24,6 +24,15 @@ public class GameManager : ExecutableBehaviour
     private GlobalCharacter gCharacter;
     [SerializeField]
     private GlobalDialogue gDialogue;
+    [Header("TEXT DATA")]
+    [SerializeField]
+    private TextAsset hobbies;
+    [SerializeField]
+    private TextAsset firstNames;
+    [SerializeField]
+    private TextAsset lastNames;
+    [SerializeField]
+    private TextAsset nickNames;
 
     private GlobalObject[] GlobalObjects { get { return new GlobalObject[] { gGame, gTime, gStudio, gProject, gCharacter, gDialogue }; } }
 
@@ -68,7 +77,7 @@ public class GameManager : ExecutableBehaviour
     protected override void SetProperties()
     {
         //Load the contents of DataValues
-        CodeValues.LoadLists();
+        CodeValues.LoadLists(hobbies, firstNames, lastNames, nickNames);
         Debug.Log("Loaded Lists");
     }
 

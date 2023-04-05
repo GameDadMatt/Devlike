@@ -1192,6 +1192,10 @@ MonoBehaviour:
   gProject: {fileID: 11400000, guid: 0ddcf9bead7ea1e46baf083db588551e, type: 2}
   gCharacter: {fileID: 11400000, guid: 587906fc8fa7fb246a8d2f69af3eac81, type: 2}
   gDialogue: {fileID: 11400000, guid: d2ce7dce081f3d3468a747574cf808f3, type: 2}
+  hobbies: {fileID: 4900000, guid: 1e011c031ca9e654d9379fea059871c9, type: 3}
+  firstNames: {fileID: 4900000, guid: 1b449b47ac26ed74da57dd66cd6618ff, type: 3}
+  lastNames: {fileID: 4900000, guid: 3f0f68995dd99bd479f1c8b1401efc5e, type: 3}
+  nickNames: {fileID: 4900000, guid: 2303bacdee80c8542bbe44190a3a853b, type: 3}
 --- !u!1 &685295320
 GameObject:
   m_ObjectHideFlags: 0

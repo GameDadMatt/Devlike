@@ -199,10 +199,14 @@ public static class CodeValues
 {
     //DataValues returns a value from a given list stored in the game folders
     private static string path = "Assets/Data/";
-    public static List<string> Hobbies;
+    /*public static List<string> Hobbies;
     public static List<string> FirstNames;
     public static List<string> LastNames;
-    public static List<string> Nicknames;
+    public static List<string> Nicknames;*/
+    public static string[] Hobbies;
+    public static string[] FirstNames;
+    public static string[] LastNames;
+    public static string[] Nicknames;
 
     /// <summary>
     /// Returns a string from a given list
@@ -221,11 +225,22 @@ public static class CodeValues
         return strings;
     }
 
-    public static void LoadLists()
+    private static string[] GetStringsFromTextAsset(TextAsset asset)
     {
-        Hobbies = GetStringsFromFile("Hobbies.txt");
+        string[] strings = asset.text.Split(System.Environment.NewLine);
+        return strings;
+    }
+
+    public static void LoadLists(TextAsset hb, TextAsset fn, TextAsset ln, TextAsset nn)
+    {
+        /*Hobbies = GetStringsFromFile("Hobbies.txt");
         FirstNames = GetStringsFromFile("FirstNames.txt");
         LastNames = GetStringsFromFile("LastNames.txt");
-        Nicknames = GetStringsFromFile("Nicknames.txt");
+        Nicknames = GetStringsFromFile("Nicknames.txt");*/
+
+        Hobbies = GetStringsFromTextAsset(hb);
+        FirstNames = GetStringsFromTextAsset(fn);
+        LastNames = GetStringsFromTextAsset(ln);
+        Nicknames = GetStringsFromTextAsset(nn);
     }
 }
