@@ -228,12 +228,16 @@ public static class CodeValues
     /*
     private static string[] GetStringsFromTextAsset(TextAsset asset)
     {
-        string[] strings = asset.text.Split(System.Environment.NewLine);
-        if(strings.Length !> 1)
+        string[] strings = asset.text.Split('\n');
+        if (strings.Length <= 1)
         {
-            strings = asset.text.Split("\n"[0]);
+            strings = asset.text.Split(System.Environment.NewLine);
+
+            if (strings.Length <= 1)
+            {
+                Debug.LogError("Failed to split loaded strings from TextAsset " + asset.name);
+            }
         }
-        Debug.Log(strings.Length);
         return strings;
     }
     */
