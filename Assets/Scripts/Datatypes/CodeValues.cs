@@ -198,15 +198,15 @@ public class SharedCharacterState : SharedVariable<CharacterState>
 public static class CodeValues
 {
     //DataValues returns a value from a given list stored in the game folders
-    private static string path = "Assets/Data/";
-    /*public static List<string> Hobbies;
+    private static string path = "Assets/Resources/";
+    public static List<string> Hobbies;
     public static List<string> FirstNames;
     public static List<string> LastNames;
-    public static List<string> Nicknames;*/
-    public static string[] Hobbies;
+    public static List<string> Nicknames;
+    /*public static string[] Hobbies;
     public static string[] FirstNames;
     public static string[] LastNames;
-    public static string[] Nicknames;
+    public static string[] Nicknames;*/
 
     /// <summary>
     /// Returns a string from a given list
@@ -225,22 +225,29 @@ public static class CodeValues
         return strings;
     }
 
+    /*
     private static string[] GetStringsFromTextAsset(TextAsset asset)
     {
         string[] strings = asset.text.Split(System.Environment.NewLine);
+        if(strings.Length !> 1)
+        {
+            strings = asset.text.Split("\n"[0]);
+        }
+        Debug.Log(strings.Length);
         return strings;
     }
+    */
 
-    public static void LoadLists(TextAsset hb, TextAsset fn, TextAsset ln, TextAsset nn)
+    public static void LoadLists()//(TextAsset hb, TextAsset fn, TextAsset ln, TextAsset nn)
     {
-        /*Hobbies = GetStringsFromFile("Hobbies.txt");
+        Hobbies = GetStringsFromFile("Hobbies.txt");
         FirstNames = GetStringsFromFile("FirstNames.txt");
         LastNames = GetStringsFromFile("LastNames.txt");
-        Nicknames = GetStringsFromFile("Nicknames.txt");*/
+        Nicknames = GetStringsFromFile("Nicknames.txt");
 
-        Hobbies = GetStringsFromTextAsset(hb);
+        /*Hobbies = GetStringsFromTextAsset(hb);
         FirstNames = GetStringsFromTextAsset(fn);
         LastNames = GetStringsFromTextAsset(ln);
-        Nicknames = GetStringsFromTextAsset(nn);
+        Nicknames = GetStringsFromTextAsset(nn);*/
     }
 }

@@ -181,10 +181,10 @@ public class RandomGeneration : ExecutableBehaviour
     private List<string> RandomNameAndHobby()
     {
         List<string> strings = new List<string>();
-        strings.Add(CodeValues.FirstNames[Random.Range(0, CodeValues.FirstNames.Length)]);
-        strings.Add(CodeValues.LastNames[Random.Range(0, CodeValues.LastNames.Length)]);
-        strings.Add(CodeValues.Nicknames[Random.Range(0, CodeValues.Nicknames.Length)]);
-        strings.Add(CodeValues.Hobbies[Random.Range(0, CodeValues.Hobbies.Length)]);
+        strings.Add(CodeValues.FirstNames[Random.Range(0, CodeValues.FirstNames.Count)]);
+        strings.Add(CodeValues.LastNames[Random.Range(0, CodeValues.LastNames.Count)]);
+        strings.Add(CodeValues.Nicknames[Random.Range(0, CodeValues.Nicknames.Count)]);
+        strings.Add(CodeValues.Hobbies[Random.Range(0, CodeValues.Hobbies.Count)]);
         return strings;
     }
 
