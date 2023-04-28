@@ -54,6 +54,14 @@ public class GameManager : ExecutableBehaviour
             SceneManager.LoadScene(1, LoadSceneMode.Additive);
             SceneManager.LoadScene(2, LoadSceneMode.Additive);
         }
+        else
+        {
+            if(SceneManager.sceneCount == 1)
+            {
+                SceneManager.LoadScene(1, LoadSceneMode.Additive);
+                SceneManager.LoadScene(2, LoadSceneMode.Additive);
+            }
+        }
 
         if (ResetOnStart)
         {
